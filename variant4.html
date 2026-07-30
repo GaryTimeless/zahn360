@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZAHN 360 – Zahntechnisches Meisterlabor Weinheim</title>
+<meta name="description" content="ZAHN 360 fertigt Kronen, Implantatversorgungen und Zahnersatz für zahnärztliche Praxen in der Region. Meisterbetrieb in Weinheim.">
+
+<!--
+  ENTWURF – Entwickler-Notizen für Gestalter/in
+  ------------------------------------------------
+  • Fakten (Adresse, Telefon, Handelsregister, USt-IdNr.) stammen aus dem
+    öffentlichen Impressum von zahn360.com (Stand: aktuelle "Neue Homepage folgt"-Seite)
+    und dem Handelsregister-Auszug (Amtsgericht Mannheim, HRA 706344). Bitte vor
+    Livegang gegenchecken.
+  • Namensschreibweise: Handelsregister & bestehendes Impressum führen "Julien Hornung"
+    (nicht "Julian"). Im Entwurf durchgängig "Julien Hornung" verwendet – bitte mit
+    Kunde final abklären, falls er selbst "Julian" schreibt/nutzt.
+  • Fotoplätze sind mit HTML-Kommentaren <!-- PHOTO: ... --> markiert. Aktuell durch
+    ein reduziertes Grafiksystem (Ring-/Winkel-Motiv zu "360") ersetzt, da die
+    Referenzfotos (Ordner "leuchtner Zahntechnik 1-6") nicht zugänglich waren.
+  • Struktur/Ton orientiert an leuchtner-zahntechnik.de (Referenzseite): kurze,
+    selbstbewusste Blöcke, starke Karriere-Sektion, klare Nummerierung als
+    Strukturprinzip – hier als 090°/180°/270°/360° umgesetzt, weil es an den
+    eigentlichen Fertigungsprozess UND den Firmennamen "360" andockt.
+  • Farb-Token: --ink, --paper, --mist, --stone, --turquoise, --turquoise-tint
+    (siehe :root). Ausschließlich Schwarz/Weiß/Grau/Türkis wie gewünscht.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* ---- Farb-Token (schwarz / weiß / grau / türkis) ---- */
+    --ink: #0E1214;          /* Primärtext, dunkle Flächen */
+    --ink-soft: #1B2124;     /* etwas weicheres Schwarz für große Flächen */
+    --paper: #FFFFFF;        /* Basis-Hintergrund */
+    --mist: #F0F3F3;         /* helle graue Sektionsflächen */
+    --stone: #5B6366;        /* Sekundärtext auf hellem Grund */
+    --stone-light: #9AA1A3;  /* Trennlinien, dezente Elemente */
+    --border: #E3E7E7;
+    --turquoise: #0FA99D;        /* Flächen, Icons, Buttons */
+    --turquoise-dark: #0B8177;   /* Hover / kräftiger */
+    --turquoise-text: #0A7D74;   /* für lesbaren Text auf Weiß */
+    --turquoise-tint: #E2F5F3;   /* helle Badge-/Kartenflächen */
+
+    --font-display: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    --container: 1180px;
+    --radius: 14px;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; margin:0; padding:0; }
+  h1,h2,h3,h4{ font-family:var(--font-display); margin:0; line-height:1.08; letter-spacing:-0.01em; }
+  p{ margin:0; }
+  button{ font-family:inherit; }
+
+  :focus-visible{ outline:2px solid var(--turquoise); outline-offset:3px; border-radius:4px; }
+
+  .container{ max-width:var(--container); margin:0 auto; padding:0 24px; }
+  .skip-link{
+    position:absolute; left:-9999px; top:0; background:var(--ink); color:var(--paper);
+    padding:12px 18px; z-index:1000; border-radius:0 0 8px 0;
+  }
+  .skip-link:focus{ left:0; }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--turquoise-text);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px; background:var(--turquoise);
+    display:inline-block;
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 26px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:0.95rem;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, background-color .15s ease, color .15s ease, border-color .15s ease;
+    white-space:nowrap;
+  }
+  .btn--primary{ background:var(--ink); color:var(--paper); }
+  .btn--primary:hover{ background:var(--turquoise-dark); transform:translateY(-1px); }
+  .btn--secondary{ background:transparent; color:var(--ink); border-color:var(--stone-light); }
+  .btn--secondary:hover{ border-color:var(--ink); transform:translateY(-1px); }
+  .btn--on-dark{ background:var(--turquoise); color:var(--ink); }
+  .btn--on-dark:hover{ background:#14c3b5; transform:translateY(-1px); }
+  .btn--ghost-dark{ background:transparent; color:var(--paper); border-color:rgba(255,255,255,0.35); }
+  .btn--ghost-dark:hover{ border-color:var(--paper); }
+  .btn svg{ width:16px; height:16px; }
+
+  /* ---------------- Header / Nav ---------------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .25s ease, box-shadow .25s ease;
+  }
+  header.is-scrolled{
+    border-bottom-color:var(--border);
+    box-shadow:0 6px 24px rgba(14,18,20,0.05);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.3rem;
+    letter-spacing:-0.01em;
+  }
+  .logo .accent{ color:var(--turquoise-text); }
+  .nav-links{ display:none; align-items:center; gap:34px; }
+  .nav-links a{
+    font-size:0.95rem; font-weight:500; color:var(--ink);
+    position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1.5px;
+    background:var(--turquoise); transition:width .2s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{ display:none; }
+  .nav-right{ display:flex; align-items:center; gap:22px; }
+
+  .menu-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:42px; height:42px; border-radius:10px; border:1px solid var(--border);
+    background:var(--paper); cursor:pointer;
+  }
+  .menu-toggle span{
+    display:block; width:18px; height:1.6px; background:var(--ink); position:relative;
+    transition:background .2s ease;
+  }
+  .menu-toggle span::before,.menu-toggle span::after{
+    content:""; position:absolute; left:0; width:18px; height:1.6px; background:var(--ink);
+    transition:transform .25s ease, top .25s ease;
+  }
+  .menu-toggle span::before{ top:-6px; }
+  .menu-toggle span::after{ top:6px; }
+  .menu-toggle.is-open span{ background:transparent; }
+  .menu-toggle.is-open span::before{ top:0; transform:rotate(45deg); }
+  .menu-toggle.is-open span::after{ top:0; transform:rotate(-45deg); }
+
+  .mobile-panel{
+    max-height:0; overflow:hidden; background:var(--paper); border-bottom:1px solid transparent;
+    transition:max-height .3s ease, border-color .3s ease;
+  }
+  .mobile-panel.is-open{ max-height:420px; border-bottom-color:var(--border); }
+  .mobile-panel ul{ padding:8px 24px 26px; display:flex; flex-direction:column; gap:4px; }
+  .mobile-panel a{
+    display:block; padding:12px 4px; font-weight:600; font-size:1.05rem;
+    border-bottom:1px solid var(--border);
+  }
+  .mobile-panel li:last-child a{ border-bottom:none; }
+
+  @media (min-width:900px){
+    .nav-links{ display:flex; }
+    .nav-cta{ display:inline-flex; }
+    .menu-toggle{ display:none; }
+    .mobile-panel{ display:none; }
+  }
+
+  /* ---------------- Hero ---------------- */
+  .hero{
+    padding:64px 0 40px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; gap:48px; align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.3rem, 5.4vw, 3.6rem);
+    margin:14px 0 22px;
+    max-width:14ch;
+  }
+  .hero p{
+    color:var(--stone);
+    font-size:1.08rem;
+    max-width:52ch;
+    margin-bottom:34px;
+  }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; }
+
+  .hero-visual{ display:flex; justify-content:center; }
+  .hero-arc{ width:100%; max-width:380px; height:auto; }
+  .arc-track{ stroke:var(--border); }
+  .arc-progress{
+    stroke:var(--turquoise);
+    stroke-linecap:round;
+    stroke-dasharray:1131;
+    stroke-dashoffset:1131;
+    animation:draw-arc 1.8s cubic-bezier(.2,.7,.2,1) .3s forwards;
+  }
+  .hero-mark{ color:var(--ink); }
+  @keyframes draw-arc{ to{ stroke-dashoffset:0; } }
+  @media (prefers-reduced-motion:reduce){
+    .arc-progress{ animation:none; stroke-dashoffset:0; }
+  }
+
+  @media (min-width:860px){
+    .hero-grid{ grid-template-columns:1.1fr 0.9fr; }
+    .hero p{ margin-bottom:38px; }
+  }
+
+  /* ---------------- Trust strip ---------------- */
+  .trust-strip{
+    background:var(--ink);
+    color:var(--paper);
+    padding:22px 0;
+  }
+  .trust-list{
+    display:flex; flex-direction:column; gap:14px;
+    font-family:var(--font-mono);
+    font-size:0.86rem;
+    letter-spacing:0.01em;
+  }
+  .trust-list li{ display:flex; gap:10px; align-items:flex-start; color:#D7DCDC; }
+  .trust-list strong{ color:var(--paper); font-weight:600; }
+  .trust-list svg{ width:16px; height:16px; flex:none; margin-top:2px; color:var(--turquoise); }
+
+  @media (min-width:860px){
+    .trust-list{ flex-direction:row; justify-content:space-between; }
+    .trust-list li{ max-width:30%; }
+  }
+
+  /* ---------------- Generic sections ---------------- */
+  .section{ padding:92px 0; }
+  .section--mist{ background:var(--mist); }
+  .section-head{ max-width:62ch; margin-bottom:52px; }
+  .section-head h2{ font-size:clamp(1.7rem, 3.4vw, 2.5rem); }
+  .section-head p{ color:var(--stone); margin-top:16px; font-size:1.05rem; max-width:58ch; }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---- Patient trust cards ---- */
+  .card-grid{ display:grid; gap:22px; }
+  .trust-card{
+    background:var(--paper); border:1px solid var(--border); border-radius:var(--radius);
+    padding:30px 26px;
+  }
+  .trust-card .icon-badge{ margin-bottom:20px; }
+  .trust-card h3{ font-size:1.15rem; margin-bottom:10px; }
+  .trust-card p{ color:var(--stone); font-size:0.98rem; }
+
+  .icon-badge{
+    width:46px; height:46px; border-radius:12px;
+    background:var(--turquoise-tint);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--turquoise-text);
+  }
+  .icon-badge svg{ width:22px; height:22px; }
+
+  @media (min-width:700px){ .card-grid.cards-3{ grid-template-columns:repeat(3,1fr); } }
+  @media (min-width:700px){ .card-grid.cards-4{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:1000px){ .card-grid.cards-4{ grid-template-columns:repeat(4,1fr); } }
+
+  /* ---- Process (090°/180°/270°/360°) ---- */
+  .process{ position:relative; margin-top:20px; }
+  .process-steps{
+    display:flex; flex-direction:column; gap:0;
+    position:relative;
+  }
+  .process-steps::before{
+    content:""; position:absolute;
+    left:27px; top:8px; bottom:8px; width:2px;
+    background:var(--border);
+  }
+  .process-step{
+    display:flex; gap:22px; padding:22px 0;
+    position:relative;
+  }
+  .degree-badge{
+    flex:none; width:56px; height:56px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--turquoise);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-weight:600; font-size:0.78rem;
+    color:var(--turquoise-text); position:relative; z-index:1;
+  }
+  .process-step h3{ font-size:1.1rem; margin-bottom:6px; }
+  .process-step p{ color:var(--stone); font-size:0.97rem; max-width:56ch; }
+
+  @media (min-width:900px){
+    .process-steps{ flex-direction:row; justify-content:space-between; gap:18px; }
+    .process-steps::before{ left:28px; right:28px; top:28px; bottom:auto; width:auto; height:2px; }
+    .process-step{ flex-direction:column; text-align:left; flex:1; padding:0; }
+    .degree-badge{ margin-bottom:20px; }
+  }
+
+  /* ---- Team ---- */
+  .team-grid{ display:grid; gap:22px; }
+  .team-card{
+    background:var(--paper); border:1px solid var(--border); border-radius:var(--radius);
+    padding:32px 28px; display:flex; gap:20px; align-items:flex-start;
+  }
+  .avatar-mark{
+    flex:none; width:64px; height:64px; border-radius:50%;
+    background:var(--ink); color:var(--turquoise);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:700; font-size:1.1rem;
+  }
+  .team-card h3{ font-size:1.15rem; margin-bottom:4px; }
+  .team-card .role{ font-family:var(--font-mono); font-size:0.8rem; color:var(--turquoise-text); letter-spacing:0.03em; margin-bottom:10px; display:block; }
+  .team-card p{ color:var(--stone); font-size:0.96rem; }
+  .team-note{ margin-top:26px; color:var(--stone); font-size:0.96rem; max-width:70ch; }
+
+  @media (min-width:760px){ .team-grid{ grid-template-columns:1fr 1fr; } }
+
+  /* ---- Services ---- */
+  .service-card{
+    background:var(--paper); border:1px solid var(--border); border-radius:var(--radius);
+    padding:28px 24px;
+  }
+  .service-card .icon-badge{ background:var(--ink); color:var(--turquoise); margin-bottom:22px; }
+  .service-card h3{ font-size:1.08rem; margin-bottom:8px; }
+  .service-card p{ color:var(--stone); font-size:0.94rem; }
+
+  /* ---- Career (dark section) ---- */
+  .career{ background:var(--ink); color:var(--paper); }
+  .career .section-head p{ color:#B7BEC0; }
+  .career .eyebrow{ color:var(--turquoise); }
+  .career .eyebrow::before{ background:var(--turquoise); }
+  .career-grid{ display:grid; gap:40px; }
+  .career-points{ display:grid; gap:22px; margin-top:8px; }
+  .career-point{ display:flex; gap:16px; align-items:flex-start; }
+  .career-point .icon-badge{ background:rgba(15,169,157,0.16); color:var(--turquoise); }
+  .career-point h3{ font-size:1.05rem; margin-bottom:6px; color:var(--paper); }
+  .career-point p{ color:#AEB5B7; font-size:0.95rem; }
+  .career-cta{
+    background:var(--ink-soft); border:1px solid rgba(255,255,255,0.12); border-radius:var(--radius);
+    padding:34px 28px;
+  }
+  .career-cta h3{ color:var(--paper); font-size:1.3rem; margin-bottom:12px; }
+  .career-cta p{ color:#AEB5B7; margin-bottom:24px; font-size:0.98rem; }
+
+  @media (min-width:900px){ .career-grid{ grid-template-columns:1.2fr 1fr; align-items:start; } }
+
+  /* ---- For dentists (compact strip, lowest priority) ---- */
+  .dentist-strip{ padding:56px 0; }
+  .dentist-box{
+    border:1px solid var(--border); border-radius:var(--radius);
+    padding:32px 28px;
+    display:grid; gap:22px;
+  }
+  .dentist-box h3{ font-size:1.25rem; margin-bottom:10px; }
+  .dentist-box p{ color:var(--stone); font-size:0.96rem; max-width:60ch; }
+  .dentist-stat{ font-family:var(--font-mono); font-size:0.82rem; color:var(--turquoise-text); margin-top:10px; display:block; }
+
+  @media (min-width:760px){
+    .dentist-box{ grid-template-columns:1fr auto; align-items:center; }
+  }
+
+  /* ---- Contact ---- */
+  .contact-grid{ display:grid; gap:36px; }
+  .contact-list{ display:flex; flex-direction:column; gap:18px; margin-top:26px; }
+  .contact-list a, .contact-list .plain{
+    display:flex; align-items:center; gap:14px; font-size:1rem; font-weight:500;
+  }
+  .contact-list svg{ width:20px; height:20px; color:var(--turquoise-text); flex:none; }
+  .contact-list a{ transition:color .15s ease; }
+  .contact-list a:hover{ color:var(--turquoise-text); }
+  .map-frame{
+    width:100%; height:280px; border:1px solid var(--border); border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .map-frame iframe{ width:100%; height:100%; border:0; }
+
+  @media (min-width:900px){ .contact-grid{ grid-template-columns:1fr 1fr; } }
+
+  /* ---------------- Footer ---------------- */
+  footer{ background:var(--ink-soft); color:#C7CDCE; padding:56px 0 30px; }
+  .footer-grid{ display:grid; gap:32px; margin-bottom:36px; }
+  .footer-col h4{ color:var(--paper); font-size:0.92rem; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:16px; font-family:var(--font-mono); font-weight:600; }
+  .footer-col p, .footer-col a{ font-size:0.92rem; line-height:1.8; color:#AEB5B7; }
+  .footer-col a:hover{ color:var(--turquoise); }
+  .footer-logo{ font-family:var(--font-display); font-weight:700; color:var(--paper); font-size:1.2rem; margin-bottom:14px; display:block; }
+  .footer-logo .accent{ color:var(--turquoise); }
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.12); padding-top:24px;
+    display:flex; flex-direction:column; gap:10px; font-size:0.84rem; color:#8B9294;
+  }
+  .footer-bottom .legal-links{ display:flex; gap:18px; flex-wrap:wrap; }
+  .footer-bottom a:hover{ color:var(--paper); }
+
+  @media (min-width:760px){
+    .footer-grid{ grid-template-columns:1.3fr 1fr 1fr; }
+    .footer-bottom{ flex-direction:row; justify-content:space-between; align-items:center; }
+  }
+
+  /* Variant Switcher */
+  .variant-switcher {
+    background: var(--ink); color: var(--paper);
+    padding: 0.55rem 1.2rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 0.72rem; letter-spacing: 0.06em;
+  }
+  .variant-switcher .label {
+    color: var(--turquoise); text-transform: uppercase; font-weight: 600; margin-right: 0.3rem;
+  }
+  .variant-switcher a {
+    color: rgba(255,255,255,0.7); text-decoration: none; padding: 0.2rem 0.65rem; border-radius: 4px;
+    transition: 0.2s; white-space: nowrap;
+  }
+  .variant-switcher a:hover { background: rgba(255,255,255,0.12); color: #fff; }
+  .variant-switcher a.active-variant { background: var(--turquoise); color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="variant-switcher">
+  <span class="label">Design-Varianten</span>
+  <a href="variant1.html">Dark</a>
+  <a href="variant2.html">Light</a>
+  <a href="variant3.html">Bold</a>
+  <a href="variant4.html" class="active-variant">✦ Edition 4</a>
+  <a href="variant-comic.html">🦸 Comic</a>
+  <a href="variant-fineline.html">Fine Line</a>
+</div>
+
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<header id="site-header">
+  <div class="container nav-row">
+    <a href="#top" class="logo">ZAHN <span class="accent">360°</span></a>
+
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="#patienten">Patienten</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#karriere">Karriere</a>
+        <a href="#zahnaerzte">Zahnärzte</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a href="#kontakt" class="btn btn--primary nav-cta">Kontakt aufnehmen</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobilePanel">
+        <span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-panel" id="mobilePanel">
+    <ul>
+      <li><a href="#patienten">Für Patienten</a></li>
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#karriere">Karriere</a></li>
+      <li><a href="#zahnaerzte">Für Zahnärzte</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Zahntechnisches Meisterlabor · Weinheim</div>
+        <h1>Präzision, die den Kreis schließt.</h1>
+        <p>ZAHN 360 fertigt Kronen, Implantatversorgungen und Zahnersatz für zahnärztliche Praxen in der Region Rhein-Neckar. Sie sind über Ihre Praxis hier gelandet? Gut so — hier erfahren Sie, wer Ihre Arbeit gefertigt hat.</p>
+        <div class="hero-ctas">
+          <a href="#patienten" class="btn btn--primary">Für Patienten</a>
+          <a href="#karriere" class="btn btn--secondary">Karriere entdecken</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <!-- PHOTO: sobald Referenzfotos verfügbar sind, könnte hier ein Laborbild
+             hinter oder anstelle des Ring-Motivs stehen (z. B. als runder Ausschnitt) -->
+        <svg class="hero-arc" viewBox="0 0 440 440" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle class="arc-track" cx="220" cy="220" r="180" stroke-width="1.5"/>
+          <circle class="arc-progress" cx="220" cy="220" r="180" stroke-width="3" transform="rotate(-90 220 220)"/>
+          <g class="hero-mark" transform="translate(220,220)">
+            <path d="M0,-42 L26,-16 L18,38 L-18,38 L-26,-16 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M0,-42 L0,38 M-26,-16 L26,-16" stroke="currentColor" stroke-width="1.4"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <div class="trust-strip">
+    <div class="container">
+      <ul class="trust-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.4 2.4L16 9"/></svg>
+          <span><strong>Meisterbetrieb</strong> — zwei Zahntechnikermeister, persönlich verantwortlich</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19c4-8 6-4 8-8s4-4 8-4"/><circle cx="4" cy="19" r="1.3" fill="currentColor" stroke="none"/><circle cx="20" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg>
+          <span><strong>60+ Praxen</strong> im Umkreis von 70 km arbeiten bereits mit uns</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.1-7-11a7 7 0 0 1 14 0c0 5.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+          <span><strong>Gefertigt in Weinheim</strong> — kein anonymer Import</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ PATIENTEN / TRANSPARENZ (Priorität 1) ============ -->
+  <section class="section" id="patienten">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Für Patientinnen und Patienten</div>
+        <h2>Sie möchten wissen, wer Ihren Zahnersatz gefertigt hat?</h2>
+        <p>Wenn Ihre Zahnarztpraxis für Ihre Krone, Brücke oder Implantatversorgung mit ZAHN 360 zusammenarbeitet, kommt Ihre Arbeit aus unserem Meisterlabor in Weinheim. Diese Seite gibt es genau dafür: damit Sie nachvollziehen können, wer dahintersteht.</p>
+      </div>
+
+      <div class="card-grid cards-3 reveal">
+        <div class="trust-card">
+          <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.4 2.4L16 9"/></svg></div>
+          <h3>Meisterqualität</h3>
+          <p>Jede Arbeit wird von einem Zahntechnikermeister verantwortet — nicht von einem anonymen Großlabor.</p>
+        </div>
+        <div class="trust-card">
+          <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9h13M13 5l4 4-4 4"/><path d="M21 15H8M12 19l-4-4 4-4"/></svg></div>
+          <h3>Nachvollziehbar</h3>
+          <p>Ihre Praxis bestellt bei uns, wir liefern zurück an Ihre Praxis. Kein Umweg, keine Blackbox.</p>
+        </div>
+        <div class="trust-card">
+          <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19h4L18 9a2.5 2.5 0 0 0-4-4L4 15v4Z"/><path d="M13.3 5.7l3 3"/></svg></div>
+          <h3>Persönlich verantwortet</h3>
+          <p>Simon Jansen und Julien Hornung haften mit ihrem eigenen Namen für die Arbeit unseres Labors.</p>
+        </div>
+      </div>
+
+      <!-- ---- Prozess: 090° / 180° / 270° / 360° ---- -->
+      <div class="process reveal">
+        <div class="eyebrow" style="margin-top:76px;">So entsteht Ihre Arbeit</div>
+        <h2 style="font-size:clamp(1.5rem,2.8vw,2rem); margin-bottom:36px;">Einmal ganz herum — vier Schritte bis zur fertigen Arbeit.</h2>
+
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="degree-badge">090°</div>
+            <div>
+              <h3>Digitale Abnahme</h3>
+              <p>Ihre Praxis übermittelt Scan oder Abdruck direkt an unser Labor.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="degree-badge">180°</div>
+            <div>
+              <h3>Fertigung</h3>
+              <p>Unsere Zahntechnikermeister planen und fertigen Ihre Arbeit — digital und in Handarbeit.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="degree-badge">270°</div>
+            <div>
+              <h3>Prüfung</h3>
+              <p>Passung, Funktion und Ästhetik werden geprüft, bevor die Arbeit unser Haus verlässt.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="degree-badge">360°</div>
+            <div>
+              <h3>Rückgabe</h3>
+              <p>Die fertige Arbeit geht zurück an Ihre Praxis und wird dort eingesetzt.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="section section--mist" id="ueber-uns">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Geschäftsführung</div>
+        <h2>Zwei Meister. Ein Labor.</h2>
+      </div>
+      <div class="team-grid reveal">
+        <!-- PHOTO: Porträt Simon Jansen -->
+        <div class="team-card">
+          <div class="avatar-mark">SJ</div>
+          <div>
+            <h3>Simon Jansen</h3>
+            <span class="role">Zahntechnikermeister · Geschäftsführender Gesellschafter</span>
+            <p>Verantwortet gemeinsam mit Julien Hornung Fertigung und Qualität im Labor Weinheim.</p>
+          </div>
+        </div>
+        <!-- PHOTO: Porträt Julien Hornung -->
+        <div class="team-card">
+          <div class="avatar-mark">JH</div>
+          <div>
+            <h3>Julien Hornung</h3>
+            <span class="role">Zahntechnikermeister · Geschäftsführender Gesellschafter</span>
+            <p>Verantwortet gemeinsam mit Simon Jansen Fertigung und Qualität im Labor Weinheim.</p>
+          </div>
+        </div>
+      </div>
+      <p class="team-note reveal">Als geschäftsführende und persönlich haftende Gesellschafter stehen Simon Jansen und Julien Hornung mit ihrem eigenen Namen für jede Arbeit ein, die unser Haus verlässt.</p>
+    </div>
+  </section>
+
+  <!-- ============ LEISTUNGEN ============ -->
+  <section class="section" id="leistungen">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Leistungen</div>
+        <h2>Das gesamte Spektrum aus einem Labor.</h2>
+        <p>Von der Einzelkrone bis zur komplexen Versorgung — geplant und gefertigt unter einem Dach.</p>
+      </div>
+      <div class="card-grid cards-4 reveal">
+        <div class="service-card">
+          <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="9" width="7" height="7" rx="1.5"/><rect x="14" y="9" width="7" height="7" rx="1.5"/><path d="M10 12.5h4"/></svg></div>
+          <h3>Kronen &amp; Brücken</h3>
+          <p>Individuell gefertigter Zahnersatz mit exakter Passform.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 5v14"/></svg></div>
+          <h3>Implantatprothetik</h3>
+          <p>Abutments und Suprakonstruktionen auf Implantatbasis.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 15c2-5 14-5 16 0"/><path d="M4 15v2M20 15v2"/></svg></div>
+          <h3>Total- &amp; Teilprothesen</h3>
+          <p>Herausnehmbarer Zahnersatz nach Maß.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v6M12 15v6M3 12h6M15 12h6M6 6l4 4M18 18l-4-4M6 18l4-4M18 6l-4 4"/></svg></div>
+          <h3>Sonderanfertigungen</h3>
+          <p>Schienen und individuelle zahntechnische Lösungen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KARRIERE (Priorität 2) ============ -->
+  <section class="section career" id="karriere">
+    <div class="container">
+      <div class="career-grid">
+        <div>
+          <div class="section-head reveal" style="margin-bottom:34px;">
+            <div class="eyebrow">Karriere bei ZAHN 360</div>
+            <h2>Gutes Handwerk braucht gute Hände.</h2>
+            <p>Wir sind ein kleines, eingespieltes Team in Weinheim und suchen Zahntechniker:innen, die Präzision genauso ernst nehmen wie wir — mit kurzen Wegen zu den beiden Meistern und Raum für eigene Ideen.</p>
+          </div>
+          <div class="career-points reveal">
+            <div class="career-point">
+              <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg></div>
+              <div><h3>Digital &amp; Handwerk</h3><p>Moderne Verfahren treffen auf klassisches Können.</p></div>
+            </div>
+            <div class="career-point">
+              <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19c4-8 6-4 8-8s4-4 8-4"/><circle cx="4" cy="19" r="1.3" fill="currentColor" stroke="none"/><circle cx="20" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg></div>
+              <div><h3>Kurze Wege</h3><p>Direkter Draht zu Simon Jansen und Julien Hornung.</p></div>
+            </div>
+            <div class="career-point">
+              <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17l6-6 4 4 6-8"/><path d="M15 6h5v5"/></svg></div>
+              <div><h3>Raum zum Wachsen</h3><p>Fachliche Weiterentwicklung wird aktiv gefördert.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="career-cta reveal">
+          <h3>Initiativ bewerben</h3>
+          <p>Aktuell keine konkrete Stelle ausgeschrieben, die zu Ihnen passt? Schreiben Sie uns trotzdem — wir freuen uns auf Ihre Initiativbewerbung.</p>
+          <a class="btn btn--on-dark" href="mailto:info@zahn360.com?subject=Initiativbewerbung">Initiativbewerbung senden</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FÜR ZAHNÄRZTE (Priorität 3, kompakt) ============ -->
+  <section class="dentist-strip" id="zahnaerzte">
+    <div class="container">
+      <div class="dentist-box reveal">
+        <div>
+          <div class="eyebrow" style="margin-bottom:10px;">Für Zahnarztpraxen</div>
+          <h3>Praxis in der Region? Sprechen Sie mit uns.</h3>
+          <p>Über 60 zahnärztliche Praxen im Umkreis von 70&nbsp;km arbeiten bereits mit uns zusammen. Sie führen eine Praxis in der Region und suchen ein Partnerlabor? Wir prüfen gerne, ob noch Kapazität frei ist.</p>
+          <span class="dentist-stat">60+ Partnerpraxen · Umkreis 70 km</span>
+        </div>
+        <a href="#kontakt" class="btn btn--secondary">Kontakt aufnehmen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KONTAKT ============ -->
+  <section class="section section--mist" id="kontakt">
+    <div class="container contact-grid">
+      <div class="reveal">
+        <div class="eyebrow">Kontakt</div>
+        <h2>Sprechen Sie uns an.</h2>
+        <p style="color:var(--stone); margin-top:14px;">Ob Frage zu Ihrer Arbeit, Interesse an einer Partnerschaft oder Initiativbewerbung — wir sind erreichbar.</p>
+
+        <div class="contact-list">
+          <a href="tel:+4962018783600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5c0 8.3 6.7 15 15 15l3-4-6-3-2 2c-2.5-1.2-4.3-3-5.5-5.5l2-2-3-6-4 .5Z"/></svg>
+            +49 6201 87 83 600
+          </a>
+          <a href="mailto:info@zahn360.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            info@zahn360.com
+          </a>
+          <span class="plain">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-5.1-7-11a7 7 0 0 1 14 0c0 5.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+            Hauptstraße 4c · 69469 Weinheim
+          </span>
+          <a href="https://maps.app.goo.gl/hNLW75G69jb6zf3bA" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3Z"/><path d="M9 3v15M15 6v15"/></svg>
+            Route planen
+          </a>
+          <a href="https://www.instagram.com/zahn_360/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+            @zahn_360 auf Instagram
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps?q=Hauptstra%C3%9Fe+4c,+69469+Weinheim&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Standort ZAHN 360, Hauptstraße 4c, Weinheim">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER / IMPRESSUM ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="footer-logo">ZAHN <span class="accent">360°</span></span>
+        <p>Zahntechnisches Meisterlabor in Weinheim. Kronen, Implantatversorgungen und Zahnersatz für zahnärztliche Praxen in der Region.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <p>
+          ZAHN 360 oHG<br>
+          Hauptstraße 4c · 69469 Weinheim<br>
+          T <a href="tel:+4962018783600">+49 6201 87 83 600</a><br>
+          <a href="mailto:info@zahn360.com">info@zahn360.com</a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <p>
+          Geschäftsführende Gesellschafter:<br>
+          Simon Jansen, Zahntechnikermeister<br>
+          Julien Hornung, Zahntechnikermeister<br>
+          Amtsgericht Mannheim · HRA 706344<br>
+          USt-IdNr. DE300796341
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ZAHN 360 oHG</span>
+      <div class="legal-links">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header: Schatten/Hintergrund bei Scroll
+  const header = document.getElementById('site-header');
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
+
+  // Mobile-Menü
+  const menuToggle = document.getElementById('menuToggle');
+  const mobilePanel = document.getElementById('mobilePanel');
+  menuToggle.addEventListener('click', () => {
+    const open = mobilePanel.classList.toggle('is-open');
+    menuToggle.classList.toggle('is-open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+  });
+  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobilePanel.classList.remove('is-open');
+    menuToggle.classList.remove('is-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll-Reveal (dezent, respektiert prefers-reduced-motion)
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  }
+</script>
+
+</body>
+</html>
