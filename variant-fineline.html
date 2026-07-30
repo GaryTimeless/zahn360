@@ -28,6 +28,15 @@
             --turquoise-muted: rgba(116, 242, 253, 0.08);
             --turquoise-line: rgba(116, 242, 253, 0.35);
 
+            --header-bg: rgba(253, 252, 250, 0.92);
+            --overlay-subtler: rgba(255, 255, 255, 0.03);
+            --overlay-subtle: rgba(255, 255, 255, 0.06);
+            --overlay-medium: rgba(255, 255, 255, 0.10);
+            --overlay-strong: rgba(255, 255, 255, 0.12);
+            --overlay-border: rgba(255, 255, 255, 0.20);
+            --overlay-xstrong: rgba(255, 255, 255, 0.25);
+            --overlay-modal: rgba(0, 0, 0, 0.6);
+
             --font-serif: 'Cormorant Garamond', 'Georgia', serif;
             --font-sans: 'Inter', -apple-system, sans-serif;
 
@@ -35,6 +44,55 @@
             --line: 1px solid var(--gray-pale);
             --line-dark: 1px solid rgba(255,255,255,0.08);
             --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ===== DARK MODE ===== */
+        [data-theme="dark"] {
+            --black: #E8E6E3;
+            --near-black: #D0CECB;
+            --charcoal: #AAAAAA;
+            --gray-dark: #999999;
+            --gray-mid: #888888;
+            --gray-light: #666666;
+            --gray-pale: #333333;
+            --off-white: #1E1E1E;
+            --cream: #121212;
+            --white: #1A1A1A;
+
+            --turquoise-muted: rgba(116, 242, 253, 0.12);
+            --turquoise-line: rgba(116, 242, 253, 0.45);
+
+            --header-bg: rgba(18, 18, 18, 0.92);
+            --overlay-subtler: rgba(0, 0, 0, 0.10);
+            --overlay-subtle: rgba(0, 0, 0, 0.20);
+            --overlay-medium: rgba(0, 0, 0, 0.25);
+            --overlay-strong: rgba(0, 0, 0, 0.30);
+            --overlay-border: rgba(0, 0, 0, 0.35);
+            --overlay-xstrong: rgba(0, 0, 0, 0.40);
+            --overlay-modal: rgba(0, 0, 0, 0.85);
+
+            --line: 1px solid var(--gray-pale);
+        }
+
+        /* Dark mode toggle button */
+        .dark-toggle {
+            background: none;
+            border: 1px solid var(--gray-pale);
+            color: var(--gray-mid);
+            cursor: pointer;
+            font-size: 0.65rem;
+            padding: 0.25rem 0.7rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+            white-space: nowrap;
+        }
+        .dark-toggle:hover {
+            border-color: var(--gray-light);
+            color: var(--white);
+        }
+        [data-theme="dark"] .dark-toggle:hover {
+            color: var(--black);
         }
 
         *, *::before, *::after {
@@ -103,7 +161,7 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 1000;
-            background: rgba(253, 252, 250, 0.92);
+            background: var(--header-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             transition: var(--transition);
@@ -609,12 +667,12 @@
         .perk-item {
             padding: 2.5rem 2rem;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid var(--overlay-subtle);
             transition: var(--transition);
         }
 
         .perk-item:hover {
-            background: rgba(255,255,255,0.03);
+            background: var(--overlay-subtler);
         }
 
         .perk-icon {
@@ -649,12 +707,12 @@
             align-items: center;
             justify-content: space-between;
             padding: 1.8rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid var(--overlay-subtle);
             transition: var(--transition);
         }
 
         .job-item:first-child {
-            border-top: 1px solid rgba(255,255,255,0.06);
+            border-top: 1px solid var(--overlay-subtle);
         }
 
         .job-item:hover {
@@ -682,7 +740,7 @@
         .btn-dark-outline {
             background: transparent;
             color: var(--white);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid var(--overlay-border);
             font-family: var(--font-sans);
         }
 
@@ -930,7 +988,7 @@
 
         .contact-entry-icon {
             width: 36px; height: 36px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid var(--overlay-medium);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -964,7 +1022,7 @@
 
         /* Contact Form */
         .contact-form {
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid var(--overlay-subtle);
             padding: 2.5rem 2rem;
         }
 
@@ -1002,7 +1060,7 @@
             padding: 0.75rem 0;
             background: transparent;
             border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.12);
+            border-bottom: 1px solid var(--overlay-strong);
             color: var(--white);
             font-family: var(--font-sans);
             font-size: 0.88rem;
@@ -1016,7 +1074,7 @@
         }
 
         .form-control::placeholder {
-            color: rgba(255,255,255,0.25);
+            color: var(--overlay-xstrong);
         }
 
         select.form-control {
@@ -1107,7 +1165,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.6);
+            background: var(--overlay-modal);
             backdrop-filter: blur(12px);
             z-index: 2000;
             display: flex;
@@ -1198,7 +1256,7 @@
         }
 
         .modal-content-dark .modal-close {
-            border-color: rgba(255,255,255,0.12);
+            border-color: var(--overlay-strong);
             color: var(--gray-light);
         }
 
@@ -1368,6 +1426,7 @@
         <a href="variant4.html">Edition 4</a>
         <a href="variant-comic.html">Comic</a>
         <a href="variant-fineline.html" class="active-variant">Fine Line</a>
+        <button class="dark-toggle" id="darkToggle" title="Darkmode umschalten">🌙 Dark</button>
     </div>
 
     <!-- ===== NAVIGATION ===== -->
@@ -1569,7 +1628,7 @@
 
             <div class="flourish fade-in" style="margin-bottom:3rem;">
                 <div class="flourish-line" style="background:linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);"></div>
-                <div class="flourish-center" style="border-color:rgba(255,255,255,0.2);"></div>
+                <div class="flourish-center" style="border-color:var(--overlay-border);"></div>
                 <div class="flourish-line" style="background:linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);"></div>
             </div>
 
@@ -1916,6 +1975,29 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
+        // Dark mode toggle
+        (function() {
+            const toggle = document.getElementById('darkToggle');
+            const html = document.documentElement;
+            const stored = localStorage.getItem('zahn360-darkmode');
+            if (stored === 'true') {
+                html.setAttribute('data-theme', 'dark');
+                toggle.textContent = '☀️ Light';
+            }
+            toggle.addEventListener('click', () => {
+                const isDark = html.getAttribute('data-theme') === 'dark';
+                if (isDark) {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = '🌙 Dark';
+                    localStorage.setItem('zahn360-darkmode', 'false');
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = '☀️ Light';
+                    localStorage.setItem('zahn360-darkmode', 'true');
+                }
+            });
+        })();
+
         const header = document.getElementById('mainHeader');
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
