@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAHN 360 oHG – Meisterlabor für Zahntechnik in Weinheim</title>
+    <meta name="description" content="ZAHN 360 oHG in Weinheim (Hauptstraße 4c). Führung & Unterhaltung eines zahntechnischen Labors. Kronen, Brücken & Implantate in Meisterqualität von Julien Hornung & Simon Jansen.">
+
+    <!-- Google Fonts: Bangers (Comic Headlines) + Comic Neue (Body) + Inter (Fallback) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== COMIC DESIGN SYSTEM ===== */
+        :root {
+            --black: #0B0E11;
+            --dark-surface: #151920;
+            --dark-card: #1C2229;
+            --gray-900: #1A1D23;
+            --gray-800: #2A2D35;
+            --gray-700: #3A3D45;
+            --gray-600: #555;
+            --gray-400: #94A3B8;
+            --gray-300: #CBD5E1;
+            --gray-100: #F1F5F9;
+            --white: #FFFFFF;
+
+            /* Primary: Turquoise */
+            --turquoise: #74F2FD;
+            --turquoise-glow: rgba(116, 242, 253, 0.4);
+            --turquoise-hover: #52E2F2;
+            --turquoise-dark: #008B9B;
+            --turquoise-muted: rgba(116, 242, 253, 0.12);
+
+            /* Accent: Electric Lime (Nerd/Gaming vibe) */
+            --lime: #B8FF00;
+            --lime-glow: rgba(184, 255, 0, 0.35);
+            --lime-muted: rgba(184, 255, 0, 0.1);
+
+            /* Comic Pop Colors (subtle use) */
+            --pop-pink: #FF3CAC;
+            --pop-yellow: #FFD600;
+
+            --font-comic-heading: 'Bangers', cursive;
+            --font-comic-body: 'Comic Neue', cursive;
+            --font-ui: 'Inter', sans-serif;
+
+            --max-width: 1200px;
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --border-comic: 3px solid var(--white);
+            --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        *, *::before, *::after {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-comic-body);
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ===== HALFTONE BACKGROUND PATTERN ===== */
+        .halftone-bg {
+            position: relative;
+        }
+        .halftone-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 16px 16px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== COMIC PANEL DIVIDERS ===== */
+        .comic-divider {
+            position: relative;
+            height: 60px;
+            overflow: hidden;
+        }
+        .comic-divider::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -5%;
+            width: 110%;
+            height: 90px;
+            background: var(--black);
+            transform: skewY(-2deg);
+            border-bottom: 4px solid var(--turquoise);
+            z-index: 5;
+        }
+
+        .comic-divider-reverse::before {
+            transform: skewY(2deg);
+            border-bottom-color: var(--lime);
+        }
+
+        /* ===== SPEECH BUBBLE MIXIN ===== */
+        .speech-bubble {
+            position: relative;
+            background: var(--dark-card);
+            border: 3px solid var(--turquoise);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+        }
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 40px;
+            width: 0; height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid var(--turquoise);
+        }
+        .speech-bubble-inner::after {
+            content: '';
+            position: absolute;
+            bottom: -14px;
+            left: 43px;
+            width: 0; height: 0;
+            border-left: 17px solid transparent;
+            border-right: 17px solid transparent;
+            border-top: 17px solid var(--dark-card);
+        }
+
+        /* ===== POW / ZAP BADGES ===== */
+        .comic-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-comic-heading);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+
+        .starburst {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 90px;
+            height: 90px;
+            font-family: var(--font-comic-heading);
+            font-size: 1.1rem;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+        .starburst::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--turquoise);
+            clip-path: polygon(50% 0%, 61% 15%, 79% 2%, 75% 22%, 98% 22%, 85% 38%, 100% 50%, 85% 62%, 98% 78%, 75% 78%, 79% 98%, 61% 85%, 50% 100%, 39% 85%, 21% 98%, 25% 78%, 2% 78%, 15% 62%, 0% 50%, 15% 38%, 2% 22%, 25% 22%, 21% 2%, 39% 15%);
+            z-index: -1;
+            animation: starburst-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes starburst-pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(3deg); }
+        }
+
+        /* ===== ACTION LINES ===== */
+        @keyframes action-lines {
+            0% { opacity: 0; transform: scaleX(0); }
+            50% { opacity: 1; transform: scaleX(1); }
+            100% { opacity: 0; transform: scaleX(1.3); }
+        }
+
+        /* ===== NAVIGATION ===== */
+        .header-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(11, 14, 17, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 3px solid var(--turquoise);
+            transition: var(--transition-fast);
+        }
+
+        .header-nav.scrolled {
+            box-shadow: 0 6px 20px rgba(116, 242, 253, 0.2);
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            font-family: var(--font-comic-heading);
+            font-size: 2rem;
+            letter-spacing: 3px;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            text-shadow: 3px 3px 0 rgba(116, 242, 253, 0.3);
+            transition: var(--transition-bounce);
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.05) rotate(-1deg);
+        }
+
+        .brand-logo span {
+            color: var(--turquoise);
+            text-shadow: 0 0 20px var(--turquoise-glow), 2px 2px 0 rgba(0,0,0,0.5);
+        }
+
+        .brand-subtext {
+            font-family: var(--font-comic-body);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+            border-left: 2px solid var(--turquoise);
+            padding-left: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-family: var(--font-comic-body);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition-bounce);
+            position: relative;
+            padding: 0.3rem 0.6rem;
+        }
+
+        .nav-link:hover {
+            color: var(--turquoise);
+            transform: scale(1.1) rotate(-1deg);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; width: 0; height: 3px;
+            background: var(--lime);
+            transition: var(--transition-fast);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--turquoise);
+            color: var(--black);
+            font-family: var(--font-comic-heading);
+            font-weight: 400;
+            padding: 0.6rem 1.4rem;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition-bounce);
+            border: 3px solid var(--black);
+            box-shadow: 4px 4px 0 var(--black);
+        }
+
+        .nav-cta:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--black);
+            background: var(--lime);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: 2px solid var(--turquoise);
+            color: var(--turquoise);
+            font-size: 1.6rem;
+            cursor: pointer;
+            padding: 0.3rem 0.6rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-comic-heading);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            padding: 10rem 1.5rem 6rem;
+            min-height: 95vh;
+            display: flex;
+            align-items: center;
+            background: var(--black);
+            overflow: hidden;
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 85% 15%, rgba(116, 242, 253, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 15% 85%, rgba(184, 255, 0, 0.1) 0%, transparent 35%),
+                linear-gradient(to bottom, rgba(11, 14, 17, 0.3), var(--black));
+            z-index: 1;
+        }
+
+        /* Comic speed lines behind hero */
+        .hero-speed-lines {
+            position: absolute;
+            top: 50%; right: 0;
+            transform: translateY(-50%);
+            width: 60%;
+            height: 80%;
+            z-index: 0;
+            overflow: hidden;
+            opacity: 0.06;
+        }
+        .hero-speed-lines::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(
+                -15deg,
+                transparent,
+                transparent 8px,
+                var(--white) 8px,
+                var(--white) 10px
+            );
+        }
+
+        .hero-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--turquoise-muted);
+            border: 2px solid var(--turquoise);
+            color: var(--turquoise);
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            font-family: var(--font-comic-heading);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            transform: rotate(-1deg);
+            box-shadow: 3px 3px 0 rgba(116, 242, 253, 0.2);
+        }
+
+        .hero-tag .dot {
+            width: 10px; height: 10px;
+            background: var(--lime);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--lime-glow);
+            animation: dot-blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes dot-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-title {
+            font-family: var(--font-comic-heading);
+            font-size: clamp(3rem, 5.5vw, 4.8rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.5), 0 0 30px rgba(116, 242, 253, 0.1);
+        }
+
+        .hero-title span {
+            color: var(--turquoise);
+            position: relative;
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.5), 0 0 40px var(--turquoise-glow);
+        }
+
+        .hero-title .lime-accent {
+            color: var(--lime);
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.5), 0 0 40px var(--lime-glow);
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            font-weight: 700;
+        }
+
+        .hero-description strong {
+            color: var(--turquoise);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        /* ===== COMIC BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2rem;
+            font-family: var(--font-comic-heading);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: var(--transition-bounce);
+            cursor: pointer;
+            border: 3px solid var(--black);
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: var(--turquoise);
+            color: var(--black);
+            box-shadow: 5px 5px 0 var(--gray-800);
+        }
+
+        .btn-primary:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 var(--gray-800);
+        }
+
+        .btn-primary:active {
+            transform: translate(0, 0);
+            box-shadow: 2px 2px 0 var(--gray-800);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 3px solid var(--white);
+            box-shadow: 5px 5px 0 var(--gray-800);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--lime);
+            color: var(--lime);
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 var(--gray-800);
+        }
+
+        .btn-lime {
+            background: var(--lime);
+            color: var(--black);
+            box-shadow: 5px 5px 0 var(--gray-800);
+        }
+        .btn-lime:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 var(--gray-800);
+        }
+
+        /* Hero Stats */
+        .hero-stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 3px dashed rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-stat-item {
+            text-align: center;
+            padding: 1rem;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.03);
+            transition: var(--transition-bounce);
+        }
+
+        .hero-stat-item:hover {
+            border-color: var(--turquoise);
+            transform: scale(1.05) rotate(-1deg);
+        }
+
+        .hero-stat-item h4 {
+            font-family: var(--font-comic-heading);
+            font-size: 2.4rem;
+            color: var(--turquoise);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+
+        .hero-stat-item p {
+            font-size: 0.85rem;
+            color: var(--gray-400);
+            font-weight: 700;
+        }
+
+        /* Hero Image */
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 4px solid var(--white);
+            box-shadow: 8px 8px 0 var(--turquoise), 16px 16px 0 rgba(0,0,0,0.3);
+            transform: rotate(1.5deg);
+            transition: var(--transition-bounce);
+        }
+
+        .hero-image-wrapper:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 12px 12px 0 var(--turquoise), 20px 20px 0 rgba(0,0,0,0.3);
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: contrast(1.1) saturate(0.8);
+            transition: var(--transition-fast);
+        }
+
+        .hero-image-wrapper:hover img {
+            filter: contrast(1.15) saturate(1);
+        }
+
+        .hero-image-badge {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            background: rgba(11, 14, 17, 0.92);
+            backdrop-filter: blur(12px);
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--turquoise);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-image-badge .badge-icon {
+            width: 44px; height: 44px;
+            background: var(--lime);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            font-family: var(--font-comic-heading);
+            border: 2px solid var(--black);
+            box-shadow: 2px 2px 0 var(--black);
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .section-padding {
+            padding: 6.5rem 1.5rem;
+            position: relative;
+        }
+
+        .section-header {
+            max-width: 750px;
+            margin: 0 auto 4rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            font-family: var(--font-comic-heading);
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--lime);
+            margin-bottom: 0.75rem;
+            transform: rotate(-1deg);
+        }
+
+        .section-title {
+            font-family: var(--font-comic-heading);
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: 3px;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.8;
+            font-weight: 700;
+        }
+
+        /* ===== PATIENTEN SECTION ===== */
+        .patient-section {
+            background: var(--dark-surface);
+            overflow: hidden;
+        }
+
+        .patient-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            position: relative;
+            z-index: 2;
+        }
+
+        .patient-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .patient-feature-card {
+            background: var(--dark-card);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: 1.8rem;
+            transition: var(--transition-bounce);
+            display: flex;
+            gap: 1.4rem;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .patient-feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 6px; height: 100%;
+            background: var(--turquoise);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: var(--transition-bounce);
+        }
+
+        .patient-feature-card:hover {
+            border-color: var(--turquoise);
+            transform: translateX(8px) rotate(-0.5deg);
+            box-shadow: 6px 6px 0 rgba(116, 242, 253, 0.2);
+        }
+
+        .patient-feature-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .feature-icon-box {
+            width: 56px; height: 56px;
+            background: var(--turquoise-muted);
+            border: 2px solid var(--turquoise);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            transform: rotate(-3deg);
+            box-shadow: 3px 3px 0 rgba(116, 242, 253, 0.15);
+        }
+
+        .feature-content h4 {
+            font-family: var(--font-comic-heading);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+            color: var(--white);
+        }
+
+        .feature-content p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        /* Trust Box als Comic-Panel */
+        .patient-trust-box {
+            background: linear-gradient(145deg, #1C2229 0%, #111418 100%);
+            border: 4px solid var(--turquoise);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            position: relative;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.4), 0 0 30px rgba(116, 242, 253, 0.12);
+        }
+
+        /* Starburst on trust box */
+        .trust-starburst {
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            z-index: 3;
+        }
+
+        .trust-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-badge-label {
+            background: var(--lime);
+            color: var(--black);
+            font-family: var(--font-comic-heading);
+            font-size: 0.85rem;
+            padding: 0.35rem 1rem;
+            border-radius: 4px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 2px solid var(--black);
+            box-shadow: 2px 2px 0 var(--black);
+            transform: rotate(2deg);
+        }
+
+        .quality-checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .quality-checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 700;
+        }
+
+        .check-dot {
+            width: 26px; height: 26px;
+            background: var(--turquoise-muted);
+            border: 2px solid var(--turquoise);
+            color: var(--turquoise);
+            border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 900;
+            flex-shrink: 0;
+            margin-top: 2px;
+            font-family: var(--font-comic-heading);
+        }
+
+        /* ===== KARRIERE SECTION ===== */
+        .careers-section {
+            background: var(--black);
+            overflow: hidden;
+        }
+
+        .careers-perks-grid {
+            max-width: var(--max-width);
+            margin: 0 auto 4rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .perk-card {
+            background: var(--dark-surface);
+            border: 3px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 2.2rem 1.8rem;
+            text-align: center;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .perk-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--turquoise), var(--lime));
+            transform: scaleX(0);
+            transition: var(--transition-fast);
+        }
+
+        .perk-card:hover {
+            border-color: var(--turquoise);
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 6px 10px 0 rgba(116, 242, 253, 0.15);
+        }
+
+        .perk-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .perk-icon {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+            transition: var(--transition-bounce);
+        }
+
+        .perk-card:hover .perk-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .perk-card h3 {
+            font-family: var(--font-comic-heading);
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .perk-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .jobs-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .jobs-heading {
+            font-family: var(--font-comic-heading);
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .job-card {
+            background: var(--dark-card);
+            border: 3px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 2rem 2.5rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition-bounce);
+            position: relative;
+        }
+
+        .job-card::before {
+            content: 'NEW!';
+            position: absolute;
+            top: -8px; right: 20px;
+            font-family: var(--font-comic-heading);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            background: var(--lime);
+            color: var(--black);
+            padding: 0.15rem 0.6rem;
+            border-radius: 3px;
+            border: 2px solid var(--black);
+            transform: rotate(3deg);
+        }
+
+        .job-card:hover {
+            border-color: var(--turquoise);
+            transform: translateX(6px);
+            box-shadow: 6px 6px 0 rgba(116, 242, 253, 0.15);
+        }
+
+        .job-title-group h3 {
+            font-family: var(--font-comic-heading);
+            font-size: 1.25rem;
+            letter-spacing: 1px;
+            color: var(--white);
+            margin-bottom: 0.4rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 0.9rem;
+            color: var(--gray-400);
+            font-weight: 700;
+        }
+
+        .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* ===== ZAHNÄRZTE SECTION ===== */
+        .dentist-section {
+            background: var(--gray-100);
+            color: var(--gray-900);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Comic dots overlay for light section */
+        .dentist-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1.5px, transparent 1.5px);
+            background-size: 12px 12px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .dentist-section .section-title {
+            color: var(--gray-900);
+            text-shadow: none;
+        }
+
+        .dentist-section .section-subtitle {
+            color: var(--turquoise-dark);
+        }
+
+        .dentist-section .section-desc {
+            color: var(--gray-600);
+        }
+
+        .dentist-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dentist-benefits-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .dentist-benefit-item {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+            transition: var(--transition-bounce);
+        }
+
+        .dentist-benefit-item:hover {
+            transform: translateX(6px);
+        }
+
+        .dentist-benefit-icon {
+            width: 50px; height: 50px;
+            background: var(--black);
+            color: var(--turquoise);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            border: 3px solid var(--black);
+            box-shadow: 3px 3px 0 var(--gray-300);
+            transform: rotate(-2deg);
+        }
+
+        .dentist-benefit-text h4 {
+            font-family: var(--font-comic-heading);
+            font-size: 1.15rem;
+            letter-spacing: 1px;
+            color: var(--gray-900);
+            margin-bottom: 0.3rem;
+        }
+
+        .dentist-benefit-text p {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        /* Badge Generator */
+        .badge-generator-card {
+            background: var(--black);
+            color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            border: 4px solid var(--white);
+            box-shadow: 8px 8px 0 var(--gray-300);
+            transform: rotate(0.5deg);
+            transition: var(--transition-bounce);
+        }
+
+        .badge-generator-card:hover {
+            transform: rotate(0deg);
+        }
+
+        .badge-generator-card h3 {
+            font-family: var(--font-comic-heading);
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .badge-generator-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .badge-preview-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 3px dashed var(--turquoise);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-live-widget {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--dark-surface);
+            color: var(--white);
+            padding: 0.75rem 1.4rem;
+            border-radius: 8px;
+            border: 2px solid var(--turquoise);
+            font-family: var(--font-comic-body);
+            font-size: 0.92rem;
+            font-weight: 700;
+            box-shadow: 3px 3px 0 rgba(116, 242, 253, 0.3);
+        }
+
+        .badge-live-widget .badge-dot {
+            width: 10px; height: 10px;
+            background: var(--turquoise);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--turquoise);
+            animation: dot-blink 1.5s ease-in-out infinite;
+        }
+
+        .code-box {
+            background: #080A0C;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.78rem;
+            color: var(--turquoise);
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== ÜBER UNS ===== */
+        .about-section {
+            background: var(--black);
+            overflow: hidden;
+        }
+
+        .about-grid-layout {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-image-card {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 4px solid var(--white);
+            box-shadow: 8px 8px 0 var(--lime), 16px 16px 0 rgba(0,0,0,0.3);
+            transform: rotate(-1.5deg);
+            transition: var(--transition-bounce);
+        }
+
+        .about-image-card:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .about-image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: contrast(1.05) saturate(0.85);
+        }
+
+        .about-content h3 {
+            font-family: var(--font-comic-heading);
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+        }
+
+        .about-content p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .founders-card {
+            background: var(--dark-surface);
+            border-left: 5px solid var(--turquoise);
+            border-top: 3px solid rgba(255,255,255,0.05);
+            border-right: 3px solid rgba(255,255,255,0.05);
+            border-bottom: 3px solid rgba(255,255,255,0.05);
+            padding: 1.8rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-top: 2rem;
+            box-shadow: 4px 4px 0 rgba(116, 242, 253, 0.1);
+        }
+
+        .founders-card h4 {
+            font-family: var(--font-comic-heading);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+        }
+
+        .founders-card p {
+            font-size: 0.9rem;
+            color: var(--gray-400);
+            margin-bottom: 0;
+        }
+
+        /* ===== KONTAKT ===== */
+        .contact-section {
+            background: var(--dark-surface);
+            overflow: hidden;
+        }
+
+        .contact-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info-card {
+            background: var(--dark-card);
+            border: 3px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 2.5rem 2rem;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.3);
+        }
+
+        .contact-info-card h3 {
+            font-family: var(--font-comic-heading);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+            transition: var(--transition-bounce);
+        }
+
+        .contact-item:hover {
+            transform: translateX(4px);
+        }
+
+        .contact-item-icon {
+            width: 44px; height: 44px;
+            background: var(--turquoise-muted);
+            color: var(--turquoise);
+            border: 2px solid var(--turquoise);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            transform: rotate(-2deg);
+        }
+
+        .contact-item-text h5 {
+            font-family: var(--font-comic-heading);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-item-text p, .contact-item-text a {
+            font-size: 1rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .contact-item-text a:hover {
+            color: var(--turquoise);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--dark-card);
+            border: 3px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 2.5rem 2rem;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.3);
+        }
+
+        .form-heading {
+            font-family: var(--font-comic-heading);
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: var(--font-comic-heading);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            background: #111418;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            color: var(--white);
+            font-family: var(--font-comic-body);
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: var(--transition-fast);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--turquoise);
+            box-shadow: 0 0 0 3px rgba(116, 242, 253, 0.15), 4px 4px 0 rgba(116, 242, 253, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            background: #07090B;
+            border-top: 4px solid var(--turquoise);
+            padding: 4rem 1.5rem 2.5rem;
+            color: var(--gray-400);
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .footer-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-family: var(--font-comic-heading);
+            font-size: 2rem;
+            letter-spacing: 3px;
+            color: var(--white);
+            text-shadow: 3px 3px 0 rgba(116, 242, 253, 0.2);
+        }
+
+        .footer-logo span {
+            color: var(--turquoise);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition-bounce);
+        }
+
+        .footer-links a:hover {
+            color: var(--turquoise);
+            transform: scale(1.1);
+        }
+
+        .footer-legal {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        /* ===== FLOATING COMIC ELEMENTS ===== */
+        .comic-float-element {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.06;
+        }
+
+        /* ===== MODALS ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-fast);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--dark-surface);
+            border: 4px solid var(--turquoise);
+            border-radius: var(--radius-lg);
+            max-width: 600px;
+            width: 100%;
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.6), 0 0 40px rgba(116, 242, 253, 0.15);
+            transform: translateY(20px) rotate(1deg);
+            transition: var(--transition-bounce);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0) rotate(0deg);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: var(--turquoise);
+            border: 2px solid var(--black);
+            color: var(--black);
+            width: 36px; height: 36px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: var(--font-comic-heading);
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition-bounce);
+            box-shadow: 2px 2px 0 var(--black);
+        }
+
+        .modal-close:hover {
+            background: var(--lime);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .modal-title {
+            font-family: var(--font-comic-heading);
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            font-weight: 700;
+        }
+
+        /* ===== TOAST ===== */
+        .toast-notification {
+            position: fixed;
+            bottom: 2rem; right: 2rem;
+            background: var(--lime);
+            color: var(--black);
+            padding: 1rem 1.8rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-comic-heading);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 3px solid var(--black);
+            box-shadow: 5px 5px 0 var(--black);
+            z-index: 3000;
+            transform: translateY(100px) rotate(3deg);
+            opacity: 0;
+            transition: var(--transition-bounce);
+        }
+
+        .toast-notification.show {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+
+        /* ===== VARIANTEN SWITCHER ===== */
+        .variant-switcher {
+            background: var(--gray-900);
+            padding: 0.6rem 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            border-bottom: 3px solid var(--turquoise);
+            position: relative;
+            z-index: 2000;
+            font-family: var(--font-comic-body);
+        }
+
+        .variant-switcher .label {
+            color: var(--turquoise);
+            font-family: var(--font-comic-heading);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .variant-switcher a {
+            text-decoration: none;
+            padding: 0.3rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transition: var(--transition-fast);
+            border: 2px solid transparent;
+        }
+
+        .variant-switcher a.active-variant {
+            background: var(--turquoise);
+            color: var(--black);
+            border-color: var(--black);
+            box-shadow: 2px 2px 0 var(--black);
+        }
+
+        .variant-switcher a:not(.active-variant) {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+
+        .variant-switcher a:not(.active-variant):hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero-grid, .patient-grid, .dentist-grid, .about-grid-layout, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .careers-perks-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .hero-image-wrapper {
+                transform: rotate(0);
+            }
+            .about-image-card {
+                transform: rotate(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px; left: 0; right: 0;
+                background: var(--dark-surface);
+                border-bottom: 3px solid var(--turquoise);
+                flex-direction: column;
+                padding: 2rem;
+                display: none;
+                gap: 1.2rem;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .job-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .hero-stats-row {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+            }
+            .hero-stat-item h4 {
+                font-size: 1.6rem;
+            }
+            .trust-starburst {
+                display: none;
+            }
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-in-left {
+            opacity: 0;
+            transform: translateX(-40px) rotate(-2deg);
+            transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .animate-in-left.visible {
+            opacity: 1;
+            transform: translateX(0) rotate(0);
+        }
+
+        .animate-in-right {
+            opacity: 0;
+            transform: translateX(40px) rotate(2deg);
+            transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .animate-in-right.visible {
+            opacity: 1;
+            transform: translateX(0) rotate(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== VARIANTEN SWITCHER ===== -->
+    <div class="variant-switcher">
+        <span class="label">⚡ Design-Varianten:</span>
+        <a href="variant1.html">High-Tech Dark</a>
+        <a href="variant2.html">Clean Light</a>
+        <a href="variant3.html">Bold Split</a>
+        <a href="variant-comic.html" class="active-variant">🦸 Comic Edition</a>
+        <a href="variant-fineline.html">✦ Fine Line</a>
+    </div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <header class="header-nav" id="mainHeader">
+        <div class="nav-container">
+            <a href="#top" class="brand-logo">
+                ZAHN<span>360</span>
+                <span class="brand-subtext">oHG Weinheim</span>
+            </a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menü öffnen">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#patienten" class="nav-link">Für Patienten</a></li>
+                <li><a href="#karriere" class="nav-link">Karriere & Jobs</a></li>
+                <li><a href="#zahnaerzte" class="nav-link">Für Zahnärzte</a></li>
+                <li><a href="#ueberuns" class="nav-link">Über uns</a></li>
+                <li><a href="#kontakt" class="nav-link">Kontakt</a></li>
+                <li><a href="#kontakt" class="nav-cta">Jetzt anfragen</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero halftone-bg" id="top">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-speed-lines"></div>
+
+        <div class="hero-grid">
+            <div class="hero-text-content">
+                <div class="hero-tag animate-in">
+                    <span class="dot"></span> Meisterlabor aus Weinheim
+                </div>
+                <h1 class="hero-title animate-in">
+                    Präzision, die man <span>spürt</span>.<br>
+                    Qualität, die <span class="lime-accent">bleibt</span>.
+                </h1>
+                <p class="hero-description animate-in">
+                    Zahntechnik ist für uns Verantwortung und Leidenschaft. Als meistergeführtes Labor in Weinheim fertigen <strong>Julien Hornung</strong> & <strong>Simon Jansen</strong> zahntechnische Meisterwerke – von Kronen und Brücken bis zu komplexer Implantatprothetik.
+                </p>
+                <div class="hero-actions animate-in">
+                    <a href="#patienten" class="btn btn-primary">⚡ Qualität entdecken</a>
+                    <a href="#karriere" class="btn btn-outline">🚀 Werde Teil des Teams</a>
+                </div>
+
+                <div class="hero-stats-row animate-in">
+                    <div class="hero-stat-item">
+                        <h4>60+</h4>
+                        <p>Partner-Zahnärzte</p>
+                    </div>
+                    <div class="hero-stat-item">
+                        <h4>70 km</h4>
+                        <p>Einzugsgebiet</p>
+                    </div>
+                    <div class="hero-stat-item">
+                        <h4>100%</h4>
+                        <p>Made in Weinheim</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper animate-in-right">
+                <img src="images/dental_lab_hero.jpg" alt="Modernes Dentallabor ZAHN 360 Weinheim">
+                <div class="hero-image-badge">
+                    <div class="badge-icon">✓</div>
+                    <div>
+                        <div style="font-weight:700;font-size:0.95rem;color:#fff;font-family:var(--font-comic-heading);letter-spacing:1px;">Digitale CAD/CAM Perfektion</div>
+                        <div style="font-size:0.8rem;color:var(--turquoise);font-weight:700;">Verbindung aus High-Tech & Handwerk</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMIC DIVIDER ===== -->
+    <div class="comic-divider" style="background:var(--dark-surface);"></div>
+
+    <!-- ===== PATIENTEN-PORTAL ===== -->
+    <section class="section-padding patient-section halftone-bg" id="patienten">
+        <div class="section-header">
+            <span class="section-subtitle animate-in">💎 Höchste Priorität: Ihre Gesundheit</span>
+            <h2 class="section-title animate-in">Woher kommt Ihr Zahnersatz?</h2>
+            <p class="section-desc animate-in">
+                Wenn Ihr Zahnarzt mit ZAHN 360 zusammenarbeitet, erhalten Sie Zahnersatz, der höchsten biokompatiblen Standards entspricht. Hier erfahren Sie, was Qualität für Ihr Gebiss bedeutet.
+            </p>
+        </div>
+
+        <div class="patient-grid">
+            <div class="patient-card-list">
+                <div class="patient-feature-card animate-in-left">
+                    <div class="feature-icon-box">💎</div>
+                    <div class="feature-content">
+                        <h4>Biokompatibles Zirkonoxid & Keramik</h4>
+                        <p>Wir verwenden ausschließlich zertifizierte Hochleistungskeramiken ohne Allergierisiko – für ein natürliches Tragegefühl und maximale Haltbarkeit.</p>
+                    </div>
+                </div>
+
+                <div class="patient-feature-card animate-in-left">
+                    <div class="feature-icon-box">🔍</div>
+                    <div class="feature-content">
+                        <h4>Höchste Passgenauigkeit durch 3D-CAD/CAM</h4>
+                        <p>Durch mikrometergenaue digitale Vermessung schmiegt sich die Krone oder das Implantat nahtlos an Ihr natürliches Gebiss an.</p>
+                    </div>
+                </div>
+
+                <div class="patient-feature-card animate-in-left">
+                    <div class="feature-icon-box">📍</div>
+                    <div class="feature-content">
+                        <h4>100% Regionale Fertigung in Weinheim</h4>
+                        <p>Keine anonyme Auslandsfertigung. Jedes Werkstück verlässt persönlich unser Labor in der Hauptstraße 4c unter meisterlicher Kontrolle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="patient-trust-box animate-in-right">
+                <div class="trust-starburst">
+                    <div class="starburst">TOP!</div>
+                </div>
+                <div class="trust-header">
+                    <div>
+                        <h3 style="font-family:var(--font-comic-heading);font-size:1.5rem;letter-spacing:2px;color:#fff;">Das ZAHN 360 Qualitätssiegel</h3>
+                        <p style="font-size:0.85rem;color:var(--gray-400);font-weight:700;">Garantierte Herkunft für Ihren Zahnarzt</p>
+                    </div>
+                    <span class="trust-badge-label">Meister-Garantie</span>
+                </div>
+
+                <ul class="quality-checklist">
+                    <li>
+                        <span class="check-dot">✓</span>
+                        <span><strong>Verwendungsnachweis:</strong> Jeder Zahnersatz erhält einen lückenlosen Material-Pass.</span>
+                    </li>
+                    <li>
+                        <span class="check-dot">✓</span>
+                        <span><strong>Ästhetische Perfektion:</strong> Individuelle Farbanpassung abgestimmt auf Ihre natürlichen Zähne.</span>
+                    </li>
+                    <li>
+                        <span class="check-dot">✓</span>
+                        <span><strong>Nachhaltigkeit & Langlebigkeit:</strong> Entwickelt für jahrzehntelange Belastbarkeit beim Kauen & Sprechen.</span>
+                    </li>
+                </ul>
+
+                <button class="btn btn-primary" style="width:100%;" onclick="openModal('patientModal')">🔬 Materialien & Zertifikat ansehen</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMIC DIVIDER ===== -->
+    <div class="comic-divider comic-divider-reverse" style="background:var(--black);"></div>
+
+    <!-- ===== KARRIERE & RECRUITING ===== -->
+    <section class="section-padding careers-section halftone-bg" id="karriere">
+        <div class="section-header">
+            <span class="section-subtitle animate-in">🎮 Wachse mit uns – Level Up!</span>
+            <h2 class="section-title animate-in">Deine Karriere bei ZAHN 360</h2>
+            <p class="section-desc animate-in">
+                Du suchst ein modernes Arbeitsumfeld mit echter Meisterschaft, Wertschätzung und neuester CAD/CAM-Technik? Werde Teil unseres wachsenden Teams in Weinheim!
+            </p>
+        </div>
+
+        <div class="careers-perks-grid">
+            <div class="perk-card animate-in">
+                <div class="perk-icon">🎓</div>
+                <h3>Meisterliche Mentorings</h3>
+                <p>Direkte Zusammenarbeit auf Augenhöhe mit den Gründern Julien Hornung & Simon Jansen.</p>
+            </div>
+            <div class="perk-card animate-in">
+                <div class="perk-icon">⚡</div>
+                <h3>High-Tech Ausstattungen</h3>
+                <p>Digitaler Workflow, Intraoralscans, 3D-Drucker und modernste 5-Achs-Fräsmaschinen.</p>
+            </div>
+            <div class="perk-card animate-in">
+                <div class="perk-icon">🤝</div>
+                <h3>Attraktives Paket & Team</h3>
+                <p>Faire Vergütung, flexible Arbeitszeiten, Fortbildungen und familiäres Betriebsklima.</p>
+            </div>
+        </div>
+
+        <div class="jobs-container">
+            <h3 class="jobs-heading animate-in">⚔️ Offene Stellenangebote:</h3>
+
+            <div class="job-card animate-in">
+                <div class="job-title-group">
+                    <h3>Zahntechniker (m/w/d) – Prothetik / Keramik</h3>
+                    <div class="job-meta">
+                        <span>📍 Weinheim</span>
+                        <span>⏱️ Vollzeit</span>
+                        <span>🚀 Ab sofort</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openApplyModal('Zahntechniker (m/w/d) Prothetik')">Schnellbewerbung ⚡</button>
+            </div>
+
+            <div class="job-card animate-in">
+                <div class="job-title-group">
+                    <h3>Zahntechniker (m/w/d) – CAD/CAM Spezialist</h3>
+                    <div class="job-meta">
+                        <span>📍 Weinheim</span>
+                        <span>⏱️ Vollzeit / Teilzeit</span>
+                        <span>🚀 Ab sofort</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openApplyModal('CAD/CAM Spezialist (m/w/d)')">Schnellbewerbung ⚡</button>
+            </div>
+
+            <div class="job-card animate-in">
+                <div class="job-title-group">
+                    <h3>Auszubildender Zahntechniker (m/w/d)</h3>
+                    <div class="job-meta">
+                        <span>📍 Weinheim</span>
+                        <span>⏱️ Ausbildung</span>
+                        <span>🚀 Ausbildungsstart 2026</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openApplyModal('Auszubildender Zahntechniker (m/w/d)')">Schnellbewerbung ⚡</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMIC DIVIDER ===== -->
+    <div class="comic-divider" style="background:var(--gray-100);"></div>
+
+    <!-- ===== FÜR ZAHNÄRZTE ===== -->
+    <section class="section-padding dentist-section" id="zahnaerzte">
+        <div class="section-header">
+            <span class="section-subtitle animate-in">🏥 Partner im Umkreis von 70 km</span>
+            <h2 class="section-title animate-in">Für Zahnärztliche Praxen</h2>
+            <p class="section-desc animate-in">
+                Über 60 Zahnärzte vertrauen bereits auf ZAHN 360 oHG. Wir bieten perfekten Service, direkte Erreichbarkeit und höchste Termintreue.
+            </p>
+        </div>
+
+        <div class="dentist-grid">
+            <ul class="dentist-benefits-list">
+                <li class="dentist-benefit-item animate-in-left">
+                    <div class="dentist-benefit-icon">🚚</div>
+                    <div class="dentist-benefit-text">
+                        <h4>Eigener Kurier- & Lieferservice</h4>
+                        <p>Schnelle Abholung und pünktliche Anlieferung direkt in Ihre Praxis im Umkreis von 70 km.</p>
+                    </div>
+                </li>
+                <li class="dentist-benefit-item animate-in-left">
+                    <div class="dentist-benefit-icon">💻</div>
+                    <div class="dentist-benefit-text">
+                        <h4>Offene digitale Schnittstellen</h4>
+                        <p>Kompatibel mit allen gängigen Intraoralscannern (iTero, TRIOS, Primescan, Cerec etc.).</p>
+                    </div>
+                </li>
+                <li class="dentist-benefit-item animate-in-left">
+                    <div class="dentist-benefit-icon">📞</div>
+                    <div class="dentist-benefit-text">
+                        <h4>Direkter Meistersupport</h4>
+                        <p>Fachliche Abstimmung direkt mit Simon Jansen oder Julien Hornung ohne Warteschleife.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="badge-generator-card animate-in-right">
+                <h3>🛡️ Referenz-Badge für Ihre Website</h3>
+                <p>Zeigen Sie Ihren Patienten, dass Sie auf deutsche Meisterqualität setzen. Binden Sie dieses Siegel einfach auf Ihrer Praxis-Webseite ein:</p>
+
+                <div class="badge-preview-box">
+                    <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:2px;font-family:var(--font-comic-heading);">Vorschau auf Ihrer Webseite:</div>
+                    <div class="badge-live-widget">
+                        <span class="badge-dot"></span>
+                        Zahnersatz gefertigt von <strong>ZAHN 360</strong> – Weinheim
+                    </div>
+                </div>
+
+                <div class="code-box" id="badgeCodeSnippet">&lt;div style="display:inline-flex;align-items:center;gap:8px;background:#14181D;color:#FFF;padding:8px 16px;border-radius:8px;border:1px solid #74F2FD;font-family:sans-serif;font-size:14px;"&gt;
+  &lt;span style="width:8px;height:8px;background:#74F2FD;border-radius:50%;"&gt;&lt;/span&gt;
+  Zahnersatz gefertigt von &lt;strong&gt;ZAHN 360&lt;/strong&gt; – Weinheim
+&lt;/div&gt;</div>
+
+                <button class="btn btn-primary" style="width:100%;" onclick="copyBadgeCode()">📋 Code in Zwischenablage kopieren</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMIC DIVIDER ===== -->
+    <div class="comic-divider comic-divider-reverse" style="background:var(--black);"></div>
+
+    <!-- ===== ÜBER UNS ===== -->
+    <section class="section-padding about-section halftone-bg" id="ueberuns">
+        <div class="about-grid-layout">
+            <div class="about-image-card animate-in-left">
+                <img src="images/dental_craftsmanship.jpg" alt="Zahntechnikermeister Handwerk ZAHN 360 Weinheim">
+            </div>
+
+            <div class="about-content">
+                <span class="section-subtitle animate-in">🏆 Tradition trifft Moderne</span>
+                <h3 class="section-title animate-in" style="text-align:left;">ZAHN 360 oHG in Weinheim</h3>
+                <p class="animate-in">
+                    Die ZAHN 360 oHG ist im Handelsregister beim Amtsgericht Mannheim unter <strong>HRA 706344</strong> eingetragen. Als meistergeführtes Labor mit Sitz in der <strong>Hauptstraße 4c, 69469 Weinheim</strong> vereinen wir langjährige zahntechnische Expertise mit innovativen digitalen Technologien.
+                </p>
+                <p class="animate-in">
+                    Unser Ziel ist es, Zahnärzten ein verlässlicher Partner zu sein und Patienten ein strahlendes, natürliches Lächeln zu schenken.
+                </p>
+
+                <div class="founders-card animate-in">
+                    <h4>Persönlich haftende Gesellschafter & Meister:</h4>
+                    <p style="color:var(--turquoise);font-family:var(--font-comic-heading);font-size:1.1rem;letter-spacing:1px;margin-top:0.3rem;">Julien Hornung & Simon Jansen</p>
+                    <p style="font-size:0.85rem;color:var(--gray-400);">Zahntechnikermeister</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMIC DIVIDER ===== -->
+    <div class="comic-divider" style="background:var(--dark-surface);"></div>
+
+    <!-- ===== KONTAKT ===== -->
+    <section class="section-padding contact-section halftone-bg" id="kontakt">
+        <div class="section-header">
+            <span class="section-subtitle animate-in">💬 Wir freuen uns auf Sie</span>
+            <h2 class="section-title animate-in">Kontakt & Anfrage</h2>
+            <p class="section-desc animate-in">
+                Egal ob Zahnarzt, Patient oder zukünftiger Mitarbeiter – treten Sie unkompliziert mit uns in Kontakt.
+            </p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info-card animate-in-left">
+                <h3>ZAHN 360 oHG</h3>
+                <p style="color:rgba(255,255,255,0.7);margin-bottom:2rem;font-size:0.95rem;font-weight:700;">Zahntechnisches Labor in Weinheim</p>
+
+                <ul class="contact-details-list">
+                    <li class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-text">
+                            <h5>Adresse</h5>
+                            <p>Hauptstraße 4c<br>69469 Weinheim</p>
+                        </div>
+                    </li>
+                    <li class="contact-item">
+                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-item-text">
+                            <h5>Telefon</h5>
+                            <a href="tel:+4962018783600">+49 6201 87 83 600</a>
+                        </div>
+                    </li>
+                    <li class="contact-item">
+                        <div class="contact-item-icon">✉️</div>
+                        <div class="contact-item-text">
+                            <h5>E-Mail</h5>
+                            <a href="mailto:info@zahn360.de">info@zahn360.de</a>
+                        </div>
+                    </li>
+                    <li class="contact-item">
+                        <div class="contact-item-icon">🏛️</div>
+                        <div class="contact-item-text">
+                            <h5>Handelsregister</h5>
+                            <p>Amtsgericht Mannheim, HRA 706344</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <form class="contact-form animate-in-right" id="contactForm" onsubmit="handleContactSubmit(event)">
+                <h3 class="form-heading">✏️ Nachricht senden</h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="c_name">Name *</label>
+                        <input type="text" id="c_name" class="form-control" required placeholder="Ihr Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="c_email">E-Mail *</label>
+                        <input type="email" id="c_email" class="form-control" required placeholder="ihre@email.de">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="c_role">Ich bin...</label>
+                    <select id="c_role" class="form-control">
+                        <option value="patient">Patient / Endverbraucher</option>
+                        <option value="zahnarzt">Zahnarzt / Praxis</option>
+                        <option value="bewerber">Bewerber / Fachkraft</option>
+                        <option value="sonstiges">Sonstiges</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="c_message">Ihre Nachricht *</label>
+                    <textarea id="c_message" class="form-control" required placeholder="Wie können wir Ihnen helfen?"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width:100%;">🚀 Anfrage absenden</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                ZAHN<span>360</span> oHG
+            </div>
+            <p style="color:rgba(255,255,255,0.7);font-weight:700;">Zahntechnisches Labor • Hauptstraße 4c • 69469 Weinheim</p>
+
+            <ul class="footer-links">
+                <li><a href="#" onclick="openModal('impressumModal'); return false;">Impressum</a></li>
+                <li><a href="#" onclick="openModal('datenschutzModal'); return false;">Datenschutz</a></li>
+                <li><a href="#patienten">Für Patienten</a></li>
+                <li><a href="#karriere">Karriere</a></li>
+                <li><a href="#zahnaerzte">Für Zahnärzte</a></li>
+            </ul>
+
+            <div class="footer-legal">
+                © 2026 ZAHN 360 oHG. Alle Rechte vorbehalten. Handelsregister: Amtsgericht Mannheim HRA 706344. Vertreten durch die persönlich haftenden Gesellschafter Julien Hornung & Simon Jansen (Zahntechnikermeister).
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== MODALS ===== -->
+
+    <!-- Modal: Schnellbewerbung -->
+    <div class="modal-overlay" id="applyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('applyModal')">✕</button>
+            <h3 class="modal-title" id="applyTargetTitle">⚡ Schnellbewerbung</h3>
+            <p class="modal-text" style="margin-bottom:1.5rem;">In 60 Sekunden bewerben. Wir melden uns innerhalb von 24 Stunden!</p>
+
+            <form onsubmit="handleApplySubmit(event)">
+                <div class="form-group">
+                    <label for="app_name">Name *</label>
+                    <input type="text" id="app_name" class="form-control" required placeholder="Vor- und Nachname">
+                </div>
+                <div class="form-group">
+                    <label for="app_phone">Telefonnummer *</label>
+                    <input type="tel" id="app_phone" class="form-control" required placeholder="0170 1234567">
+                </div>
+                <div class="form-group">
+                    <label for="app_email">E-Mail *</label>
+                    <input type="email" id="app_email" class="form-control" required placeholder="ihre@email.de">
+                </div>
+                <div class="form-group">
+                    <label for="app_note">Kurze Nachricht / Erfahrungen</label>
+                    <textarea id="app_note" class="form-control" placeholder="Erzähle uns kurz von deiner bisherigen Erfahrung in der Zahntechnik..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-lime" style="width:100%;">🎯 Bewerbung jetzt absenden</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Patienten Material-Zertifikat -->
+    <div class="modal-overlay" id="patientModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('patientModal')">✕</button>
+            <h3 class="modal-title">🔬 Garantierte Materialqualität</h3>
+            <p class="modal-text" style="margin-bottom:1.2rem;">
+                Bei ZAHN 360 oHG in Weinheim verarbeiten wir ausschließlich Medizinprodukte nach strengstem deutschen Medizinprodukterecht (MDR).
+            </p>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:0.8rem;font-size:0.95rem;color:var(--gray-400);margin-bottom:1.5rem;font-weight:700;">
+                <li>✔️ <strong>Zirkonoxid:</strong> Höchste Festigkeit, natürliche Lichtdurchlässigkeit.</li>
+                <li>✔️ <strong>Edelmetall- & Metallfreie Alternativen:</strong> Maximale Biokompatibilität.</li>
+                <li>✔️ <strong>Präzisions-Passung:</strong> Vorbeugung von Entzündungen & Druckstellen.</li>
+            </ul>
+            <button class="btn btn-outline" style="width:100%;" onclick="closeModal('patientModal')">Schließen</button>
+        </div>
+    </div>
+
+    <!-- Modal: Impressum -->
+    <div class="modal-overlay" id="impressumModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('impressumModal')">✕</button>
+            <h3 class="modal-title">📋 Impressum</h3>
+            <div class="modal-text">
+                <p><strong>ZAHN 360 oHG</strong><br>
+                Zahntechnisches Labor<br>
+                Hauptstraße 4c<br>
+                69469 Weinheim</p><br>
+                <p><strong>Vertreten durch die persönlich haftenden Gesellschafter:</strong><br>
+                Julien Hornung & Simon Jansen (Zahntechnikermeister)</p><br>
+                <p><strong>Handelsregister:</strong><br>
+                Amtsgericht Mannheim, HRA 706344</p><br>
+                <p><strong>Kontakt:</strong><br>
+                Telefon: +49 6201 87 83 600<br>
+                E-Mail: info@zahn360.de</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Datenschutz -->
+    <div class="modal-overlay" id="datenschutzModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('datenschutzModal')">✕</button>
+            <h3 class="modal-title">🔒 Datenschutz</h3>
+            <div class="modal-text">
+                <p>Verantwortlicher im Sinne der DSGVO ist die ZAHN 360 oHG, Hauptstraße 4c, 69469 Weinheim.</p><br>
+                <p>Personenbezogene Daten (z. B. Name, E-Mail, Telefonnummer im Kontakt- oder Bewerbungsformular) werden ausschließlich zur Bearbeitung Ihrer jeweiligen Anfrage verwendet und nicht an Dritte weitergegeben.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toast">
+        Aktion erfolgreich ausgeführt!
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Header Scroll & Mobile Toggle
+        const header = document.getElementById('mainHeader');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileToggle.textContent = '☰';
+            });
+        });
+
+        // Modals
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on backdrop click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        function openApplyModal(jobTitle) {
+            document.getElementById('applyTargetTitle').innerText = '⚡ Schnellbewerbung: ' + jobTitle;
+            openModal('applyModal');
+        }
+
+        // Copy Badge Code
+        function copyBadgeCode() {
+            const code = document.getElementById('badgeCodeSnippet').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('✓ POW! Code in Zwischenablage kopiert!');
+            }).catch(() => {
+                showToast('✓ Code kopiert!');
+            });
+        }
+
+        // Form Handlers
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('✓ BAM! Ihre Anfrage wurde gesendet!');
+            e.target.reset();
+        }
+
+        function handleApplySubmit(e) {
+            e.preventDefault();
+            closeModal('applyModal');
+            showToast('🚀 BOOM! Bewerbung erhalten! Wir melden uns in Kürze.');
+            e.target.reset();
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+
+        // ===== SCROLL ANIMATIONS =====
+        const animateElements = document.querySelectorAll('.animate-in, .animate-in-left, .animate-in-right');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Stagger animation
+                    const delay = entry.target.dataset.delay || 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delay);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Assign staggered delays to grouped elements
+        document.querySelectorAll('.patient-card-list .patient-feature-card').forEach((card, i) => {
+            card.dataset.delay = i * 150;
+        });
+        document.querySelectorAll('.careers-perks-grid .perk-card').forEach((card, i) => {
+            card.dataset.delay = i * 150;
+        });
+        document.querySelectorAll('.dentist-benefits-list .dentist-benefit-item').forEach((item, i) => {
+            item.dataset.delay = i * 150;
+        });
+        document.querySelectorAll('.jobs-container .job-card').forEach((card, i) => {
+            card.dataset.delay = i * 100;
+        });
+
+        animateElements.forEach(el => observer.observe(el));
+
+        // ===== EASTER EGG: Konami Code =====
+        const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.keyCode === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    showToast('🎮 ACHIEVEMENT UNLOCKED: Du hast den Konami Code entdeckt!');
+                    document.body.style.transition = 'filter 0.5s';
+                    document.body.style.filter = 'hue-rotate(180deg)';
+                    setTimeout(() => {
+                        document.body.style.filter = '';
+                    }, 3000);
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+    </script>
+</body>
+</html>

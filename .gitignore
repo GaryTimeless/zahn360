@@ -1,0 +1,12 @@
+# Große Screenshot-Dateien – nicht für die Website benötigt
+*.png
+*.jpg
+*.jpeg
+
+# Ausnahme: Bilder im images/-Ordner werden gebraucht
+!images/**/*.png
+!images/**/*.jpg
+!images/**/*.jpeg
+
+# macOS
+.DS_Store

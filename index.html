@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAHN 360 oHG – Meisterlabor für Zahntechnik in Weinheim</title>
+    <meta name="description" content="ZAHN 360 oHG in Weinheim (Hauptstraße 4c). Führung & Unterhaltung eines zahntechnischen Labors. Kronen, Brücken & Implantate in Meisterqualität von Julien Hornung & Simon Jansen.">
+
+    <!-- Google Fonts: Inter & Outfit for modern high-contrast typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== DESIGN SYSTEM & COLOR TOKENS ===== */
+        :root {
+            --black: #0B0E11;
+            --dark-surface: #14181D;
+            --dark-card: #1C2229;
+            --gray-bg: #F4F6F8;
+            --gray-card: #FFFFFF;
+            --gray-border: #E2E8F0;
+            --gray-text-dark: #1E293B;
+            --gray-text-mid: #475569;
+            --gray-text-light: #94A3B8;
+            --white: #FFFFFF;
+
+            /* Accent Turquoise */
+            --turquoise: #74F2FD;
+            --turquoise-glow: rgba(116, 242, 253, 0.35);
+            --turquoise-hover: #52E2F2;
+            --turquoise-dark: #008B9B;
+            --turquoise-bg-light: rgba(116, 242, 253, 0.08);
+
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-heading: 'Outfit', 'Inter', sans-serif;
+            --max-width: 1200px;
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *, *::before, *::after {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .header-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(11, 14, 17, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition-fast);
+        }
+
+        .header-nav.scrolled {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-bottom-color: rgba(116, 242, 253, 0.2);
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .brand-logo span {
+            color: var(--turquoise);
+            text-shadow: 0 0 12px var(--turquoise-glow);
+        }
+
+        .brand-subtext {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--gray-text-light);
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding-left: 0.5rem;
+            display: inline-block;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+            position: relative;
+            padding: 0.4rem 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--turquoise);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 2px;
+            background: var(--turquoise);
+            transition: var(--transition-fast);
+            box-shadow: 0 0 8px var(--turquoise);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--turquoise);
+            color: var(--black);
+            font-weight: 700;
+            padding: 0.65rem 1.4rem;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition-fast);
+            box-shadow: 0 0 15px rgba(116, 242, 253, 0.25);
+        }
+
+        .nav-cta:hover {
+            background: var(--turquoise-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(116, 242, 253, 0.4);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            padding: 10rem 1.5rem 6rem;
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            background: var(--black);
+            overflow: hidden;
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(116, 242, 253, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 10% 80%, rgba(116, 242, 253, 0.08) 0%, transparent 40%),
+                linear-gradient(to bottom, rgba(11, 14, 17, 0.4), var(--black));
+            z-index: 1;
+        }
+
+        .hero-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(116, 242, 253, 0.1);
+            border: 1px solid rgba(116, 242, 253, 0.3);
+            color: var(--turquoise);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-tag .dot {
+            width: 8px; height: 8px;
+            background: var(--turquoise);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--turquoise);
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero-title span {
+            color: var(--turquoise);
+            position: relative;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 620px;
+        }
+
+        .hero-description strong {
+            color: var(--white);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.95rem 2.2rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: var(--transition-fast);
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-family: var(--font-main);
+        }
+
+        .btn-primary {
+            background: var(--turquoise);
+            color: var(--black);
+            border-color: var(--turquoise);
+            box-shadow: 0 4px 20px rgba(116, 242, 253, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--turquoise-hover);
+            border-color: var(--turquoise-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(116, 242, 253, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--turquoise);
+            color: var(--turquoise);
+            background: rgba(116, 242, 253, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-stat-item h4 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--turquoise);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-stat-item p {
+            font-size: 0.82rem;
+            color: var(--gray-text-light);
+            font-weight: 500;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid rgba(116, 242, 253, 0.25);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(116, 242, 253, 0.15);
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .hero-image-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        .hero-image-badge {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            background: rgba(20, 24, 29, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 1.2rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-image-badge .badge-icon {
+            width: 44px; height: 44px;
+            background: var(--turquoise);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            font-weight: 900;
+        }
+
+        /* ===== COMMON SECTION STYLES ===== */
+        .section-padding {
+            padding: 6.5rem 1.5rem;
+        }
+
+        .section-header {
+            max-width: 750px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--turquoise);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 3.8vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        /* ===== PRIO 1: PATIENTEN-PORTAL ===== */
+        .patient-section {
+            background: var(--dark-surface);
+            position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .patient-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .patient-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .patient-feature-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 1.8rem;
+            transition: var(--transition-fast);
+            display: flex;
+            gap: 1.4rem;
+            align-items: flex-start;
+        }
+
+        .patient-feature-card:hover {
+            border-color: var(--turquoise);
+            transform: translateX(6px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon-box {
+            width: 52px; height: 52px;
+            background: var(--turquoise-bg-light);
+            border: 1px solid rgba(116, 242, 253, 0.3);
+            border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            color: var(--turquoise);
+            flex-shrink: 0;
+        }
+
+        .feature-content h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: var(--white);
+        }
+
+        .feature-content p {
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.6;
+        }
+
+        .patient-trust-box {
+            background: linear-gradient(145deg, #1C2229 0%, #111418 100%);
+            border: 2px solid var(--turquoise);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2.5rem;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(116, 242, 253, 0.15);
+        }
+
+        .trust-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-badge-label {
+            background: var(--turquoise);
+            color: var(--black);
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .quality-checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .quality-checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .check-dot {
+            width: 22px; height: 22px;
+            background: rgba(116, 242, 253, 0.15);
+            border: 1px solid var(--turquoise);
+            color: var(--turquoise);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 900;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ===== PRIO 2: KARRIERE & RECRUITING ===== */
+        .careers-section {
+            background: var(--black);
+            position: relative;
+        }
+
+        .careers-perks-grid {
+            max-width: var(--max-width);
+            margin: 0 auto 4rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .perk-card {
+            background: var(--dark-surface);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 2.2rem 1.8rem;
+            text-align: center;
+            transition: var(--transition-fast);
+        }
+
+        .perk-card:hover {
+            border-color: var(--turquoise);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .perk-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+        }
+
+        .perk-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .perk-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.6;
+        }
+
+        .jobs-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .job-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 2rem 2.5rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition-fast);
+        }
+
+        .job-card:hover {
+            border-color: var(--turquoise);
+            background: rgba(28, 34, 41, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .job-title-group h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.4rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 0.85rem;
+            color: var(--gray-text-light);
+        }
+
+        .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* ===== PRIO 3: FÜR ZAHNÄRZTE & BADGE GENERATOR ===== */
+        .dentist-section {
+            background: var(--gray-bg);
+            color: var(--gray-text-dark);
+            border-top: 1px solid var(--gray-border);
+        }
+
+        .dentist-section .section-title {
+            color: var(--gray-text-dark);
+        }
+
+        .dentist-section .section-desc {
+            color: var(--gray-text-mid);
+        }
+
+        .dentist-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .dentist-benefits-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .dentist-benefit-item {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+
+        .dentist-benefit-icon {
+            width: 44px; height: 44px;
+            background: var(--black);
+            color: var(--turquoise);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .dentist-benefit-text h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .dentist-benefit-text p {
+            font-size: 0.92rem;
+            color: var(--gray-text-mid);
+            line-height: 1.6;
+        }
+
+        /* Badge Generator Card */
+        .badge-generator-card {
+            background: var(--black);
+            color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .badge-generator-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .badge-generator-card p {
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .badge-preview-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(116, 242, 253, 0.4);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-live-widget {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #14181D;
+            color: #FFFFFF;
+            padding: 0.75rem 1.4rem;
+            border-radius: 8px;
+            border: 1px solid rgba(116, 242, 253, 0.4);
+            font-family: var(--font-main);
+            font-size: 0.88rem;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .badge-live-widget .badge-dot {
+            width: 9px; height: 9px;
+            background: var(--turquoise);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--turquoise);
+        }
+
+        .code-box {
+            background: #080A0C;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.78rem;
+            color: var(--turquoise);
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== ÜBER UNS / GESCHÄFTSFÜHRUNG ===== */
+        .about-section {
+            background: var(--black);
+        }
+
+        .about-grid-layout {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-card {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .about-image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-content h3 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .about-content p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .founders-card {
+            background: var(--dark-surface);
+            border-left: 4px solid var(--turquoise);
+            padding: 1.8rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-top: 2rem;
+        }
+
+        .founders-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+        }
+
+        .founders-card p {
+            font-size: 0.88rem;
+            color: var(--gray-text-light);
+            margin-bottom: 0;
+        }
+
+        /* ===== KONTAKT SECTION ===== */
+        .contact-section {
+            background: var(--dark-surface);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 4rem;
+        }
+
+        .contact-info-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 2.8rem 2.2rem;
+        }
+
+        .contact-info-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+
+        .contact-item-icon {
+            width: 40px; height: 40px;
+            background: var(--turquoise-bg-light);
+            color: var(--turquoise);
+            border: 1px solid rgba(116, 242, 253, 0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item-text h5 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-text-light);
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-item-text p, .contact-item-text a {
+            font-size: 1rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item-text a:hover {
+            color: var(--turquoise);
+        }
+
+        .contact-form {
+            background: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 2.8rem 2.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            background: #111418;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            color: var(--white);
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--turquoise);
+            box-shadow: 0 0 12px var(--turquoise-glow);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            background: #07090B;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4rem 1.5rem 2.5rem;
+            color: var(--gray-text-light);
+            font-size: 0.88rem;
+        }
+
+        .footer-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--turquoise);
+        }
+
+        .footer-legal {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.4);
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        /* ===== MODALS ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-fast);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--dark-surface);
+            border: 1px solid rgba(116, 242, 253, 0.3);
+            border-radius: var(--radius-lg);
+            max-width: 600px;
+            width: 100%;
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(116, 242, 253, 0.2);
+            transform: translateY(20px);
+            transition: var(--transition-fast);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.2rem; right: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--white);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition-fast);
+        }
+
+        .modal-close:hover {
+            background: var(--turquoise);
+            color: var(--black);
+        }
+
+        /* ===== TOAST NOTIFICATION ===== */
+        .toast-notification {
+            position: fixed;
+            bottom: 2rem; right: 2rem;
+            background: var(--turquoise);
+            color: var(--black);
+            padding: 1rem 1.8rem;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(116, 242, 253, 0.4);
+            z-index: 3000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition-fast);
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero-grid, .patient-grid, .dentist-grid, .about-grid-layout, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .careers-perks-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px; left: 0; right: 0;
+                background: var(--dark-surface);
+                flex-direction: column;
+                padding: 2rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                display: none;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .job-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== VARIANTEN SWITCHER BAR ===== -->
+    <div style="background:#0F172A;color:#fff;padding:0.6rem 1rem;text-align:center;font-size:0.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;border-bottom:2px solid #74F2FD;position:relative;z-index:2000;">
+        <span style="color:#74F2FD;text-transform:uppercase;letter-spacing:1px;">🎨 3 DESIGN-VARIANTEN (Akzent: rgb(116,242,253)):</span>
+        <a href="variant1.html" style="background:#74F2FD;color:#000;text-decoration:none;padding:0.3rem 0.9rem;border-radius:4px;font-size:0.8rem;font-weight:700;transition:0.2s;">Variante 1: High-Tech Dark</a>
+        <a href="variant2.html" style="background:rgba(255,255,255,0.15);color:#fff;text-decoration:none;padding:0.3rem 0.9rem;border-radius:4px;font-size:0.8rem;font-weight:700;transition:0.2s;">Variante 2: Clean Light</a>
+        <a href="variant3.html" style="background:rgba(255,255,255,0.15);color:#fff;text-decoration:none;padding:0.3rem 0.9rem;border-radius:4px;font-size:0.8rem;font-weight:700;transition:0.2s;">Variante 3: Bold Split</a>
+    </div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <header class="header-nav" id="mainHeader">
+        <div class="nav-container">
+            <a href="#top" class="brand-logo">
+                ZAHN<span>360</span>
+                <span class="brand-subtext">oHG Weinheim</span>
+            </a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menü öffnen">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#patienten" class="nav-link">Für Patienten</a></li>
+                <li><a href="#karriere" class="nav-link">Karriere & Jobs</a></li>
+                <li><a href="#zahnaerzte" class="nav-link">Für Zahnärzte</a></li>
+                <li><a href="#ueberuns" class="nav-link">Über uns</a></li>
+                <li><a href="#kontakt" class="nav-link">Kontakt</a></li>
+                <li><a href="#kontakt" class="nav-cta">Jetzt anfragen</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="top">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-grid">
+            <div class="hero-text-content">
+                <div class="hero-tag">
+                    <span class="dot"></span> Meisterlabor aus Weinheim
+                </div>
+                <h1 class="hero-title">
+                    PRÄZISION, DIE MAN <span>SPÜRT</span>.<br>
+                    QUALITÄT, DIE <span>BLEIBT</span>.
+                </h1>
+                <p class="hero-description">
+                    Zahntechnik ist für uns Verantwortung und Leidenschaft. Als meistergeführtes Labor in Weinheim fertigen <strong>Julien Hornung</strong> & <strong>Simon Jansen</strong> zahntechnische Meisterwerke – von Kronen und Brücken bis zu komplexer Implantatprothetik.
+                </p>
+                <div class="hero-actions">
+                    <a href="#patienten" class="btn btn-primary">Qualität entdecken</a>
+                    <a href="#karriere" class="btn btn-outline">Werde Teil des Teams</a>
+                </div>
+
+                <div class="hero-stats-row">
+                    <div class="hero-stat-item">
+                        <h4>60+</h4>
+                        <p>Partner-Zahnärzte</p>
+                    </div>
+                    <div class="hero-stat-item">
+                        <h4>70 km</h4>
+                        <p>Einzugsgebiet</p>
+                    </div>
+                    <div class="hero-stat-item">
+                        <h4>100%</h4>
+                        <p>Made in Weinheim</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <img src="images/dental_lab_hero.jpg" alt="Modernes Dentallabor ZAHN 360 Weinheim">
+                <div class="hero-image-badge">
+                    <div class="badge-icon">✓</div>
+                    <div>
+                        <div style="font-weight:700;font-size:0.95rem;color:#fff;">Digitale CAD/CAM Perfektion</div>
+                        <div style="font-size:0.8rem;color:var(--turquoise);">Verbindung aus High-Tech & Handwerk</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRIO 1: PATIENTEN-PORTAL ===== -->
+    <section class="section-padding patient-section" id="patienten">
+        <div class="section-header">
+            <span class="section-subtitle">Höchste Priorität: Ihre Gesundheit</span>
+            <h2 class="section-title">WOHER KOMMT IHR ZAHNERSATZ?</h2>
+            <p class="section-desc">
+                Wenn Ihr Zahnarzt mit ZAHN 360 zusammenarbeitet, erhalten Sie Zahnersatz, der höchsten biokompatiblen Standards entspricht. Hier erfahren Sie, was Qualität für Ihr Gebiss bedeutet.
+            </p>
+        </div>
+
+        <div class="patient-grid">
+            <div class="patient-card-list">
+                <div class="patient-feature-card">
+                    <div class="feature-icon-box">💎</div>
+                    <div class="feature-content">
+                        <h4>Biokompatibles Zirkonoxid & Keramik</h4>
+                        <p>Wir verwenden ausschließlich zertifizierte Hochleistungskeramiken ohne Allergierisiko – für ein natürliches Tragegefühl und maximale Haltbarkeit.</p>
+                    </div>
+                </div>
+
+                <div class="patient-feature-card">
+                    <div class="feature-icon-box">🔍</div>
+                    <div class="feature-content">
+                        <h4>Höchste Passgenauigkeit durch 3D-CAD/CAM</h4>
+                        <p>Durch mikrometergenaue digitale Vermessung schmiegt sich die Krone oder das Implantat nahtlos an Ihr natürliches Gebiss an.</p>
+                    </div>
+                </div>
+
+                <div class="patient-feature-card">
+                    <div class="feature-icon-box">📍</div>
+                    <div class="feature-content">
+                        <h4>100% Regionale Fertigung in Weinheim</h4>
+                        <p>Keine anonyme Auslandsfertigung. Jedes Werkstück verlässt persönlich unser Labor in der Hauptstraße 4c unter meisterlicher Kontrolle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="patient-trust-box">
+                <div class="trust-header">
+                    <div>
+                        <h3 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:800;color:#fff;">Das ZAHN 360 Qualitätssiegel</h3>
+                        <p style="font-size:0.85rem;color:var(--gray-text-light);">Garantierte Herkunft für Ihren Zahnarzt</p>
+                    </div>
+                    <span class="trust-badge-label">Meister-Garantie</span>
+                </div>
+
+                <ul class="quality-checklist">
+                    <li>
+                        <span class="check-dot">✓</span>
+                        <span><strong>Verwendungsnachweis:</strong> Jeder Zahnersatz erhält einen lückenlosen Material-Pass.</span>
+                    </li>
+                    <li>
+                        <span class="check-dot">✓</span>
+                        <span><strong>Ästhetische Perfektion:</strong> Individuelle Farbanpassung abgestimmt auf Ihre natürlichen Zähne.</span>
+                    </li>
+                    <li>
+                        <span class="check-dot">✓</span>
+                        <span><strong>Nachhaltigkeit & Langlebigkeit:</strong> Entwickelt für jahrzehntelange Belastbarkeit beim Kauen & Sprechen.</span>
+                    </li>
+                </ul>
+
+                <button class="btn btn-primary" style="width:100%;" onclick="openModal('patientModal')">Materialien & Zertifikat ansehen</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRIO 2: KARRIERE & RECRUITING ===== -->
+    <section class="section-padding careers-section" id="karriere">
+        <div class="section-header">
+            <span class="section-subtitle">Wachse mit uns</span>
+            <h2 class="section-title">DEINE KARRIERE BEI ZAHN 360</h2>
+            <p class="section-desc">
+                Du suchst ein modernes Arbeitsumfeld mit echter Meisterschaft, Wertschätzung und neuester CAD/CAM-Technik? Werde Teil unseres wachsenden Teams in Weinheim!
+            </p>
+        </div>
+
+        <div class="careers-perks-grid">
+            <div class="perk-card">
+                <div class="perk-icon">🎓</div>
+                <h3>Meisterliche Mentorings</h3>
+                <p>Direkte Zusammenarbeit auf Augenhöhe mit den Gründern Julien Hornung & Simon Jansen.</p>
+            </div>
+            <div class="perk-card">
+                <div class="perk-icon">⚡</div>
+                <h3>High-Tech Ausstattungen</h3>
+                <p>Digitaler Workflow, Intraoralscans, 3D-Drucker und modernste 5-Achs-Fräsmaschinen.</p>
+            </div>
+            <div class="perk-card">
+                <div class="perk-icon">🤝</div>
+                <h3>Attraktives Paket & Team</h3>
+                <p>Faire Vergütung, flexible Arbeitszeiten, Fortbildungen und familiäres Betriebsklima.</p>
+            </div>
+        </div>
+
+        <div class="jobs-container">
+            <h3 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:800;margin-bottom:1.5rem;color:var(--white);">Offene Stellenangebote:</h3>
+
+            <div class="job-card">
+                <div class="job-title-group">
+                    <h3>Zahntechniker (m/w/d) – Prothetik / Keramik</h3>
+                    <div class="job-meta">
+                        <span>📍 Weinheim</span>
+                        <span>⏱️ Vollzeit</span>
+                        <span>🚀 Ab sofort</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openApplyModal('Zahntechniker (m/w/d) Prothetik')">Schnellbewerbung (60 Sek.)</button>
+            </div>
+
+            <div class="job-card">
+                <div class="job-title-group">
+                    <h3>Zahntechniker (m/w/d) – CAD/CAM Spezialist</h3>
+                    <div class="job-meta">
+                        <span>📍 Weinheim</span>
+                        <span>⏱️ Vollzeit / Teilzeit</span>
+                        <span>🚀 Ab sofort</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openApplyModal('CAD/CAM Spezialist (m/w/d)')">Schnellbewerbung (60 Sek.)</button>
+            </div>
+
+            <div class="job-card">
+                <div class="job-title-group">
+                    <h3>Auszubildender Zahntechniker (m/w/d)</h3>
+                    <div class="job-meta">
+                        <span>📍 Weinheim</span>
+                        <span>⏱️ Ausbildung</span>
+                        <span>🚀 Ausbildungsstart 2026</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openApplyModal('Auszubildender Zahntechniker (m/w/d)')">Schnellbewerbung (60 Sek.)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRIO 3: FÜR ZAHNÄRZTE & BADGE GENERATOR ===== -->
+    <section class="section-padding dentist-section" id="zahnaerzte">
+        <div class="section-header">
+            <span class="section-subtitle">Partner im Umkreis von 70 km</span>
+            <h2 class="section-title">FÜR ZAHNÄRZTLICHE PRAXEN</h2>
+            <p class="section-desc">
+                Über 60 Zahnärzte vertrauen bereits auf ZAHN 360 oHG. Wir bieten perfekten Service, direkte Erreichbarkeit und höchste Termintreue.
+            </p>
+        </div>
+
+        <div class="dentist-grid">
+            <ul class="dentist-benefits-list">
+                <li class="dentist-benefit-item">
+                    <div class="dentist-benefit-icon">🚚</div>
+                    <div class="dentist-benefit-text">
+                        <h4>Eigener Kurier- & Lieferservice</h4>
+                        <p>Schnelle Abholung und pünktliche Anlieferung direkt in Ihre Praxis im Umkreis von 70 km.</p>
+                    </div>
+                </li>
+                <li class="dentist-benefit-item">
+                    <div class="dentist-benefit-icon">💻</div>
+                    <div class="dentist-benefit-text">
+                        <h4>Offene digitale Schnittstellen</h4>
+                        <p>Kompatibel mit allen gängigen Intraoralscannern (iTero, TRIOS, Primescan, Cerec etc.).</p>
+                    </div>
+                </li>
+                <li class="dentist-benefit-item">
+                    <div class="dentist-benefit-icon">📞</div>
+                    <div class="dentist-benefit-text">
+                        <h4>Direkter Meistersupport</h4>
+                        <p>Fachliche Abstimmung direkt mit Simon Jansen oder Julien Hornung ohne Warteschleife.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="badge-generator-card">
+                <h3>Referenz-Badge für Ihre Website</h3>
+                <p>Zeigen Sie Ihren Patienten, dass Sie auf deutsche Meisterqualität setzen. Binden Sie dieses Siegel einfach auf Ihrer Praxis-Webseite ein:</p>
+
+                <div class="badge-preview-box">
+                    <div style="font-size:0.75rem;color:var(--gray-text-light);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:1px;">Vorschau auf Ihrer Webseite:</div>
+                    <div class="badge-live-widget">
+                        <span class="badge-dot"></span>
+                        Zahnersatz gefertigt von <strong>ZAHN 360</strong> – Weinheim
+                    </div>
+                </div>
+
+                <div class="code-box" id="badgeCodeSnippet">&lt;div style="display:inline-flex;align-items:center;gap:8px;background:#14181D;color:#FFF;padding:8px 16px;border-radius:8px;border:1px solid #74F2FD;font-family:sans-serif;font-size:14px;"&gt;
+  &lt;span style="width:8px;height:8px;background:#74F2FD;border-radius:50%;"&gt;&lt;/span&gt;
+  Zahnersatz gefertigt von &lt;strong&gt;ZAHN 360&lt;/strong&gt; – Weinheim
+&lt;/div&gt;</div>
+
+                <button class="btn btn-primary" style="width:100%;" onclick="copyBadgeCode()">Code in Zwischenablage kopieren</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ÜBER UNS ===== -->
+    <section class="section-padding about-section" id="ueberuns">
+        <div class="about-grid-layout">
+            <div class="about-image-card">
+                <img src="images/dental_craftsmanship.jpg" alt="Zahntechnikermeister Handwerk ZAHN 360 Weinheim">
+            </div>
+
+            <div class="about-content">
+                <span class="section-subtitle">Tradition trifft Moderne</span>
+                <h3 class="section-title" style="text-align:left;">ZAHN 360 oHG IN WEINHEIM</h3>
+                <p>
+                    Die ZAHN 360 oHG ist im Handelsregister beim Amtsgericht Mannheim unter <strong>HRA 706344</strong> eingetragen. Als meistergeführtes Labor mit Sitz in der <strong>Hauptstraße 4c, 69469 Weinheim</strong> vereinen wir langjährige zahntechnische Expertise mit innovativen digitalen Technologien.
+                </p>
+                <p>
+                    Unser Ziel ist es, Zahnärzten ein verlässlicher Partner zu sein und Patienten ein strahlendes, natürliches Lächeln zu schenken.
+                </p>
+
+                <div class="founders-card">
+                    <h4>Persönlich haftende Gesellschafter & Meister:</h4>
+                    <p style="color:var(--turquoise);font-weight:700;font-size:1rem;margin-top:0.3rem;">Julien Hornung & Simon Jansen</p>
+                    <p style="font-size:0.85rem;color:var(--gray-text-light);">Zahntechnikermeister</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== KONTAKT & ANFAHRT ===== -->
+    <section class="section-padding contact-section" id="kontakt">
+        <div class="section-header">
+            <span class="section-subtitle">Wir freuen uns auf Sie</span>
+            <h2 class="section-title">KONTAKT & ANFRAGE</h2>
+            <p class="section-desc">
+                Egal ob Zahnarzt, Patient oder zukünftiger Mitarbeiter – treten Sie unkompliziert mit uns in Kontakt.
+            </p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info-card">
+                <h3>ZAHN 360 oHG</h3>
+                <p style="color:rgba(255,255,255,0.7);margin-bottom:2rem;font-size:0.95rem;">Zahntechnisches Labor in Weinheim</p>
+
+                <ul class="contact-details-list">
+                    <li class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-text">
+                            <h5>Adresse</h5>
+                            <p>Hauptstraße 4c<br>69469 Weinheim</p>
+                        </div>
+                    </li>
+                    <li class="contact-item">
+                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-item-text">
+                            <h5>Telefon</h5>
+                            <a href="tel:+4962018783600">+49 6201 87 83 600</a>
+                        </div>
+                    </li>
+                    <li class="contact-item">
+                        <div class="contact-item-icon">✉️</div>
+                        <div class="contact-item-text">
+                            <h5>E-Mail</h5>
+                            <a href="mailto:info@zahn360.de">info@zahn360.de</a>
+                        </div>
+                    </li>
+                    <li class="contact-item">
+                        <div class="contact-item-icon">🏛️</div>
+                        <div class="contact-item-text">
+                            <h5>Handelsregister</h5>
+                            <p>Amtsgericht Mannheim, HRA 706344</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+                <h3 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:800;margin-bottom:1.5rem;color:var(--white);">Nachricht senden</h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="c_name">Name *</label>
+                        <input type="text" id="c_name" class="form-control" required placeholder="Ihr Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="c_email">E-Mail *</label>
+                        <input type="email" id="c_email" class="form-control" required placeholder="ihre@email.de">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="c_role">Ich bin...</label>
+                    <select id="c_role" class="form-control">
+                        <option value="patient">Patient / Endverbraucher</option>
+                        <option value="zahnarzt">Zahnarzt / Praxis</option>
+                        <option value="bewerber">Bewerber / Fachkraft</option>
+                        <option value="sonstiges">Sonstiges</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="c_message">Ihre Nachricht *</label>
+                    <textarea id="c_message" class="form-control" required placeholder="Wie können wir Ihnen helfen?"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width:100%;">Anfrage absenden</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="brand-logo" style="font-size:1.8rem;">
+                ZAHN<span>360</span> oHG
+            </div>
+            <p style="color:rgba(255,255,255,0.7);">Zahntechnisches Labor • Hauptstraße 4c • 69469 Weinheim</p>
+
+            <ul class="footer-links">
+                <li><a href="#" onclick="openModal('impressumModal'); return false;">Impressum</a></li>
+                <li><a href="#" onclick="openModal('datenschutzModal'); return false;">Datenschutz</a></li>
+                <li><a href="#patienten">Für Patienten</a></li>
+                <li><a href="#karriere">Karriere</a></li>
+                <li><a href="#zahnaerzte">Für Zahnärzte</a></li>
+            </ul>
+
+            <div class="footer-legal">
+                © 2026 ZAHN 360 oHG. Alle Rechte vorbehalten. Handelsregister: Amtsgericht Mannheim HRA 706344. Vertreten durch die persönlich haftenden Gesellschafter Julien Hornung & Simon Jansen (Zahntechnikermeister).
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== MODALS ===== -->
+
+    <!-- Modal: Schnellbewerbung -->
+    <div class="modal-overlay" id="applyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('applyModal')">✕</button>
+            <h3 style="font-family:var(--font-heading);font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;" id="applyTargetTitle">Schnellbewerbung</h3>
+            <p style="font-size:0.9rem;color:var(--gray-text-light);margin-bottom:1.5rem;">In 60 Sekunden bewerben. Wir melden uns innerhalb von 24 Stunden!</p>
+
+            <form onsubmit="handleApplySubmit(event)">
+                <div class="form-group">
+                    <label for="app_name">Name *</label>
+                    <input type="text" id="app_name" class="form-control" required placeholder="Vor- und Nachname">
+                </div>
+                <div class="form-group">
+                    <label for="app_phone">Telefonnummer *</label>
+                    <input type="tel" id="app_phone" class="form-control" required placeholder="0170 1234567">
+                </div>
+                <div class="form-group">
+                    <label for="app_email">E-Mail *</label>
+                    <input type="email" id="app_email" class="form-control" required placeholder="ihre@email.de">
+                </div>
+                <div class="form-group">
+                    <label for="app_note">Kurze Nachricht / Erfahrungen</label>
+                    <textarea id="app_note" class="form-control" placeholder="Erzähle uns kurz von deiner bisherigen Erfahrung in der Zahntechnik..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Bewerbung jetzt absenden</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Patienten Material-Zertifikat -->
+    <div class="modal-overlay" id="patientModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('patientModal')">✕</button>
+            <h3 style="font-family:var(--font-heading);font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:1rem;">Garantierte Materialqualität</h3>
+            <p style="font-size:0.95rem;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:1.2rem;">
+                Bei ZAHN 360 oHG in Weinheim verarbeiten wir ausschließlich Medizinprodukte nach strengstem deutschen Medizinprodukterecht (MDR).
+            </p>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:0.8rem;font-size:0.9rem;color:var(--gray-text-light);margin-bottom:1.5rem;">
+                <li>✔️ <strong>Zirkonoxid:</strong> Höchste Festigkeit, natürliche Lichtdurchlässigkeit.</li>
+                <li>✔️ <strong>Edelmetall- & Metallfreie Alternativen:</strong> Maximale Biokompatibilität.</li>
+                <li>✔️ <strong>Präzisions-Passung:</strong> Vorbeugung von Entzündungen & Druckstellen.</li>
+            </ul>
+            <button class="btn btn-outline" style="width:100%;" onclick="closeModal('patientModal')">Schließen</button>
+        </div>
+    </div>
+
+    <!-- Modal: Impressum -->
+    <div class="modal-overlay" id="impressumModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('impressumModal')">✕</button>
+            <h3 style="font-family:var(--font-heading);font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:1rem;">Impressum</h3>
+            <div style="font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.7;">
+                <p><strong>ZAHN 360 oHG</strong><br>
+                Zahntechnisches Labor<br>
+                Hauptstraße 4c<br>
+                69469 Weinheim</p><br>
+                <p><strong>Vertreten durch die persönlich haftenden Gesellschafter:</strong><br>
+                Julien Hornung & Simon Jansen (Zahntechnikermeister)</p><br>
+                <p><strong>Handelsregister:</strong><br>
+                Amtsgericht Mannheim, HRA 706344</p><br>
+                <p><strong>Kontakt:</strong><br>
+                Telefon: +49 6201 87 83 600<br>
+                E-Mail: info@zahn360.de</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Datenschutz -->
+    <div class="modal-overlay" id="datenschutzModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('datenschutzModal')">✕</button>
+            <h3 style="font-family:var(--font-heading);font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:1rem;">Datenschutz</h3>
+            <div style="font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.7;">
+                <p>Verantwortlicher im Sinne der DSGVO ist die ZAHN 360 oHG, Hauptstraße 4c, 69469 Weinheim.</p><br>
+                <p>Personenbezogene Daten (z. B. Name, E-Mail, Telefonnummer im Kontakt- oder Bewerbungsformular) werden ausschließlich zur Bearbeitung Ihrer jeweiligen Anfrage verwendet und nicht an Dritte weitergegeben.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toast">
+        Aktion erfolgreich ausgeführt!
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Header Scroll & Mobile Toggle
+        const header = document.getElementById('mainHeader');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => navMenu.classList.remove('active'));
+        });
+
+        // Modals
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function openApplyModal(jobTitle) {
+            document.getElementById('applyTargetTitle').innerText = 'Schnellbewerbung: ' + jobTitle;
+            openModal('applyModal');
+        }
+
+        // Copy Badge Code
+        function copyBadgeCode() {
+            const code = document.getElementById('badgeCodeSnippet').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('✓ Code in Zwischenablage kopiert!');
+            }).catch(() => {
+                showToast('✓ Code kopiert!');
+            });
+        }
+
+        // Form Handlers
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('✓ Vielen Dank! Ihre Anfrage wurde gesendet.');
+            e.target.reset();
+        }
+
+        function handleApplySubmit(e) {
+            e.preventDefault();
+            closeModal('applyModal');
+            showToast('🚀 Bewerbung erhalten! Wir melden uns in Kürze.');
+            e.target.reset();
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>

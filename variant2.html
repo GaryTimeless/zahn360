@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAHN 360 oHG – Variante 2: Clean Medical Luxury & Light</title>
+    <meta name="description" content="Variante 2 für ZAHN 360 oHG in Weinheim – Heller, frischer Medical-Look mit edlem Türkis rgb(116,242,253).">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-light: #FFFFFF;
+            --bg-surface: #F2F9FA;
+            --bg-card: #FFFFFF;
+            --text-dark: #0F172A;
+            --text-mid: #475569;
+            --text-muted: #64748B;
+            
+            /* Signature Color: rgb(116, 242, 253) */
+            --turquoise: rgb(116, 242, 253);
+            --turquoise-dark: #00A3B5;
+            --turquoise-bg: rgba(116, 242, 253, 0.15);
+            --border-light: #E2E8F0;
+
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --radius-md: 14px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: var(--font-body); background: var(--bg-light); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+
+        /* Variant Switcher Bar */
+        .variant-bar {
+            background: var(--text-dark); color: #fff;
+            padding: 0.6rem 1rem; text-align: center; font-size: 0.85rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;
+        }
+        .variant-bar span { color: var(--turquoise); text-transform: uppercase; letter-spacing: 1px; }
+        .variant-btn {
+            background: rgba(255,255,255,0.15); color: #fff; text-decoration: none; padding: 0.25rem 0.8rem; border-radius: 4px; font-size: 0.78rem; transition: 0.2s;
+        }
+        .variant-btn:hover, .variant-btn.active { background: var(--turquoise); color: #000; font-weight: 700; }
+
+        /* Header */
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.2rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 900; color: var(--text-dark); text-decoration: none; }
+        .logo span { color: var(--turquoise-dark); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-mid); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.2s; }
+        .nav-links a:hover { color: var(--turquoise-dark); }
+        .btn-medical {
+            background: var(--turquoise); color: #0F172A; font-weight: 800; padding: 0.7rem 1.6rem; border-radius: 8px; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(116, 242, 253, 0.4); transition: 0.25s; text-transform: uppercase; font-size: 0.82rem; letter-spacing: 1px; border: 1px solid var(--turquoise-dark);
+        }
+        .btn-medical:hover { background: #52E2F2; transform: translateY(-2px); }
+
+        /* Hero */
+        .hero {
+            padding: 6rem 2rem; max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center;
+        }
+        .hero-badge {
+            display: inline-block; background: var(--turquoise-bg); border: 1px solid var(--turquoise-dark);
+            color: var(--turquoise-dark); padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem;
+        }
+        .hero h1 { font-family: var(--font-heading); font-size: 3.6rem; font-weight: 900; line-height: 1.1; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--text-dark); }
+        .hero h1 span { color: var(--turquoise-dark); background: linear-gradient(120deg, var(--turquoise-dark), #00D2B8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.05rem; color: var(--text-mid); margin-bottom: 2rem; line-height: 1.8; }
+        .hero-img-box {
+            position: relative; border-radius: var(--radius-md); overflow: hidden;
+            border: 4px solid #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .hero-img-box img { width: 100%; display: block; }
+
+        /* Section */
+        .section-wrap { background: var(--bg-surface); padding: 5rem 2rem; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .sec-title { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; color: var(--text-dark); }
+        .sec-sub { color: var(--turquoise-dark); font-size: 0.8rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+
+        /* Light Cards */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+        .light-card {
+            background: var(--bg-card); border: 1px solid var(--border-light);
+            border-radius: var(--radius-md); padding: 2.2rem; transition: 0.3s;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
+        .light-card:hover { border-color: var(--turquoise-dark); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+        .card-icon {
+            width: 50px; height: 50px; background: var(--turquoise-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--turquoise-dark); margin-bottom: 1.2rem;
+        }
+        .light-card h3 { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--text-dark); font-weight: 800; }
+        .light-card p { font-size: 0.9rem; color: var(--text-mid); }
+
+        footer { background: #0F172A; color: #94A3B8; padding: 3rem 2rem; text-align: center; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <div class="variant-bar">
+        <span>🎨 VARIANTE 2: Clean Medical Luxury & Light</span>
+        <a href="variant1.html" class="variant-btn">Variante 1 (Dark)</a>
+        <a href="variant2.html" class="variant-btn active">Variante 2 (Clean Light)</a>
+        <a href="variant3.html" class="variant-btn">Variante 3 (Bold Split)</a>
+        <a href="variant-comic.html" class="variant-btn">🦸 Comic Edition</a>
+        <a href="variant-fineline.html" class="variant-btn">✦ Fine Line</a>
+    </div>
+
+    <header>
+        <a href="#" class="logo">ZAHN<span>360</span></a>
+        <ul class="nav-links">
+            <li><a href="#patienten">Für Patienten</a></li>
+            <li><a href="#karriere">Karriere</a></li>
+            <li><a href="#zahnaerzte">Für Zahnärzte</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+        <a href="#kontakt" class="btn-medical">Jetzt anfragen</a>
+    </header>
+
+    <section class="hero">
+        <div>
+            <span class="hero-badge">Meisterlabor Weinheim</span>
+            <h1>Präzision & <span>Ästhetik</span> für Ihr Gebiss.</h1>
+            <p>Unter der Leitung von Zahntechnikermeistern <strong>Julien Hornung & Simon Jansen</strong> entsteht Zahnersatz mit höchstem Anspruch an Vertrauen, Hygiene und Ästhetik.</p>
+            <a href="#patienten" class="btn-medical">Qualitäts-Standards</a>
+        </div>
+        <div class="hero-img-box">
+            <img src="images/dental_lab_hero.jpg" alt="ZAHN 360 Weinheim">
+        </div>
+    </section>
+
+    <div class="section-wrap" id="patienten">
+        <div class="section-inner">
+            <span class="sec-sub">Patienten-Information</span>
+            <h2 class="sec-title">Woher stammt Ihr Zahnersatz?</h2>
+            <div class="grid-3">
+                <div class="light-card">
+                    <div class="card-icon">💎</div>
+                    <h3>Zirkonoxid & Biokompatibilität</h3>
+                    <p>Zertifizierte, allergiefreie Materialien für natürliche Ästhetik und maximale Langlebigkeit.</p>
+                </div>
+                <div class="light-card">
+                    <div class="card-icon">📍</div>
+                    <h3>Made in Weinheim</h3>
+                    <p>Gefertigt direkt in unserer Manufaktur in der Hauptstraße 4c unter Meisterkontrolle.</p>
+                </div>
+                <div class="light-card">
+                    <div class="card-icon">🔍</div>
+                    <h3>3D-CAD/CAM Präzision</h3>
+                    <p>Perfekte Passform durch hochpräzise digitale Vermessungstechnik.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 ZAHN 360 oHG • Hauptstraße 4c, 69469 Weinheim • Amtsgericht Mannheim HRA 706344
+    </footer>
+
+</body>
+</html>
