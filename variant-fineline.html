@@ -918,6 +918,72 @@
             border-color: var(--white);
         }
 
+        /* ===== LEISTUNGS-AKKORDEON ===== */
+        .leistung-acc {
+            margin: 2rem 0;
+            border-top: 1px solid var(--gray-pale);
+        }
+        .leistung-acc details {
+            border-bottom: 1px solid var(--gray-pale);
+        }
+        .leistung-acc summary {
+            padding: 1rem 0;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--black);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: color 0.2s;
+        }
+        .leistung-acc summary::-webkit-details-marker { display: none; }
+        .leistung-acc summary::after {
+            content: '+';
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--gray-mid);
+            transition: transform 0.2s;
+        }
+        .leistung-acc details[open] summary::after {
+            content: '−';
+        }
+        .leistung-acc summary:hover { color: var(--turquoise); }
+        .leistung-acc details[open] summary {
+            color: var(--turquoise);
+            font-weight: 500;
+        }
+        .leistung-acc .acc-content {
+            padding: 0 0 1.2rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 0.3rem 1.5rem;
+        }
+        .leistung-acc .acc-content li {
+            font-size: 0.78rem;
+            color: var(--gray-dark);
+            font-weight: 300;
+            line-height: 1.7;
+            list-style: none;
+            padding-left: 1rem;
+            position: relative;
+        }
+        .leistung-acc .acc-content li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            color: var(--turquoise);
+            font-weight: 700;
+        }
+
+        [data-theme="dark"] .leistung-acc summary { color: var(--black); }
+        [data-theme="dark"] .leistung-acc summary:hover { color: var(--turquoise); }
+        [data-theme="dark"] .leistung-acc details[open] summary { color: var(--turquoise); }
+        [data-theme="dark"] .leistung-acc .acc-content li { color: var(--gray-light); }
+
         /* ===== ZAHNÄRZTE ===== */
         .dentist-grid {
             display: grid;
@@ -2553,6 +2619,84 @@
                 </p>
             </div>
 
+            <!-- Leistungs-Akkordeon -->
+            <div class="leistung-acc fade-in">
+                <details>
+                    <summary>Digitale Zahntechnik</summary>
+                    <ul class="acc-content">
+                        <li>CAD/CAM-gestützte Konstruktion und Fertigung</li>
+                        <li>Digitale Abformung & Datenverarbeitung</li>
+                        <li>3D-Planung von Zahnersatz und Implantatversorgungen</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>CNC-Fertigung</summary>
+                    <ul class="acc-content">
+                        <li>Hochpräzise Fräsarbeiten (Zirkon, PMMA, Wachs, Metall)</li>
+                        <li>Individuelle Einzelanfertigungen & Serienproduktionen</li>
+                        <li>Schnelle und reproduzierbare Ergebnisse</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>3D-Druck</summary>
+                    <ul class="acc-content">
+                        <li>Herstellung von Modellen, Schienen und Bohrschablonen</li>
+                        <li>Prototyping und schnelle Umsetzung komplexer Strukturen</li>
+                        <li>Effiziente Produktion bei hoher Detailgenauigkeit</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Festsitzender Zahnersatz</summary>
+                    <ul class="acc-content">
+                        <li>Kronen & Brücken (Vollkeramik, Zirkon, Metallkeramik)</li>
+                        <li>Veneers & Inlays/Onlays</li>
+                        <li>Ästhetisch anspruchsvolle Frontzahnversorgungen</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Herausnehmbarer Zahnersatz</summary>
+                    <ul class="acc-content">
+                        <li>Teil- und Vollprothesen</li>
+                        <li>Modellgussprothesen</li>
+                        <li>Kombinationsarbeiten (Teleskop-, Geschiebe- und Stegtechnik)</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Implantattechnik</summary>
+                    <ul class="acc-content">
+                        <li>Individuelle Implantatprothetik</li>
+                        <li>Suprakonstruktionen (verschraubt & zementiert)</li>
+                        <li>Digitale Implantatplanung & Bohrschablonen</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Schienentechnik</summary>
+                    <ul class="acc-content">
+                        <li>Knirscherschienen (CMD)</li>
+                        <li>Bleaching- und Tiefziehschienen</li>
+                        <li>Sportmundschutz</li>
+                        <li>Schnarch-Schienen (Apnoe)</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Ästhetik & Individualisierung</summary>
+                    <ul class="acc-content">
+                        <li>Natürliche Zahnfarben & individuelle Charakterisierung</li>
+                        <li>Hochästhetische Verblendtechniken</li>
+                        <li>Digitale Smile-Design-Konzepte</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Service & Zusammenarbeit</summary>
+                    <ul class="acc-content">
+                        <li>Persönliche Fachberatung für Zahnärzte</li>
+                        <li>Schnelle Lieferzeiten & flexible Auftragsabwicklung</li>
+                        <li>Reparatur- und Expressservice</li>
+                        <li>Unterstützung bei komplexen Fällen</li>
+                    </ul>
+                </details>
+            </div>
+
             <div class="dentist-grid">
                 <ul class="benefit-list">
                     <li class="benefit-item fade-in-left">
@@ -2797,6 +2941,7 @@
             <ul class="footer-links">
                 <li><a href="#" onclick="openModal('impressumModal'); return false;">Impressum</a></li>
                 <li><a href="#" onclick="openModal('datenschutzModal'); return false;">Datenschutz</a></li>
+                <li><a href="#" onclick="openModal('agbModal'); return false;">AGB</a></li>
                 <li><a href="#patienten">Für Patienten</a></li>
                 <li><a href="#karriere">Karriere</a></li>
                 <li><a href="#zahnaerzte">Für Zahnärzte</a></li>
@@ -2881,6 +3026,72 @@
             <div class="modal-body">
                 <p>Verantwortlicher im Sinne der DSGVO ist die ZAHN 360 oHG, Hauptstraße 4c, 69469 Weinheim.</p><br>
                 <p>Personenbezogene Daten werden ausschließlich zur Bearbeitung Ihrer jeweiligen Anfrage verwendet und nicht an Dritte weitergegeben.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AGB -->
+    <div class="modal-overlay" id="agbModal">
+        <div class="modal-content modal-content-dark">
+            <button class="modal-close" onclick="closeModal('agbModal')">✕</button>
+            <h3 class="modal-title">Allgemeine Geschäftsbedingungen</h3>
+            <div class="modal-body">
+                <h4>§ 1 Geltungsbereich</h4>
+                <p>1. Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge, Lieferungen und Leistungen zwischen der Zahn360 OHG und ihren Auftraggebern (insbesondere Zahnärzten, Zahnkliniken und sonstigen gewerblichen Bestellern).</p>
+                <p>2. Diese AGB gelten ausschließlich gegenüber Unternehmern im Sinne des § 14 BGB.</p>
+                <p>3. Entgegenstehende oder abweichende Bedingungen des Auftraggebers werden nicht anerkannt, es sei denn, die Zahn360 OHG stimmt ihrer Geltung ausdrücklich schriftlich zu.</p>
+
+                <h4>§ 2 Vertragsschluss</h4>
+                <p>1. Angebote der Zahn360 OHG sind freibleibend und unverbindlich.</p>
+                <p>2. Der Vertrag kommt durch Auftragserteilung des Auftraggebers und Annahme durch die Zahn360 OHG zustande.</p>
+                <p>3. Zahntechnische Arbeiten werden individuell nach den Vorgaben des Auftraggebers gefertigt.</p>
+
+                <h4>§ 3 Leistungsumfang</h4>
+                <p>1. Die Zahn360 OHG fertigt zahntechnische Produkte gemäß den vom Auftraggeber übermittelten Arbeitsunterlagen (z. B. Abformungen, Modelle, Datensätze, Konstruktionsvorgaben).</p>
+                <p>2. Der Auftraggeber ist für die Richtigkeit und Vollständigkeit der übermittelten Unterlagen verantwortlich.</p>
+                <p>3. Änderungen nach Produktionsbeginn können zu Mehrkosten und verlängerten Lieferzeiten führen.</p>
+
+                <h4>§ 4 Preise und Zahlungsbedingungen</h4>
+                <p>1. Es gelten die zum Zeitpunkt der Auftragserteilung gültigen Preislisten bzw. individuell vereinbarten Preise der Zahn360 OHG.</p>
+                <p>2. Alle Preise verstehen sich zuzüglich der gesetzlichen Mehrwertsteuer, sofern diese anfällt.</p>
+                <p>3. Rechnungen sind innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug zahlbar, sofern nichts anderes vereinbart wurde.</p>
+                <p>4. Bei Zahlungsverzug ist die Zahn360 OHG berechtigt, Verzugszinsen in gesetzlicher Höhe zu berechnen.</p>
+
+                <h4>§ 5 Lieferung und Versand</h4>
+                <p>1. Liefertermine sind nur verbindlich, wenn sie ausdrücklich schriftlich durch die Zahn360 OHG bestätigt wurden.</p>
+                <p>2. Die Lieferung erfolgt auf Gefahr des Auftraggebers.</p>
+                <p>3. Teillieferungen sind zulässig, soweit sie dem Auftraggeber zumutbar sind.</p>
+
+                <h4>§ 6 Eigentumsvorbehalt</h4>
+                <p>1. Gelieferte Waren bleiben bis zur vollständigen Bezahlung sämtlicher Forderungen Eigentum der Zahn360 OHG.</p>
+                <p>2. Eine Weiterveräußerung im ordnungsgemäßen Geschäftsverkehr ist zulässig; die daraus entstehenden Forderungen gelten als im Voraus an die Zahn360 OHG abgetreten.</p>
+
+                <h4>§ 7 Gewährleistung</h4>
+                <p>1. Es gelten die gesetzlichen Gewährleistungsrechte, soweit nachfolgend nichts anderes geregelt ist.</p>
+                <p>2. Offensichtliche Mängel sind unverzüglich, spätestens jedoch innerhalb von 7 Werktagen nach Erhalt der Arbeit schriftlich gegenüber der Zahn360 OHG anzuzeigen.</p>
+                <p>3. Bei berechtigten Mängeln erfolgt nach Wahl der Zahn360 OHG Nachbesserung oder Neuanfertigung.</p>
+                <p>4. Keine Gewährleistung besteht bei unsachgemäßer Behandlung oder Veränderung der gelieferten Arbeit.</p>
+
+                <h4>§ 8 Haftung</h4>
+                <p>1. Die Zahn360 OHG haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit.</p>
+                <p>2. Bei leichter Fahrlässigkeit haftet die Zahn360 OHG nur bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten) und begrenzt auf den vertragstypischen, vorhersehbaren Schaden.</p>
+                <p>3. Die Haftung nach dem Produkthaftungsgesetz bleibt unberührt.</p>
+
+                <h4>§ 9 Medizinprodukterecht</h4>
+                <p>1. Die zahntechnischen Produkte werden als Sonderanfertigungen gemäß den jeweils geltenden Vorschriften des Medizinprodukterechts hergestellt.</p>
+                <p>2. Der Auftraggeber ist verpflichtet, die erforderliche Dokumentation entsprechend den gesetzlichen Vorschriften aufzubewahren.</p>
+
+                <h4>§ 10 Datenschutz</h4>
+                <p>1. Die Zahn360 OHG verarbeitet personenbezogene Daten ausschließlich im Rahmen der gesetzlichen Datenschutzbestimmungen.</p>
+                <p>2. Sofern Zahnarztpraxen Patientendaten übermitteln, geschieht dies in eigener datenschutzrechtlicher Verantwortung.</p>
+                <p>3. Nähere Informationen ergeben sich aus der gesonderten Datenschutzerklärung der Zahn360 OHG.</p>
+
+                <h4>§ 11 Gerichtsstand und anwendbares Recht</h4>
+                <p>1. Es gilt das Recht der Bundesrepublik Deutschland.</p>
+                <p>2. Gerichtsstand für alle Streitigkeiten aus dem Vertragsverhältnis ist – sofern gesetzlich zulässig – der Sitz der Zahn360 OHG in Weinheim.</p>
+
+                <h4>§ 12 Schlussbestimmungen</h4>
+                <p>Sollte eine Bestimmung dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
             </div>
         </div>
     </div>
