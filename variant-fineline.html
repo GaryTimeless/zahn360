@@ -2212,62 +2212,6 @@
 
 
 
-        /* ===== FARB-EDITOR (einfach, unter dem Footer) ===== */
-        .farb-editor {
-            background: #111;
-            color: #fff;
-            padding: 1.5rem 2rem;
-            font-family: var(--font-sans);
-        }
-        .farb-editor summary {
-            cursor: pointer;
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #999;
-            padding: 0.5rem 0;
-            list-style: none;
-        }
-        .farb-editor summary::-webkit-details-marker { display: none; }
-        .farb-editor summary::before { content: '⚙ '; }
-        .farb-editor[open] summary { color: #fff; margin-bottom: 1rem; }
-        .farb-editor-inner {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-        .farb-row {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: #1a1a1a;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-        }
-        .farb-row label {
-            font-size: 0.6rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #888;
-        }
-        .farb-row input[type="color"] {
-            width: 24px; height: 22px;
-            border: 1px solid #444;
-            border-radius: 3px;
-            cursor: pointer;
-            padding: 0;
-            background: #111;
-        }
-        .farb-row button {
-            background: none;
-            border: 1px solid #444;
-            color: #666;
-            font-size: 0.55rem;
-            padding: 1px 6px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-        .farb-row button:hover { color: #fff; border-color: #888; }
 
     </style>
 </head>
@@ -2864,10 +2808,6 @@
         </div>
     </footer>
 
-    <details class="farb-editor" id="farbEditor">
-        <summary>Farb-Editor</summary>
-        <div class="farb-editor-inner" id="farbInner"></div>
-    </details>
 
 
   
@@ -3947,66 +3887,6 @@
             });
 
             apply();
-        })();
-        // ===== FARB-EDITOR =====
-        (function() {
-            var inner = document.getElementById('farbInner');
-            var details = document.getElementById('farbEditor');
-            if (!inner || !details) return;
-
-            var sections = [
-                { id: 'top',       label: 'Hero',       sel: '.hero' },
-                { id: 'patienten', label: 'Patienten',  sel: '#patienten' },
-                { id: 'karriere',  label: 'Karriere',   sel: '#karriere' },
-                { id: 'zahnaerzte',label: 'Zahnärzte',   sel: '#zahnaerzte' },
-                { id: 'prozess',   label: 'Prozess',    sel: '#prozess' },
-                { id: 'ueberuns',  label: 'Über uns',   sel: '#ueberuns' },
-                { id: 'kontakt',   label: 'Kontakt',    sel: '#kontakt' },
-            ];
-
-            function getHex(el) {
-                var bg = el.style.backgroundColor || getComputedStyle(el).backgroundColor;
-                var m = bg.match(/[\d.]+/g);
-                if (!m || m.length < 3) return '#000000';
-                return '#' + [parseInt(m[0]), parseInt(m[1]), parseInt(m[2])].map(function(x) { return x.toString(16).padStart(2,'0'); }).join('');
-            }
-
-            function build() {
-                inner.innerHTML = '';
-                sections.forEach(function(sec) {
-                    var el = document.querySelector(sec.sel);
-                    if (!el) return;
-                    var hex = getHex(el);
-                    var row = document.createElement('div');
-                    row.className = 'farb-row';
-                    row.innerHTML = '<label>' + sec.label + '</label><input type="color" value="' + hex + '" data-s="' + sec.id + '"><button data-s="' + sec.id + '">↺</button>';
-                    inner.appendChild(row);
-                });
-                inner.querySelectorAll('input').forEach(function(inp) {
-                    inp.addEventListener('input', function() {
-                        var s = sections.find(function(x) { return x.id === inp.dataset.s; });
-                        if (!s) return;
-                        var el = document.querySelector(s.sel);
-                        if (el) { el.style.backgroundColor = inp.value; localStorage.setItem('z360-bg-' + s.id, inp.value); }
-                    });
-                });
-                inner.querySelectorAll('button').forEach(function(b) {
-                    b.addEventListener('click', function() {
-                        var s = sections.find(function(x) { return x.id === b.dataset.s; });
-                        if (!s) return;
-                        var el = document.querySelector(s.sel);
-                        if (el) { el.style.backgroundColor = ''; localStorage.removeItem('z360-bg-' + s.id); build(); }
-                    });
-                });
-            }
-
-            details.addEventListener('toggle', function() { if (details.open) build(); });
-
-            // Restore
-            sections.forEach(function(sec) {
-                var saved = localStorage.getItem('z360-bg-' + sec.id);
-                if (saved) { var el = document.querySelector(sec.sel); if (el) el.style.backgroundColor = saved; }
-            });
         })();
     </script>
 </body>
