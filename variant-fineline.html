@@ -18,17 +18,17 @@
             --gray-dark: #555555;
             --gray-mid: #888888;
             --gray-light: #BBBBBB;
-            --gray-pale: #E8E8E8;
-            --off-white: #F7F6F4;
-            --cream: #FDFCFA;
+            --gray-pale: #DDDBD7;
+            --off-white: #F0EEEB;
+            --cream: #F5F3F0;
             --white: #FFFFFF;
 
-            --turquoise: #74F2FD;
-            --turquoise-soft: #9AF5FF;
-            --turquoise-muted: rgba(116, 242, 253, 0.08);
-            --turquoise-line: rgba(116, 242, 253, 0.35);
+            --turquoise: #5EC8D8;
+            --turquoise-soft: #8DE0EB;
+            --turquoise-muted: rgba(94, 200, 216, 0.08);
+            --turquoise-line: rgba(94, 200, 216, 0.35);
 
-            --header-bg: rgba(253, 252, 250, 0.92);
+            --header-bg: rgba(245, 243, 240, 0.92);
             --overlay-subtler: rgba(255, 255, 255, 0.03);
             --overlay-subtle: rgba(255, 255, 255, 0.06);
             --overlay-medium: rgba(255, 255, 255, 0.10);
@@ -59,8 +59,8 @@
             --cream: #121212;
             --white: #1A1A1A;
 
-            --turquoise-muted: rgba(116, 242, 253, 0.12);
-            --turquoise-line: rgba(116, 242, 253, 0.45);
+            --turquoise-muted: rgba(94, 200, 216, 0.12);
+            --turquoise-line: rgba(94, 200, 216, 0.45);
 
             --header-bg: rgba(18, 18, 18, 0.92);
             --overlay-subtler: rgba(0, 0, 0, 0.10);
@@ -145,13 +145,13 @@
         .ornament-line {
             width: 1px;
             height: 60px;
-            background: linear-gradient(to bottom, transparent, var(--turquoise-line), transparent);
+            background: linear-gradient(to bottom, transparent, var(--turquoise), transparent);
             margin: 0 auto;
         }
 
         .ornament-diamond {
-            width: 12px; height: 12px;
-            border: 1px solid var(--turquoise-line);
+            width: 6px; height: 6px;
+            background: var(--turquoise);
             border-radius: 50%;
             margin: 0.5rem auto;
         }
@@ -2211,9 +2211,68 @@
         }
 
 
+
+        /* ===== FARB-EDITOR (einfach, unter dem Footer) ===== */
+        .farb-editor {
+            background: #111;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            font-family: var(--font-sans);
+        }
+        .farb-editor summary {
+            cursor: pointer;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #999;
+            padding: 0.5rem 0;
+            list-style: none;
+        }
+        .farb-editor summary::-webkit-details-marker { display: none; }
+        .farb-editor summary::before { content: '⚙ '; }
+        .farb-editor[open] summary { color: #fff; margin-bottom: 1rem; }
+        .farb-editor-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .farb-row {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #1a1a1a;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+        }
+        .farb-row label {
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #888;
+        }
+        .farb-row input[type="color"] {
+            width: 24px; height: 22px;
+            border: 1px solid #444;
+            border-radius: 3px;
+            cursor: pointer;
+            padding: 0;
+            background: #111;
+        }
+        .farb-row button {
+            background: none;
+            border: 1px solid #444;
+            color: #666;
+            font-size: 0.55rem;
+            padding: 1px 6px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .farb-row button:hover { color: #fff; border-color: #888; }
+
     </style>
 </head>
 <body>
+
 
     <button class="dark-toggle" id="darkToggle" title="Darkmode umschalten" style="position:fixed;top:1rem;right:1rem;z-index:3000;">🌙 Dark</button>
     <button class="dark-toggle" id="sizeToggleBtn" title="Größen-Buttons ein-/ausblenden" style="position:fixed;top:1rem;right:6.5rem;z-index:3000;">📏 Größe</button>
@@ -2805,6 +2864,12 @@
         </div>
     </footer>
 
+    <details class="farb-editor" id="farbEditor">
+        <summary>Farb-Editor</summary>
+        <div class="farb-editor-inner" id="farbInner"></div>
+    </details>
+
+
   
 
     <!-- ===== MODALS ===== -->
@@ -2882,6 +2947,8 @@
 
     <!-- Toast -->
     <div class="toast-notification" id="toast">Aktion erfolgreich.</div>
+
+
 
     <script>
         // Dark mode toggle
@@ -3880,6 +3947,66 @@
             });
 
             apply();
+        })();
+        // ===== FARB-EDITOR =====
+        (function() {
+            var inner = document.getElementById('farbInner');
+            var details = document.getElementById('farbEditor');
+            if (!inner || !details) return;
+
+            var sections = [
+                { id: 'top',       label: 'Hero',       sel: '.hero' },
+                { id: 'patienten', label: 'Patienten',  sel: '#patienten' },
+                { id: 'karriere',  label: 'Karriere',   sel: '#karriere' },
+                { id: 'zahnaerzte',label: 'Zahnärzte',   sel: '#zahnaerzte' },
+                { id: 'prozess',   label: 'Prozess',    sel: '#prozess' },
+                { id: 'ueberuns',  label: 'Über uns',   sel: '#ueberuns' },
+                { id: 'kontakt',   label: 'Kontakt',    sel: '#kontakt' },
+            ];
+
+            function getHex(el) {
+                var bg = el.style.backgroundColor || getComputedStyle(el).backgroundColor;
+                var m = bg.match(/[\d.]+/g);
+                if (!m || m.length < 3) return '#000000';
+                return '#' + [parseInt(m[0]), parseInt(m[1]), parseInt(m[2])].map(function(x) { return x.toString(16).padStart(2,'0'); }).join('');
+            }
+
+            function build() {
+                inner.innerHTML = '';
+                sections.forEach(function(sec) {
+                    var el = document.querySelector(sec.sel);
+                    if (!el) return;
+                    var hex = getHex(el);
+                    var row = document.createElement('div');
+                    row.className = 'farb-row';
+                    row.innerHTML = '<label>' + sec.label + '</label><input type="color" value="' + hex + '" data-s="' + sec.id + '"><button data-s="' + sec.id + '">↺</button>';
+                    inner.appendChild(row);
+                });
+                inner.querySelectorAll('input').forEach(function(inp) {
+                    inp.addEventListener('input', function() {
+                        var s = sections.find(function(x) { return x.id === inp.dataset.s; });
+                        if (!s) return;
+                        var el = document.querySelector(s.sel);
+                        if (el) { el.style.backgroundColor = inp.value; localStorage.setItem('z360-bg-' + s.id, inp.value); }
+                    });
+                });
+                inner.querySelectorAll('button').forEach(function(b) {
+                    b.addEventListener('click', function() {
+                        var s = sections.find(function(x) { return x.id === b.dataset.s; });
+                        if (!s) return;
+                        var el = document.querySelector(s.sel);
+                        if (el) { el.style.backgroundColor = ''; localStorage.removeItem('z360-bg-' + s.id); build(); }
+                    });
+                });
+            }
+
+            details.addEventListener('toggle', function() { if (details.open) build(); });
+
+            // Restore
+            sections.forEach(function(sec) {
+                var saved = localStorage.getItem('z360-bg-' + sec.id);
+                if (saved) { var el = document.querySelector(sec.sel); if (el) el.style.backgroundColor = saved; }
+            });
         })();
     </script>
 </body>
