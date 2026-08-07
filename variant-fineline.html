@@ -136,7 +136,7 @@
         }
 
         .flourish-center {
-            width: 6px; height: 6px;
+            width: 12px; height: 12px;
             border: 1px solid var(--gray-light);
             border-radius: 50%;
         }
@@ -150,9 +150,9 @@
         }
 
         .ornament-diamond {
-            width: 8px; height: 8px;
+            width: 12px; height: 12px;
             border: 1px solid var(--turquoise-line);
-            transform: rotate(45deg);
+            border-radius: 50%;
             margin: 0.5rem auto;
         }
 
@@ -620,6 +620,7 @@
         .section {
             padding: 6rem 2rem;
             position: relative;
+            scroll-margin-top: 90px;
         }
 
         .section-dark {
@@ -1038,6 +1039,119 @@
             word-break: break-all;
             margin-bottom: 1.5rem;
             line-height: 1.6;
+        }
+
+        /* ===== PROZESS ===== */
+        .process {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .process-eyebrow {
+            font-family: var(--font-sans);
+            font-size: 0.68rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gray-mid);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .process-eyebrow::before {
+            content: "";
+            width: 22px;
+            height: 1px;
+            background: var(--turquoise);
+            display: inline-block;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: "";
+            position: absolute;
+            left: 27px;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: var(--gray-pale);
+        }
+
+        .process-step {
+            display: flex;
+            gap: 22px;
+            padding: 22px 0;
+            position: relative;
+        }
+
+        .degree-badge {
+            flex: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--black);
+            border: 1px solid var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step h3 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 6px;
+            font-family: var(--font-serif);
+        }
+
+        .process-step p {
+            color: var(--gray-dark);
+            font-size: 0.85rem;
+            max-width: 56ch;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        [data-theme="dark"] .process-steps::before {
+            background: var(--gray-pale);
+        }
+
+        @media (min-width: 900px) {
+            .process-steps {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 18px;
+            }
+            .process-steps::before {
+                left: 28px;
+                right: 28px;
+                top: 28px;
+                bottom: auto;
+                width: auto;
+                height: 1px;
+            }
+            .process-step {
+                flex-direction: column;
+                text-align: left;
+                flex: 1;
+                padding: 0;
+            }
+            .degree-badge {
+                margin-bottom: 20px;
+            }
         }
 
         /* ===== ÜBER UNS ===== */
@@ -2102,6 +2216,7 @@
 <body>
 
     <button class="dark-toggle" id="darkToggle" title="Darkmode umschalten" style="position:fixed;top:1rem;right:1rem;z-index:3000;">🌙 Dark</button>
+    <button class="dark-toggle" id="sizeToggleBtn" title="Größen-Buttons ein-/ausblenden" style="position:fixed;top:1rem;right:6.5rem;z-index:3000;">📏 Größe</button>
 
     <!-- ===== NAVIGATION ===== -->
     <header class="header-nav" id="mainHeader">
@@ -2191,6 +2306,11 @@
                 <button class="carousel-dot" data-dot="3"></button>
             </div>
             <div id="carouselNumeral" style="text-align:center;margin-top:0.3rem;font-family:var(--font-serif);font-size:0.75rem;letter-spacing:1px;color:var(--gray-mid);">I</div>
+            <span id="sizeControls">
+            <button class="btn btn-outline" id="btnSmaller" title="Logo kleiner">−</button>
+            <span id="sizeLabel" style="font-family:var(--font-sans);font-size:0.7rem;letter-spacing:1px;color:var(--gray-mid);min-width:45px;text-align:center;">752</span>
+            <button class="btn btn-outline" id="btnLarger" title="Logo größer">+</button>
+            </span>
             <h1 class="hero-title fade-in">
                 Präzision, die man spürt.
             </h1>
@@ -2209,9 +2329,6 @@
             <div class="hero-actions fade-in">
                 <a href="#patienten" class="btn btn-primary">Qualität entdecken</a>
                 <a href="#karriere" class="btn btn-outline">Karriere</a>
-                <button class="btn btn-outline" id="btnSmaller" title="Logo kleiner">−</button>
-                <span id="sizeLabel" style="font-family:var(--font-sans);font-size:0.7rem;letter-spacing:1px;color:var(--gray-mid);min-width:45px;text-align:center;">312</span>
-                <button class="btn btn-outline" id="btnLarger" title="Logo größer">+</button>
             </div>
 
             <div class="hero-stats fade-in">
@@ -2248,7 +2365,7 @@
                 <p class="section-overtitle fade-in">Höchste Priorität: Ihre Gesundheit</p>
                 <h2 class="section-title fade-in">Woher kommt Ihr Zahnersatz?</h2>
                 <p class="section-desc fade-in">
-                    Wenn Ihr Zahnarzt mit Zahn 360 zusammenarbeitet, erhalten Sie Zahnersatz, der höchsten biokompatiblen Standards entspricht.
+                    Wenn Ihr mit Zahn 360 zusammenarbeitet, erhaltet ihr Zahnersatz,<br> der den höchsten biolompatiblen Standards entspricht.
                 </p>
             </div>
 
@@ -2392,6 +2509,24 @@
                     </div>
                     <button class="btn btn-dark-outline" onclick="openApplyModal('Auszubildender Zahntechniker (m/w/d)')">Bewerben</button>
                 </div>
+
+                <!-- Raum für die Zukunft -->
+                <div class="fade-in" style="margin-top:3rem;">
+                    <div style="display:flex;align-items:flex-start;gap:2.5rem;flex-wrap:wrap;">
+                        <div style="flex:0 0 340px;max-width:100%;">
+                            <img src="images/FirmengebäudeSW.jpeg" alt="Neues Firmengebäude ZAHN 360" style="width:100%;height:auto;display:block;filter:grayscale(100%);">
+                        </div>
+                        <div style="flex:1;min-width:280px;">
+                            <h2 class="section-title" style="text-align:left;margin-bottom:1rem;">Raum für die Zukunft</h2>
+                            <p class="section-desc" style="margin:0 0 1rem 0;max-width:none;">
+                                Ein wichtiger Schritt auf unserem Weg ist der Bezug unseres neuen Firmengebäudes ab dem kommenden Jahr. Es steht für Wachstum, Innovation und unseren Anspruch, die besten Voraussetzungen für hochwertige Zahntechnik zu schaffen.
+                            </p>
+                            <p class="section-desc" style="margin:0;max-width:none;">
+                                Moderne Arbeitsplätze, neueste Technologien und eine angenehme Atmosphäre geben unserem Team den Raum, den es braucht – für konzentriertes Arbeiten, kreative Lösungen und gemeinsame Entwicklung.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -2475,6 +2610,55 @@
         </div>
     </div>
 
+    <!-- ===== PROZESS ===== -->
+    <section class="section section-light" id="prozess">
+        <div class="section-inner">
+            <p class="section-overtitle fade-in">So entsteht Ihre Arbeit</p>
+            <h2 class="section-title fade-in">Einmal ganz herum — vier Schritte bis zur fertigen Arbeit.</h2>
+
+            <div class="process fade-in">
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="degree-badge">090°</div>
+                        <div>
+                            <h3>Digitale Abnahme</h3>
+                            <p>Ihre Praxis übermittelt Scan oder Abdruck direkt an unser Labor.</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="degree-badge">180°</div>
+                        <div>
+                            <h3>Fertigung</h3>
+                            <p>Unsere Zahntechnikermeister planen und fertigen Ihre Arbeit — digital und in Handarbeit.</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="degree-badge">270°</div>
+                        <div>
+                            <h3>Prüfung</h3>
+                            <p>Passung, Funktion und Ästhetik werden geprüft, bevor die Arbeit unser Haus verlässt.</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="degree-badge">360°</div>
+                        <div>
+                            <h3>Rückgabe</h3>
+                            <p>Die fertige Arbeit geht zurück an Ihre Praxis und wird dort eingesetzt.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Separator -->
+    <div class="fine-separator">
+        <div class="fine-separator-inner">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+        </div>
+    </div>
+
     <!-- ===== ÜBER UNS ===== -->
     <section class="section section-light" id="ueberuns">
         <div class="section-inner">
@@ -2488,7 +2672,7 @@
                     <p class="section-overtitle fade-in">Tradition trifft Moderne</p>
                     <h3 class="fade-in">Zahn 360 oHG<br><em style="font-weight:300;font-style:italic;color:var(--gray-mid);">in Weinheim</em></h3>
                     <p class="fade-in">
-                        Die Zahn 360 oHG ist im Handelsregister beim Amtsgericht Mannheim unter <strong>HRA 706344</strong> eingetragen. Als meistergeführtes Labor mit Sitz in der <strong>Hauptstraße 4c, 69469 Weinheim</strong> vereinen wir langjährige zahntechnische Expertise mit innovativen digitalen Technologien.
+                        Als meistergeführtes Labor mit Sitz in der <strong>Hauptstraße 4c, 69469 Weinheim</strong> vereinen wir langjährige zahntechnische Expertise mit innovativen digitalen Technologien.
                     </p>
                     <p class="fade-in">
                         Unser Ziel ist es, Zahnärzten ein verlässlicher Partner zu sein und Patienten ein strahlendes, natürliches Lächeln zu schenken.
@@ -2595,55 +2779,6 @@
         </div>
     </section>
 
-    <!-- ===== ARCHITECTS ECLIPSE PULSE LOGO SHOWCASE ===== -->
-    <section class="architects-section" id="architectsShowcase">
-        <div class="architects-bg-dust"></div>
-        <div class="architects-header fade-in">
-            <span class="architects-tag">Visual Identity Experience</span>
-            <h2 class="architects-title">Architects Eclipse Signet</h2>
-            <p class="architects-subtitle">Inspiriert vom Album „All Our Gods Have Abandoned Us“ – Ein pulsierendes, atmosphärisches ZAHN360 Logo-Signet für maximale visuelle Strahlkraft.</p>
-        </div>
-
-        <div class="architects-stage fade-in" id="architectsStage" onclick="togglePulseSpeed(document.getElementById('pulseSpeedBtn'))" title="Klicken für Tempo-Wechsel!">
-            <div class="architects-corona" id="architectsCorona"></div>
-            <div class="architects-ring"></div>
-            <div class="architects-ring architects-ring-2"></div>
-            <div class="architects-ring architects-ring-3"></div>
-            
-            <div class="architects-orb">
-                <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN360 Logo Signet" class="architects-logo-img">
-            </div>
-        </div>
-
-        <div class="architects-controls fade-in">
-            <button class="architects-btn active" onclick="setEclipseTheme('cyan', this)">❖ Eclipse Cyan</button>
-            <button class="architects-btn" onclick="setEclipseTheme('silver', this)">◇ Silver Flare</button>
-            <button class="architects-btn" onclick="setEclipseTheme('gold', this)">◈ Solar Gold</button>
-            <button class="architects-btn" id="pulseSpeedBtn" onclick="togglePulseSpeed(this)">⚡ Tempo: Normal</button>
-        </div>
-    <!-- ===== VARIATION 2: ORGANIC CANVAS PERLIN NOISE CORONA ===== -->
-    <section class="canvas-corona-section" id="canvasCoronaShowcase">
-        <div class="canvas-corona-header fade-in">
-            <span class="architects-tag">Variante 2: Canvas Simplex Noise</span>
-            <h2 class="architects-title">Organische Solar-Korona</h2>
-            <p class="architects-subtitle">Prozedural gerenderte, faserige Korona mit Simplex/Perlin-Rauschen und additiver Überblendung (`globalCompositeOperation = 'lighter'`) für kochendes Plasma um den schwarzen Kern.</p>
-        </div>
-
-        <div class="canvas-corona-stage fade-in">
-            <canvas id="noiseCoronaCanvas" width="480" height="480" class="corona-canvas"></canvas>
-            
-            <div class="corona-center-orb">
-                <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN360 Logo Signet">
-            </div>
-        </div>
-
-        <div class="corona-controls fade-in">
-            <button class="architects-btn active" id="cColorMonochrome" onclick="setNoiseColor('monochrome', this)">✦ Reines Weiß (Foto-Look)</button>
-            <button class="architects-btn" id="cColorCyan" onclick="setNoiseColor('cyan', this)">❖ Cyan Plasma</button>
-            <button class="architects-btn" id="cColorSolar" onclick="setNoiseColor('solar', this)">◈ Solar Flare</button>
-        </div>
-    </section>
-
     <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
         <div class="footer-inner">
@@ -2670,67 +2805,7 @@
         </div>
     </footer>
 
-    <!-- ===== ECLIPSE CORONA — Architects Vibe ===== -->
-    <section class="eclipse-section" id="eclipseShowcase">
-        <div class="section-inner">
-            <div class="eclipse-header fade-in">
-                <span class="eclipse-tag">Zahn 360</span>
-                <h2 class="eclipse-title">Präzision im Kern</h2>
-            </div>
-
-            <div class="eclipse-stage">
-                <canvas id="eclipseCanvas" width="600" height="600" class="eclipse-canvas"></canvas>
-                <div class="eclipse-orb">
-                    <div class="eclipse-orb-inner">
-                        <div class="eclipse-flourish">
-                            <div class="eclipse-flourish-line"></div>
-                            <div class="eclipse-flourish-dot"></div>
-                            <div class="eclipse-flourish-line"></div>
-                        </div>
-                        <div class="eclipse-orb-word">ZAHN</div>
-                        <div class="eclipse-orb-sub">360</div>
-                        <div class="eclipse-orb-slogan">Meisterlabor Weinheim</div>
-                        <div class="eclipse-flourish">
-                            <div class="eclipse-flourish-line"></div>
-                            <div class="eclipse-flourish-dot"></div>
-                            <div class="eclipse-flourish-line"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FBM CORONA — 3D Noise + Fractal Brownian Motion ===== -->
-    <section class="fbm-section" id="fbmShowcase">
-        <div class="section-inner">
-            <div class="fbm-header fade-in">
-                <span class="fbm-tag">Zahn 360</span>
-                <h2 class="fbm-title">Organische Textur</h2>
-            </div>
-
-            <div class="fbm-stage">
-                <canvas id="fbmCoronaCanvas" class="fbm-canvas"></canvas>
-                <div class="fbm-core">
-                    <div class="fbm-core-inner">
-                        <div class="fbm-flourish">
-                            <div class="fbm-flourish-line"></div>
-                            <div class="fbm-flourish-dot"></div>
-                            <div class="fbm-flourish-line"></div>
-                        </div>
-                        <div class="fbm-core-word">ZAHN</div>
-                        <div class="fbm-core-sub">360</div>
-                        <div class="fbm-core-slogan">Meisterlabor Weinheim</div>
-                        <div class="fbm-flourish">
-                            <div class="fbm-flourish-line"></div>
-                            <div class="fbm-flourish-dot"></div>
-                            <div class="fbm-flourish-line"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  
 
     <!-- ===== MODALS ===== -->
 
@@ -2808,20 +2883,6 @@
     <!-- Toast -->
     <div class="toast-notification" id="toast">Aktion erfolgreich.</div>
 
-    <!-- ===== JAVASCRIPT ===== -->
-    <!-- ===== VARIANTE 4: FIBROUS CORONA ===== -->
-    <section class="fibrous-corona-section" id="fibrousCoronaShowcase">
-        <div class="fibrous-corona-intro">
-            <span class="eclipse-tag">Variante 4 · Fineline</span>
-            <h2>Lebendige Präzision.</h2>
-            <p>Eine unregelmäßige, faserige Korona pulsiert um das ZAHN 360 Signet und verliert sich langsam im dunklen Raum.</p>
-        </div>
-        <div class="fibrous-corona-stage">
-            <canvas id="fibrousCoronaCanvas"></canvas>
-            <div class="fibrous-corona-core"><span>ZAHN <b>360°</b></span></div>
-        </div>
-    </section>
-
     <script>
         // Dark mode toggle
         (function() {
@@ -2843,6 +2904,22 @@
                     toggle.textContent = '☀️ Light';
                     localStorage.setItem('zahn360-darkmode', 'true');
                 }
+            });
+        })();
+
+        // Size controls toggle
+        (function() {
+            const btn = document.getElementById('sizeToggleBtn');
+            const controls = document.getElementById('sizeControls');
+            if (!btn || !controls) return;
+
+            let visible = false;
+            controls.style.display = 'none';
+            btn.style.opacity = '0.5';
+            btn.addEventListener('click', () => {
+                visible = !visible;
+                controls.style.display = visible ? '' : 'none';
+                btn.style.opacity = visible ? '1' : '0.5';
             });
         })();
 
