@@ -420,6 +420,17 @@
     .footer-grid{ grid-template-columns:1.3fr 1fr 1fr; }
     .footer-bottom{ flex-direction:row; justify-content:space-between; align-items:center; }
   }
+  /* Fineline-Korona-Variante */
+  .corona-section { min-height: 760px; padding: 120px 24px 140px; background: #0a0a0a; color: #f1f0eb; display: grid; place-items: center; gap: 20px; overflow: hidden; }
+  .corona-copy { text-align: center; max-width: 540px; position: relative; z-index: 2; }
+  .corona-copy h2 { margin: 14px 0 12px; font-size: clamp(2rem, 5vw, 4.4rem); font-weight: 400; letter-spacing: -.04em; }
+  .corona-copy p { margin: 0; color: #989792; line-height: 1.7; }
+  .corona-stage { width: min(78vw, 620px); aspect-ratio: 1; position: relative; display: grid; place-items: center; }
+  #coronaCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .corona-core { width: 41%; aspect-ratio: 1; border-radius: 50%; background: #000; display: grid; place-items: center; position: relative; box-shadow: 0 0 24px rgba(255,255,255,.08); }
+  .corona-core span { color: #fff; font: 500 clamp(.65rem, 1.4vw, 1rem)/1 sans-serif; letter-spacing: .13em; white-space: nowrap; }
+  .corona-core b { font-weight: 400; color: #b7b5af; }
+  @media (max-width: 600px) { .corona-section { min-height: 680px; padding-inline: 16px; } .corona-stage { width: 100vw; } }
 </style>
 </head>
 <body>
@@ -729,6 +740,18 @@
     </div>
   </section>
 
+  <!-- ============ FINELINE LOGO / CORONA VARIANTE ============ -->
+  <section class="corona-section" aria-labelledby="corona-title">
+    <div class="corona-copy">
+      <span class="eyebrow">Fineline · Logo-Experiment</span>
+      <h2 id="corona-title">Ein Logo mit eigener Energie.</h2>
+      <p>Eine organische, faserige Korona legt sich um den schwarzen Kreis — nicht perfekt gleichmäßig, sondern lebendig wie flimmerndes Plasma.</p>
+    </div>
+    <div class="corona-stage" aria-label="Animiertes ZAHN 360 Logo">
+      <canvas id="coronaCanvas"></canvas>
+      <div class="corona-core"><span>ZAHN <b>360°</b></span></div>
+    </div>
+  </section>
 </main>
 
 <!-- ============ FOOTER / IMPRESSUM ============ -->
@@ -806,6 +829,54 @@
     }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
     revealEls.forEach(el => io.observe(el));
   }
+
+  // Fineline-Korona: viele kurze, rauschgesteuerte Fasern um den Logokern.
+  (() => {
+    const canvas = document.getElementById('coronaCanvas');
+    const stage = canvas?.parentElement;
+    if (!canvas || !stage) return;
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr, raf;
+    const TAU = Math.PI * 2;
+    const fract = n => n - Math.floor(n);
+    const noise = (x, t) => {
+      const a = Math.sin(x * 7.1 + t * .72) * 43758.5453;
+      const b = Math.sin(x * 19.7 - t * .37 + 2.4) * 15731.743;
+      return fract(a) * .58 + fract(b) * .42;
+    };
+    const resize = () => {
+      const box = stage.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = box.width; h = box.height;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = `${w}px`; canvas.style.height = `${h}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    const draw = time => {
+      const t = time * .001, cx = w / 2, cy = h / 2;
+      const core = Math.min(w, h) * .205;
+      ctx.clearRect(0, 0, w, h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (let i = 0; i < 620; i++) {
+        const a = i / 620 * TAU;
+        const n = noise(i / 620 * 6.5 + Math.sin(a * 3) * .08, t);
+        const flicker = noise(i / 620 * 15 + 8, t * 1.35);
+        const length = 10 + n * n * Math.min(w, h) * (.18 + flicker * .28);
+        const start = core + 3 + n * 7;
+        const alpha = .025 + n * n * flicker * .24;
+        ctx.beginPath();
+        ctx.moveTo(cx + Math.cos(a) * start, cy + Math.sin(a) * start);
+        ctx.lineTo(cx + Math.cos(a + (n - .5) * .035) * (start + length), cy + Math.sin(a + (n - .5) * .035) * (start + length));
+        ctx.strokeStyle = `rgba(236,235,228,${alpha})`;
+        ctx.lineWidth = .35 + n * 1.2;
+        ctx.stroke();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      if (!prefersReducedMotion) raf = requestAnimationFrame(draw);
+    };
+    resize(); window.addEventListener('resize', resize, { passive:true });
+    draw(0);
+  })();
 </script>
 
 </body>

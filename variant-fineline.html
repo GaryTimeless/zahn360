@@ -138,7 +138,7 @@
         .flourish-center {
             width: 6px; height: 6px;
             border: 1px solid var(--gray-light);
-            transform: rotate(45deg);
+            border-radius: 50%;
         }
 
         /* Subtle scroll-line ornament */
@@ -319,6 +319,175 @@
             z-index: 1;
             max-width: 800px;
             margin: 0 auto;
+        }
+
+        /* ===== LOGO CAROUSEL ===== */
+        .hero-logo-carousel {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            user-select: none;
+        }
+
+        .carousel-stage {
+            position: relative;
+            width: 312px;
+            height: 312px;
+            flex-shrink: 0;
+            background: transparent;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Slide 0: simple logo PNG circle */
+        .carousel-slide-png {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-png-circle {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-png-circle img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.08); opacity: 1; }
+        }
+
+        /* Slide 1 & 2: Canvas coronas */
+        .carousel-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-core {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 46%;
+            height: 46%;
+            border-radius: 50%;
+            background: transparent;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-core img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Arrows */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.7);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(0,0,0,0.8);
+            border-color: rgba(255,255,255,0.4);
+            color: #fff;
+        }
+
+        .carousel-prev { left: -10px; }
+        .carousel-next { right: -10px; }
+
+        [data-theme="dark"] .carousel-arrow {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.1);
+        }
+        [data-theme="dark"] .carousel-arrow:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        /* Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .carousel-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.3s ease;
+            opacity: 0.4;
+        }
+
+        .carousel-dot.active {
+            opacity: 1;
+            background: var(--black);
+            transform: scale(1.3);
+        }
+
+        [data-theme="dark"] .carousel-dot.active {
+            background: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-stage {
+                width: 264px;
+                height: 264px;
+            }
+            .carousel-arrow {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+            .carousel-prev { left: -5px; }
+            .carousel-next { right: -5px; }
         }
 
         .hero-overtitle {
@@ -1287,50 +1456,6 @@
             opacity: 1;
         }
 
-        /* ===== VARIANT SWITCHER ===== */
-        .variant-switcher {
-            background: var(--near-black);
-            padding: 0.5rem 1rem;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            border-bottom: 1px solid var(--charcoal);
-            position: relative;
-            z-index: 2000;
-        }
-
-        .variant-switcher .label {
-            font-size: 0.6rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gray-mid);
-            font-weight: 400;
-        }
-
-        .variant-switcher a {
-            text-decoration: none;
-            padding: 0.25rem 0.8rem;
-            font-size: 0.65rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            transition: var(--transition);
-        }
-
-        .variant-switcher a.active-variant {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .variant-switcher a:not(.active-variant) {
-            color: var(--gray-mid);
-        }
-
-        .variant-switcher a:not(.active-variant):hover {
-            color: var(--white);
-        }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
@@ -1413,21 +1538,570 @@
             opacity: 1;
             transform: translateX(0);
         }
+        /* ===== ARCHITECTS ECLIPSE PULSE LOGO SHOWCASE ===== */
+        .architects-section {
+            background: #121212;
+            color: #ffffff;
+            padding: 6rem 2rem 7rem;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        .architects-bg-dust {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(116, 242, 253, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(116, 242, 253, 0.04) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .architects-header {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .architects-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--turquoise);
+            border: 1px solid rgba(116, 242, 253, 0.3);
+            padding: 0.35rem 1rem;
+            margin-bottom: 1.2rem;
+            background: rgba(116, 242, 253, 0.04);
+        }
+
+        .architects-title {
+            font-family: var(--font-serif);
+            font-size: 2.4rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #ffffff;
+            margin-bottom: 0.8rem;
+        }
+
+        .architects-subtitle {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--gray-light);
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+
+        /* Eclipse Stage */
+        .architects-stage {
+            position: relative;
+            z-index: 2;
+            width: 360px;
+            height: 360px;
+            margin: 2rem auto 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Pulsing Glow Corona */
+        .architects-corona {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--eclipse-color, rgba(116, 242, 253, 0.8)) 0%, rgba(255, 255, 255, 0.3) 30%, transparent 70%);
+            filter: blur(40px);
+            opacity: 0.75;
+            animation: architectsCoronaPulse var(--pulse-speed, 3.2s) ease-in-out infinite;
+            transition: background 0.5s ease, filter 0.5s ease;
+        }
+
+        /* Shockwave Ripple Rings */
+        .architects-ring {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            border: 1px solid var(--eclipse-ring-color, rgba(116, 242, 253, 0.5));
+            box-shadow: 0 0 25px var(--eclipse-glow-color, rgba(116, 242, 253, 0.4));
+            animation: architectsRingExpand var(--pulse-speed, 3.2s) cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
+            pointer-events: none;
+        }
+
+        .architects-ring-2 {
+            animation-delay: calc(var(--pulse-speed, 3.2s) * 0.4);
+        }
+
+        .architects-ring-3 {
+            animation-delay: calc(var(--pulse-speed, 3.2s) * 0.7);
+        }
+
+        /* Dark Center Orb / Eclipse Disk */
+        .architects-orb {
+            position: relative;
+            z-index: 5;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                inset 0 0 30px rgba(0, 0, 0, 0.9),
+                inset 0 0 15px var(--eclipse-glow-color, rgba(116, 242, 253, 0.3)),
+                0 0 40px rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .architects-stage:hover .architects-orb {
+            transform: scale(1.04);
+            box-shadow: 
+                inset 0 0 35px rgba(0, 0, 0, 0.8),
+                inset 0 0 25px var(--eclipse-glow-color, rgba(116, 242, 253, 0.6)),
+                0 0 60px var(--eclipse-glow-color, rgba(116, 242, 253, 0.5));
+        }
+
+        .architects-stage:hover .architects-corona {
+            animation-duration: calc(var(--pulse-speed, 3.2s) * 0.6);
+            filter: blur(55px) brightness(1.3);
+        }
+
+        /* Logo SVG inside Orb */
+        .architects-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.7));
+            animation: architectsLogoGlow var(--pulse-speed, 3.2s) ease-in-out infinite;
+        }
+
+        /* Interactive Controls */
+        .architects-controls {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .architects-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--gray-light);
+            padding: 0.5rem 1.2rem;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-sans);
+        }
+
+        .architects-btn:hover, .architects-btn.active {
+            border-color: var(--turquoise);
+            color: #ffffff;
+            background: rgba(116, 242, 253, 0.08);
+            box-shadow: 0 0 15px rgba(116, 242, 253, 0.2);
+        }
+
+        /* Keyframes */
+        @keyframes architectsCoronaPulse {
+            0%, 100% {
+                transform: scale(0.92);
+                opacity: 0.65;
+                filter: blur(35px);
+            }
+            50% {
+                transform: scale(1.22);
+                opacity: 0.95;
+                filter: blur(50px) brightness(1.3);
+            }
+        }
+
+        @keyframes architectsRingExpand {
+            0% {
+                transform: scale(0.85);
+                opacity: 0.9;
+            }
+            60% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: scale(1.65);
+                opacity: 0;
+            }
+        }
+
+        @keyframes architectsLogoGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+                opacity: 0.9;
+            }
+            50% {
+                filter: drop-shadow(0 0 20px var(--eclipse-glow-color, rgba(116, 242, 253, 0.9)));
+                opacity: 1;
+            }
+        /* ===== CANVAS PERLIN NOISE CORONA SECTION ===== */
+        .canvas-corona-section {
+            background: #121212;
+            color: #ffffff;
+            padding: 6rem 2rem 7rem;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        .canvas-corona-header {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .canvas-corona-stage {
+            position: relative;
+            z-index: 2;
+            width: 480px;
+            height: 480px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .corona-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .corona-center-orb {
+            position: relative;
+            z-index: 5;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: #121212;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.95), inset 0 0 15px rgba(0, 0, 0, 0.8);
+            padding: 2.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .canvas-corona-stage:hover .corona-center-orb {
+            transform: scale(1.03);
+        }
+
+        .corona-center-orb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+        }
+
+        .corona-controls {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+        /* ===== FOOTER CORONA — Architects Eclipse ===== */
+        .eclipse-section {
+            background: #121212;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem;
+        }
+
+        .eclipse-section .section-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .eclipse-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .eclipse-tag {
+            font-family: var(--font-sans);
+            font-size: 0.6rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .eclipse-title {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #ffffff;
+            margin-top: 0.8rem;
+        }
+
+        .eclipse-stage {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            aspect-ratio: 1 / 1;
+        }
+
+        .eclipse-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .eclipse-orb {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 46%;
+            height: 46%;
+            border-radius: 50%;
+            background: #121212;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.06), 0 0 80px rgba(0,0,0,0.9);
+        }
+
+        .eclipse-orb-inner {
+            text-align: center;
+            user-select: none;
+        }
+
+        .eclipse-orb-word {
+            font-family: var(--font-sans);
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 500;
+            letter-spacing: 8px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .eclipse-orb-sub {
+            font-family: var(--font-serif);
+            font-size: 2.4rem;
+            font-weight: 300;
+            color: #ffffff;
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+
+        .eclipse-flourish {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .eclipse-flourish-line {
+            height: 1px;
+            width: 30px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        }
+
+        .eclipse-flourish-dot {
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+        }
+
+        .eclipse-orb-slogan {
+            font-family: var(--font-sans);
+            font-size: 0.55rem;
+            letter-spacing: 5px;
+            color: rgba(255,255,255,0.35);
+            text-transform: uppercase;
+            margin-top: 0.3rem;
+        }
+
+        /* Dark mode: eclipse stays dark */
+        [data-theme="dark"] .eclipse-section {
+            background: #121212;
+        }
+
+        @media (max-width: 768px) {
+            .eclipse-section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        .fibrous-corona-section { min-height: 820px; padding: 120px 24px 150px; background:#121212; color:#f4f3ee; text-align:center; overflow:hidden; }
+        .fibrous-corona-intro { max-width:560px; margin:0 auto 20px; }
+        .fibrous-corona-intro h2 { font-size:clamp(2.2rem,5vw,4.8rem); font-weight:400; letter-spacing:-.05em; margin:16px 0 12px; }
+        .fibrous-corona-intro p { color:#999993; line-height:1.7; margin:0; }
+        .fibrous-corona-stage { width:min(84vw,680px); aspect-ratio:1; margin:0 auto; position:relative; display:grid; place-items:center; }
+        #fibrousCoronaCanvas { position:absolute; inset:0; width:100%; height:100%; }
+        .fibrous-corona-core { width:40%; aspect-ratio:1; border-radius:50%; background:#121212; display:grid; place-items:center; position:relative; box-shadow:0 0 32px rgba(255,255,255,.08); }
+        .fibrous-corona-core span { color:#fff; font:500 clamp(.7rem,1.5vw,1.05rem)/1 sans-serif; letter-spacing:.14em; }
+        .fibrous-corona-core b { color:#b9b8b1; font-weight:400; }
+        @media (max-width:600px) { .fibrous-corona-section { padding-inline:16px; } .fibrous-corona-stage { width:100vw; } }
+
+        /* ===== FBM CORONA — 3D Value Noise + Fractal Brownian Motion ===== */
+        .fbm-section {
+            background: #121212;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fbm-section .section-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .fbm-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .fbm-tag {
+            font-family: var(--font-sans);
+            font-size: 0.6rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .fbm-title {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #ffffff;
+            margin-top: 0.8rem;
+        }
+
+        .fbm-stage {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            max-width: 90vmin;
+            max-height: 90vmin;
+            margin: 0 auto;
+        }
+
+        .fbm-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .fbm-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 46%;
+            height: 46%;
+            border-radius: 50%;
+            background: #121212;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 0 40px 10px rgba(0,0,0,0.9);
+        }
+
+        .fbm-core-inner {
+            text-align: center;
+            user-select: none;
+        }
+
+        .fbm-core-word {
+            color: #ffffff;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: var(--font-sans);
+            font-size: clamp(14px, 4vmin, 28px);
+            line-height: 1;
+        }
+
+        .fbm-core-sub {
+            color: #ffffff;
+            font-weight: 300;
+            font-family: var(--font-serif);
+            font-size: clamp(22px, 6vmin, 48px);
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .fbm-core-slogan {
+            color: rgba(255,255,255,0.35);
+            font-family: var(--font-sans);
+            font-size: 0.5rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top: 0.3rem;
+        }
+
+        .fbm-flourish {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 0.3rem 0;
+        }
+
+        .fbm-flourish-line {
+            height: 1px;
+            width: 25px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+        }
+
+        .fbm-flourish-dot {
+            width: 3px; height: 3px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .fbm-section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+
     </style>
 </head>
 <body>
 
-    <!-- ===== VARIANT SWITCHER ===== -->
-    <div class="variant-switcher">
-        <span class="label">Design-Varianten</span>
-        <a href="variant1.html">Dark</a>
-        <a href="variant2.html">Light</a>
-        <a href="variant3.html">Bold</a>
-        <a href="variant4.html">Edition 4</a>
-        <a href="variant-comic.html">Comic</a>
-        <a href="variant-fineline.html" class="active-variant">Fine Line</a>
-        <button class="dark-toggle" id="darkToggle" title="Darkmode umschalten">🌙 Dark</button>
-    </div>
+    <button class="dark-toggle" id="darkToggle" title="Darkmode umschalten" style="position:fixed;top:1rem;right:1rem;z-index:3000;">🌙 Dark</button>
 
     <!-- ===== NAVIGATION ===== -->
     <header class="header-nav" id="mainHeader">
@@ -1470,6 +2144,53 @@
 
         <div class="hero-content">
             <p class="hero-overtitle fade-in">Meisterlabor aus Weinheim</p>
+            <!-- Logo-Karussell: 3 Corona-Varianten -->
+            <div class="hero-logo-carousel fade-in">
+                <button class="carousel-arrow carousel-prev" id="carouselPrev" aria-label="Vorherige Variante">‹</button>
+                <div class="carousel-stage">
+                    <!-- Slide 0: Trig-Wellen-Korona -->
+                    <div class="carousel-slide active" data-index="0">
+                        <canvas class="carousel-canvas" id="carouselCanvas1" width="520" height="520"></canvas>
+                        <div class="carousel-core">
+                            <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN 360 Logo">
+                        </div>
+                    </div>
+                    <!-- Slide 1: FBM-Korona -->
+                    <div class="carousel-slide" data-index="1">
+                        <canvas class="carousel-canvas" id="carouselCanvas2" width="520" height="520"></canvas>
+                        <div class="carousel-core">
+                            <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN 360 Logo">
+                        </div>
+                    </div>
+                    <!-- Slide 2: Eclipse-Korona -->
+                    <div class="carousel-slide" data-index="2">
+                        <canvas class="carousel-canvas" id="carouselCanvas3" width="520" height="520"></canvas>
+                        <div class="carousel-core">
+                            <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN 360 Logo">
+                        </div>
+                    </div>
+                    <!-- Slide 3: Architects Eclipse Pulse -->
+                    <div class="carousel-slide" data-index="3" style="display:flex;align-items:center;justify-content:center;">
+                        <div class="architects-stage" style="margin:0;">
+                            <div class="architects-corona"></div>
+                            <div class="architects-ring"></div>
+                            <div class="architects-ring architects-ring-2"></div>
+                            <div class="architects-ring architects-ring-3"></div>
+                            <div class="architects-orb">
+                                <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN360 Logo" class="architects-logo-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-arrow carousel-next" id="carouselNext" aria-label="Nächste Variante">›</button>
+            </div>
+            <div class="carousel-dots" id="carouselDots">
+                <button class="carousel-dot active" data-dot="0"></button>
+                <button class="carousel-dot" data-dot="1"></button>
+                <button class="carousel-dot" data-dot="2"></button>
+                <button class="carousel-dot" data-dot="3"></button>
+            </div>
+            <div id="carouselNumeral" style="text-align:center;margin-top:0.3rem;font-family:var(--font-serif);font-size:0.75rem;letter-spacing:1px;color:var(--gray-mid);">I</div>
             <h1 class="hero-title fade-in">
                 Präzision, die man spürt.
             </h1>
@@ -1482,28 +2203,31 @@
             </div>
 
             <p class="hero-description fade-in">
-                Als meistergeführtes Labor in Weinheim fertigen Julien Hornung und Simon Jansen zahntechnische Meisterwerke — von Kronen und Brücken bis zu komplexer Implantatprothetik.
+                Bei ZAHN360 verbinden wir meisterliches Handwerk mit modernster Technologie und fertigen individuelle zahntechnische Lösungen für das gesamte Spektrum der Zahnmedizin.
             </p>
 
             <div class="hero-actions fade-in">
                 <a href="#patienten" class="btn btn-primary">Qualität entdecken</a>
                 <a href="#karriere" class="btn btn-outline">Karriere</a>
+                <button class="btn btn-outline" id="btnSmaller" title="Logo kleiner">−</button>
+                <span id="sizeLabel" style="font-family:var(--font-sans);font-size:0.7rem;letter-spacing:1px;color:var(--gray-mid);min-width:45px;text-align:center;">312</span>
+                <button class="btn btn-outline" id="btnLarger" title="Logo größer">+</button>
             </div>
 
             <div class="hero-stats fade-in">
                 <div class="hero-stat">
-                    <div class="hero-stat-value">60+</div>
-                    <div class="hero-stat-label">Partner-Zahnärzte</div>
+                    <div class="hero-stat-value">0</div>
+                    <div class="hero-stat-label">Kompromisse bei Qualität</div>
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value">70 km</div>
-                    <div class="hero-stat-label">Einzugsgebiet</div>
+                    <div class="hero-stat-value">360°</div>
+                    <div class="hero-stat-label">Zahntechnik</div>
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat">
                     <div class="hero-stat-value">100 %</div>
-                    <div class="hero-stat-label">Made in Weinheim</div>
+                    <div class="hero-stat-label">Weinheim</div>
                 </div>
             </div>
         </div>
@@ -1871,6 +2595,55 @@
         </div>
     </section>
 
+    <!-- ===== ARCHITECTS ECLIPSE PULSE LOGO SHOWCASE ===== -->
+    <section class="architects-section" id="architectsShowcase">
+        <div class="architects-bg-dust"></div>
+        <div class="architects-header fade-in">
+            <span class="architects-tag">Visual Identity Experience</span>
+            <h2 class="architects-title">Architects Eclipse Signet</h2>
+            <p class="architects-subtitle">Inspiriert vom Album „All Our Gods Have Abandoned Us“ – Ein pulsierendes, atmosphärisches ZAHN360 Logo-Signet für maximale visuelle Strahlkraft.</p>
+        </div>
+
+        <div class="architects-stage fade-in" id="architectsStage" onclick="togglePulseSpeed(document.getElementById('pulseSpeedBtn'))" title="Klicken für Tempo-Wechsel!">
+            <div class="architects-corona" id="architectsCorona"></div>
+            <div class="architects-ring"></div>
+            <div class="architects-ring architects-ring-2"></div>
+            <div class="architects-ring architects-ring-3"></div>
+            
+            <div class="architects-orb">
+                <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN360 Logo Signet" class="architects-logo-img">
+            </div>
+        </div>
+
+        <div class="architects-controls fade-in">
+            <button class="architects-btn active" onclick="setEclipseTheme('cyan', this)">❖ Eclipse Cyan</button>
+            <button class="architects-btn" onclick="setEclipseTheme('silver', this)">◇ Silver Flare</button>
+            <button class="architects-btn" onclick="setEclipseTheme('gold', this)">◈ Solar Gold</button>
+            <button class="architects-btn" id="pulseSpeedBtn" onclick="togglePulseSpeed(this)">⚡ Tempo: Normal</button>
+        </div>
+    <!-- ===== VARIATION 2: ORGANIC CANVAS PERLIN NOISE CORONA ===== -->
+    <section class="canvas-corona-section" id="canvasCoronaShowcase">
+        <div class="canvas-corona-header fade-in">
+            <span class="architects-tag">Variante 2: Canvas Simplex Noise</span>
+            <h2 class="architects-title">Organische Solar-Korona</h2>
+            <p class="architects-subtitle">Prozedural gerenderte, faserige Korona mit Simplex/Perlin-Rauschen und additiver Überblendung (`globalCompositeOperation = 'lighter'`) für kochendes Plasma um den schwarzen Kern.</p>
+        </div>
+
+        <div class="canvas-corona-stage fade-in">
+            <canvas id="noiseCoronaCanvas" width="480" height="480" class="corona-canvas"></canvas>
+            
+            <div class="corona-center-orb">
+                <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN360 Logo Signet">
+            </div>
+        </div>
+
+        <div class="corona-controls fade-in">
+            <button class="architects-btn active" id="cColorMonochrome" onclick="setNoiseColor('monochrome', this)">✦ Reines Weiß (Foto-Look)</button>
+            <button class="architects-btn" id="cColorCyan" onclick="setNoiseColor('cyan', this)">❖ Cyan Plasma</button>
+            <button class="architects-btn" id="cColorSolar" onclick="setNoiseColor('solar', this)">◈ Solar Flare</button>
+        </div>
+    </section>
+
     <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
         <div class="footer-inner">
@@ -1896,6 +2669,68 @@
             </div>
         </div>
     </footer>
+
+    <!-- ===== ECLIPSE CORONA — Architects Vibe ===== -->
+    <section class="eclipse-section" id="eclipseShowcase">
+        <div class="section-inner">
+            <div class="eclipse-header fade-in">
+                <span class="eclipse-tag">Zahn 360</span>
+                <h2 class="eclipse-title">Präzision im Kern</h2>
+            </div>
+
+            <div class="eclipse-stage">
+                <canvas id="eclipseCanvas" width="600" height="600" class="eclipse-canvas"></canvas>
+                <div class="eclipse-orb">
+                    <div class="eclipse-orb-inner">
+                        <div class="eclipse-flourish">
+                            <div class="eclipse-flourish-line"></div>
+                            <div class="eclipse-flourish-dot"></div>
+                            <div class="eclipse-flourish-line"></div>
+                        </div>
+                        <div class="eclipse-orb-word">ZAHN</div>
+                        <div class="eclipse-orb-sub">360</div>
+                        <div class="eclipse-orb-slogan">Meisterlabor Weinheim</div>
+                        <div class="eclipse-flourish">
+                            <div class="eclipse-flourish-line"></div>
+                            <div class="eclipse-flourish-dot"></div>
+                            <div class="eclipse-flourish-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FBM CORONA — 3D Noise + Fractal Brownian Motion ===== -->
+    <section class="fbm-section" id="fbmShowcase">
+        <div class="section-inner">
+            <div class="fbm-header fade-in">
+                <span class="fbm-tag">Zahn 360</span>
+                <h2 class="fbm-title">Organische Textur</h2>
+            </div>
+
+            <div class="fbm-stage">
+                <canvas id="fbmCoronaCanvas" class="fbm-canvas"></canvas>
+                <div class="fbm-core">
+                    <div class="fbm-core-inner">
+                        <div class="fbm-flourish">
+                            <div class="fbm-flourish-line"></div>
+                            <div class="fbm-flourish-dot"></div>
+                            <div class="fbm-flourish-line"></div>
+                        </div>
+                        <div class="fbm-core-word">ZAHN</div>
+                        <div class="fbm-core-sub">360</div>
+                        <div class="fbm-core-slogan">Meisterlabor Weinheim</div>
+                        <div class="fbm-flourish">
+                            <div class="fbm-flourish-line"></div>
+                            <div class="fbm-flourish-dot"></div>
+                            <div class="fbm-flourish-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ===== MODALS ===== -->
 
@@ -1974,6 +2809,19 @@
     <div class="toast-notification" id="toast">Aktion erfolgreich.</div>
 
     <!-- ===== JAVASCRIPT ===== -->
+    <!-- ===== VARIANTE 4: FIBROUS CORONA ===== -->
+    <section class="fibrous-corona-section" id="fibrousCoronaShowcase">
+        <div class="fibrous-corona-intro">
+            <span class="eclipse-tag">Variante 4 · Fineline</span>
+            <h2>Lebendige Präzision.</h2>
+            <p>Eine unregelmäßige, faserige Korona pulsiert um das ZAHN 360 Signet und verliert sich langsam im dunklen Raum.</p>
+        </div>
+        <div class="fibrous-corona-stage">
+            <canvas id="fibrousCoronaCanvas"></canvas>
+            <div class="fibrous-corona-core"><span>ZAHN <b>360°</b></span></div>
+        </div>
+    </section>
+
     <script>
         // Dark mode toggle
         (function() {
@@ -2081,6 +2929,881 @@
         document.querySelectorAll('.jobs-list .job-item').forEach((el, i) => el.dataset.delay = i * 100);
 
         fadeEls.forEach(el => obs.observe(el));
+
+        // Architects Eclipse Pulse Controls
+        function setEclipseTheme(theme, btn) {
+            const section = document.getElementById('architectsShowcase');
+            document.querySelectorAll('.architects-btn').forEach(b => {
+                if (b.innerText.includes('Eclipse') || b.innerText.includes('Silver') || b.innerText.includes('Solar')) {
+                    b.classList.remove('active');
+                }
+            });
+            btn.classList.add('active');
+
+            if (theme === 'cyan') {
+                section.style.setProperty('--eclipse-color', 'rgba(116, 242, 253, 0.8)');
+                section.style.setProperty('--eclipse-ring-color', 'rgba(116, 242, 253, 0.5)');
+                section.style.setProperty('--eclipse-glow-color', 'rgba(116, 242, 253, 0.4)');
+            } else if (theme === 'silver') {
+                section.style.setProperty('--eclipse-color', 'rgba(255, 255, 255, 0.85)');
+                section.style.setProperty('--eclipse-ring-color', 'rgba(255, 255, 255, 0.6)');
+                section.style.setProperty('--eclipse-glow-color', 'rgba(255, 255, 255, 0.5)');
+            } else if (theme === 'gold') {
+                section.style.setProperty('--eclipse-color', 'rgba(255, 190, 80, 0.85)');
+                section.style.setProperty('--eclipse-ring-color', 'rgba(255, 190, 80, 0.5)');
+                section.style.setProperty('--eclipse-glow-color', 'rgba(255, 190, 80, 0.4)');
+            }
+        }
+
+        let isFastPulse = false;
+        function togglePulseSpeed(btn) {
+            const section = document.getElementById('architectsShowcase');
+            isFastPulse = !isFastPulse;
+            const targetBtn = btn || document.getElementById('pulseSpeedBtn');
+            if (isFastPulse) {
+                section.style.setProperty('--pulse-speed', '1.6s');
+                if (targetBtn) {
+                    targetBtn.innerText = '⚡ Tempo: Schnell';
+                    targetBtn.classList.add('active');
+                }
+            } else {
+                section.style.setProperty('--pulse-speed', '3.2s');
+                if (targetBtn) {
+                    targetBtn.innerText = '⚡ Tempo: Normal';
+                    targetBtn.classList.remove('active');
+                }
+            }
+        }
+
+        // ===== SIMPLEX NOISE ALGORITHM FOR ORGANIC CORONA =====
+        const SimplexNoise = (function() {
+            const F3 = 1.0 / 3.0, G3 = 1.0 / 6.0;
+            const p = new Uint8Array(256);
+            for (let i = 0; i < 256; i++) p[i] = Math.floor(Math.random() * 256);
+            const perm = new Uint8Array(512), permMod12 = new Uint8Array(512);
+            for (let i = 0; i < 512; i++) {
+                perm[i] = p[i & 255];
+                permMod12[i] = (perm[i] % 12);
+            }
+            return {
+                noise2D: function(xin, yin) {
+                    let n0, n1, n2;
+                    const s = (xin + yin) * 0.5 * (Math.sqrt(3.0) - 1.0);
+                    const i = Math.floor(xin + s), j = Math.floor(yin + s);
+                    const t = (i + j) * (3.0 - Math.sqrt(3.0)) / 6.0;
+                    const X0 = i - t, Y0 = j - t;
+                    const x0 = xin - X0, y0 = yin - Y0;
+                    let i1, j1;
+                    if (x0 > y0) { i1 = 1; j1 = 0; } else { i1 = 0; j1 = 1; }
+                    const x1 = x0 - i1 + (3.0 - Math.sqrt(3.0)) / 6.0, y1 = y0 - j1 + (3.0 - Math.sqrt(3.0)) / 6.0;
+                    const x2 = x0 - 1.0 + 2.0 * (3.0 - Math.sqrt(3.0)) / 6.0, y2 = y0 - 1.0 + 2.0 * (3.0 - Math.sqrt(3.0)) / 6.0;
+                    const ii = i & 255, jj = j & 255;
+                    const gi0 = permMod12[ii + perm[jj]], gi1 = permMod12[ii + i1 + perm[jj + j1]], gi2 = permMod12[ii + 1 + perm[jj + 1]];
+                    let t0 = 0.5 - x0 * x0 - y0 * y0;
+                    if (t0 < 0) n0 = 0.0; else { t0 *= t0; n0 = t0 * t0 * (gi0 % 2 === 0 ? 1 : -1) * x0 + (gi0 > 4 ? 1 : -1) * y0; }
+                    let t1 = 0.5 - x1 * x1 - y1 * y1;
+                    if (t1 < 0) n1 = 0.0; else { t1 *= t1; n1 = t1 * t1 * (gi1 % 2 === 0 ? 1 : -1) * x1 + (gi1 > 4 ? 1 : -1) * y1; }
+                    let t2 = 0.5 - x2 * x2 - y2 * y2;
+                    if (t2 < 0) n2 = 0.0; else { t2 *= t2; n2 = t2 * t2 * (gi2 % 2 === 0 ? 1 : -1) * x2 + (gi2 > 4 ? 1 : -1) * y2; }
+                    return 70.0 * (n0 + n1 + n2);
+                }
+            };
+        })();
+
+        // ===== CANVAS ORGANIC CORONA ENGINE =====
+        (function initOrganicCorona() {
+            const canvas = document.getElementById('noiseCoronaCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            let time = 0;
+            let themeMode = 'monochrome'; // 'monochrome', 'cyan', 'solar'
+
+            window.setNoiseColor = function(mode, btn) {
+                themeMode = mode;
+                document.querySelectorAll('.corona-controls .architects-btn').forEach(b => b.classList.remove('active'));
+                if (btn) btn.classList.add('active');
+            };
+
+            function render() {
+                time += 0.008;
+                const width = canvas.width;
+                const height = canvas.height;
+                const centerX = width / 2;
+                const centerY = height / 2;
+                const innerRadius = 110; // Match dark orb edge
+
+                ctx.clearRect(0, 0, width, height);
+
+                // Additive blending for photo-realistic glowing rays superposition
+                ctx.globalCompositeOperation = 'lighter';
+
+                const numRays = 450;
+                for (let i = 0; i < numRays; i++) {
+                    const angle = (i / numRays) * Math.PI * 2;
+                    const cosA = Math.cos(angle);
+                    const sinA = Math.sin(angle);
+
+                    // Multi-frequency Perlin noise for organic plasma filaments
+                    const n1 = SimplexNoise.noise2D(cosA * 1.8 + time * 0.4, sinA * 1.8 + time * 0.4);
+                    const n2 = SimplexNoise.noise2D(cosA * 4.5 - time * 0.7, sinA * 4.5 - time * 0.7);
+                    const n3 = SimplexNoise.noise2D(cosA * 9.0 + time * 1.2, sinA * 9.0 + time * 1.2);
+
+                    const rayLength = 35 + Math.pow((n1 + 1) * 0.5, 2) * 55 + (n2 * 25) + (n3 * 10);
+                    const outerX = centerX + cosA * (innerRadius + Math.max(5, rayLength));
+                    const outerY = centerY + sinA * (innerRadius + Math.max(5, rayLength));
+                    const startX = centerX + cosA * (innerRadius - 4);
+                    const startY = centerY + sinA * (innerRadius - 4);
+
+                    const alpha = Math.min(0.85, Math.max(0.12, (n1 + 1) * 0.35 + (n2 + 1) * 0.2));
+
+                    const grad = ctx.createLinearGradient(startX, startY, outerX, outerY);
+                    
+                    if (themeMode === 'monochrome') {
+                        grad.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
+                        grad.addColorStop(0.35, `rgba(230, 235, 245, ${alpha * 0.7})`);
+                        grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                    } else if (themeMode === 'cyan') {
+                        grad.addColorStop(0, `rgba(180, 250, 255, ${alpha})`);
+                        grad.addColorStop(0.4, `rgba(116, 242, 253, ${alpha * 0.6})`);
+                        grad.addColorStop(1, 'rgba(0, 180, 220, 0)');
+                    } else if (themeMode === 'solar') {
+                        grad.addColorStop(0, `rgba(255, 240, 200, ${alpha})`);
+                        grad.addColorStop(0.35, `rgba(255, 170, 70, ${alpha * 0.75})`);
+                        grad.addColorStop(1, 'rgba(220, 90, 20, 0)');
+                    }
+
+                    ctx.beginPath();
+                    ctx.moveTo(startX, startY);
+                    ctx.lineTo(outerX, outerY);
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = 1.2 + Math.abs(n3) * 1.5;
+                    ctx.stroke();
+                }
+
+                // Inner core intense bloom halo
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, innerRadius + 6, 0, Math.PI * 2);
+                const haloGrad = ctx.createRadialGradient(centerX, centerY, innerRadius - 10, centerX, centerY, innerRadius + 45);
+                if (themeMode === 'monochrome') {
+                    haloGrad.addColorStop(0, 'rgba(255, 255, 255, 0.75)');
+                    haloGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.2)');
+                    haloGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                } else if (themeMode === 'cyan') {
+                    haloGrad.addColorStop(0, 'rgba(116, 242, 253, 0.8)');
+                    haloGrad.addColorStop(0.5, 'rgba(116, 242, 253, 0.25)');
+                    haloGrad.addColorStop(1, 'rgba(116, 242, 253, 0)');
+                } else if (themeMode === 'solar') {
+                    haloGrad.addColorStop(0, 'rgba(255, 180, 60, 0.85)');
+                    haloGrad.addColorStop(0.5, 'rgba(255, 140, 30, 0.3)');
+                    haloGrad.addColorStop(1, 'rgba(255, 100, 0, 0)');
+                }
+                ctx.fillStyle = haloGrad;
+                ctx.fill();
+
+                requestAnimationFrame(render);
+            }
+
+            render();
+        })();
+        // ===== ECLIPSE CORONA — Trigonometric Wave Engine (ChatGPT-inspired) =====
+        (function initEclipseCorona() {
+            const canvas = document.getElementById('eclipseCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            const stage = canvas.parentElement;
+            let w, h, cx, cy, innerR, t = 0;
+            const ORB_RATIO = 0.23; // match CSS orb: 46% width / 2
+
+            // Simple trigonometric noise — chaotic enough for organic fibers
+            function noise(a, s) {
+                return Math.sin(a * 7.13 + s * 1.7)
+                     + 0.5 * Math.sin(a * 13.7 + s * 0.9)
+                     + 0.25 * Math.cos(a * 31.2 - s);
+            }
+
+            function resize() {
+                const rect = stage.getBoundingClientRect();
+                w = canvas.width = rect.width || 600;
+                h = canvas.height = rect.height || 600;
+                cx = w / 2;
+                cy = h / 2;
+                innerR = w * ORB_RATIO;
+            }
+
+            // Boot: wait until layout gives us real dimensions
+            function boot() {
+                resize();
+                if (w > 10) { draw(); }
+                else { requestAnimationFrame(boot); }
+            }
+            requestAnimationFrame(boot);
+            window.addEventListener('resize', resize);
+
+            function draw() {
+                if (w < 10) { requestAnimationFrame(draw); return; }
+                t += 0.012;
+
+                // Solid dark background (erases previous frame)
+                ctx.fillStyle = '#121212';
+                ctx.fillRect(0, 0, w, h);
+
+                // Additive blending for glowing plasma superposition
+                ctx.globalCompositeOperation = 'lighter';
+
+                // ---- Dense corona filaments (2200 rays) ----
+                for (let i = 0; i < 2200; i++) {
+                    const a = (i / 2200) * Math.PI * 2;
+                    const n = noise(a, t);
+
+                    // Organic length: base + noise-driven variance
+                    const len = 35 + 55 * (0.5 + 0.5 * n) + 18 * Math.sin(t * 2.3 + a * 5);
+
+                    // Wavy inner edge so the corona doesn't look laser-cut
+                    const rr = innerR + Math.sin(a * 9 + t) * 3;
+
+                    const x1 = cx + Math.cos(a) * rr;
+                    const y1 = cy + Math.sin(a) * rr;
+                    const x2 = cx + Math.cos(a) * (rr + len);
+                    const y2 = cy + Math.sin(a) * (rr + len);
+
+                    const alpha = 0.015 + 0.04 * (0.5 + 0.5 * n);
+
+                    ctx.strokeStyle = 'rgba(255,255,255,' + alpha + ')';
+                    ctx.lineWidth = 0.7 + Math.random() * 0.9;
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.stroke();
+                }
+
+                // ---- Sparse bright prominences ----
+                for (let i = 0; i < 140; i++) {
+                    const a = (i / 140) * Math.PI * 2 + t * 0.03;
+                    const n = noise(a * 1.3, t * 1.5);
+                    if (n < 0.25) continue;
+                    const len = 30 + (0.5 + 0.5 * n) * 80;
+                    const rr = innerR + Math.sin(a * 11 + t) * 2;
+                    const x1 = cx + Math.cos(a) * rr;
+                    const y1 = cy + Math.sin(a) * rr;
+                    const x2 = cx + Math.cos(a) * (rr + len);
+                    const y2 = cy + Math.sin(a) * (rr + len);
+
+                    ctx.strokeStyle = 'rgba(255,255,255,' + (0.06 + 0.06 * (0.5 + 0.5 * n)) + ')';
+                    ctx.lineWidth = 1.2 + Math.random() * 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.stroke();
+                }
+
+                // ---- Core bloom halo ----
+                const bloom = ctx.createRadialGradient(cx, cy, innerR - 10, cx, cy, innerR + 50);
+                bloom.addColorStop(0, 'rgba(255,255,255,0.5)');
+                bloom.addColorStop(0.4, 'rgba(255,255,255,0.1)');
+                bloom.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.fillStyle = bloom;
+                ctx.beginPath();
+                ctx.arc(cx, cy, innerR + 50, 0, Math.PI * 2);
+                ctx.fill();
+
+                // ---- Solid black core (painted on canvas) ----
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.fillStyle = '#121212';
+                ctx.beginPath();
+                ctx.arc(cx, cy, innerR, 0, Math.PI * 2);
+                ctx.fill();
+
+                requestAnimationFrame(draw);
+            }
+        })();
+        // Variante 4: faserige, rauschgesteuerte Korona
+        (() => {
+            const canvas = document.getElementById('fibrousCoronaCanvas');
+            if (!canvas) return;
+            const stage = canvas.parentElement, ctx = canvas.getContext('2d');
+            let w, h, dpr;
+            const resize = () => { const r = stage.getBoundingClientRect(); dpr=Math.min(devicePixelRatio||1,2); w=r.width; h=r.height; canvas.width=w*dpr; canvas.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
+            const n = (x,t) => { const a=Math.sin(x*8+t*.7)*43758.5, b=Math.sin(x*23-t*.4+3)*15731.7; return ((a-Math.floor(a))*.58+(b-Math.floor(b))*.42); };
+            const draw = ms => {
+                const t=ms*.001, cx=w/2, cy=h/2, core=Math.min(w,h)*.2; ctx.clearRect(0,0,w,h); ctx.globalCompositeOperation='lighter';
+                for(let i=0;i<900;i++){ const a=i/900*Math.PI*2, q=n(i/900*7+Math.sin(a*4)*.1,t), q2=n(i/900*17+4,t*1.3), start=core+q*7, len=12+q*q*Math.min(w,h)*(.2+q2*.34), alpha=.025+q*q*q2*.26; ctx.beginPath(); ctx.moveTo(cx+Math.cos(a)*start,cy+Math.sin(a)*start); ctx.lineTo(cx+Math.cos(a+(q-.5)*.04)*(start+len),cy+Math.sin(a+(q-.5)*.04)*(start+len)); ctx.strokeStyle=`rgba(244,243,235,${alpha})`; ctx.lineWidth=.35+q*1.25; ctx.stroke(); }
+                ctx.globalCompositeOperation='source-over'; requestAnimationFrame(draw);
+            };
+            resize(); addEventListener('resize',resize,{passive:true}); requestAnimationFrame(draw);
+        })();
+        // ===== FBM CORONA — 3D Value Noise + Fractal Brownian Motion =====
+        // Inspired by test.html — configurable, warm-white glow, breathing pulse
+        (function initFbmCorona() {
+            const canvas = document.getElementById('fbmCoronaCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            const CONFIG = {
+                coreRadiusRatio: 0.23,
+                rayCount: 720,
+                maxRayLength: 0.30,
+                noiseSpeed: 0.0006,
+                noiseScale: 3.0,
+                colorCore: [255, 245, 230],
+                colorOuter: [255, 255, 255],
+                breathe: 0.10
+            };
+
+            // ---- 3D Value Noise setup ----
+            const perm = new Uint8Array(512);
+            (function initNoise() {
+                const p = new Uint8Array(256);
+                for (let i = 0; i < 256; i++) p[i] = i;
+                let seed = 1337;
+                const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+                for (let i = 255; i > 0; i--) {
+                    const j = Math.floor(rnd() * (i + 1));
+                    [p[i], p[j]] = [p[j], p[i]];
+                }
+                for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+            })();
+
+            function fade(t) { return t * t * t * (t * (t * 6 - 15) + 10); }
+            function lerp(a, b, t) { return a + t * (b - a); }
+            function grad3(hash) { return ((hash & 255) / 255) * 2 - 1; }
+
+            function noise3(x, y, z) {
+                const X = Math.floor(x) & 255, Y = Math.floor(y) & 255, Z = Math.floor(z) & 255;
+                x -= Math.floor(x); y -= Math.floor(y); z -= Math.floor(z);
+                const u = fade(x), v = fade(y), w = fade(z);
+                const A = perm[X] + Y, AA = perm[A] + Z, AB = perm[A + 1] + Z;
+                const B = perm[X + 1] + Y, BA = perm[B] + Z, BB = perm[B + 1] + Z;
+                const g = (h) => grad3(perm[h]);
+                return lerp(
+                    lerp(lerp(g(AA), g(BA), u), lerp(g(AB), g(BB), u), v),
+                    lerp(lerp(g(AA + 1), g(BA + 1), u), lerp(g(AB + 1), g(BB + 1), u), v),
+                    w);
+            }
+
+            function fbm(x, y, z) {
+                let value = 0, amp = 0.5, freq = 1;
+                for (let o = 0; o < 4; o++) {
+                    value += amp * noise3(x * freq, y * freq, z * freq);
+                    freq *= 2.1;
+                    amp *= 0.5;
+                }
+                return value;
+            }
+
+            // ---- Canvas setup ----
+            let W, H, CX, CY, DPR;
+
+            function resize() {
+                DPR = Math.min(window.devicePixelRatio || 1, 2);
+                const rect = canvas.getBoundingClientRect();
+                W = rect.width;
+                H = rect.height;
+                if (W < 10 || H < 10) return false;
+                canvas.width = Math.floor(W * DPR);
+                canvas.height = Math.floor(H * DPR);
+                CX = canvas.width / 2;
+                CY = canvas.height / 2;
+                return true;
+            }
+
+            function boot() {
+                if (resize()) { draw(0); }
+                else { requestAnimationFrame(boot); }
+            }
+            requestAnimationFrame(boot);
+            window.addEventListener('resize', resize);
+
+            function draw(time) {
+                if (canvas.width < 10) { requestAnimationFrame(draw); return; }
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const size = Math.min(canvas.width, canvas.height);
+                const coreR = size * CONFIG.coreRadiusRatio;
+                const maxLen = size * CONFIG.maxRayLength;
+
+                // Global irregular breathing
+                const globalPulse = 1 + CONFIG.breathe *
+                    fbm(time * CONFIG.noiseSpeed * 2, 0, 100);
+
+                ctx.globalCompositeOperation = 'lighter';
+
+                const t = time * CONFIG.noiseSpeed;
+
+                for (let i = 0; i < CONFIG.rayCount; i++) {
+                    const angle = (i / CONFIG.rayCount) * Math.PI * 2;
+                    const nx = Math.cos(angle) * CONFIG.noiseScale;
+                    const ny = Math.sin(angle) * CONFIG.noiseScale;
+
+                    let n = fbm(nx, ny, t);
+                    n = (n + 1) * 0.5;
+
+                    let flick = fbm(nx * 4, ny * 4, t * 3);
+                    flick = (flick + 1) * 0.5;
+
+                    const intensity = Math.pow(n, 1.6) * (0.6 + 0.4 * flick);
+                    const len = (maxLen * intensity) * globalPulse;
+                    if (len < 1) continue;
+
+                    const startR = coreR * 0.98;
+                    const endR = startR + len;
+
+                    const sx = CX + Math.cos(angle) * startR;
+                    const sy = CY + Math.sin(angle) * startR;
+                    const ex = CX + Math.cos(angle) * endR;
+                    const ey = CY + Math.sin(angle) * endR;
+
+                    const grad = ctx.createLinearGradient(sx, sy, ex, ey);
+                    const a = Math.min(1, intensity * 0.9);
+                    const c1 = CONFIG.colorCore, c2 = CONFIG.colorOuter;
+                    grad.addColorStop(0, 'rgba(' + c1[0] + ',' + c1[1] + ',' + c1[2] + ',' + a + ')');
+                    grad.addColorStop(0.4, 'rgba(' + c2[0] + ',' + c2[1] + ',' + c2[2] + ',' + (a * 0.5) + ')');
+                    grad.addColorStop(1, 'rgba(' + c2[0] + ',' + c2[1] + ',' + c2[2] + ',0)');
+
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = Math.max(1, DPR * (0.6 + intensity * 1.2));
+                    ctx.beginPath();
+                    ctx.moveTo(sx, sy);
+                    ctx.lineTo(ex, ey);
+                    ctx.stroke();
+                }
+
+                // Glow ring at core edge
+                const ringGrad = ctx.createRadialGradient(CX, CY, coreR * 0.9, CX, CY, coreR * 1.25);
+                ringGrad.addColorStop(0, 'rgba(255,255,255,0)');
+                ringGrad.addColorStop(0.5, 'rgba(255,250,240,' + (0.35 * globalPulse) + ')');
+                ringGrad.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.fillStyle = ringGrad;
+                ctx.beginPath();
+                ctx.arc(CX, CY, coreR * 1.25, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.globalCompositeOperation = 'source-over';
+
+                requestAnimationFrame(draw);
+            }
+        })();
+        // ===== LOGO CAROUSEL ENGINE =====
+        (function initLogoCarousel() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+            const prevBtn = document.getElementById('carouselPrev');
+            const nextBtn = document.getElementById('carouselNext');
+            if (!slides.length) return;
+
+            let current = 0;
+            const total = slides.length;
+
+            const numerals = ['I', 'II', 'III', 'IV'];
+            const numeralEl = document.getElementById('carouselNumeral');
+
+            function goTo(index) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = ((index % total) + total) % total;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+                if (numeralEl) numeralEl.textContent = numerals[current];
+
+                // Start/stop canvas renderers based on visibility
+                if (current === 0) startTrigCorona();
+                else stopTrigCorona();
+                if (current === 1) startFbmCorona();
+                else stopFbmCorona();
+                if (current === 2) startEclipseCorona();
+                else stopEclipseCorona();
+            }
+
+            prevBtn.addEventListener('click', () => goTo(current - 1));
+            nextBtn.addEventListener('click', () => goTo(current + 1));
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => goTo(parseInt(dot.dataset.dot)));
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') goTo(current - 1);
+                if (e.key === 'ArrowRight') goTo(current + 1);
+            });
+
+            // Touch swipe
+            let touchStartX = 0;
+            const stage = document.querySelector('.carousel-stage');
+            stage.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+            stage.addEventListener('touchend', (e) => {
+                const diff = e.changedTouches[0].clientX - touchStartX;
+                if (Math.abs(diff) > 40) {
+                    goTo(current + (diff < 0 ? 1 : -1));
+                }
+            });
+
+            // ===== TRIG-WAVE CORONA (Slide 1) =====
+            const canvas1 = document.getElementById('carouselCanvas1');
+            let trigRunning = false, trigRAF = null;
+            let w1, h1, cx1, cy1, innerR1, t1 = 0;
+
+            function trigNoise(a, s) {
+                return Math.sin(a * 7.13 + s * 1.7)
+                     + 0.5 * Math.sin(a * 13.7 + s * 0.9)
+                     + 0.25 * Math.cos(a * 31.2 - s);
+            }
+
+            function trigResize() {
+                if (!canvas1) return;
+                const rect = canvas1.parentElement.getBoundingClientRect();
+                w1 = canvas1.width = rect.width * 2 || 520;
+                h1 = canvas1.height = rect.height * 2 || 520;
+                cx1 = w1 / 2;
+                cy1 = h1 / 2;
+                innerR1 = w1 * 0.23;
+            }
+
+            function trigDraw() {
+                if (!trigRunning) return;
+                if (w1 < 10) { trigRAF = requestAnimationFrame(trigDraw); return; }
+                t1 += 0.012;
+                const ctx = canvas1.getContext('2d');
+
+                ctx.clearRect(0, 0, w1, h1);
+                ctx.globalCompositeOperation = 'lighter';
+
+                for (let i = 0; i < 2200; i++) {
+                    const a = (i / 2200) * Math.PI * 2;
+                    const n = trigNoise(a, t1);
+                    const len = 35 + 55 * (0.5 + 0.5 * n) + 18 * Math.sin(t1 * 2.3 + a * 5);
+                    const rr = innerR1 + Math.sin(a * 9 + t1) * 3;
+                    const x1 = cx1 + Math.cos(a) * rr;
+                    const y1 = cy1 + Math.sin(a) * rr;
+                    const x2 = cx1 + Math.cos(a) * (rr + len);
+                    const y2 = cy1 + Math.sin(a) * (rr + len);
+                    const alpha = 0.015 + 0.04 * (0.5 + 0.5 * n);
+                    const gctx = ctx;
+                    gctx.strokeStyle = 'rgba(255,255,255,' + alpha + ')';
+                    gctx.lineWidth = 0.7 + Math.random() * 0.9;
+                    gctx.beginPath();
+                    gctx.moveTo(x1, y1);
+                    gctx.lineTo(x2, y2);
+                    gctx.stroke();
+                }
+
+                // Bloom
+                const bloom = ctx.createRadialGradient(cx1, cy1, innerR1 - 10, cx1, cy1, innerR1 + 50);
+                bloom.addColorStop(0, 'rgba(255,255,255,0.5)');
+                bloom.addColorStop(0.4, 'rgba(255,255,255,0.1)');
+                bloom.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.fillStyle = bloom;
+                ctx.beginPath();
+                ctx.arc(cx1, cy1, innerR1 + 50, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.globalCompositeOperation = 'source-over';
+
+                trigRAF = requestAnimationFrame(trigDraw);
+            }
+
+            function startTrigCorona() {
+                if (trigRunning) return;
+                trigRunning = true;
+                trigResize();
+                trigRAF = requestAnimationFrame(trigDraw);
+            }
+
+            function stopTrigCorona() {
+                trigRunning = false;
+                if (trigRAF) cancelAnimationFrame(trigRAF);
+                trigRAF = null;
+            }
+
+            // ===== FBM CORONA (Slide 2) =====
+            const canvas2 = document.getElementById('carouselCanvas2');
+            let fbmRunning = false, fbmRAF = null;
+            let w2, h2, cx2, cy2, DPR2;
+
+            const FBM_CONFIG = {
+                coreRadiusRatio: 0.23,
+                rayCount: 720,
+                maxRayLength: 0.30,
+                noiseSpeed: 0.0006,
+                noiseScale: 3.0,
+                colorCore: [255, 245, 230],
+                colorOuter: [255, 255, 255],
+                breathe: 0.10
+            };
+
+            // FBM Noise setup
+            const fbmPerm = new Uint8Array(512);
+            (function() {
+                const p = new Uint8Array(256);
+                for (let i = 0; i < 256; i++) p[i] = i;
+                let seed = 1337;
+                const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+                for (let i = 255; i > 0; i--) {
+                    const j = Math.floor(rnd() * (i + 1));
+                    [p[i], p[j]] = [p[j], p[i]];
+                }
+                for (let i = 0; i < 512; i++) fbmPerm[i] = p[i & 255];
+            })();
+
+            function fbmFade(t) { return t * t * t * (t * (t * 6 - 15) + 10); }
+            function fbmLerp(a, b, t) { return a + t * (b - a); }
+            function fbmGrad3(hash) { return ((hash & 255) / 255) * 2 - 1; }
+
+            function fbmNoise3(x, y, z) {
+                const X = Math.floor(x) & 255, Y = Math.floor(y) & 255, Z = Math.floor(z) & 255;
+                x -= Math.floor(x); y -= Math.floor(y); z -= Math.floor(z);
+                const u = fbmFade(x), v = fbmFade(y), w = fbmFade(z);
+                const A = fbmPerm[X] + Y, AA = fbmPerm[A] + Z, AB = fbmPerm[A + 1] + Z;
+                const B = fbmPerm[X + 1] + Y, BA = fbmPerm[B] + Z, BB = fbmPerm[B + 1] + Z;
+                const g = (h) => fbmGrad3(fbmPerm[h]);
+                return fbmLerp(
+                    fbmLerp(fbmLerp(g(AA), g(BA), u), fbmLerp(g(AB), g(BB), u), v),
+                    fbmLerp(fbmLerp(g(AA + 1), g(BA + 1), u), fbmLerp(g(AB + 1), g(BB + 1), u), v),
+                    w);
+            }
+
+            function fbm(x, y, z) {
+                let val = 0, amp = 0.5, freq = 1;
+                for (let o = 0; o < 4; o++) {
+                    val += amp * fbmNoise3(x * freq, y * freq, z * freq);
+                    freq *= 2.1;
+                    amp *= 0.5;
+                }
+                return val;
+            }
+
+            function fbmResize() {
+                if (!canvas2) return false;
+                DPR2 = Math.min(window.devicePixelRatio || 1, 2);
+                const rect = canvas2.parentElement.getBoundingClientRect();
+                w2 = rect.width;
+                h2 = rect.height;
+                if (w2 < 10 || h2 < 10) return false;
+                canvas2.width = Math.floor(w2 * DPR2);
+                canvas2.height = Math.floor(h2 * DPR2);
+                cx2 = canvas2.width / 2;
+                cy2 = canvas2.height / 2;
+                return true;
+            }
+
+            function fbmDraw(time) {
+                if (!fbmRunning) return;
+                if (canvas2.width < 10) { fbmRAF = requestAnimationFrame(fbmDraw); return; }
+                const ctx = canvas2.getContext('2d');
+                ctx.clearRect(0, 0, canvas2.width, canvas2.height);
+
+                const size = Math.min(canvas2.width, canvas2.height);
+                const coreR = size * FBM_CONFIG.coreRadiusRatio;
+                const maxLen = size * FBM_CONFIG.maxRayLength;
+
+                const globalPulse = 1 + FBM_CONFIG.breathe * fbm(time * FBM_CONFIG.noiseSpeed * 2, 0, 100);
+                ctx.globalCompositeOperation = 'lighter';
+                const t = time * FBM_CONFIG.noiseSpeed;
+
+                const rayCount = Math.floor(w2 * 2.5);
+                for (let i = 0; i < rayCount; i++) {
+                    const angle = (i / rayCount) * Math.PI * 2;
+                    const nx = Math.cos(angle) * FBM_CONFIG.noiseScale;
+                    const ny = Math.sin(angle) * FBM_CONFIG.noiseScale;
+                    let n = fbm(nx, ny, t);
+                    n = (n + 1) * 0.5;
+                    let flick = fbm(nx * 4, ny * 4, t * 3);
+                    flick = (flick + 1) * 0.5;
+                    const intensity = Math.pow(n, 1.6) * (0.6 + 0.4 * flick);
+                    const len = (maxLen * intensity) * globalPulse;
+                    if (len < 1) continue;
+                    const startR = coreR * 0.98;
+                    const endR = startR + len;
+                    const sx = cx2 + Math.cos(angle) * startR;
+                    const sy = cy2 + Math.sin(angle) * startR;
+                    const ex = cx2 + Math.cos(angle) * endR;
+                    const ey = cy2 + Math.sin(angle) * endR;
+                    const grad = ctx.createLinearGradient(sx, sy, ex, ey);
+                    const a = Math.min(1, intensity * 0.9);
+                    const c1 = FBM_CONFIG.colorCore, c2 = FBM_CONFIG.colorOuter;
+                    grad.addColorStop(0, 'rgba(' + c1[0] + ',' + c1[1] + ',' + c1[2] + ',' + a + ')');
+                    grad.addColorStop(0.4, 'rgba(' + c2[0] + ',' + c2[1] + ',' + c2[2] + ',' + (a * 0.5) + ')');
+                    grad.addColorStop(1, 'rgba(' + c2[0] + ',' + c2[1] + ',' + c2[2] + ',0)');
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = Math.max(1, DPR2 * (0.6 + intensity * 1.2));
+                    ctx.beginPath();
+                    ctx.moveTo(sx, sy);
+                    ctx.lineTo(ex, ey);
+                    ctx.stroke();
+                }
+
+                const ringGrad = ctx.createRadialGradient(cx2, cy2, coreR * 0.9, cx2, cy2, coreR * 1.25);
+                ringGrad.addColorStop(0, 'rgba(255,255,255,0)');
+                ringGrad.addColorStop(0.5, 'rgba(255,250,240,' + (0.35 * globalPulse) + ')');
+                ringGrad.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.fillStyle = ringGrad;
+                ctx.beginPath();
+                ctx.arc(cx2, cy2, coreR * 1.25, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.globalCompositeOperation = 'source-over';
+
+                fbmRAF = requestAnimationFrame(fbmDraw);
+            }
+
+            function startFbmCorona() {
+                if (fbmRunning) return;
+                fbmRunning = true;
+                fbmResize();
+                fbmRAF = requestAnimationFrame(fbmDraw);
+            }
+
+            function stopFbmCorona() {
+                fbmRunning = false;
+                if (fbmRAF) cancelAnimationFrame(fbmRAF);
+                fbmRAF = null;
+            }
+
+            // ===== ECLIPSE-TEXT CORONA (Slide 3) — 1:1 copy of standalone eclipse =====
+            const canvas3 = document.getElementById('carouselCanvas3');
+            let eclipseRunning = false, eclipseRAF = null;
+            let w3, h3, cx3, cy3, innerR3, t3 = 0;
+
+            function eclipseNoise(a, s) {
+                return Math.sin(a * 7.13 + s * 1.7)
+                     + 0.5 * Math.sin(a * 13.7 + s * 0.9)
+                     + 0.25 * Math.cos(a * 31.2 - s);
+            }
+
+            function eclipseResize() {
+                if (!canvas3) return false;
+                const rect = canvas3.parentElement.getBoundingClientRect();
+                w3 = canvas3.width = rect.width * 2 || 1040;
+                h3 = canvas3.height = rect.height * 2 || 1040;
+                cx3 = w3 / 2;
+                cy3 = h3 / 2;
+                innerR3 = w3 * 0.23;
+                return w3 > 10;
+            }
+
+            function eclipseDraw() {
+                if (!eclipseRunning) return;
+                if (w3 < 10) { eclipseRAF = requestAnimationFrame(eclipseDraw); return; }
+                t3 += 0.012;
+                const ctx = canvas3.getContext('2d');
+
+                // Solid dark background
+                ctx.fillStyle = '#121212';
+                ctx.fillRect(0, 0, w3, h3);
+                ctx.globalCompositeOperation = 'lighter';
+
+                // Dense corona filaments
+                for (let i = 0; i < 2200; i++) {
+                    const a = (i / 2200) * Math.PI * 2;
+                    const n = eclipseNoise(a, t3);
+                    const len = 35 + 55 * (0.5 + 0.5 * n) + 18 * Math.sin(t3 * 2.3 + a * 5);
+                    const rr = innerR3 + Math.sin(a * 9 + t3) * 3;
+                    const x1 = cx3 + Math.cos(a) * rr;
+                    const y1 = cy3 + Math.sin(a) * rr;
+                    const x2 = cx3 + Math.cos(a) * (rr + len);
+                    const y2 = cy3 + Math.sin(a) * (rr + len);
+                    const alpha = 0.015 + 0.04 * (0.5 + 0.5 * n);
+                    ctx.strokeStyle = 'rgba(255,255,255,' + alpha + ')';
+                    ctx.lineWidth = 0.7 + Math.random() * 0.9;
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.stroke();
+                }
+
+                // Sparse bright prominences
+                for (let i = 0; i < 140; i++) {
+                    const a = (i / 140) * Math.PI * 2 + t3 * 0.03;
+                    const n = eclipseNoise(a * 1.3, t3 * 1.5);
+                    if (n < 0.25) continue;
+                    const len = 30 + (0.5 + 0.5 * n) * 80;
+                    const rr = innerR3 + Math.sin(a * 11 + t3) * 2;
+                    const x1 = cx3 + Math.cos(a) * rr;
+                    const y1 = cy3 + Math.sin(a) * rr;
+                    const x2 = cx3 + Math.cos(a) * (rr + len);
+                    const y2 = cy3 + Math.sin(a) * (rr + len);
+                    ctx.strokeStyle = 'rgba(255,255,255,' + (0.06 + 0.06 * (0.5 + 0.5 * n)) + ')';
+                    ctx.lineWidth = 1.2 + Math.random() * 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.stroke();
+                }
+
+                // Core bloom halo
+                const bloom = ctx.createRadialGradient(cx3, cy3, innerR3 - 10, cx3, cy3, innerR3 + 50);
+                bloom.addColorStop(0, 'rgba(255,255,255,0.5)');
+                bloom.addColorStop(0.4, 'rgba(255,255,255,0.1)');
+                bloom.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.fillStyle = bloom;
+                ctx.beginPath();
+                ctx.arc(cx3, cy3, innerR3 + 50, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Solid black core
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.fillStyle = '#121212';
+                ctx.beginPath();
+                ctx.arc(cx3, cy3, innerR3, 0, Math.PI * 2);
+                ctx.fill();
+
+                eclipseRAF = requestAnimationFrame(eclipseDraw);
+            }
+
+            function startEclipseCorona() {
+                if (eclipseRunning) return;
+                eclipseRunning = true;
+                eclipseResize();
+                eclipseRAF = requestAnimationFrame(eclipseDraw);
+            }
+
+            function stopEclipseCorona() {
+                eclipseRunning = false;
+                if (eclipseRAF) cancelAnimationFrame(eclipseRAF);
+                eclipseRAF = null;
+            }
+
+            // Resize canvases on window resize
+            window.addEventListener('resize', () => {
+                if (current === 0) trigResize();
+                if (current === 1) fbmResize();
+                if (current === 2) eclipseResize();
+            });
+
+            // Start with slide 0 — Trig-Wellen-Korona
+            startTrigCorona();
+        })();
+        // ===== LOGO SIZE BUTTONS IN HERO =====
+        (function() {
+            const btnSmaller = document.getElementById('btnSmaller');
+            const btnLarger = document.getElementById('btnLarger');
+            const stage = document.querySelector('.carousel-stage');
+            if (!btnSmaller || !btnLarger || !stage) return;
+
+            const MIN = 180;
+            const STEP = 40;
+            let currentW = 752;
+            const label = document.getElementById('sizeLabel');
+
+            function apply() {
+                stage.style.width = currentW + 'px';
+                stage.style.height = currentW + 'px';
+                if (label) label.textContent = currentW + ' px';
+            }
+
+            btnLarger.addEventListener('click', () => {
+                currentW += STEP;
+                apply();
+            });
+
+            btnSmaller.addEventListener('click', () => {
+                if (currentW > MIN) {
+                    currentW -= STEP;
+                    apply();
+                }
+            });
+
+            apply();
+        })();
     </script>
 </body>
 </html>

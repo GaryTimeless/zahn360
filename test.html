@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Korona Logo</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #0a0a0a;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  #stage {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    max-width: 90vmin;
+    max-height: 90vmin;
+  }
+
+  /* Canvas für die Korona liegt hinter dem Kern */
+  #corona {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Der schwarze Kern mit Text */
+  #core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 46%;
+    height: 46%;
+    border-radius: 50%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    /* leichter dunkler Halo, damit die Kante sauber wirkt */
+    box-shadow: 0 0 40px 10px rgba(0,0,0,0.9);
+  }
+
+  #core span {
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: clamp(14px, 4vmin, 34px);
+    user-select: none;
+    text-align: center;
+    padding: 0 10px;
+  }
+</style>
+</head>
+<body>
+
+  <div id="stage">
+    <canvas id="corona"></canvas>
+    <div id="core"><span id="logoText">LOGOTEXT</span></div>
+  </div>
+
+<script>
+/* =========================================================
+   KONFIGURATION
+   ========================================================= */
+const CONFIG = {
+  text: "LOGOTEXT",          // Das Wort im Kreis
+  coreRadiusRatio: 0.23,     // Kernradius relativ zur Canvas-Größe
+  rayCount: 720,             // Anzahl der Strahlen (mehr = dichter)
+  maxRayLength: 0.30,        // Max. Strahllänge relativ zur Canvas-Größe
+  noiseSpeed: 0.0006,        // Geschwindigkeit des "Brodelns"
+  noiseScale: 3.0,           // Detailgrad der Struktur (höher = feiner)
+  colorCore: [255, 245, 230],// warmweiß nahe der Kante
+  colorOuter: [255, 255, 255],// weiß außen
+  breathe: 0.10              // globale Pulsationstiefe (0 = keine)
+};
+
+document.getElementById('logoText').textContent = CONFIG.text;
+
+/* =========================================================
+   EINFACHE 3D-VALUE-NOISE (keine externe Library nötig)
+   Deterministisch, glatt interpolierend -> organische Textur
+   ========================================================= */
+const perm = new Uint8Array(512);
+(function initNoise(){
+  const p = new Uint8Array(256);
+  for (let i = 0; i < 256; i++) p[i] = i;
+  // Shuffle (fester Seed für Reproduzierbarkeit)
+  let seed = 1337;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let i = 255; i > 0; i--) {
+    const j = Math.floor(rnd() * (i + 1));
+    [p[i], p[j]] = [p[j], p[i]];
+  }
+  for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+})();
+
+function fade(t){ return t*t*t*(t*(t*6-15)+10); }
+function lerp(a,b,t){ return a + t*(b-a); }
+function grad3(hash){
+  // pseudo-gradient -> Wert zwischen -1..1
+  return ((hash & 255) / 255) * 2 - 1;
+}
+
+function noise3(x, y, z){
+  const X = Math.floor(x) & 255;
+  const Y = Math.floor(y) & 255;
+  const Z = Math.floor(z) & 255;
+  x -= Math.floor(x); y -= Math.floor(y); z -= Math.floor(z);
+  const u = fade(x), v = fade(y), w = fade(z);
+
+  const A  = perm[X] + Y,   AA = perm[A] + Z,   AB = perm[A+1] + Z;
+  const B  = perm[X+1] + Y, BA = perm[B] + Z,   BB = perm[B+1] + Z;
+
+  const g = (h) => grad3(perm[h]);
+
+  return lerp(
+    lerp(
+      lerp(g(AA),   g(BA),   u),
+      lerp(g(AB),   g(BB),   u), v),
+    lerp(
+      lerp(g(AA+1), g(BA+1), u),
+      lerp(g(AB+1), g(BB+1), u), v),
+    w);
+}
+
+// fraktales Rauschen (mehrere Oktaven) für faserige Details
+function fbm(x, y, z){
+  let value = 0, amp = 0.5, freq = 1;
+  for (let o = 0; o < 4; o++){
+    value += amp * noise3(x*freq, y*freq, z*freq);
+    freq *= 2.1;
+    amp  *= 0.5;
+  }
+  return value; // ca. -1..1
+}
+
+/* =========================================================
+   CANVAS SETUP
+   ========================================================= */
+const canvas = document.getElementById('corona');
+const ctx = canvas.getContext('2d');
+let W, H, CX, CY, DPR;
+
+function resize(){
+  DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const rect = canvas.getBoundingClientRect();
+  W = rect.width;
+  H = rect.height;
+  canvas.width  = Math.floor(W * DPR);
+  canvas.height = Math.floor(H * DPR);
+  CX = canvas.width / 2;
+  CY = canvas.height / 2;
+}
+window.addEventListener('resize', resize);
+resize();
+
+/* =========================================================
+   ANIMATIONSSCHLEIFE
+   ========================================================= */
+function draw(time){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const size = Math.min(canvas.width, canvas.height);
+  const coreR = size * CONFIG.coreRadiusRatio;
+  const maxLen = size * CONFIG.maxRayLength;
+
+  // globales, unregelmäßiges "Atmen"
+  const globalPulse = 1 + CONFIG.breathe *
+    fbm(time * CONFIG.noiseSpeed * 2, 0, 100);
+
+  ctx.globalCompositeOperation = 'lighter';
+
+  const t = time * CONFIG.noiseSpeed;
+
+  for (let i = 0; i < CONFIG.rayCount; i++){
+    const angle = (i / CONFIG.rayCount) * Math.PI * 2;
+    const nx = Math.cos(angle) * CONFIG.noiseScale;
+    const ny = Math.sin(angle) * CONFIG.noiseScale;
+
+    // Rauschwert bestimmt Länge + Helligkeit dieses Strahls
+    let n = fbm(nx, ny, t);          // -1..1
+    n = (n + 1) * 0.5;               // 0..1
+
+    // zusätzliche feine Flimmer-Komponente
+    let flick = fbm(nx*4, ny*4, t*3);
+    flick = (flick + 1) * 0.5;
+
+    const intensity = Math.pow(n, 1.6) * (0.6 + 0.4*flick);
+
+    const len = (maxLen * intensity) * globalPulse;
+    if (len < 1) continue;
+
+    const startR = coreR * 0.98;
+    const endR   = startR + len;
+
+    const sx = CX + Math.cos(angle) * startR;
+    const sy = CY + Math.sin(angle) * startR;
+    const ex = CX + Math.cos(angle) * endR;
+    const ey = CY + Math.sin(angle) * endR;
+
+    // Farbverlauf entlang des Strahls: hell an Kante -> transparent außen
+    const grad = ctx.createLinearGradient(sx, sy, ex, ey);
+    const a = Math.min(1, intensity * 0.9);
+    const c1 = CONFIG.colorCore, c2 = CONFIG.colorOuter;
+    grad.addColorStop(0,   `rgba(${c1[0]},${c1[1]},${c1[2]},${a})`);
+    grad.addColorStop(0.4, `rgba(${c2[0]},${c2[1]},${c2[2]},${a*0.5})`);
+    grad.addColorStop(1,   `rgba(${c2[0]},${c2[1]},${c2[2]},0)`);
+
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = Math.max(1, DPR * (0.6 + intensity * 1.2));
+    ctx.beginPath();
+    ctx.moveTo(sx, sy);
+    ctx.lineTo(ex, ey);
+    ctx.stroke();
+  }
+
+  // heller, weicher Ring direkt an der Kernkante für "Glut"
+  const ringGrad = ctx.createRadialGradient(
+    CX, CY, coreR*0.9,
+    CX, CY, coreR*1.25
+  );
+  ringGrad.addColorStop(0, 'rgba(255,255,255,0)');
+  ringGrad.addColorStop(0.5, `rgba(255,250,240,${0.35*globalPulse})`);
+  ringGrad.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = ringGrad;
+  ctx.beginPath();
+  ctx.arc(CX, CY, coreR*1.25, 0, Math.PI*2);
+  ctx.fill();
+
+  ctx.globalCompositeOperation = 'source-over';
+
+  requestAnimationFrame(draw);
+}
+
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>

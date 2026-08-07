@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Corona Logo</title>
+<style>
+html,body{margin:0;height:100%;background:#0a0a0a;overflow:hidden}
+canvas{display:block}
+#label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+width:280px;height:280px;border-radius:50%;background:#000;color:#fff;
+display:flex;align-items:center;justify-content:center;
+font:700 34px/1 Arial,sans-serif;letter-spacing:.2em;user-select:none}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="label">LOGOTEXT</div>
+<script>
+const canvas=document.getElementById("c"),ctx=canvas.getContext("2d");
+let w,h,cx,cy,r=140,t=0;
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;cx=w/2;cy=h/2;
+const d=document.getElementById("label");d.style.left=cx+"px";d.style.top=cy+"px";}
+addEventListener("resize",resize);resize();
+function noise(a,s){return Math.sin(a*7.13+s*1.7)+0.5*Math.sin(a*13.7+s*0.9)+0.25*Math.cos(a*31.2-s);}
+function draw(){
+ t+=0.015;
+ ctx.fillStyle="#0a0a0a";ctx.fillRect(0,0,w,h);
+ ctx.globalCompositeOperation="lighter";
+ for(let i=0;i<2200;i++){
+   const a=(i/2200)*Math.PI*2;
+   const n=noise(a,t);
+   const len=40+60*(0.5+0.5*n)+20*Math.sin(t*2+a*5);
+   const rr=r+Math.sin(a*9+t)*3;
+   const x1=cx+Math.cos(a)*rr,y1=cy+Math.sin(a)*rr;
+   const x2=cx+Math.cos(a)*(rr+len),y2=cy+Math.sin(a)*(rr+len);
+   const alpha=0.015+0.04*(0.5+0.5*n);
+   ctx.strokeStyle="rgba(255,255,255,"+alpha+")";
+   ctx.lineWidth=0.8+Math.random()*0.8;
+   ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+ }
+ ctx.globalCompositeOperation="source-over";
+ ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
+ ctx.fillStyle="#000";ctx.fill();
+ requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
