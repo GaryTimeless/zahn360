@@ -1784,8 +1784,8 @@
         .architects-stage {
             position: relative;
             z-index: 2;
-            width: 360px;
-            height: 360px;
+            width: 1120px;
+            height: 1120px;
             margin: 2rem auto 3rem;
             display: flex;
             align-items: center;
@@ -1796,8 +1796,8 @@
         /* Pulsing Glow Corona */
         .architects-corona {
             position: absolute;
-            width: 300px;
-            height: 300px;
+            width: 933px;
+            height: 933px;
             border-radius: 50%;
             background: radial-gradient(circle, var(--eclipse-color, rgba(116, 242, 253, 0.8)) 0%, rgba(255, 255, 255, 0.3) 30%, transparent 70%);
             filter: blur(40px);
@@ -1830,11 +1830,10 @@
         .architects-orb {
             position: relative;
             z-index: 5;
-            width: 240px;
-            height: 240px;
+            width: 747px;
+            height: 747px;
             border-radius: 50%;
             background: #121212;
-            border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 
                 inset 0 0 30px rgba(0, 0, 0, 0.9),
                 inset 0 0 15px var(--eclipse-glow-color, rgba(116, 242, 253, 0.3)),
@@ -2338,6 +2337,11 @@
                         <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN360 Logo" class="architects-logo-img">
                     </div>
                 </div>
+            </div>
+            <div style="text-align:center;margin-top:0.5rem;display:flex;align-items:center;justify-content:center;gap:0.8rem;">
+                <button class="btn btn-outline" id="btnSmaller" title="Logo kleiner">−</button>
+                <span id="sizeLabel" style="font-family:var(--font-sans);font-size:0.7rem;letter-spacing:1px;color:var(--gray-mid);min-width:50px;text-align:center;">1120 px</span>
+                <button class="btn btn-outline" id="btnLarger" title="Logo größer">+</button>
             </div>
             <h1 class="hero-title fade-in">
                 Präzision, die man spürt.
@@ -4007,12 +4011,12 @@
         (function() {
             const btnSmaller = document.getElementById('btnSmaller');
             const btnLarger = document.getElementById('btnLarger');
-            const stage = document.querySelector('.carousel-stage');
+            const stage = document.querySelector('.architects-stage');
             if (!btnSmaller || !btnLarger || !stage) return;
 
-            const MIN = 180;
-            const STEP = 40;
-            let currentW = 752;
+            const MIN = 400;
+            const STEP = 80;
+            let currentW = 1120;
             const label = document.getElementById('sizeLabel');
 
             function apply() {
