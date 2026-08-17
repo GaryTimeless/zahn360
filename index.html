@@ -101,6 +101,16 @@
             margin: 0; padding: 0; box-sizing: border-box;
         }
 
+        /* Textmarkierung seitenweit im Markenton */
+        ::selection {
+            background: var(--turquoise);
+            color: #000000;
+        }
+        ::-moz-selection {
+            background: var(--turquoise);
+            color: #000000;
+        }
+
         html {
             scroll-behavior: smooth;
             font-size: 16px;
@@ -204,7 +214,7 @@
         }
 
         .nav-top-side a:hover {
-            color: var(--black);
+            color: var(--turquoise);
         }
 
         .brand-logo {
@@ -264,7 +274,7 @@
         }
 
         .nav-link:hover {
-            color: var(--black);
+            color: var(--turquoise);
         }
 
         .nav-link:hover::after {
@@ -802,9 +812,13 @@
         }
 
         .quality-check {
-            color: var(--gray-light);
-            font-size: 0.7rem;
+            display: block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--turquoise);
             flex-shrink: 0;
+            margin-top: 0.4rem;
         }
 
         /* Corner ornaments for quality seal */
@@ -848,10 +862,13 @@
             background: var(--overlay-subtler);
         }
 
+        /* Tuerkiser Punkt - gleiche Formensprache wie .ornament-diamond im Separator */
         .perk-icon {
-            font-size: 1.5rem;
-            margin-bottom: 1.2rem;
-            opacity: 0.8;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--turquoise);
+            margin: 0 auto 1.2rem;
         }
 
         .perk-item h3 {
@@ -990,21 +1007,22 @@
         /* ===== ZAHNÄRZTE ===== */
         .dentist-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 4rem;
             align-items: start;
         }
 
+        /* Drei nebeneinander, seit die Badge-Karte daneben entfallen ist */
         .benefit-list {
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
         }
 
         .benefit-item {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: flex-start;
             transition: var(--transition);
         }
@@ -1014,14 +1032,12 @@
         }
 
         .benefit-icon {
-            width: 40px; height: 40px;
-            border: 1px solid var(--gray-pale);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--turquoise);
             flex-shrink: 0;
-            color: var(--gray-dark);
+            margin-top: 0.5rem;
         }
 
         .benefit-text h4 {
@@ -1040,75 +1056,6 @@
         }
 
         /* Badge card */
-        .badge-card {
-            border: 1px solid var(--gray-pale);
-            padding: 2.5rem 2rem;
-            position: relative;
-        }
-
-        .badge-card h3 {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            margin-bottom: 0.6rem;
-        }
-
-        .badge-card > p {
-            font-size: 0.82rem;
-            font-weight: 300;
-            color: var(--gray-dark);
-            line-height: 1.7;
-            margin-bottom: 2rem;
-        }
-
-        .badge-preview {
-            border: 1px dashed var(--gray-pale);
-            padding: 1.8rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .badge-preview-label {
-            font-size: 0.6rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gray-mid);
-            margin-bottom: 0.75rem;
-            font-weight: 400;
-        }
-
-        .badge-widget {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: var(--near-black);
-            color: var(--white);
-            padding: 0.6rem 1.2rem;
-            font-size: 0.8rem;
-            font-weight: 300;
-            border: 1px solid rgba(116,242,253,0.3);
-        }
-
-        .badge-widget-dot {
-            width: 6px; height: 6px;
-            background: var(--turquoise);
-            border-radius: 50%;
-        }
-
-        .code-snippet {
-            background: var(--near-black);
-            border: 1px solid var(--charcoal);
-            padding: 1rem;
-            font-family: 'SFMono-Regular', Consolas, monospace;
-            font-size: 0.7rem;
-            color: var(--turquoise-soft);
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-break: break-all;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
 
         /* ===== PROZESS ===== */
         .process {
@@ -1160,13 +1107,17 @@
             position: relative;
         }
 
+        /* Ring zeigt den Fortschritt: --deg des Kreises tuerkis, Rest hell.
+           Der Innenkreis stanzt die Mitte wieder frei, damit nur ein Ring bleibt. */
         .degree-badge {
             flex: none;
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            background: var(--black);
-            border: 1px solid var(--white);
+            background: conic-gradient(
+                var(--turquoise) var(--deg, 0deg),
+                #FFFFFF var(--deg, 0deg)
+            );
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1174,7 +1125,20 @@
             font-weight: 500;
             font-size: 0.72rem;
             letter-spacing: 1px;
-            color: var(--white);
+            color: var(--black);
+            position: relative;
+            z-index: 1;
+        }
+
+        .degree-badge::before {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border-radius: 50%;
+            background: var(--cream);
+        }
+
+        .degree-badge span {
             position: relative;
             z-index: 1;
         }
@@ -1339,14 +1303,12 @@
         }
 
         .contact-entry-icon {
-            width: 36px; height: 36px;
-            border: 1px solid var(--overlay-medium);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--turquoise);
             flex-shrink: 0;
-            color: var(--gray-light);
+            margin-top: 0.45rem;
         }
 
         .contact-entry-label {
@@ -1438,9 +1400,11 @@
             padding-right: 1.5rem;
         }
 
+        /* Feste Werte statt Theme-Variablen: die invertieren im Dark-Theme und
+           haben das Aufklappmenue grau gemacht. */
         select.form-control option {
-            background: var(--near-black);
-            color: var(--white);
+            background: #000000;
+            color: #FFFFFF;
         }
 
         textarea.form-control {
@@ -1502,7 +1466,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--black);
+            color: var(--turquoise);
         }
 
         .footer-legal {
@@ -1782,89 +1746,67 @@
 
         /* Eclipse Stage */
         .architects-stage {
+            /* Alle Stellschrauben des Logos an einem Ort - das Logo-Panel schreibt hier hinein */
+            --pulse-speed: 9s;
+            --stage-size: 800px;
+            --corona-size: 670px;
+            --corona-blur: 55px;
+            --corona-opacity: 0.75;
+            --orb-size: 630px;
+            --logo-scale: 136%;
+            --logo-glow-size: 60px;
+            --glow-rgb: 116, 242, 253;
+            --glow-alpha: 0.6;
+
             position: relative;
             z-index: 2;
-            width: 1120px;
-            height: 1120px;
+            width: var(--stage-size);
+            height: var(--stage-size);
             margin: 2rem auto 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
         }
 
-        /* Pulsing Glow Corona */
+        /* Das einzige Hintergrundleuchten: weiches Tuerkis hinter der Scheibe,
+           ruhig und gleichmaessig atmend (Bias-Light-Prinzip). */
         .architects-corona {
             position: absolute;
-            width: 933px;
-            height: 933px;
+            width: var(--corona-size);
+            height: var(--corona-size);
             border-radius: 50%;
-            background: radial-gradient(circle, var(--eclipse-color, rgba(116, 242, 253, 0.8)) 0%, rgba(255, 255, 255, 0.3) 30%, transparent 70%);
-            filter: blur(40px);
-            opacity: 0.75;
-            animation: architectsCoronaPulse var(--pulse-speed, 3.2s) ease-in-out infinite;
-            transition: background 0.5s ease, filter 0.5s ease;
-        }
-
-        /* Shockwave Ripple Rings */
-        .architects-ring {
-            position: absolute;
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
-            border: 1px solid var(--eclipse-ring-color, rgba(116, 242, 253, 0.5));
-            box-shadow: 0 0 25px var(--eclipse-glow-color, rgba(116, 242, 253, 0.4));
-            animation: architectsRingExpand var(--pulse-speed, 3.2s) cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
+            background: radial-gradient(circle,
+                rgba(var(--glow-rgb), 0.60) 0%,
+                rgba(var(--glow-rgb), 0.34) 42%,
+                rgba(var(--glow-rgb), 0.12) 66%,
+                transparent 82%);
+            filter: blur(var(--corona-blur));
+            animation: architectsCoronaPulse var(--pulse-speed) ease-in-out infinite;
             pointer-events: none;
-        }
-
-        .architects-ring-2 {
-            animation-delay: calc(var(--pulse-speed, 3.2s) * 0.4);
-        }
-
-        .architects-ring-3 {
-            animation-delay: calc(var(--pulse-speed, 3.2s) * 0.7);
         }
 
         /* Dark Center Orb / Eclipse Disk */
         .architects-orb {
             position: relative;
             z-index: 5;
-            width: 747px;
-            height: 747px;
+            width: var(--orb-size);
+            height: var(--orb-size);
             border-radius: 50%;
-            background: #121212;
-            box-shadow: 
-                inset 0 0 30px rgba(0, 0, 0, 0.9),
-                inset 0 0 15px var(--eclipse-glow-color, rgba(116, 242, 253, 0.3)),
-                0 0 40px rgba(0, 0, 0, 0.9);
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2.5rem;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            padding: 0;
         }
 
-        .architects-stage:hover .architects-orb {
-            transform: scale(1.04);
-            box-shadow: 
-                inset 0 0 35px rgba(0, 0, 0, 0.8),
-                inset 0 0 25px var(--eclipse-glow-color, rgba(116, 242, 253, 0.6)),
-                0 0 60px var(--eclipse-glow-color, rgba(116, 242, 253, 0.5));
-        }
-
-        .architects-stage:hover .architects-corona {
-            animation-duration: calc(var(--pulse-speed, 3.2s) * 0.6);
-            filter: blur(55px) brightness(1.3);
-        }
-
-        /* Logo SVG inside Orb */
+        /* Logo SVG inside Orb - ruhig, damit allein das Hintergrundleuchten pulsiert */
         .architects-logo-img {
-            width: 100%;
-            height: 100%;
+            width: var(--logo-scale);
+            height: var(--logo-scale);
+            flex-shrink: 0;
             object-fit: contain;
-            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.7));
-            animation: architectsLogoGlow var(--pulse-speed, 3.2s) ease-in-out infinite;
+            /* Schatten liegt jetzt direkt auf der Logo-Kontur, nicht mehr auf einer Scheibe darunter */
+            filter: drop-shadow(0 0 var(--logo-glow-size) rgba(var(--glow-rgb), var(--glow-alpha)));
         }
 
         /* Interactive Controls */
@@ -1899,43 +1841,62 @@
             box-shadow: 0 0 15px rgba(116, 242, 253, 0.2);
         }
 
-        /* Keyframes */
+        /* Gleichmaessiges Atmen: nur Groesse und Deckkraft, Weichzeichnung bleibt
+           konstant - das haelt den Puls ruhig statt flackernd. */
         @keyframes architectsCoronaPulse {
             0%, 100% {
-                transform: scale(0.92);
-                opacity: 0.65;
-                filter: blur(35px);
+                transform: scale(1);
+                opacity: calc(var(--corona-opacity) * 0.73);
             }
             50% {
-                transform: scale(1.22);
-                opacity: 0.95;
-                filter: blur(50px) brightness(1.3);
+                transform: scale(1.09);
+                opacity: calc(var(--corona-opacity) * 1.13);
             }
         }
 
-        @keyframes architectsRingExpand {
-            0% {
-                transform: scale(0.85);
-                opacity: 0.9;
-            }
-            60% {
-                opacity: 0.4;
-            }
-            100% {
-                transform: scale(1.65);
-                opacity: 0;
-            }
+        /* ===== LOGO-PANEL (nur zum Einstellen, nicht fuer Besucher) ===== */
+        #logoPanel {
+            max-width: 460px;
+            margin: 1rem auto 0;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--gray-pale);
+            background: rgba(0, 0, 0, 0.35);
+            font-family: var(--font-sans);
+            text-align: left;
+        }
+        #logoPanel .lp-group {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-mid);
+            margin: 0.9rem 0 0.4rem;
+        }
+        #logoPanel .lp-group:first-child { margin-top: 0; }
+        #logoPanel label {
+            display: grid;
+            grid-template-columns: 1fr 150px 58px;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.7rem;
+            color: var(--gray-light);
+            margin-bottom: 0.35rem;
+        }
+        #logoPanel input[type="range"] { width: 100%; accent-color: rgb(var(--lp-accent, 116, 242, 253)); }
+        #logoPanel input[type="color"] { width: 100%; height: 22px; padding: 0; border: none; background: none; }
+        #logoPanel .lp-val {
+            text-align: right;
+            font-size: 0.65rem;
+            color: var(--gray-mid);
+            font-variant-numeric: tabular-nums;
+        }
+        #logoPanel .lp-out {
+            margin-top: 0.9rem;
+            padding-top: 0.7rem;
+            border-top: 1px solid var(--gray-pale);
+            display: flex;
+            gap: 0.5rem;
         }
 
-        @keyframes architectsLogoGlow {
-            0%, 100% {
-                filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-                opacity: 0.9;
-            }
-            50% {
-                filter: drop-shadow(0 0 20px var(--eclipse-glow-color, rgba(116, 242, 253, 0.9)));
-                opacity: 1;
-            }
         /* ===== CANVAS PERLIN NOISE CORONA SECTION ===== */
         .canvas-corona-section {
             background: #121212;
@@ -2287,6 +2248,7 @@
 
 
     <button class="dark-toggle" id="sizeToggleBtn" title="Größen-Buttons ein-/ausblenden" style="position:fixed;top:1rem;right:1rem;z-index:3000;">📏 Größe</button>
+    <button class="dark-toggle" id="logoToggleBtn" title="Logo-Regler ein-/ausblenden" style="position:fixed;top:1rem;right:6.5rem;z-index:3000;">🎛 Logo</button>
 
     <!-- ===== NAVIGATION ===== -->
     <header class="header-nav" id="mainHeader">
@@ -2328,7 +2290,6 @@
         </div>
 
         <div class="hero-content">
-            <p class="hero-overtitle fade-in">Meisterlabor aus Weinheim</p>
             <!-- Logo IV: Architects Eclipse Pulse -->
             <div class="hero-logo fade-in">
                 <div class="architects-stage">
@@ -2338,10 +2299,38 @@
                     </div>
                 </div>
             </div>
-            <div style="text-align:center;margin-top:0.5rem;display:flex;align-items:center;justify-content:center;gap:0.8rem;">
+            <div id="sizeControls" style="text-align:center;margin-top:0.5rem;display:flex;align-items:center;justify-content:center;gap:0.8rem;">
                 <button class="btn btn-outline" id="btnSmaller" title="Logo kleiner">−</button>
-                <span id="sizeLabel" style="font-family:var(--font-sans);font-size:0.7rem;letter-spacing:1px;color:var(--gray-mid);min-width:50px;text-align:center;">1120 px</span>
+                <span id="sizeLabel" style="font-family:var(--font-sans);font-size:0.7rem;letter-spacing:1px;color:var(--gray-mid);min-width:50px;text-align:center;">800 px</span>
                 <button class="btn btn-outline" id="btnLarger" title="Logo größer">+</button>
+            </div>
+
+            <!-- Regler-Panel: schreibt direkt in die CSS-Variablen der .architects-stage -->
+            <div id="logoPanel" style="display:none;">
+                <p class="lp-group">Bühne · .architects-stage</p>
+                <label>Gesamtgröße<input type="range" data-var="--stage-size" data-unit="px" min="300" max="1600" step="10" value="800"><span class="lp-val"></span></label>
+                <label>Puls-Tempo<input type="range" data-var="--pulse-speed" data-unit="s" min="2" max="20" step="0.5" value="9"><span class="lp-val"></span></label>
+
+                <p class="lp-group">Leuchten · .architects-corona</p>
+                <label>Größe<input type="range" data-var="--corona-size" data-unit="px" min="100" max="1600" step="10" value="670"><span class="lp-val"></span></label>
+                <label>Weichzeichnung<input type="range" data-var="--corona-blur" data-unit="px" min="0" max="200" step="1" value="55"><span class="lp-val"></span></label>
+                <label>Stärke<input type="range" data-var="--corona-opacity" data-unit="" min="0" max="1.5" step="0.05" value="0.75"><span class="lp-val"></span></label>
+
+                <p class="lp-group">Scheibe · .architects-orb</p>
+                <label>Größe<input type="range" data-var="--orb-size" data-unit="px" min="100" max="1400" step="10" value="630"><span class="lp-val"></span></label>
+
+                <p class="lp-group">Logo · .architects-logo-img</p>
+                <label>Größe<input type="range" data-var="--logo-scale" data-unit="%" min="40" max="200" step="1" value="136"><span class="lp-val"></span></label>
+                <label>Schein-Radius<input type="range" data-var="--logo-glow-size" data-unit="px" min="0" max="200" step="1" value="60"><span class="lp-val"></span></label>
+                <label>Schein-Stärke<input type="range" data-var="--glow-alpha" data-unit="" min="0" max="1" step="0.05" value="0.6"><span class="lp-val"></span></label>
+
+                <p class="lp-group">Farbe</p>
+                <label>Türkiston<input type="color" id="lpColor" value="#74f2fd"><span class="lp-val"></span></label>
+
+                <div class="lp-out">
+                    <button class="btn btn-outline" id="lpCopy" type="button">CSS kopieren</button>
+                    <button class="btn btn-outline" id="lpReset" type="button">Zurücksetzen</button>
+                </div>
             </div>
             <h1 class="hero-title fade-in">
                 Präzision, die man spürt.
@@ -2365,11 +2354,6 @@
 
             <div class="hero-stats fade-in">
                 <div class="hero-stat">
-                    <div class="hero-stat-value">0</div>
-                    <div class="hero-stat-label">Kompromisse bei Qualität</div>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat">
                     <div class="hero-stat-value">360°</div>
                     <div class="hero-stat-label">Zahntechnik</div>
                 </div>
@@ -2377,6 +2361,11 @@
                 <div class="hero-stat">
                     <div class="hero-stat-value">100 %</div>
                     <div class="hero-stat-label">Weinheim</div>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">0</div>
+                    <div class="hero-stat-label">Kompromisse bei Qualität</div>
                 </div>
             </div>
         </div>
@@ -2443,15 +2432,15 @@
 
                     <ul class="quality-list">
                         <li>
-                            <span class="quality-check">◆</span>
+                            <span class="quality-check"></span>
                             <span><strong>Verwendungsnachweis:</strong> Jeder Zahnersatz erhält einen lückenlosen Material-Pass.</span>
                         </li>
                         <li>
-                            <span class="quality-check">◆</span>
+                            <span class="quality-check"></span>
                             <span><strong>Ästhetische Perfektion:</strong> Individuelle Farbanpassung abgestimmt auf Ihre natürlichen Zähne.</span>
                         </li>
                         <li>
-                            <span class="quality-check">◆</span>
+                            <span class="quality-check"></span>
                             <span><strong>Nachhaltigkeit & Langlebigkeit:</strong> Entwickelt für jahrzehntelange Belastbarkeit.</span>
                         </li>
                     </ul>
@@ -2483,17 +2472,17 @@
 
             <div class="perks-grid fade-in">
                 <div class="perk-item">
-                    <div class="perk-icon">◇</div>
+                    <div class="perk-icon"></div>
                     <h3>Meisterliche Mentorings</h3>
                     <p>Direkte Zusammenarbeit auf Augenhöhe mit den Gründern Julien Hornung & Simon Jansen.</p>
                 </div>
                 <div class="perk-item">
-                    <div class="perk-icon">◇</div>
+                    <div class="perk-icon"></div>
                     <h3>High-Tech Ausstattung</h3>
                     <p>Digitaler Workflow, Intraoralscans, 3D-Drucker und modernste 5-Achs-Fräsmaschinen.</p>
                 </div>
                 <div class="perk-item">
-                    <div class="perk-icon">◇</div>
+                    <div class="perk-icon"></div>
                     <h3>Attraktives Paket</h3>
                     <p>Faire Vergütung, flexible Arbeitszeiten, Fortbildungen und familiäres Betriebsklima.</p>
                 </div>
@@ -2663,21 +2652,21 @@
             <div class="dentist-grid">
                 <ul class="benefit-list">
                     <li class="benefit-item fade-in-left">
-                        <div class="benefit-icon">◇</div>
+                        <div class="benefit-icon"></div>
                         <div class="benefit-text">
                             <h4>Eigener Kurier- & Lieferservice</h4>
                             <p>Schnelle Abholung und pünktliche Anlieferung direkt in Ihre Praxis im Umkreis von 70 km.</p>
                         </div>
                     </li>
                     <li class="benefit-item fade-in-left">
-                        <div class="benefit-icon">◇</div>
+                        <div class="benefit-icon"></div>
                         <div class="benefit-text">
                             <h4>Offene digitale Schnittstellen</h4>
                             <p>Kompatibel mit allen gängigen Intraoralscannern (iTero, TRIOS, Primescan, Cerec etc.).</p>
                         </div>
                     </li>
                     <li class="benefit-item fade-in-left">
-                        <div class="benefit-icon">◇</div>
+                        <div class="benefit-icon"></div>
                         <div class="benefit-text">
                             <h4>Direkter Meistersupport</h4>
                             <p>Fachliche Abstimmung direkt mit Simon Jansen oder Julien Hornung ohne Warteschleife.</p>
@@ -2685,29 +2674,6 @@
                     </li>
                 </ul>
 
-                <div class="badge-card fade-in-right">
-                    <div class="seal-corner seal-corner--tl"></div>
-                    <div class="seal-corner seal-corner--tr"></div>
-                    <div class="seal-corner seal-corner--bl"></div>
-                    <div class="seal-corner seal-corner--br"></div>
-                    <h3>Referenz-Badge für Ihre Website</h3>
-                    <p>Zeigen Sie Ihren Patienten, dass Sie auf deutsche Meisterqualität setzen. Binden Sie dieses Siegel auf Ihrer Praxis-Webseite ein:</p>
-
-                    <div class="badge-preview">
-                        <p class="badge-preview-label">Vorschau</p>
-                        <div class="badge-widget">
-                            <span class="badge-widget-dot"></span>
-                            Zahnersatz gefertigt von <strong>ZAHN 360</strong> — Weinheim
-                        </div>
-                    </div>
-
-                    <div class="code-snippet" id="badgeCodeSnippet">&lt;div style="display:inline-flex;align-items:center;gap:8px;background:#14181D;color:#FFF;padding:8px 16px;border-radius:8px;border:1px solid #74F2FD;font-family:sans-serif;font-size:14px;"&gt;
-  &lt;span style="width:8px;height:8px;background:#74F2FD;border-radius:50%;"&gt;&lt;/span&gt;
-  Zahnersatz gefertigt von &lt;strong&gt;ZAHN 360&lt;/strong&gt; – Weinheim
-&lt;/div&gt;</div>
-
-                    <button class="btn btn-primary" style="width:100%;" onclick="copyBadgeCode()">Code kopieren</button>
-                </div>
             </div>
         </div>
     </section>
@@ -2729,28 +2695,28 @@
             <div class="process fade-in">
                 <div class="process-steps">
                     <div class="process-step">
-                        <div class="degree-badge">090°</div>
+                        <div class="degree-badge" style="--deg: 90deg;"><span>090°</span></div>
                         <div>
                             <h3>Digitale Abnahme</h3>
                             <p>Ihre Praxis übermittelt Scan oder Abdruck direkt an unser Labor.</p>
                         </div>
                     </div>
                     <div class="process-step">
-                        <div class="degree-badge">180°</div>
+                        <div class="degree-badge" style="--deg: 180deg;"><span>180°</span></div>
                         <div>
                             <h3>Fertigung</h3>
                             <p>Unsere Zahntechnikermeister planen und fertigen Ihre Arbeit — digital und in Handarbeit.</p>
                         </div>
                     </div>
                     <div class="process-step">
-                        <div class="degree-badge">270°</div>
+                        <div class="degree-badge" style="--deg: 270deg;"><span>270°</span></div>
                         <div>
                             <h3>Prüfung</h3>
                             <p>Passung, Funktion und Ästhetik werden geprüft, bevor die Arbeit unser Haus verlässt.</p>
                         </div>
                     </div>
                     <div class="process-step">
-                        <div class="degree-badge">360°</div>
+                        <div class="degree-badge" style="--deg: 360deg;"><span>360°</span></div>
                         <div>
                             <h3>Rückgabe</h3>
                             <p>Die fertige Arbeit geht zurück an Ihre Praxis und wird dort eingesetzt.</p>
@@ -2824,31 +2790,24 @@
 
                     <ul class="contact-list">
                         <li class="contact-entry">
-                            <div class="contact-entry-icon">◇</div>
+                            <div class="contact-entry-icon"></div>
                             <div>
                                 <p class="contact-entry-label">Adresse</p>
                                 <p class="contact-entry-value">Hauptstraße 4c<br>69469 Weinheim</p>
                             </div>
                         </li>
                         <li class="contact-entry">
-                            <div class="contact-entry-icon">◇</div>
+                            <div class="contact-entry-icon"></div>
                             <div>
                                 <p class="contact-entry-label">Telefon</p>
                                 <p class="contact-entry-value"><a href="tel:+4962018783600">+49 6201 87 83 600</a></p>
                             </div>
                         </li>
                         <li class="contact-entry">
-                            <div class="contact-entry-icon">◇</div>
+                            <div class="contact-entry-icon"></div>
                             <div>
                                 <p class="contact-entry-label">E-Mail</p>
                                 <p class="contact-entry-value"><a href="mailto:info@zahn360.de">info@zahn360.de</a></p>
-                            </div>
-                        </li>
-                        <li class="contact-entry">
-                            <div class="contact-entry-icon">◇</div>
-                            <div>
-                                <p class="contact-entry-label">Handelsregister</p>
-                                <p class="contact-entry-value">Amtsgericht Mannheim, HRA 706344</p>
                             </div>
                         </li>
                     </ul>
@@ -3120,11 +3079,6 @@
         function openApplyModal(title) {
             document.getElementById('applyTargetTitle').innerText = 'Bewerbung — ' + title;
             openModal('applyModal');
-        }
-
-        function copyBadgeCode() {
-            const code = document.getElementById('badgeCodeSnippet').innerText;
-            navigator.clipboard.writeText(code).then(() => showToast('Code kopiert.')).catch(() => showToast('Code kopiert.'));
         }
 
         function handleContactSubmit(e) {
@@ -4014,9 +3968,9 @@
             const stage = document.querySelector('.architects-stage');
             if (!btnSmaller || !btnLarger || !stage) return;
 
-            const MIN = 400;
-            const STEP = 80;
-            let currentW = 1120;
+            const MIN = 300;
+            const STEP = 100;
+            let currentW = 800;
             const label = document.getElementById('sizeLabel');
 
             function apply() {
@@ -4038,6 +3992,75 @@
             });
 
             apply();
+        })();
+
+        // ===== LOGO-PANEL: Regler schreiben in die CSS-Variablen der Stage =====
+        (function initLogoPanel() {
+            const panel = document.getElementById('logoPanel');
+            const toggle = document.getElementById('logoToggleBtn');
+            const stage = document.querySelector('.architects-stage');
+            if (!panel || !toggle || !stage) return;
+
+            const sliders = [...panel.querySelectorAll('input[type="range"]')];
+            const colorInput = document.getElementById('lpColor');
+            const defaults = {};
+            sliders.forEach(s => defaults[s.dataset.var] = s.value);
+            const defaultColor = colorInput.value;
+
+            function paint(slider) {
+                const value = slider.value + slider.dataset.unit;
+                stage.style.setProperty(slider.dataset.var, value);
+                slider.parentElement.querySelector('.lp-val').textContent = value;
+            }
+
+            function paintColor() {
+                const hex = colorInput.value;
+                const rgb = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16)).join(', ');
+                stage.style.setProperty('--glow-rgb', rgb);
+                panel.style.setProperty('--lp-accent', rgb);
+                colorInput.parentElement.querySelector('.lp-val').textContent = hex;
+            }
+
+            sliders.forEach(s => {
+                paint(s);
+                s.addEventListener('input', () => paint(s));
+            });
+            paintColor();
+            colorInput.addEventListener('input', paintColor);
+
+            toggle.addEventListener('click', () => {
+                panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+            });
+
+            // Der Größen-Button oben schiebt die Stage-Breite direkt — Slider nachziehen
+            const stageSlider = sliders.find(s => s.dataset.var === '--stage-size');
+            new MutationObserver(() => {
+                const w = parseInt(stage.style.width);
+                if (w && String(w) !== stageSlider.value) {
+                    stageSlider.value = w;
+                    stageSlider.parentElement.querySelector('.lp-val').textContent = w + 'px';
+                }
+            }).observe(stage, { attributes: true, attributeFilter: ['style'] });
+
+            document.getElementById('lpReset').addEventListener('click', () => {
+                sliders.forEach(s => { s.value = defaults[s.dataset.var]; paint(s); });
+                colorInput.value = defaultColor;
+                paintColor();
+            });
+
+            document.getElementById('lpCopy').addEventListener('click', (e) => {
+                const lines = sliders.map(s => '    ' + s.dataset.var + ': ' + s.value + s.dataset.unit + ';');
+                const hex = colorInput.value;
+                const rgb = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16)).join(', ');
+                lines.push('    --glow-rgb: ' + rgb + ';');
+                const css = '.architects-stage {\n' + lines.join('\n') + '\n}';
+                navigator.clipboard.writeText(css).then(() => {
+                    const btn = e.target;
+                    const original = btn.textContent;
+                    btn.textContent = 'kopiert ✓';
+                    setTimeout(() => btn.textContent = original, 1400);
+                });
+            });
         })();
     </script>
 </body>
