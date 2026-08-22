@@ -10,6 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 
+    <script>
+        /* Farbvariante per URL-Parameter: index.html (Standard) | index.html?v=1 (echtes Schwarz) | index.html?v=2 (Zebra) */
+        (function () {
+            var v = new URLSearchParams(location.search).get('v');
+            if (v === '1' || v === '2') document.documentElement.setAttribute('data-variant', 'v' + v);
+        })();
+    </script>
+
     <style>
         :root {
             --black: #111111;
@@ -152,6 +160,15 @@
             width: 12px; height: 12px;
             border: 1px solid var(--gray-light);
             border-radius: 50%;
+        }
+
+        /* Türkiser Akzent-Flourish im Hero (zwischen Untertitel & Beschreibung) */
+        .flourish-turquoise .flourish-line {
+            background: linear-gradient(90deg, transparent, var(--turquoise), transparent);
+        }
+        .flourish-turquoise .flourish-center {
+            background: var(--turquoise);
+            border-color: var(--turquoise);
         }
 
         /* Subtle scroll-line ornament */
@@ -864,8 +881,8 @@
 
         /* Tuerkiser Punkt - gleiche Formensprache wie .ornament-diamond im Separator */
         .perk-icon {
-            width: 7px;
-            height: 7px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: var(--turquoise);
             margin: 0 auto 1.2rem;
@@ -907,6 +924,7 @@
 
         .job-item:hover {
             padding-left: 1rem;
+            background: var(--turquoise-muted);
         }
 
         .job-name {
@@ -1006,7 +1024,7 @@
 
         /* ===== FIRMENGEBÄUDE (eigene Sektion, schwarz) ===== */
         .section-black {
-            background: #000000;
+            background: #121212;
             color: #F0EEEB;
         }
         .section-black .section-title { color: #FFFFFF; }
@@ -1030,6 +1048,58 @@
         .section-white .leistung-acc summary { color: #111111; }
         .section-white .leistung-acc .acc-content li { color: #555555; }
         .section-white .benefit-text p { color: #555555; }
+
+        /* ===== SEPARATOR-FARBE GEBÄUDE-SEKTION ===== */
+        .fine-separator.gebaeude-sep { background: #121212; }
+
+        /* ===== FARBVARIANTEN v-1 / v-2 (URL-Parameter ?v=1 bzw. ?v=2) ===== */
+        /* v-1: echtes Schwarz (#000000) für alle dunklen Flächen */
+        [data-variant="v1"] {
+            --off-white: #000000;
+            --cream: #000000;
+            --header-bg: rgba(0, 0, 0, 0.92);
+        }
+        [data-variant="v1"] .section-black { background: #000000; }
+        [data-variant="v1"] .fine-separator.gebaeude-sep { background: #000000; }
+
+        /* v-2: Zebra — Sektionen wechseln sich ab: schwarz / dunkelgrau, keine hellen Sektionen */
+        [data-variant="v2"] .section-white { background: #121212; color: #E8E6E3; }
+        [data-variant="v2"] .section-white .section-title { color: #FFFFFF; }
+        [data-variant="v2"] .section-white .section-desc { color: #BBBBBB; }
+        [data-variant="v2"] .section-white .leistung-acc summary { color: #E8E6E3; }
+        [data-variant="v2"] .section-white .leistung-acc .acc-content li { color: #BBBBBB; }
+        [data-variant="v2"] .section-white .benefit-text p { color: #BBBBBB; }
+        [data-variant="v2"] .section-dark { color: #E8E6E3; }
+        [data-variant="v2"] .section-dark .section-title { color: #FFFFFF; }
+        [data-variant="v2"] .section-dark .section-desc { color: #BBBBBB; }
+        [data-variant="v2"] .section-dark .section-overtitle { color: #BBBBBB; }
+        [data-variant="v2"] .section-dark .perk-item { border-color: rgba(255, 255, 255, 0.08); }
+        [data-variant="v2"] .section-dark .perk-item h3 { color: #FFFFFF; }
+        [data-variant="v2"] .section-dark .perk-item p { color: #BBBBBB; }
+        [data-variant="v2"] .section-dark .job-item { border-bottom-color: rgba(255, 255, 255, 0.08); }
+        [data-variant="v2"] .section-dark .job-item:first-child { border-top-color: rgba(255, 255, 255, 0.08); }
+        [data-variant="v2"] .section-dark .job-name { color: #E8E6E3; }
+        [data-variant="v2"] .section-dark .job-meta { color: #BBBBBB; }
+        [data-variant="v2"] .section-dark .btn-dark-outline { color: #E8E6E3; border-color: rgba(255, 255, 255, 0.25); }
+        [data-variant="v2"] .section-dark .btn-dark-outline:hover { border-color: #FFFFFF; color: #FFFFFF; }
+        [data-variant="v2"] .section-dark .contact-form { border-color: rgba(255, 255, 255, 0.08); }
+        [data-variant="v2"] .section-dark .contact-entry-label { color: #BBBBBB; }
+        [data-variant="v2"] .section-dark .contact-entry-value,
+        [data-variant="v2"] .section-dark .contact-entry-value a { color: #E8E6E3; }
+        [data-variant="v2"] .section-dark .form-heading { color: #FFFFFF; }
+        [data-variant="v2"] .section-dark .form-group label { color: #BBBBBB; }
+        [data-variant="v2"] .section-dark .form-control { color: #E8E6E3; border-bottom-color: rgba(255, 255, 255, 0.25); }
+        [data-variant="v2"] .section-dark .form-control:focus { border-bottom-color: #FFFFFF; }
+        [data-variant="v2"] .section-dark .form-control::placeholder { color: rgba(255, 255, 255, 0.3); }
+        [data-variant="v2"] body > section:nth-of-type(odd) { background: #000000; }
+        [data-variant="v2"] body > section:nth-of-type(even) { background: #121212; }
+
+        /* v-2: Dropdown dunkelgrau statt weiß */
+        [data-variant="v2"] .custom-select-menu {
+            background: #121212;
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+        [data-variant="v2"] .custom-select-option { color: #E8E6E3; }
 
         /* ===== SEKTIONEN VERSCHIEBEN (Entwickler-Modus) ===== */
         .section-move-controls {
@@ -1474,6 +1544,66 @@
             background: #000000;
             color: #FFFFFF;
         }
+
+        /* ===== CUSTOM DROPDOWN (statt nativem Mac-Menü) ===== */
+        .custom-select { position: relative; }
+        .custom-select-native { display: none; }
+
+        .custom-select-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            width: 100%;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .custom-select-chevron {
+            width: 10px;
+            height: 6px;
+            flex-shrink: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888' stroke-width='1'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 0.3s ease;
+        }
+        .custom-select.open .custom-select-chevron { transform: rotate(180deg); }
+
+        .custom-select-menu {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            right: 0;
+            z-index: 60;
+            list-style: none;
+            margin: 0;
+            padding: 0.4rem 0;
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 10px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+            max-height: 260px;
+            overflow-y: auto;
+        }
+        .custom-select-menu[hidden] { display: none; }
+
+        .custom-select-option {
+            padding: 0.65rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: #111111;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .custom-select-option:hover,
+        .custom-select-option.highlighted {
+            background: var(--turquoise);
+            color: #000000;
+        }
+        .custom-select-option.selected { color: var(--turquoise); }
+        .custom-select-option.selected:hover,
+        .custom-select-option.selected.highlighted { color: #000000; }
 
         textarea.form-control {
             min-height: 100px;
@@ -2331,7 +2461,7 @@
                     <span class="brand-sub">Meisterlabor Weinheim</span>
                 </a>
                 <div class="nav-top-side">
-                    <a href="mailto:info@zahn360.de">info@zahn360.de</a>
+                    <a href="mailto:info@zahn360.com">info@zahn360.com</a>
                 </div>
             </div>
             <nav class="nav-bottom" id="navMenu">
@@ -2364,7 +2494,7 @@
                 <div class="architects-stage">
                     <div class="architects-corona"></div>
                     <div class="architects-orb">
-                        <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN360 Logo" class="architects-logo-img">
+                        <img src="images/25010_ZAHN360_Logosignet_1c_RZ_trueblack_web.png" alt="ZAHN360 Logo" class="architects-logo-img">
                     </div>
                 </div>
             </div>
@@ -2406,7 +2536,7 @@
             </h1>
             <p class="hero-subtitle fade-in">Qualität, <em>die bleibt.</em></p>
 
-            <div class="flourish fade-in">
+            <div class="flourish flourish-turquoise fade-in">
                 <div class="flourish-line"></div>
                 <div class="flourish-center"></div>
                 <div class="flourish-line"></div>
@@ -2605,7 +2735,7 @@
     </section>
 
     <!-- Separator -->
-    <div class="fine-separator" style="background:#000000;">
+    <div class="fine-separator gebaeude-sep">
         <div class="fine-separator-inner">
             <div class="ornament-line"></div>
             <div class="ornament-diamond"></div>
@@ -2769,7 +2899,7 @@
     <section class="section section-light" id="prozess">
         <div class="section-inner">
             <p class="section-overtitle fade-in">So entsteht Ihre Arbeit</p>
-            <h2 class="section-title fade-in">Einmal ganz herum — vier Schritte bis zur fertigen Arbeit.</h2>
+            <h2 class="section-title fade-in">Einmal ganz herum. Vier Schritte bis zur fertigen Arbeit.</h2>
 
             <div class="process fade-in">
                 <div class="process-steps">
@@ -2886,7 +3016,7 @@
                             <div class="contact-entry-icon"></div>
                             <div>
                                 <p class="contact-entry-label">E-Mail</p>
-                                <p class="contact-entry-value"><a href="mailto:info@zahn360.de">info@zahn360.de</a></p>
+                                <p class="contact-entry-value"><a href="mailto:info@zahn360.com">info@zahn360.com</a></p>
                             </div>
                         </li>
                     </ul>
@@ -2907,13 +3037,20 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="c_role">Ich bin</label>
-                        <select id="c_role" class="form-control">
-                            <option value="patient">Patient / Endverbraucher</option>
-                            <option value="zahnarzt">Zahnarzt / Praxis</option>
-                            <option value="bewerber">Bewerber / Fachkraft</option>
-                            <option value="sonstiges">Sonstiges</option>
-                        </select>
+                        <label for="c_role_trigger">Ich bin</label>
+                        <div class="custom-select" id="c_role_custom">
+                            <select id="c_role" class="form-control custom-select-native" aria-hidden="true" tabindex="-1">
+                                <option value="patient">Patient / Endverbraucher</option>
+                                <option value="zahnarzt">Zahnarzt / Praxis</option>
+                                <option value="bewerber">Bewerber / Fachkraft</option>
+                                <option value="sonstiges">Sonstiges</option>
+                            </select>
+                            <button type="button" id="c_role_trigger" class="form-control custom-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                                <span class="custom-select-value">Patient / Endverbraucher</span>
+                                <span class="custom-select-chevron"></span>
+                            </button>
+                            <ul class="custom-select-menu" id="c_role_menu" role="listbox" hidden></ul>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -3014,7 +3151,7 @@
                 <p><strong>ZAHN 360 oHG</strong><br>Zahntechnisches Labor<br>Hauptstraße 4c<br>69469 Weinheim</p><br>
                 <p><strong>Vertreten durch:</strong><br>Julien Hornung & Simon Jansen (Zahntechnikermeister)</p><br>
                 <p><strong>Handelsregister:</strong><br>Amtsgericht Mannheim, HRA 706344</p><br>
-                <p><strong>Kontakt:</strong><br>Telefon: +49 6201 87 83 600<br>E-Mail: info@zahn360.de</p>
+                <p><strong>Kontakt:</strong><br>Telefon: +49 6201 87 83 600<br>E-Mail: info@zahn360.com</p>
             </div>
         </div>
     </div>
@@ -4141,6 +4278,125 @@
                 });
             });
         })();
+
+        // ===== CUSTOM DROPDOWN FÜR DAS KONTAKT-SELECT =====
+        (function initCustomSelect() {
+            const native = document.getElementById('c_role');
+            const trigger = document.getElementById('c_role_trigger');
+            const menu = document.getElementById('c_role_menu');
+            const wrap = document.getElementById('c_role_custom');
+            if (!native || !trigger || !menu || !wrap) return;
+
+            const valueEl = trigger.querySelector('.custom-select-value');
+
+            // Menü aus den <option>-Einträgen des versteckten Selects aufbauen
+            Array.from(native.options).forEach(opt => {
+                const li = document.createElement('li');
+                li.className = 'custom-select-option';
+                li.dataset.value = opt.value;
+                li.textContent = opt.textContent;
+                li.setAttribute('role', 'option');
+                li.addEventListener('click', () => selectOption(li));
+                menu.appendChild(li);
+            });
+
+            function options() { return Array.from(menu.querySelectorAll('.custom-select-option')); }
+
+            function highlight(li) {
+                if (!li) return;
+                options().forEach(o => o.classList.toggle('highlighted', o === li));
+            }
+
+            function open() {
+                wrap.classList.add('open');
+                menu.hidden = false;
+                trigger.setAttribute('aria-expanded', 'true');
+                highlight(menu.querySelector('.custom-select-option.selected') || options()[0]);
+            }
+
+            function close() {
+                wrap.classList.remove('open');
+                menu.hidden = true;
+                trigger.setAttribute('aria-expanded', 'false');
+            }
+
+            function selectOption(li) {
+                native.value = li.dataset.value;
+                native.dispatchEvent(new Event('change', { bubbles: true }));
+                valueEl.textContent = li.textContent;
+                options().forEach(o => o.classList.toggle('selected', o === li));
+                close();
+                trigger.focus();
+            }
+
+            function choose() {
+                const hl = menu.querySelector('.custom-select-option.highlighted');
+                if (hl) selectOption(hl);
+            }
+
+            function move(dir) {
+                const opts = options();
+                if (!opts.length) return;
+                let idx = opts.findIndex(o => o.classList.contains('highlighted'));
+                idx = (idx + dir + opts.length) % opts.length;
+                highlight(opts[idx]);
+                opts[idx].scrollIntoView({ block: 'nearest' });
+            }
+
+            trigger.addEventListener('click', () => { menu.hidden ? open() : close(); });
+
+            trigger.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (menu.hidden) open(); else move(e.key === 'ArrowDown' ? 1 : -1);
+                } else if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (menu.hidden) open(); else choose();
+                } else if (e.key === 'Escape' && !menu.hidden) {
+                    close();
+                } else if (e.key === 'Tab' && !menu.hidden) {
+                    close();
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!wrap.contains(e.target)) close();
+            });
+
+            // Startwert anzeigen
+            function syncFromNative() {
+                const li = menu.querySelector('.custom-select-option[data-value="' + native.value + '"]');
+                if (li) {
+                    valueEl.textContent = li.textContent;
+                    options().forEach(o => o.classList.toggle('selected', o === li));
+                }
+            }
+            syncFromNative();
+
+            // Nach Formular-Reset (z. B. nach dem Absenden) Anzeige zurücksetzen
+            const form = native.closest('form');
+            if (form) form.addEventListener('reset', () => setTimeout(syncFromNative, 0));
+        })();
+
+        // ===== v-2 Zebra: Separatoren an die Farbe der folgenden Sektion angleichen =====
+        if (document.documentElement.getAttribute('data-variant') === 'v2') {
+            (function initZebraSeparators() {
+                const COLORS = ['#000000', '#121212'];
+                function apply() {
+                    const secs = Array.from(document.querySelectorAll('body > section'));
+                    secs.forEach((sec, i) => {
+                        const prev = sec.previousElementSibling;
+                        if (prev && prev.classList.contains('fine-separator')) {
+                            prev.style.background = COLORS[i % 2];
+                        }
+                    });
+                }
+                apply();
+                document.addEventListener('click', (e) => {
+                    if (e.target.closest('.section-move-btn')) setTimeout(apply, 0);
+                });
+            })();
+        }
 
         // ===== SEKTIONEN VERSCHIEBEN (Entwickler-Modus) =====
         (function initMoveSections() {
