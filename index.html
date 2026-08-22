@@ -1004,6 +1004,74 @@
         [data-theme="dark"] .leistung-acc details[open] summary { color: var(--turquoise); }
         [data-theme="dark"] .leistung-acc .acc-content li { color: var(--gray-light); }
 
+        /* ===== FIRMENGEBÄUDE (eigene Sektion, schwarz) ===== */
+        .section-black {
+            background: #000000;
+            color: #F0EEEB;
+        }
+        .section-black .section-title { color: #FFFFFF; }
+        .section-black .section-desc { color: #BBBBBB; }
+        .building-grid {
+            display: flex;
+            align-items: flex-start;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .building-image { flex: 0 0 340px; max-width: 100%; }
+        .building-image img { width: 100%; height: auto; display: block; }
+        .building-text { flex: 1; min-width: 280px; }
+
+        /* ===== WEISSE PRAXEN-SEKTION ===== */
+        .section-white {
+            background: #FFFFFF;
+            color: #111111;
+        }
+        .section-white .section-desc { color: #555555; }
+        .section-white .leistung-acc summary { color: #111111; }
+        .section-white .leistung-acc .acc-content li { color: #555555; }
+        .section-white .benefit-text p { color: #555555; }
+
+        /* ===== SEKTIONEN VERSCHIEBEN (Entwickler-Modus) ===== */
+        .section-move-controls {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            z-index: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: rgba(17, 17, 17, 0.78);
+            border: 1px solid var(--turquoise-line);
+            border-radius: 999px;
+            padding: 0.3rem 0.55rem;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .section-move-btn {
+            background: none;
+            border: none;
+            color: var(--turquoise);
+            cursor: pointer;
+            font-size: 0.75rem;
+            line-height: 1;
+            padding: 0.2rem 0.35rem;
+            transition: color 0.2s;
+        }
+        .section-move-btn:hover:not(:disabled) { color: #FFFFFF; }
+        .section-move-btn:disabled { opacity: 0.3; cursor: default; }
+        .section-move-label {
+            font-family: var(--font-sans);
+            font-size: 0.6rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #DDDBD7;
+            font-weight: 400;
+        }
+        #moveToggleBtn.active {
+            border-color: var(--turquoise);
+            color: var(--turquoise);
+        }
+
         /* ===== ZAHNÄRZTE ===== */
         .dentist-grid {
             display: grid;
@@ -2249,6 +2317,7 @@
 
     <button class="dark-toggle" id="sizeToggleBtn" title="Größen-Buttons ein-/ausblenden" style="position:fixed;top:1rem;right:1rem;z-index:3000;">📏 Größe</button>
     <button class="dark-toggle" id="logoToggleBtn" title="Logo-Regler ein-/ausblenden" style="position:fixed;top:1rem;right:6.5rem;z-index:3000;">🎛 Logo</button>
+<button class="dark-toggle" id="moveToggleBtn" title="Sektionen-Verschieben ein-/ausblenden" style="position:fixed;top:1rem;right:12rem;z-index:3000;">↕️ Sektionen</button>
 
     <!-- ===== NAVIGATION ===== -->
     <header class="header-nav" id="mainHeader">
@@ -2531,29 +2600,40 @@
                     <button class="btn btn-dark-outline" onclick="openApplyModal('Auszubildender Zahntechniker (m/w/d)')">Bewerben</button>
                 </div>
 
-                <!-- Raum für die Zukunft -->
-                <div class="fade-in" style="margin-top:3rem;">
-                    <div style="display:flex;align-items:flex-start;gap:2.5rem;flex-wrap:wrap;">
-                        <div style="flex:0 0 340px;max-width:100%;">
-                            <img src="images/FirmengebäudeSW.jpeg" alt="Neues Firmengebäude ZAHN 360" style="width:100%;height:auto;display:block;filter:grayscale(100%);">
-                        </div>
-                        <div style="flex:1;min-width:280px;">
-                            <h2 class="section-title" style="text-align:left;margin-bottom:1rem;">Raum für die Zukunft</h2>
-                            <p class="section-desc" style="margin:0 0 1rem 0;max-width:none;">
-                                Ein wichtiger Schritt auf unserem Weg ist der Bezug unseres neuen Firmengebäudes ab dem kommenden Jahr. Es steht für Wachstum, Innovation und unseren Anspruch, die besten Voraussetzungen für hochwertige Zahntechnik zu schaffen.
-                            </p>
-                            <p class="section-desc" style="margin:0;max-width:none;">
-                                Moderne Arbeitsplätze, neueste Technologien und eine angenehme Atmosphäre geben unserem Team den Raum, den es braucht – für konzentriertes Arbeiten, kreative Lösungen und gemeinsame Entwicklung.
-                            </p>
-                        </div>
-                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Separator -->
+    <div class="fine-separator" style="background:#000000;">
+        <div class="fine-separator-inner">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+        </div>
+    </div>
+
+    <!-- ===== FIRMENGEBÄUDE ===== -->
+    <section class="section section-black" id="gebaeude">
+        <div class="section-inner">
+            <div class="building-grid fade-in">
+                <div class="building-image">
+                    <img src="images/Firmengeb%C3%A4ude%20Farbe.jpeg" alt="Neues Firmengebäude ZAHN 360">
+                </div>
+                <div class="building-text">
+                    <h2 class="section-title" style="text-align:left;margin-bottom:1rem;">Raum für die Zukunft</h2>
+                    <p class="section-desc" style="margin:0 0 1rem 0;max-width:none;">
+                        Ein wichtiger Schritt auf unserem Weg ist der Bezug unseres neuen Firmengebäudes ab dem kommenden Jahr. Es steht für Wachstum, Innovation und unseren Anspruch, die besten Voraussetzungen für hochwertige Zahntechnik zu schaffen.
+                    </p>
+                    <p class="section-desc" style="margin:0;max-width:none;">
+                        Moderne Arbeitsplätze, neueste Technologien und eine angenehme Atmosphäre geben unserem Team den Raum, den es braucht – für konzentriertes Arbeiten, kreative Lösungen und gemeinsame Entwicklung.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Separator -->
-    <div class="fine-separator" style="background:var(--off-white);">
+    <div class="fine-separator" style="background:#FFFFFF;">
         <div class="fine-separator-inner">
             <div class="ornament-line"></div>
             <div class="ornament-diamond"></div>
@@ -2561,10 +2641,9 @@
     </div>
 
     <!-- ===== ZAHNÄRZTE ===== -->
-    <section class="section section-alt" id="zahnaerzte">
+    <section class="section section-white" id="zahnaerzte">
         <div class="section-inner">
             <div class="section-header">
-                <p class="section-overtitle fade-in">Partner im Umkreis von 70 km</p>
                 <h2 class="section-title fade-in">Für zahnärztliche Praxen</h2>
                 <p class="section-desc fade-in">
                     Über 60 Zahnärzte vertrauen bereits auf Zahn 360 oHG. Perfekter Service, direkte Erreichbarkeit und höchste Termintreue.
@@ -4060,6 +4139,100 @@
                     btn.textContent = 'kopiert ✓';
                     setTimeout(() => btn.textContent = original, 1400);
                 });
+            });
+        })();
+
+        // ===== SEKTIONEN VERSCHIEBEN (Entwickler-Modus) =====
+        (function initMoveSections() {
+            const toggleBtn = document.getElementById('moveToggleBtn');
+            if (!toggleBtn) return;
+
+            const LABELS = {
+                top: 'Hero',
+                patienten: 'Patienten',
+                karriere: 'Karriere',
+                gebaeude: 'Gebäude',
+                zahnaerzte: 'Praxen',
+                prozess: 'Prozess',
+                ueberuns: 'Über uns',
+                kontakt: 'Kontakt'
+            };
+
+            let enabled = false;
+
+            function allSections() {
+                return Array.from(document.querySelectorAll('body > section'));
+            }
+
+            function injectControls() {
+                allSections().forEach(sec => {
+                    if (sec.querySelector('.section-move-controls')) return;
+                    const ctrl = document.createElement('div');
+                    ctrl.className = 'section-move-controls';
+                    const label = LABELS[sec.id] || sec.id;
+                    ctrl.innerHTML =
+                        '<button type="button" class="section-move-btn" data-dir="-1" title="Eine Position nach oben">▲</button>' +
+                        '<span class="section-move-label">' + label + '</span>' +
+                        '<button type="button" class="section-move-btn" data-dir="1" title="Eine Position nach unten">▼</button>';
+                    ctrl.addEventListener('click', (e) => {
+                        const btn = e.target.closest('.section-move-btn');
+                        if (!btn || btn.disabled) return;
+                        moveSection(sec, parseInt(btn.dataset.dir, 10));
+                    });
+                    sec.appendChild(ctrl);
+                });
+                refreshStates();
+            }
+
+            function removeControls() {
+                document.querySelectorAll('.section-move-controls').forEach(el => el.remove());
+            }
+
+            function refreshStates() {
+                const secs = allSections();
+                secs.forEach((sec, i) => {
+                    const ctrl = sec.querySelector('.section-move-controls');
+                    if (!ctrl) return;
+                    ctrl.querySelector('[data-dir="-1"]').disabled = (i === 0);
+                    ctrl.querySelector('[data-dir="1"]').disabled = (i === secs.length - 1);
+                });
+            }
+
+            // Sektion zusammen mit dem direkt davor liegenden Separator verschieben,
+            // damit die Hintergrundfarben der Trennlinien zur Sektion passen.
+            function moveSection(sec, dir) {
+                const sep = (sec.previousElementSibling && sec.previousElementSibling.classList.contains('fine-separator'))
+                    ? sec.previousElementSibling : null;
+
+                if (dir === -1) {
+                    const prev = sep ? sep.previousElementSibling : sec.previousElementSibling;
+                    if (!prev || !prev.matches('section')) return;
+                    // Einfügepunkt: vor dem Separator der Ziel-Sektion, damit diese ihren eigenen behält
+                    const prevSep = (prev.previousElementSibling && prev.previousElementSibling.classList.contains('fine-separator'))
+                        ? prev.previousElementSibling : null;
+                    const ref = prevSep || prev;
+                    if (sep) prev.parentNode.insertBefore(sep, ref);
+                    prev.parentNode.insertBefore(sec, ref);
+                } else {
+                    let next = sec.nextElementSibling;
+                    while (next && !next.matches('section')) next = next.nextElementSibling;
+                    if (!next) return;
+                    const ref = next.nextElementSibling;
+                    if (ref) {
+                        if (sep) next.parentNode.insertBefore(sep, ref);
+                        next.parentNode.insertBefore(sec, ref);
+                    } else {
+                        if (sep) next.parentNode.appendChild(sep);
+                        next.parentNode.appendChild(sec);
+                    }
+                }
+                refreshStates();
+            }
+
+            toggleBtn.addEventListener('click', () => {
+                enabled = !enabled;
+                toggleBtn.classList.toggle('active', enabled);
+                if (enabled) injectControls(); else removeControls();
             });
         })();
     </script>
