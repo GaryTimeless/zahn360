@@ -1068,7 +1068,16 @@
         .fine-separator.gebaeude-sep { background: #121212; }
 
         /* ===== FARBVARIANTEN v-1 / v-2 (URL-Parameter ?v=1 bzw. ?v=2) ===== */
-        /* v-1: echtes Schwarz (#000000) für alle dunklen Sektionen */
+        /* v-1: echtes Schwarz (#000000) für Hero & alle dunklen Sektionen */
+        [data-variant="v1"] {
+            --header-bg: rgba(0, 0, 0, 0.92);
+        }
+        [data-variant="v1"] .header-nav {
+            background: rgba(0, 0, 0, 0.92);
+        }
+        [data-variant="v1"] .hero {
+            background: #000000;
+        }
         [data-variant="v1"] .section-dark {
             background: #000000;
         }
