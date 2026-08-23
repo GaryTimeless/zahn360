@@ -11,10 +11,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 
     <script>
-        /* Farbvariante per URL-Parameter: index.html (Standard) | index.html?v=1 (echtes Schwarz) | index.html?v=2 (Zebra) */
+        /* Farbvariante per URL-Parameter: index.html (Standard) | index.html?v=1 bzw. ?v-1 (echtes Schwarz) | index.html?v=2 bzw. ?v-2 (Zebra) */
         (function () {
-            var v = new URLSearchParams(location.search).get('v');
-            if (v === '1' || v === '2') document.documentElement.setAttribute('data-variant', 'v' + v);
+            var s = location.search;
+            var v = new URLSearchParams(s).get('v');
+            if (v === '1' || v === 'v1' || v === 'v-1' || /[?&]v[-_]?1\b/i.test(s)) {
+                document.documentElement.setAttribute('data-variant', 'v1');
+            } else if (v === '2' || v === 'v2' || v === 'v-2' || /[?&]v[-_]?2\b/i.test(s)) {
+                document.documentElement.setAttribute('data-variant', 'v2');
+            }
         })();
     </script>
 
@@ -1063,14 +1068,21 @@
         .fine-separator.gebaeude-sep { background: #121212; }
 
         /* ===== FARBVARIANTEN v-1 / v-2 (URL-Parameter ?v=1 bzw. ?v=2) ===== */
-        /* v-1: echtes Schwarz (#000000) für alle dunklen Flächen */
-        [data-variant="v1"] {
-            --off-white: #000000;
-            --cream: #000000;
-            --header-bg: rgba(0, 0, 0, 0.92);
+        /* v-1: echtes Schwarz (#000000) für alle dunklen Sektionen */
+        [data-variant="v1"] .section-dark {
+            background: #000000;
         }
-        [data-variant="v1"] .section-black { background: #000000; }
-        [data-variant="v1"] .fine-separator.gebaeude-sep { background: #000000; }
+        [data-variant="v1"] .section-black {
+            background: #000000;
+        }
+        [data-variant="v1"] .fine-separator.gebaeude-sep {
+            background: #000000;
+        }
+        [data-variant="v1"] .architects-section,
+        [data-variant="v1"] .canvas-corona-section,
+        [data-variant="v1"] .eclipse-section {
+            background: #000000;
+        }
 
         /* v-2: Zebra — Sektionen wechseln sich ab: schwarz / dunkelgrau, keine hellen Sektionen */
         [data-variant="v2"] .section-white { background: #121212; color: #E8E6E3; }
