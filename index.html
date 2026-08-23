@@ -120,6 +120,76 @@
         #logoToggleBtn { right: 6.5rem; }
         #moveToggleBtn { right: 12rem; }
 
+        /* ===== KUNDEN-VARIANTEN-UMSCHALTER (Floating Bar) ===== */
+        .variant-switcher {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            z-index: 3000;
+            display: inline-flex;
+            align-items: center;
+            background: rgba(18, 18, 18, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 999px;
+            padding: 4px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+            gap: 2px;
+        }
+
+        .variant-switcher-label {
+            font-size: 0.65rem;
+            color: #888888;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 0 0.6rem 0 0.5rem;
+            font-weight: 500;
+            user-select: none;
+        }
+
+        .variant-btn {
+            background: transparent;
+            color: #AAAAAA;
+            border: none;
+            border-radius: 999px;
+            padding: 0.4rem 0.85rem;
+            font-size: 0.72rem;
+            font-family: var(--font-sans);
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .variant-btn:hover {
+            color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .variant-btn.active {
+            background: var(--turquoise);
+            color: #000000;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(94, 200, 216, 0.35);
+        }
+
+        @media (max-width: 768px) {
+            .variant-switcher {
+                bottom: 4rem;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 3px;
+            }
+            .variant-switcher-label {
+                display: none;
+            }
+            .variant-btn {
+                padding: 0.35rem 0.65rem;
+                font-size: 0.68rem;
+            }
+        }
+
         *, *::before, *::after {
             margin: 0; padding: 0; box-sizing: border-box;
         }
@@ -2693,9 +2763,17 @@
 <body>
 
 
+    <!-- Kunden-Varianten-Umschalter (Live-Preview ohne Reload) -->
+    <div class="variant-switcher" id="variantSwitcher" title="Design-Variante wählen">
+        <span class="variant-switcher-label">Design:</span>
+        <button type="button" class="variant-btn" data-variant="" title="Standard-Entwurf">Standard</button>
+        <button type="button" class="variant-btn" data-variant="v1" title="Variante 1: Reines Schwarz & Weiß">v-1 (Kontrast)</button>
+        <button type="button" class="variant-btn" data-variant="v2" title="Variante 2: Abwechselnd Zebra-Dark">v-2 (Zebra)</button>
+    </div>
+
     <button class="dark-toggle" id="sizeToggleBtn" title="Größen-Buttons ein-/ausblenden">📏 Größe</button>
     <button class="dark-toggle" id="logoToggleBtn" title="Logo-Regler ein-/ausblenden">🎛 Logo</button>
-<button class="dark-toggle" id="moveToggleBtn" title="Sektionen-Verschieben ein-/ausblenden">↕️ Sektionen</button>
+    <button class="dark-toggle" id="moveToggleBtn" title="Sektionen-Verschieben ein-/ausblenden">↕️ Sektionen</button>
 
     <!-- ===== NAVIGATION ===== -->
     <header class="header-nav" id="mainHeader">
@@ -4734,6 +4812,36 @@
                 toggleBtn.classList.toggle('active', enabled);
                 if (enabled) injectControls(); else removeControls();
             });
+        })();
+
+        // ===== KUNDEN-VARIANTEN-UMSCHALTER LOGIK =====
+        (function initVariantSwitcher() {
+            const switcher = document.getElementById('variantSwitcher');
+            if (!switcher) return;
+            const buttons = switcher.querySelectorAll('.variant-btn');
+
+            function syncActiveBtn() {
+                const current = document.documentElement.getAttribute('data-variant') || '';
+                buttons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.variant === current);
+                });
+            }
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const target = btn.dataset.variant;
+                    if (target) {
+                        document.documentElement.setAttribute('data-variant', target);
+                        history.replaceState(null, '', '?v=' + target.replace('v', ''));
+                    } else {
+                        document.documentElement.removeAttribute('data-variant');
+                        history.replaceState(null, '', window.location.pathname);
+                    }
+                    syncActiveBtn();
+                });
+            });
+
+            syncActiveBtn();
         })();
     </script>
 </body>
