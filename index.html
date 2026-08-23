@@ -105,10 +105,10 @@
             color: var(--black);
         }
 
-        /* Dev-Buttons: Position im CSS statt inline, damit Media-Queries sie verschieben können */
+        /* Dev-Buttons: fest unten rechts fliegend auf allen Bildschirmbreiten */
         #sizeToggleBtn, #logoToggleBtn, #moveToggleBtn {
             position: fixed;
-            top: 1rem;
+            bottom: 1rem;
             z-index: 3000;
         }
         #sizeToggleBtn { right: 1rem; }
@@ -1854,10 +1854,6 @@
                 right: 2rem;
             }
             .nav-top-side { display: none; }
-            /* Dev-Buttons nach unten, damit sie den Menu-Button nicht überdecken */
-            #sizeToggleBtn { top: auto; bottom: 1rem; }
-            #logoToggleBtn { top: auto; bottom: 1rem; }
-            #moveToggleBtn { top: auto; bottom: 1rem; }
         }
 
         @media (max-width: 768px) {
