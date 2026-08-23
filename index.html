@@ -699,6 +699,7 @@
         .hero-stats {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 4rem;
         }
 
@@ -713,6 +714,7 @@
             color: var(--black);
             line-height: 1;
             letter-spacing: 2px;
+            white-space: nowrap;
         }
 
         .hero-stat-label {
@@ -2236,10 +2238,15 @@
                 grid-template-columns: 1fr;
             }
             .hero-stats {
-                gap: 2rem;
+                gap: clamp(0.75rem, 3vw, 2rem);
             }
             .hero-stat-value {
-                font-size: 1.6rem;
+                font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+                white-space: nowrap;
+            }
+            .hero-stat-label {
+                font-size: clamp(0.5rem, 1.8vw, 0.65rem);
+                letter-spacing: clamp(1px, 0.4vw, 2px);
             }
             .about-image-frame { display: none; }
         }
@@ -3064,7 +3071,7 @@
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value">100 %</div>
+                    <div class="hero-stat-value">100&nbsp;%</div>
                     <div class="hero-stat-label">Weinheim</div>
                 </div>
                 <div class="hero-stat-divider"></div>
