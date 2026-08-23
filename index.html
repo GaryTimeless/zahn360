@@ -105,6 +105,16 @@
             color: var(--black);
         }
 
+        /* Dev-Buttons: Position im CSS statt inline, damit Media-Queries sie verschieben können */
+        #sizeToggleBtn, #logoToggleBtn, #moveToggleBtn {
+            position: fixed;
+            top: 1rem;
+            z-index: 3000;
+        }
+        #sizeToggleBtn { right: 1rem; }
+        #logoToggleBtn { right: 6.5rem; }
+        #moveToggleBtn { right: 12rem; }
+
         *, *::before, *::after {
             margin: 0; padding: 0; box-sizing: border-box;
         }
@@ -1814,7 +1824,14 @@
             .hero-frame { display: none; }
         }
 
-        @media (max-width: 768px) {
+        /* Navigation: Hamburger schon ab 850px, damit die Links nie zweizeilig umbrechen */
+        @media (max-width: 850px) {
+            .nav-top {
+                justify-content: flex-start;
+            }
+            .brand-logo {
+                text-align: left;
+            }
             .nav-bottom {
                 position: fixed;
                 top: 90px; left: 0; right: 0;
@@ -1831,8 +1848,19 @@
             .nav-dot { display: none; }
             .mobile-toggle {
                 display: block;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 2rem;
             }
             .nav-top-side { display: none; }
+            /* Dev-Buttons nach unten, damit sie den Menu-Button nicht überdecken */
+            #sizeToggleBtn { top: auto; bottom: 1rem; }
+            #logoToggleBtn { top: auto; bottom: 1rem; }
+            #moveToggleBtn { top: auto; bottom: 1rem; }
+        }
+
+        @media (max-width: 768px) {
             .job-item {
                 flex-direction: column;
                 align-items: flex-start;
@@ -1944,15 +1972,17 @@
 
         /* Eclipse Stage */
         .architects-stage {
-            /* Alle Stellschrauben des Logos an einem Ort - das Logo-Panel schreibt hier hinein */
-            --pulse-speed: 9s;
-            --stage-size: 800px;
-            --corona-size: 670px;
-            --corona-blur: 55px;
+            /* Alle Stellschrauben des Logos an einem Ort - das Logo-Panel schreibt hier hinein.
+               Responsive Basis: max. 600px, skaliert mit dem Viewport.
+               Alle Teile (Corona, Orb, Blur, Glow) sind proportional zur Bühne. */
+            --pulse-speed: 8s;
+            --stage-size: clamp(300px, 88vw, 600px);
+            --corona-size: calc(var(--stage-size) * 0.8375);
+            --corona-blur: calc(var(--stage-size) * 0.06875);
             --corona-opacity: 0.75;
-            --orb-size: 630px;
+            --orb-size: calc(var(--stage-size) * 0.7875);
             --logo-scale: 136%;
-            --logo-glow-size: 60px;
+            --logo-glow-size: calc(var(--stage-size) * 0.075);
             --glow-rgb: 116, 242, 253;
             --glow-alpha: 0.6;
 
@@ -1960,7 +1990,12 @@
             z-index: 2;
             width: var(--stage-size);
             height: var(--stage-size);
-            margin: 2rem auto 3rem;
+            margin: 2rem 0 3rem;
+            /* Hart auf die Mitte zentriert - auch wenn die Bühne breiter als ihr
+               Container ist (bei margin:auto wären die Ränder sonst 0 und das
+               Logo würde nach rechts ausbrechen). */
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2445,9 +2480,9 @@
 <body>
 
 
-    <button class="dark-toggle" id="sizeToggleBtn" title="Größen-Buttons ein-/ausblenden" style="position:fixed;top:1rem;right:1rem;z-index:3000;">📏 Größe</button>
-    <button class="dark-toggle" id="logoToggleBtn" title="Logo-Regler ein-/ausblenden" style="position:fixed;top:1rem;right:6.5rem;z-index:3000;">🎛 Logo</button>
-<button class="dark-toggle" id="moveToggleBtn" title="Sektionen-Verschieben ein-/ausblenden" style="position:fixed;top:1rem;right:12rem;z-index:3000;">↕️ Sektionen</button>
+    <button class="dark-toggle" id="sizeToggleBtn" title="Größen-Buttons ein-/ausblenden">📏 Größe</button>
+    <button class="dark-toggle" id="logoToggleBtn" title="Logo-Regler ein-/ausblenden">🎛 Logo</button>
+<button class="dark-toggle" id="moveToggleBtn" title="Sektionen-Verschieben ein-/ausblenden">↕️ Sektionen</button>
 
     <!-- ===== NAVIGATION ===== -->
     <header class="header-nav" id="mainHeader">
@@ -2507,8 +2542,8 @@
             <!-- Regler-Panel: schreibt direkt in die CSS-Variablen der .architects-stage -->
             <div id="logoPanel" style="display:none;">
                 <p class="lp-group">Bühne · .architects-stage</p>
-                <label>Gesamtgröße<input type="range" data-var="--stage-size" data-unit="px" min="300" max="1600" step="10" value="800"><span class="lp-val"></span></label>
-                <label>Puls-Tempo<input type="range" data-var="--pulse-speed" data-unit="s" min="2" max="20" step="0.5" value="9"><span class="lp-val"></span></label>
+                <label>Gesamtgröße<input type="range" data-var="--stage-size" data-unit="px" min="300" max="1600" step="10" value="600"><span class="lp-val"></span></label>
+                <label>Puls-Tempo<input type="range" data-var="--pulse-speed" data-unit="s" min="0.5" max="8" step="0.5" value="8"><span class="lp-val"></span></label>
 
                 <p class="lp-group">Leuchten · .architects-corona</p>
                 <label>Größe<input type="range" data-var="--corona-size" data-unit="px" min="100" max="1600" step="10" value="670"><span class="lp-val"></span></label>
@@ -4185,29 +4220,35 @@
             if (!btnSmaller || !btnLarger || !stage) return;
 
             const MIN = 300;
+            const MAX = 1600;
             const STEP = 100;
-            let currentW = 800;
             const label = document.getElementById('sizeLabel');
 
-            function apply() {
-                stage.style.width = currentW + 'px';
-                stage.style.height = currentW + 'px';
-                if (label) label.textContent = currentW + ' px';
+            // Real gerenderte Größe (folgt auch der responsiven clamp-Basis)
+            function current() {
+                return Math.round(stage.getBoundingClientRect().width / 10) * 10;
             }
 
-            btnLarger.addEventListener('click', () => {
-                currentW += STEP;
-                apply();
-            });
+            function apply(size) {
+                size = Math.max(MIN, Math.min(MAX, size));
+                // Override auf die CSS-Variable statt fixer Inline-Breite -
+                // "Zurücksetzen" im Logo-Panel entfernt den Override und stellt die Responsivität wieder her.
+                stage.style.setProperty('--stage-size', size + 'px');
+                if (label) label.textContent = size + ' px';
+            }
 
-            btnSmaller.addEventListener('click', () => {
-                if (currentW > MIN) {
-                    currentW -= STEP;
-                    apply();
-                }
-            });
+            function syncLabel() {
+                if (label) label.textContent = current() + ' px';
+            }
 
-            apply();
+            btnLarger.addEventListener('click', () => apply(current() + STEP));
+            btnSmaller.addEventListener('click', () => apply(current() - STEP));
+            window.addEventListener('resize', syncLabel);
+
+            // Label nachziehen, wenn Panel/Reset die Größen-Variablen ändern
+            new MutationObserver(syncLabel).observe(stage, { attributes: true, attributeFilter: ['style'] });
+
+            syncLabel();
         })();
 
         // ===== LOGO-PANEL: Regler schreiben in die CSS-Variablen der Stage =====
@@ -4223,10 +4264,19 @@
             sliders.forEach(s => defaults[s.dataset.var] = s.value);
             const defaultColor = colorInput.value;
 
+            // Diese Größen laufen standardmäßig proportional zur Bühne (calc) bzw. responsiv (clamp).
+            // Erst wenn man den Regler bewegt, wird daraus ein fester px-Override.
+            const AUTO_VARS = ['--stage-size', '--corona-size', '--corona-blur', '--orb-size', '--logo-glow-size'];
+
             function paint(slider) {
                 const value = slider.value + slider.dataset.unit;
                 stage.style.setProperty(slider.dataset.var, value);
                 slider.parentElement.querySelector('.lp-val').textContent = value;
+            }
+
+            function resetVar(slider) {
+                stage.style.removeProperty(slider.dataset.var);
+                slider.parentElement.querySelector('.lp-val').textContent = 'auto';
             }
 
             function paintColor() {
@@ -4238,7 +4288,11 @@
             }
 
             sliders.forEach(s => {
-                paint(s);
+                if (AUTO_VARS.includes(s.dataset.var)) {
+                    resetVar(s);
+                } else {
+                    paint(s);
+                }
                 s.addEventListener('input', () => paint(s));
             });
             paintColor();
@@ -4248,18 +4302,30 @@
                 panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
             });
 
-            // Der Größen-Button oben schiebt die Stage-Breite direkt — Slider nachziehen
+            // Die +/- Buttons schreiben die --stage-size-Variable — Slider nachziehen
             const stageSlider = sliders.find(s => s.dataset.var === '--stage-size');
             new MutationObserver(() => {
-                const w = parseInt(stage.style.width);
-                if (w && String(w) !== stageSlider.value) {
-                    stageSlider.value = w;
-                    stageSlider.parentElement.querySelector('.lp-val').textContent = w + 'px';
+                const v = stage.style.getPropertyValue('--stage-size');
+                const m = v.match(/^(\d+(?:\.\d+)?)px$/);
+                if (m) {
+                    const w = Math.round(parseFloat(m[1]));
+                    if (String(w) !== stageSlider.value) {
+                        stageSlider.value = String(w);
+                        stageSlider.parentElement.querySelector('.lp-val').textContent = w + 'px';
+                    }
                 }
             }).observe(stage, { attributes: true, attributeFilter: ['style'] });
 
             document.getElementById('lpReset').addEventListener('click', () => {
-                sliders.forEach(s => { s.value = defaults[s.dataset.var]; paint(s); });
+                sliders.forEach(s => {
+                    s.value = defaults[s.dataset.var];
+                    if (AUTO_VARS.includes(s.dataset.var)) {
+                        // Zurück zur proportionalen/responsiven Automatik
+                        resetVar(s);
+                    } else {
+                        paint(s);
+                    }
+                });
                 colorInput.value = defaultColor;
                 paintColor();
             });
