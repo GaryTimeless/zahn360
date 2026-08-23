@@ -1887,7 +1887,7 @@
 
         .fade-in.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
 
         .fade-in-left {
@@ -1898,7 +1898,7 @@
 
         .fade-in-left.visible {
             opacity: 1;
-            transform: translateX(0);
+            transform: none;
         }
 
         .fade-in-right {
@@ -1909,7 +1909,7 @@
 
         .fade-in-right.visible {
             opacity: 1;
-            transform: translateX(0);
+            transform: none;
         }
         /* ===== ARCHITECTS ECLIPSE PULSE LOGO SHOWCASE ===== */
         .architects-section {
@@ -1970,6 +1970,20 @@
             line-height: 1.6;
         }
 
+        /* Logo-Bühne flexzentriert - auch bei Übergröße symmetrisch, ohne transform
+           (ein transform auf der Bühne oder dem Wrapper beschnitt in Safari/Chromium den Corona-Blur zu einem sichtbaren Kasten) */
+        .hero-logo {
+            display: flex;
+            justify-content: center;
+        }
+        .hero-logo.fade-in {
+            transform: none;
+            transition: opacity 0.8s ease;
+        }
+        .hero-logo.fade-in.visible {
+            transform: none;
+        }
+
         /* Eclipse Stage */
         .architects-stage {
             /* Alle Stellschrauben des Logos an einem Ort - das Logo-Panel schreibt hier hinein.
@@ -1977,9 +1991,9 @@
                Alle Teile (Corona, Orb, Blur, Glow) sind proportional zur Bühne. */
             --pulse-speed: 8s;
             --stage-size: clamp(300px, 88vw, 600px);
-            --corona-size: calc(var(--stage-size) * 0.8375);
-            --corona-blur: calc(var(--stage-size) * 0.06875);
-            --corona-opacity: 0.75;
+            --corona-size: calc(var(--stage-size) * 1.35);
+            --corona-blur: calc(var(--stage-size) * 0.09);
+            --corona-opacity: 0.85;
             --orb-size: calc(var(--stage-size) * 0.7875);
             --logo-scale: 136%;
             --logo-glow-size: calc(var(--stage-size) * 0.075);
@@ -1990,12 +2004,8 @@
             z-index: 2;
             width: var(--stage-size);
             height: var(--stage-size);
+            flex-shrink: 0;
             margin: 2rem 0 3rem;
-            /* Hart auf die Mitte zentriert - auch wenn die Bühne breiter als ihr
-               Container ist (bei margin:auto wären die Ränder sonst 0 und das
-               Logo würde nach rechts ausbrechen). */
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2009,10 +2019,11 @@
             height: var(--corona-size);
             border-radius: 50%;
             background: radial-gradient(circle,
-                rgba(var(--glow-rgb), 0.60) 0%,
-                rgba(var(--glow-rgb), 0.34) 42%,
-                rgba(var(--glow-rgb), 0.12) 66%,
-                transparent 82%);
+                rgba(var(--glow-rgb), 0.85) 0%,
+                rgba(var(--glow-rgb), 0.55) 35%,
+                rgba(var(--glow-rgb), 0.22) 65%,
+                rgba(var(--glow-rgb), 0.06) 80%,
+                transparent 95%);
             filter: blur(var(--corona-blur));
             animation: architectsCoronaPulse var(--pulse-speed) ease-in-out infinite;
             pointer-events: none;
@@ -2030,6 +2041,7 @@
             align-items: center;
             justify-content: center;
             padding: 0;
+            box-shadow: 0 0 var(--logo-glow-size) rgba(var(--glow-rgb), var(--glow-alpha));
         }
 
         /* Logo SVG inside Orb - ruhig, damit allein das Hintergrundleuchten pulsiert */
@@ -2038,8 +2050,7 @@
             height: var(--logo-scale);
             flex-shrink: 0;
             object-fit: contain;
-            /* Schatten liegt jetzt direkt auf der Logo-Kontur, nicht mehr auf einer Scheibe darunter */
-            filter: drop-shadow(0 0 var(--logo-glow-size) rgba(var(--glow-rgb), var(--glow-alpha)));
+            pointer-events: none;
         }
 
         /* Interactive Controls */
@@ -2546,9 +2557,9 @@
                 <label>Puls-Tempo<input type="range" data-var="--pulse-speed" data-unit="s" min="0.5" max="8" step="0.5" value="8"><span class="lp-val"></span></label>
 
                 <p class="lp-group">Leuchten · .architects-corona</p>
-                <label>Größe<input type="range" data-var="--corona-size" data-unit="px" min="100" max="1600" step="10" value="670"><span class="lp-val"></span></label>
+                <label>Größe<input type="range" data-var="--corona-size" data-unit="px" min="100" max="1600" step="10" value="810"><span class="lp-val"></span></label>
                 <label>Weichzeichnung<input type="range" data-var="--corona-blur" data-unit="px" min="0" max="200" step="1" value="55"><span class="lp-val"></span></label>
-                <label>Stärke<input type="range" data-var="--corona-opacity" data-unit="" min="0" max="1.5" step="0.05" value="0.75"><span class="lp-val"></span></label>
+                <label>Stärke<input type="range" data-var="--corona-opacity" data-unit="" min="0" max="1.5" step="0.05" value="0.85"><span class="lp-val"></span></label>
 
                 <p class="lp-group">Scheibe · .architects-orb</p>
                 <label>Größe<input type="range" data-var="--orb-size" data-unit="px" min="100" max="1400" step="10" value="630"><span class="lp-val"></span></label>
