@@ -726,20 +726,21 @@
             color: var(--gray-light);
         }
 
-        /* Fine line separator */
+        /* Fine line separator (im Kopf jeder Sektion) */
         .fine-separator {
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 0;
-            background: var(--cream);
+            margin-bottom: 3.5rem;
+            background: transparent;
         }
 
         .fine-separator-inner {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 0;
         }
 
         /* ===== PATIENTEN ===== */
@@ -1221,22 +1222,7 @@
 
         /* Separatoren & Footer in v-1 */
         [data-variant="v1"] .fine-separator {
-            background: #000000;
-        }
-        [data-variant="v1"] .fine-separator.karriere-sep,
-        [data-variant="v1"] .fine-separator.kontakt-sep,
-        [data-variant="v1"] .fine-separator.zahnaerzte-sep {
-            background: #FFFFFF !important;
-        }
-        [data-variant="v1"] .fine-separator.karriere-sep .ornament-line,
-        [data-variant="v1"] .fine-separator.kontakt-sep .ornament-line,
-        [data-variant="v1"] .fine-separator.zahnaerzte-sep .ornament-line {
-            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.15), transparent) !important;
-        }
-        [data-variant="v1"] .fine-separator.karriere-sep .ornament-diamond,
-        [data-variant="v1"] .fine-separator.kontakt-sep .ornament-diamond,
-        [data-variant="v1"] .fine-separator.zahnaerzte-sep .ornament-diamond {
-            border-color: rgba(0, 0, 0, 0.25) !important;
+            background: transparent;
         }
         [data-variant="v1"] .site-footer {
             background: #000000;
@@ -2836,16 +2822,14 @@
         </div>
     </section>
 
-    <!-- Separator -->
-    <div class="fine-separator">
-        <div class="fine-separator-inner">
-            <div class="ornament-line"></div>
-            <div class="ornament-diamond"></div>
-        </div>
-    </div>
-
     <!-- ===== PATIENTEN ===== -->
     <section class="section section-light" id="patienten">
+        <div class="fine-separator">
+            <div class="fine-separator-inner">
+                <div class="ornament-line"></div>
+                <div class="ornament-diamond"></div>
+            </div>
+        </div>
         <div class="section-inner">
             <div class="section-header">
                 <p class="section-overtitle fade-in">Höchste Priorität: Ihre Gesundheit</p>
@@ -2916,16 +2900,14 @@
         </div>
     </section>
 
-    <!-- Separator -->
-    <div class="fine-separator karriere-sep" style="background:var(--near-black);">
-        <div class="fine-separator-inner">
-            <div class="ornament-line"></div>
-            <div class="ornament-diamond"></div>
-        </div>
-    </div>
-
     <!-- ===== KARRIERE ===== -->
     <section class="section section-dark" id="karriere">
+        <div class="fine-separator">
+            <div class="fine-separator-inner">
+                <div class="ornament-line"></div>
+                <div class="ornament-diamond"></div>
+            </div>
+        </div>
         <div class="section-inner">
             <div class="section-header">
                 <p class="section-overtitle fade-in">Wachse mit uns</p>
@@ -3000,16 +2982,14 @@
         </div>
     </section>
 
-    <!-- Separator -->
-    <div class="fine-separator gebaeude-sep">
-        <div class="fine-separator-inner">
-            <div class="ornament-line"></div>
-            <div class="ornament-diamond"></div>
-        </div>
-    </div>
-
     <!-- ===== FIRMENGEBÄUDE ===== -->
     <section class="section section-black" id="gebaeude">
+        <div class="fine-separator">
+            <div class="fine-separator-inner">
+                <div class="ornament-line"></div>
+                <div class="ornament-diamond"></div>
+            </div>
+        </div>
         <div class="section-inner">
             <div class="building-grid fade-in">
                 <div class="building-image">
@@ -3028,16 +3008,14 @@
         </div>
     </section>
 
-    <!-- Separator -->
-    <div class="fine-separator zahnaerzte-sep" style="background:#FFFFFF;">
-        <div class="fine-separator-inner">
-            <div class="ornament-line"></div>
-            <div class="ornament-diamond"></div>
-        </div>
-    </div>
-
     <!-- ===== ZAHNÄRZTE ===== -->
     <section class="section section-white" id="zahnaerzte">
+        <div class="fine-separator">
+            <div class="fine-separator-inner">
+                <div class="ornament-line"></div>
+                <div class="ornament-diamond"></div>
+            </div>
+        </div>
         <div class="section-inner">
             <div class="section-header">
                 <h2 class="section-title fade-in">Für zahnärztliche Praxen</h2>
@@ -3153,16 +3131,14 @@
         </div>
     </section>
 
-    <!-- Separator -->
-    <div class="fine-separator">
-        <div class="fine-separator-inner">
-            <div class="ornament-line"></div>
-            <div class="ornament-diamond"></div>
-        </div>
-    </div>
-
     <!-- ===== PROZESS ===== -->
     <section class="section section-light" id="prozess">
+        <div class="fine-separator">
+            <div class="fine-separator-inner">
+                <div class="ornament-line"></div>
+                <div class="ornament-diamond"></div>
+            </div>
+        </div>
         <div class="section-inner">
             <p class="section-overtitle fade-in">So entsteht Ihre Arbeit</p>
             <h2 class="section-title fade-in">Einmal ganz herum. Vier Schritte bis zur fertigen Arbeit.</h2>
@@ -3202,16 +3178,14 @@
         </div>
     </section>
 
-    <!-- Separator -->
-    <div class="fine-separator">
-        <div class="fine-separator-inner">
-            <div class="ornament-line"></div>
-            <div class="ornament-diamond"></div>
-        </div>
-    </div>
-
     <!-- ===== ÜBER UNS ===== -->
     <section class="section section-light" id="ueberuns">
+        <div class="fine-separator">
+            <div class="fine-separator-inner">
+                <div class="ornament-line"></div>
+                <div class="ornament-diamond"></div>
+            </div>
+        </div>
         <div class="section-inner">
             <div class="about-grid">
                 <div class="about-image fade-in-left">
@@ -3239,16 +3213,14 @@
         </div>
     </section>
 
-    <!-- Separator -->
-    <div class="fine-separator kontakt-sep" style="background:var(--near-black);">
-        <div class="fine-separator-inner">
-            <div class="ornament-line"></div>
-            <div class="ornament-diamond"></div>
-        </div>
-    </div>
-
     <!-- ===== KONTAKT ===== -->
     <section class="section section-dark" id="kontakt">
+        <div class="fine-separator">
+            <div class="fine-separator-inner">
+                <div class="ornament-line"></div>
+                <div class="ornament-diamond"></div>
+            </div>
+        </div>
         <div class="section-inner">
             <div class="section-header">
                 <p class="section-overtitle fade-in">Wir freuen uns auf Sie</p>
@@ -4686,26 +4658,6 @@
             if (form) form.addEventListener('reset', () => setTimeout(syncFromNative, 0));
         })();
 
-        // ===== v-2 Zebra: Separatoren an die Farbe der folgenden Sektion angleichen =====
-        if (document.documentElement.getAttribute('data-variant') === 'v2') {
-            (function initZebraSeparators() {
-                const COLORS = ['#000000', '#121212'];
-                function apply() {
-                    const secs = Array.from(document.querySelectorAll('body > section'));
-                    secs.forEach((sec, i) => {
-                        const prev = sec.previousElementSibling;
-                        if (prev && prev.classList.contains('fine-separator')) {
-                            prev.style.background = COLORS[i % 2];
-                        }
-                    });
-                }
-                apply();
-                document.addEventListener('click', (e) => {
-                    if (e.target.closest('.section-move-btn')) setTimeout(apply, 0);
-                });
-            })();
-        }
-
         // ===== SEKTIONEN VERSCHIEBEN (Entwickler-Modus) =====
         (function initMoveSections() {
             const toggleBtn = document.getElementById('moveToggleBtn');
@@ -4762,33 +4714,17 @@
                 });
             }
 
-            // Sektion zusammen mit dem direkt davor liegenden Separator verschieben,
-            // damit die Hintergrundfarben der Trennlinien zur Sektion passen.
+            // Sektion verschieben (Trennlinie/Separator ist fest in der Sektion enthalten und wandert mit)
             function moveSection(sec, dir) {
-                const sep = (sec.previousElementSibling && sec.previousElementSibling.classList.contains('fine-separator'))
-                    ? sec.previousElementSibling : null;
-
+                const secs = allSections();
+                const idx = secs.indexOf(sec);
+                const targetIdx = idx + dir;
+                if (targetIdx < 0 || targetIdx >= secs.length) return;
+                const targetSec = secs[targetIdx];
                 if (dir === -1) {
-                    const prev = sep ? sep.previousElementSibling : sec.previousElementSibling;
-                    if (!prev || !prev.matches('section')) return;
-                    // Einfügepunkt: vor dem Separator der Ziel-Sektion, damit diese ihren eigenen behält
-                    const prevSep = (prev.previousElementSibling && prev.previousElementSibling.classList.contains('fine-separator'))
-                        ? prev.previousElementSibling : null;
-                    const ref = prevSep || prev;
-                    if (sep) prev.parentNode.insertBefore(sep, ref);
-                    prev.parentNode.insertBefore(sec, ref);
+                    targetSec.before(sec);
                 } else {
-                    let next = sec.nextElementSibling;
-                    while (next && !next.matches('section')) next = next.nextElementSibling;
-                    if (!next) return;
-                    const ref = next.nextElementSibling;
-                    if (ref) {
-                        if (sep) next.parentNode.insertBefore(sep, ref);
-                        next.parentNode.insertBefore(sec, ref);
-                    } else {
-                        if (sep) next.parentNode.appendChild(sep);
-                        next.parentNode.appendChild(sec);
-                    }
+                    targetSec.after(sec);
                 }
                 refreshStates();
             }
