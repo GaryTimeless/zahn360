@@ -1315,44 +1315,171 @@
             background: #000000;
         }
 
-        /* v-2: Zebra — Sektionen wechseln sich ab: schwarz / dunkelgrau, keine hellen Sektionen */
-        [data-variant="v2"] .section-white { background: #121212; color: #E8E6E3; }
-        [data-variant="v2"] .section-white .section-title { color: #FFFFFF; }
-        [data-variant="v2"] .section-white .section-desc { color: #BBBBBB; }
-        [data-variant="v2"] .section-white .leistung-acc summary { color: #E8E6E3; }
-        [data-variant="v2"] .section-white .leistung-acc .acc-content li { color: #BBBBBB; }
-        [data-variant="v2"] .section-white .benefit-text p { color: #BBBBBB; }
-        [data-variant="v2"] .section-dark { color: #E8E6E3; }
-        [data-variant="v2"] .section-dark .section-title { color: #FFFFFF; }
-        [data-variant="v2"] .section-dark .section-desc { color: #BBBBBB; }
-        [data-variant="v2"] .section-dark .section-overtitle { color: #BBBBBB; }
-        [data-variant="v2"] .section-dark .perk-item { border-color: rgba(255, 255, 255, 0.08); }
-        [data-variant="v2"] .section-dark .perk-item h3 { color: #FFFFFF; }
-        [data-variant="v2"] .section-dark .perk-item p { color: #BBBBBB; }
-        [data-variant="v2"] .section-dark .job-item { border-bottom-color: rgba(255, 255, 255, 0.08); }
-        [data-variant="v2"] .section-dark .job-item:first-child { border-top-color: rgba(255, 255, 255, 0.08); }
-        [data-variant="v2"] .section-dark .job-name { color: #E8E6E3; }
-        [data-variant="v2"] .section-dark .job-meta { color: #BBBBBB; }
-        [data-variant="v2"] .section-dark .btn-dark-outline { color: #E8E6E3; border-color: rgba(255, 255, 255, 0.25); }
-        [data-variant="v2"] .section-dark .btn-dark-outline:hover { border-color: #FFFFFF; color: #FFFFFF; }
-        [data-variant="v2"] .section-dark .contact-form { border-color: rgba(255, 255, 255, 0.08); }
-        [data-variant="v2"] .section-dark .contact-entry-label { color: #BBBBBB; }
-        [data-variant="v2"] .section-dark .contact-entry-value,
-        [data-variant="v2"] .section-dark .contact-entry-value a { color: #E8E6E3; }
-        [data-variant="v2"] .section-dark .form-heading { color: #FFFFFF; }
-        [data-variant="v2"] .section-dark .form-group label { color: #BBBBBB; }
-        [data-variant="v2"] .section-dark .form-control { color: #E8E6E3; border-bottom-color: rgba(255, 255, 255, 0.25); }
-        [data-variant="v2"] .section-dark .form-control:focus { border-bottom-color: #FFFFFF; }
-        [data-variant="v2"] .section-dark .form-control::placeholder { color: rgba(255, 255, 255, 0.3); }
-        [data-variant="v2"] body > section:nth-of-type(odd) { background: #000000; }
-        [data-variant="v2"] body > section:nth-of-type(even) { background: #121212; }
+        /* ===== FARBVARIANTE v-2 (Zebra / Dark: exakt wie v-1, aber mit Dunkelgrau #121212 statt Weiß) ===== */
+        [data-variant="v2"] {
+            --header-bg: rgba(0, 0, 0, 0.92);
+        }
+        [data-variant="v2"] .header-nav {
+            background: rgba(0, 0, 0, 0.92);
+        }
 
-        /* v-2: Dropdown dunkelgrau statt weiß */
-        [data-variant="v2"] .custom-select-menu {
-            background: #121212;
+        /* 1. Hero: Schwarz */
+        [data-variant="v2"] .hero {
+            background: #000000;
+        }
+
+        /* 2. Patienten: Schwarz */
+        [data-variant="v2"] #patienten {
+            background: #000000;
+            color: #E8E6E3;
+        }
+        [data-variant="v2"] #patienten .section-title { color: #FFFFFF; }
+        [data-variant="v2"] #patienten .section-desc { color: #BBBBBB; }
+        [data-variant="v2"] #patienten .patient-feature h4 { color: #FFFFFF; }
+        [data-variant="v2"] #patienten .patient-feature p { color: #BBBBBB; }
+        [data-variant="v2"] #patienten .quality-seal {
+            background: rgba(255, 255, 255, 0.04);
             border-color: rgba(255, 255, 255, 0.12);
         }
-        [data-variant="v2"] .custom-select-option { color: #E8E6E3; }
+        [data-variant="v2"] #patienten .quality-seal-title { color: #FFFFFF; }
+        [data-variant="v2"] #patienten .quality-seal-sub { color: #BBBBBB; }
+        [data-variant="v2"] #patienten .quality-list li { color: #E8E6E3; }
+
+        /* 3. Karriere: Dunkelgrau (#121212) */
+        [data-variant="v2"] #karriere {
+            background: #121212;
+            color: #E8E6E3;
+        }
+        [data-variant="v2"] #karriere .section-title { color: #FFFFFF; }
+        [data-variant="v2"] #karriere .section-desc { color: #BBBBBB; }
+        [data-variant="v2"] #karriere .section-overtitle { color: #BBBBBB; }
+        [data-variant="v2"] #karriere .perk-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+        [data-variant="v2"] #karriere .perk-item h3 { color: #FFFFFF; }
+        [data-variant="v2"] #karriere .perk-item p { color: #BBBBBB; }
+        [data-variant="v2"] #karriere .job-item {
+            border-bottom-color: rgba(255, 255, 255, 0.08);
+        }
+        [data-variant="v2"] #karriere .job-item:first-child {
+            border-top-color: rgba(255, 255, 255, 0.08);
+        }
+        [data-variant="v2"] #karriere .job-name { color: #E8E6E3; }
+        [data-variant="v2"] #karriere .job-meta { color: #BBBBBB; }
+        [data-variant="v2"] #karriere .btn-dark-outline {
+            color: #E8E6E3;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        [data-variant="v2"] #karriere .btn-dark-outline:hover {
+            border-color: #FFFFFF;
+            color: #FFFFFF;
+        }
+
+        /* 4. Gebäude: Schwarz */
+        [data-variant="v2"] #gebaeude {
+            background: #000000;
+        }
+
+        /* 5. Zahnärzte / Praxen: Dunkelgrau (#121212) */
+        [data-variant="v2"] #zahnaerzte {
+            background: #121212;
+            color: #E8E6E3;
+        }
+        [data-variant="v2"] #zahnaerzte .section-title { color: #FFFFFF; }
+        [data-variant="v2"] #zahnaerzte .section-desc { color: #BBBBBB; }
+        [data-variant="v2"] #zahnaerzte .section-overtitle { color: #BBBBBB; }
+        [data-variant="v2"] #zahnaerzte .leistung-acc summary { color: #E8E6E3; }
+        [data-variant="v2"] #zahnaerzte .leistung-acc summary:hover { color: var(--turquoise); }
+        [data-variant="v2"] #zahnaerzte .leistung-acc details[open] summary { color: var(--turquoise); }
+        [data-variant="v2"] #zahnaerzte .leistung-acc .acc-content li { color: #BBBBBB; }
+        [data-variant="v2"] #zahnaerzte .benefit-text h4 { color: #FFFFFF; }
+        [data-variant="v2"] #zahnaerzte .benefit-text p { color: #BBBBBB; }
+
+        /* 6. Prozess: Schwarz */
+        [data-variant="v2"] #prozess {
+            background: #000000;
+            color: #E8E6E3;
+        }
+        [data-variant="v2"] #prozess .section-title { color: #FFFFFF; }
+        [data-variant="v2"] #prozess .process-step h3 { color: #FFFFFF; }
+        [data-variant="v2"] #prozess .process-step p { color: #BBBBBB; }
+        [data-variant="v2"] #prozess .degree-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.12);
+            color: var(--turquoise);
+        }
+
+        /* 7. Über uns: Schwarz */
+        [data-variant="v2"] #ueberuns {
+            background: #000000;
+            color: #E8E6E3;
+        }
+        [data-variant="v2"] #ueberuns h3 { color: #FFFFFF; }
+        [data-variant="v2"] #ueberuns p { color: #BBBBBB; }
+        [data-variant="v2"] #ueberuns .founders-block {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+        [data-variant="v2"] #ueberuns .founders-block h4 { color: var(--gray-light); }
+        [data-variant="v2"] #ueberuns .founders-block .names { color: #FFFFFF; }
+
+        /* 8. Kontakt: Dunkelgrau (#121212) */
+        [data-variant="v2"] #kontakt {
+            background: #121212;
+            color: #E8E6E3;
+        }
+        [data-variant="v2"] #kontakt .section-title { color: #FFFFFF; }
+        [data-variant="v2"] #kontakt .section-desc { color: #BBBBBB; }
+        [data-variant="v2"] #kontakt .section-overtitle { color: #BBBBBB; }
+        [data-variant="v2"] #kontakt .contact-info h3 { color: #FFFFFF; }
+        [data-variant="v2"] #kontakt .contact-info-sub { color: #BBBBBB; }
+        [data-variant="v2"] #kontakt .contact-entry-label { color: #BBBBBB; }
+        [data-variant="v2"] #kontakt .contact-entry-value,
+        [data-variant="v2"] #kontakt .contact-entry-value a { color: #E8E6E3; }
+        [data-variant="v2"] #kontakt .contact-form {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+        [data-variant="v2"] #kontakt .form-heading { color: #FFFFFF; }
+        [data-variant="v2"] #kontakt .form-group label { color: #BBBBBB; }
+        [data-variant="v2"] #kontakt .form-control {
+            color: #E8E6E3;
+            border-bottom-color: rgba(255, 255, 255, 0.25);
+        }
+        [data-variant="v2"] #kontakt .form-control:focus {
+            border-bottom-color: #FFFFFF;
+        }
+        [data-variant="v2"] #kontakt .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        [data-variant="v2"] #kontakt .custom-select-trigger {
+            color: #E8E6E3;
+        }
+        [data-variant="v2"] #kontakt .custom-select-menu {
+            background: #1A1A1A;
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+        [data-variant="v2"] #kontakt .custom-select-option {
+            color: #E8E6E3;
+        }
+        [data-variant="v2"] #kontakt .custom-select-option:hover {
+            background: rgba(94, 200, 216, 0.15);
+        }
+
+        /* Separatoren & Footer in v-2 */
+        [data-variant="v2"] .fine-separator {
+            background: transparent;
+        }
+        [data-variant="v2"] .site-footer {
+            background: #000000;
+            border-top-color: rgba(255, 255, 255, 0.08);
+        }
+        [data-variant="v2"] .architects-section,
+        [data-variant="v2"] .canvas-corona-section,
+        [data-variant="v2"] .eclipse-section {
+            background: #000000;
+        }
 
         /* ===== SEKTIONEN VERSCHIEBEN (Entwickler-Modus) ===== */
         .section-move-controls {
