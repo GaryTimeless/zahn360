@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" data-theme="dark">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +8,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
-
-    <script>
-        /* Farbvariante per URL-Parameter: index.html (Standard) | index.html?v=1 bzw. ?v-1 (echtes Schwarz) | index.html?v=2 bzw. ?v-2 (Zebra) */
-        (function () {
-            var s = location.search;
-            var v = new URLSearchParams(s).get('v');
-            if (v === '1' || v === 'v1' || v === 'v-1' || /[?&]v[-_]?1\b/i.test(s)) {
-                document.documentElement.setAttribute('data-variant', 'v1');
-            } else if (v === '2' || v === 'v2' || v === 'v-2' || /[?&]v[-_]?2\b/i.test(s)) {
-                document.documentElement.setAttribute('data-variant', 'v2');
-            }
-        })();
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -29,19 +16,19 @@
             --near-black: #1A1A1A;
             --charcoal: #2C2C2C;
             --gray-dark: #555555;
-            --gray-mid: #555555;
+            --gray-mid: #888888;
             --gray-light: #BBBBBB;
-            --gray-pale: #DDDBD7;
-            --off-white: #F0EEEB;
-            --cream: #F5F3F0;
+            --gray-pale: #E8E8E8;
+            --off-white: #F7F6F4;
+            --cream: #FDFCFA;
             --white: #FFFFFF;
 
-            --turquoise: #5EC8D8;
-            --turquoise-soft: #8DE0EB;
-            --turquoise-muted: rgba(94, 200, 216, 0.08);
-            --turquoise-line: rgba(94, 200, 216, 0.35);
+            --turquoise: #74F2FD;
+            --turquoise-soft: #9AF5FF;
+            --turquoise-muted: rgba(116, 242, 253, 0.08);
+            --turquoise-line: rgba(116, 242, 253, 0.35);
 
-            --header-bg: rgba(245, 243, 240, 0.92);
+            --header-bg: rgba(253, 252, 250, 0.92);
             --overlay-subtler: rgba(255, 255, 255, 0.03);
             --overlay-subtle: rgba(255, 255, 255, 0.06);
             --overlay-medium: rgba(255, 255, 255, 0.10);
@@ -50,10 +37,8 @@
             --overlay-xstrong: rgba(255, 255, 255, 0.25);
             --overlay-modal: rgba(0, 0, 0, 0.6);
 
-            /* Website-weit eine einzige Schrift: Inter (wie "Meisterlabor Weinheim" im Header).
-               --font-serif zeigt bewusst auf denselben Stack, damit alle Textstellen erfasst sind. */
+            --font-serif: 'Cormorant Garamond', 'Georgia', serif;
             --font-sans: 'Inter', -apple-system, sans-serif;
-            --font-serif: var(--font-sans);
 
             --max-width: 1100px;
             --line: 1px solid var(--gray-pale);
@@ -67,15 +52,15 @@
             --near-black: #D0CECB;
             --charcoal: #AAAAAA;
             --gray-dark: #999999;
-            --gray-mid: #999999;
+            --gray-mid: #888888;
             --gray-light: #666666;
             --gray-pale: #333333;
             --off-white: #1E1E1E;
             --cream: #121212;
             --white: #1A1A1A;
 
-            --turquoise-muted: rgba(94, 200, 216, 0.12);
-            --turquoise-line: rgba(94, 200, 216, 0.45);
+            --turquoise-muted: rgba(116, 242, 253, 0.12);
+            --turquoise-line: rgba(116, 242, 253, 0.45);
 
             --header-bg: rgba(18, 18, 18, 0.92);
             --overlay-subtler: rgba(0, 0, 0, 0.10);
@@ -87,17 +72,6 @@
             --overlay-modal: rgba(0, 0, 0, 0.85);
 
             --line: 1px solid var(--gray-pale);
-        }
-
-        /* Text auf hellen Flächen im Dark Mode: eine Stufe dunkler (#555555) für besseren Kontrast */
-        [data-theme="dark"] .section-dark .section-overtitle,
-        [data-theme="dark"] .section-dark .section-desc,
-        [data-theme="dark"] .perk-item p,
-        [data-theme="dark"] .job-meta,
-        [data-theme="dark"] .contact-entry-label,
-        [data-theme="dark"] .contact-info-sub,
-        [data-theme="dark"] .form-group label {
-            color: #555555;
         }
 
         /* Dark mode toggle button */
@@ -121,104 +95,13 @@
             color: var(--black);
         }
 
-        /* Dev-Buttons: fest unten rechts fliegend auf allen Bildschirmbreiten */
-        #sizeToggleBtn, #logoToggleBtn, #moveToggleBtn {
-            position: fixed;
-            bottom: 1rem;
-            z-index: 3000;
-        }
-        #sizeToggleBtn { right: 1rem; }
-        #logoToggleBtn { right: 6.5rem; }
-        #moveToggleBtn { right: 12rem; }
-
-        /* ===== KUNDEN-VARIANTEN-UMSCHALTER (Floating Bar) ===== */
-        .variant-switcher {
-            position: fixed;
-            bottom: 1rem;
-            left: 1rem;
-            z-index: 3000;
-            display: inline-flex;
-            align-items: center;
-            background: rgba(18, 18, 18, 0.88);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            border-radius: 999px;
-            padding: 4px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
-            gap: 2px;
-        }
-
-        .variant-switcher-label {
-            font-size: 0.65rem;
-            color: #888888;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 0 0.6rem 0 0.5rem;
-            font-weight: 500;
-            user-select: none;
-        }
-
-        .variant-btn {
-            background: transparent;
-            color: #AAAAAA;
-            border: none;
-            border-radius: 999px;
-            padding: 0.4rem 0.85rem;
-            font-size: 0.72rem;
-            font-family: var(--font-sans);
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .variant-btn:hover {
-            color: #FFFFFF;
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .variant-btn.active {
-            background: var(--turquoise);
-            color: #000000;
-            font-weight: 500;
-            box-shadow: 0 2px 10px rgba(94, 200, 216, 0.35);
-        }
-
-        @media (max-width: 768px) {
-            .variant-switcher {
-                bottom: 4rem;
-                left: 50%;
-                transform: translateX(-50%);
-                padding: 3px;
-            }
-            .variant-switcher-label {
-                display: none;
-            }
-            .variant-btn {
-                padding: 0.35rem 0.65rem;
-                font-size: 0.68rem;
-            }
-        }
-
         *, *::before, *::after {
             margin: 0; padding: 0; box-sizing: border-box;
-        }
-
-        /* Textmarkierung seitenweit im Markenton */
-        ::selection {
-            background: var(--turquoise);
-            color: #000000;
-        }
-        ::-moz-selection {
-            background: var(--turquoise);
-            color: #000000;
         }
 
         html {
             scroll-behavior: smooth;
             font-size: 16px;
-            color-scheme: dark;
         }
 
         body {
@@ -258,26 +141,17 @@
             border-radius: 50%;
         }
 
-        /* Türkiser Akzent-Flourish im Hero (zwischen Untertitel & Beschreibung) */
-        .flourish-turquoise .flourish-line {
-            background: linear-gradient(90deg, transparent, var(--turquoise), transparent);
-        }
-        .flourish-turquoise .flourish-center {
-            background: var(--turquoise);
-            border-color: var(--turquoise);
-        }
-
         /* Subtle scroll-line ornament */
         .ornament-line {
             width: 1px;
             height: 60px;
-            background: linear-gradient(to bottom, transparent, var(--turquoise), transparent);
+            background: linear-gradient(to bottom, transparent, var(--turquoise-line), transparent);
             margin: 0 auto;
         }
 
         .ornament-diamond {
-            width: 6px; height: 6px;
-            background: var(--turquoise);
+            width: 12px; height: 12px;
+            border: 1px solid var(--turquoise-line);
             border-radius: 50%;
             margin: 0.5rem auto;
         }
@@ -327,7 +201,7 @@
         }
 
         .nav-top-side a:hover {
-            color: var(--turquoise);
+            color: var(--black);
         }
 
         .brand-logo {
@@ -387,7 +261,7 @@
         }
 
         .nav-link:hover {
-            color: var(--turquoise);
+            color: var(--black);
         }
 
         .nav-link:hover::after {
@@ -699,7 +573,7 @@
         .btn-outline {
             background: transparent;
             color: var(--black);
-            border: 1px solid var(--gray-mid);
+            border: 1px solid var(--gray-light);
         }
 
         .btn-outline:hover {
@@ -710,7 +584,6 @@
         .hero-stats {
             display: flex;
             justify-content: center;
-            align-items: center;
             gap: 4rem;
         }
 
@@ -725,17 +598,15 @@
             color: var(--black);
             line-height: 1;
             letter-spacing: 2px;
-            white-space: nowrap;
         }
 
         .hero-stat-label {
             font-size: 0.65rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--gray-mid);
             margin-top: 0.4rem;
             font-weight: 400;
-            line-height: 1.35;
         }
 
         .hero-stat-divider {
@@ -749,7 +620,6 @@
         .section {
             padding: 6rem 2rem;
             position: relative;
-            scroll-margin-top: 90px;
         }
 
         .section-dark {
@@ -810,21 +680,20 @@
             color: var(--gray-light);
         }
 
-        /* Fine line separator (im Kopf jeder Sektion) */
+        /* Fine line separator */
         .fine-separator {
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 0;
-            margin-bottom: 3.5rem;
-            background: transparent;
+            background: var(--cream);
         }
 
         .fine-separator-inner {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0;
+            padding: 1.5rem 0;
         }
 
         /* ===== PATIENTEN ===== */
@@ -929,13 +798,9 @@
         }
 
         .quality-check {
-            display: block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--turquoise);
+            color: var(--gray-light);
+            font-size: 0.7rem;
             flex-shrink: 0;
-            margin-top: 0.4rem;
         }
 
         /* Corner ornaments for quality seal */
@@ -979,13 +844,10 @@
             background: var(--overlay-subtler);
         }
 
-        /* Tuerkiser Punkt - gleiche Formensprache wie .ornament-diamond im Separator */
         .perk-icon {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--turquoise);
-            margin: 0 auto 1.2rem;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            opacity: 0.8;
         }
 
         .perk-item h3 {
@@ -1024,7 +886,6 @@
 
         .job-item:hover {
             padding-left: 1rem;
-            background: var(--turquoise-muted);
         }
 
         .job-name {
@@ -1056,486 +917,24 @@
             border-color: var(--white);
         }
 
-        /* ===== LEISTUNGS-AKKORDEON ===== */
-        .leistung-acc {
-            margin: 2rem 0;
-            border-top: 1px solid var(--gray-pale);
-        }
-        .leistung-acc details {
-            border-bottom: 1px solid var(--gray-pale);
-        }
-        .leistung-acc summary {
-            padding: 1rem 0;
-            cursor: pointer;
-            font-family: var(--font-sans);
-            font-size: 0.82rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: var(--black);
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: color 0.2s;
-        }
-        .leistung-acc summary::-webkit-details-marker { display: none; }
-        .leistung-acc summary::after {
-            content: '+';
-            font-size: 1.1rem;
-            font-weight: 300;
-            color: var(--gray-mid);
-            transition: transform 0.2s;
-        }
-        .leistung-acc details[open] summary::after {
-            content: '−';
-        }
-        .leistung-acc summary:hover { color: var(--turquoise); }
-        .leistung-acc details[open] summary {
-            color: var(--turquoise);
-            font-weight: 500;
-        }
-        .leistung-acc .acc-content {
-            padding: 0 0 1.2rem 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 0.3rem 1.5rem;
-        }
-        .leistung-acc .acc-content li {
-            font-size: 0.78rem;
-            color: var(--gray-dark);
-            font-weight: 300;
-            line-height: 1.7;
-            list-style: none;
-            padding-left: 1rem;
-            position: relative;
-        }
-        .leistung-acc .acc-content li::before {
-            content: '·';
-            position: absolute;
-            left: 0;
-            color: var(--turquoise);
-            font-weight: 700;
-        }
-
-        [data-theme="dark"] .leistung-acc summary { color: var(--black); }
-        [data-theme="dark"] .leistung-acc summary:hover { color: var(--turquoise); }
-        [data-theme="dark"] .leistung-acc details[open] summary { color: var(--turquoise); }
-        [data-theme="dark"] .leistung-acc .acc-content li { color: var(--gray-light); }
-
-        /* ===== FIRMENGEBÄUDE (eigene Sektion, schwarz) ===== */
-        .section-black {
-            background: #121212;
-            color: var(--black);
-        }
-        .section-black .section-title { color: var(--black); }
-        .section-black .section-desc { color: var(--gray-dark); }
-        .building-grid {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3.5rem;
-            flex-wrap: wrap;
-        }
-        .building-image {
-            flex: 0 0 500px;
-            max-width: 100%;
-        }
-        .building-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 4px;
-        }
-        .building-text {
-            flex: 1;
-            min-width: 280px;
-        }
-
-        /* ===== WEISSE PRAXEN-SEKTION ===== */
-        .section-white {
-            background: #FFFFFF;
-            color: #111111;
-        }
-        .section-white .section-desc { color: #555555; }
-        .section-white .leistung-acc summary { color: #111111; }
-        .section-white .leistung-acc .acc-content li { color: #555555; }
-        .section-white .benefit-text p { color: #555555; }
-
-        /* ===== SEPARATOR-FARBE GEBÄUDE-SEKTION ===== */
-        .fine-separator.gebaeude-sep { background: #121212; }
-
-        /* ===== FARBVARIANTEN v-1 / v-2 (URL-Parameter ?v=1 bzw. ?v=2) ===== */
-        /* v-1: Echtes Schwarz (#000000) & klares Weiß (#FFFFFF) nach Sektionen */
-        [data-variant="v1"] {
-            --header-bg: rgba(0, 0, 0, 0.92);
-        }
-        [data-variant="v1"] .header-nav {
-            background: rgba(0, 0, 0, 0.92);
-        }
-
-        /* 1. Hero: Schwarz */
-        [data-variant="v1"] .hero {
-            background: #000000;
-        }
-
-        /* 2. Patienten (Woher kommt Ihr Zahnersatz): Schwarz */
-        [data-variant="v1"] #patienten {
-            background: #000000;
-            color: var(--black);
-        }
-        [data-variant="v1"] #patienten .section-title { color: var(--black); }
-        [data-variant="v1"] #patienten .section-desc { color: var(--gray-dark); }
-        [data-variant="v1"] #patienten .patient-feature h4 { color: var(--black); }
-        [data-variant="v1"] #patienten .patient-feature p { color: var(--gray-dark); }
-        [data-variant="v1"] #patienten .quality-seal {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-        [data-variant="v1"] #patienten .quality-seal-title { color: var(--black); }
-        [data-variant="v1"] #patienten .quality-seal-sub { color: var(--gray-dark); }
-        [data-variant="v1"] #patienten .quality-list li { color: var(--gray-dark); }
-
-        /* 3. Karriere (Deine Karriere bei Zahn 360): Weiß */
-        [data-variant="v1"] #karriere {
-            background: #FFFFFF;
-            color: #111111;
-        }
-        [data-variant="v1"] #karriere .section-title { color: #111111; }
-        [data-variant="v1"] #karriere .section-desc { color: #555555; }
-        [data-variant="v1"] #karriere .section-overtitle { color: #555555; }
-        [data-variant="v1"] #karriere .perk-item {
-            background: #F9F9F8;
-            border-color: rgba(0, 0, 0, 0.08);
-        }
-        [data-variant="v1"] #karriere .perk-item h3 { color: #111111; }
-        [data-variant="v1"] #karriere .perk-item p { color: #555555; }
-        [data-variant="v1"] #karriere .job-item {
-            border-bottom-color: rgba(0, 0, 0, 0.08);
-        }
-        [data-variant="v1"] #karriere .job-item:first-child {
-            border-top-color: rgba(0, 0, 0, 0.08);
-        }
-        [data-variant="v1"] #karriere .job-name { color: #111111; }
-        [data-variant="v1"] #karriere .job-meta { color: #555555; }
-        [data-variant="v1"] #karriere .btn-dark-outline {
-            color: #111111;
-            border-color: rgba(0, 0, 0, 0.25);
-        }
-        [data-variant="v1"] #karriere .btn-dark-outline:hover {
-            background: #111111;
-            color: #FFFFFF;
-            border-color: #111111;
-        }
-
-        /* 4. Gebäude (Raum für die Zukunft): Schwarz */
-        [data-variant="v1"] #gebaeude {
-            background: #000000;
-        }
-
-        /* 5. Zahnärzte (Für zahnärztliche Praxen): Weiß (Standard über .section-white) */
-
-        /* 6. Prozess (Einmal ganz herum): Schwarz */
-        [data-variant="v1"] #prozess {
-            background: #000000;
-            color: var(--black);
-        }
-        [data-variant="v1"] #prozess .section-title { color: var(--black); }
-        [data-variant="v1"] #prozess .process-step h3 { color: var(--black); }
-        [data-variant="v1"] #prozess .process-step p { color: var(--gray-dark); }
-        /* Badge: gleicher Ring wie Standard, nur Innenfläche an reines Schwarz angepasst */
-        [data-variant="v1"] #prozess .degree-badge::before {
-            background: #000000;
-        }
-
-        /* 7. Über uns (Tradition trifft Moderne): Schwarz */
-        [data-variant="v1"] #ueberuns {
-            background: #000000;
-            color: var(--black);
-        }
-        [data-variant="v1"] #ueberuns h3 { color: var(--black); }
-        [data-variant="v1"] #ueberuns p { color: var(--gray-dark); }
-
-        /* 8. Kontakt (Kontakt & Anfrage): Weiß */
-        [data-variant="v1"] #kontakt {
-            background: #FFFFFF;
-            color: #111111;
-        }
-        [data-variant="v1"] #kontakt .section-title { color: #111111; }
-        [data-variant="v1"] #kontakt .section-desc { color: #555555; }
-        [data-variant="v1"] #kontakt .section-overtitle { color: #555555; }
-        [data-variant="v1"] #kontakt .contact-info h3 { color: #111111; }
-        [data-variant="v1"] #kontakt .contact-info-sub { color: #555555; }
-        [data-variant="v1"] #kontakt .contact-entry-label { color: #555555; }
-        [data-variant="v1"] #kontakt .contact-entry-value,
-        [data-variant="v1"] #kontakt .contact-entry-value a { color: #111111; }
-        [data-variant="v1"] #kontakt .contact-form {
-            background: #F9F9F8;
-            border-color: rgba(0, 0, 0, 0.08);
-        }
-        [data-variant="v1"] #kontakt .form-heading { color: #111111; }
-        [data-variant="v1"] #kontakt .form-group label { color: #555555; }
-        [data-variant="v1"] #kontakt .form-control {
-            color: #111111;
-            border-bottom-color: rgba(0, 0, 0, 0.2);
-        }
-        [data-variant="v1"] #kontakt .form-control:focus {
-            border-bottom-color: #111111;
-        }
-        [data-variant="v1"] #kontakt .form-control::placeholder {
-            color: rgba(0, 0, 0, 0.35);
-        }
-        [data-variant="v1"] #kontakt .custom-select-trigger {
-            color: #111111;
-        }
-        [data-variant="v1"] #kontakt .custom-select-menu {
-            background: #FFFFFF;
-            border-color: rgba(0, 0, 0, 0.12);
-        }
-        [data-variant="v1"] #kontakt .custom-select-option {
-            color: #111111;
-        }
-        [data-variant="v1"] #kontakt .custom-select-option:hover {
-            background: rgba(94, 200, 216, 0.1);
-        }
-        [data-variant="v1"] #kontakt button[type="submit"] {
-            background: #111111 !important;
-            color: #FFFFFF !important;
-            border-color: #111111 !important;
-        }
-
-        /* Separatoren & Footer in v-1 */
-        [data-variant="v1"] .fine-separator {
-            background: transparent;
-        }
-        [data-variant="v1"] .site-footer {
-            background: #000000;
-            border-top-color: rgba(255, 255, 255, 0.08);
-        }
-        [data-variant="v1"] .architects-section,
-        [data-variant="v1"] .canvas-corona-section,
-        [data-variant="v1"] .eclipse-section {
-            background: #000000;
-        }
-
-        /* ===== FARBVARIANTE v-2 (Zebra / Dark: exakt wie v-1, aber mit Dunkelgrau #121212 statt Weiß) ===== */
-        [data-variant="v2"] {
-            --header-bg: rgba(0, 0, 0, 0.92);
-        }
-        [data-variant="v2"] .header-nav {
-            background: rgba(0, 0, 0, 0.92);
-        }
-
-        /* 1. Hero: Schwarz */
-        [data-variant="v2"] .hero {
-            background: #000000;
-        }
-
-        /* 2. Patienten: Schwarz */
-        [data-variant="v2"] #patienten {
-            background: #000000;
-            color: var(--black);
-        }
-        [data-variant="v2"] #patienten .section-title { color: var(--black); }
-        [data-variant="v2"] #patienten .section-desc { color: var(--gray-dark); }
-        [data-variant="v2"] #patienten .patient-feature h4 { color: var(--black); }
-        [data-variant="v2"] #patienten .patient-feature p { color: var(--gray-dark); }
-        [data-variant="v2"] #patienten .quality-seal {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-        [data-variant="v2"] #patienten .quality-seal-title { color: var(--black); }
-        [data-variant="v2"] #patienten .quality-seal-sub { color: var(--gray-dark); }
-        [data-variant="v2"] #patienten .quality-list li { color: var(--gray-dark); }
-
-        /* 3. Karriere: Dunkelgrau (#121212) */
-        [data-variant="v2"] #karriere {
-            background: #121212;
-            color: var(--black);
-        }
-        [data-variant="v2"] #karriere .section-title { color: var(--black); }
-        [data-variant="v2"] #karriere .section-desc { color: var(--gray-dark); }
-        [data-variant="v2"] #karriere .section-overtitle { color: var(--gray-dark); }
-        [data-variant="v2"] #karriere .perk-item {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.08);
-        }
-        [data-variant="v2"] #karriere .perk-item h3 { color: var(--black); }
-        [data-variant="v2"] #karriere .perk-item p { color: var(--gray-dark); }
-        [data-variant="v2"] #karriere .job-item {
-            border-bottom-color: rgba(255, 255, 255, 0.08);
-        }
-        [data-variant="v2"] #karriere .job-item:first-child {
-            border-top-color: rgba(255, 255, 255, 0.08);
-        }
-        [data-variant="v2"] #karriere .job-name { color: var(--black); }
-        [data-variant="v2"] #karriere .job-meta { color: var(--gray-dark); }
-        [data-variant="v2"] #karriere .btn-dark-outline {
-            color: var(--black);
-            border-color: rgba(255, 255, 255, 0.25);
-        }
-        [data-variant="v2"] #karriere .btn-dark-outline:hover {
-            border-color: var(--black);
-            color: var(--black);
-        }
-
-        /* 4. Gebäude: Schwarz */
-        [data-variant="v2"] #gebaeude {
-            background: #000000;
-        }
-
-        /* 5. Zahnärzte / Praxen: Dunkelgrau (#121212) */
-        [data-variant="v2"] #zahnaerzte {
-            background: #121212;
-            color: var(--black);
-        }
-        [data-variant="v2"] #zahnaerzte .section-title { color: var(--black); }
-        [data-variant="v2"] #zahnaerzte .section-desc { color: var(--gray-dark); }
-        [data-variant="v2"] #zahnaerzte .section-overtitle { color: var(--gray-dark); }
-        [data-variant="v2"] #zahnaerzte .leistung-acc summary { color: var(--black); }
-        [data-variant="v2"] #zahnaerzte .leistung-acc summary:hover { color: var(--turquoise); }
-        [data-variant="v2"] #zahnaerzte .leistung-acc details[open] summary { color: var(--turquoise); }
-        [data-variant="v2"] #zahnaerzte .leistung-acc .acc-content li { color: var(--gray-dark); }
-        [data-variant="v2"] #zahnaerzte .benefit-text h4 { color: var(--black); }
-        [data-variant="v2"] #zahnaerzte .benefit-text p { color: var(--gray-dark); }
-
-        /* 6. Prozess: Schwarz */
-        [data-variant="v2"] #prozess {
-            background: #000000;
-            color: var(--black);
-        }
-        [data-variant="v2"] #prozess .section-title { color: var(--black); }
-        [data-variant="v2"] #prozess .process-step h3 { color: var(--black); }
-        [data-variant="v2"] #prozess .process-step p { color: var(--gray-dark); }
-        /* Badge: gleicher Ring wie Standard, nur Innenfläche an reines Schwarz angepasst */
-        [data-variant="v2"] #prozess .degree-badge::before {
-            background: #000000;
-        }
-
-        /* 7. Über uns: Schwarz */
-        [data-variant="v2"] #ueberuns {
-            background: #000000;
-            color: var(--black);
-        }
-        [data-variant="v2"] #ueberuns h3 { color: var(--black); }
-        [data-variant="v2"] #ueberuns p { color: var(--gray-dark); }
-
-        /* 8. Kontakt: Dunkelgrau (#121212) */
-        [data-variant="v2"] #kontakt {
-            background: #121212;
-            color: var(--black);
-        }
-        [data-variant="v2"] #kontakt .section-title { color: var(--black); }
-        [data-variant="v2"] #kontakt .section-desc { color: var(--gray-dark); }
-        [data-variant="v2"] #kontakt .section-overtitle { color: var(--gray-dark); }
-        [data-variant="v2"] #kontakt .contact-info h3 { color: var(--black); }
-        [data-variant="v2"] #kontakt .contact-info-sub { color: var(--gray-dark); }
-        [data-variant="v2"] #kontakt .contact-entry-label { color: var(--gray-dark); }
-        [data-variant="v2"] #kontakt .contact-entry-value,
-        [data-variant="v2"] #kontakt .contact-entry-value a { color: var(--black); }
-        [data-variant="v2"] #kontakt .contact-form {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(255, 255, 255, 0.08);
-        }
-        [data-variant="v2"] #kontakt .form-heading { color: var(--black); }
-        [data-variant="v2"] #kontakt .form-group label { color: var(--gray-dark); }
-        [data-variant="v2"] #kontakt .form-control {
-            color: var(--black);
-            border-bottom-color: rgba(255, 255, 255, 0.25);
-        }
-        [data-variant="v2"] #kontakt .form-control:focus {
-            border-bottom-color: var(--black);
-        }
-        [data-variant="v2"] #kontakt .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-        [data-variant="v2"] #kontakt .custom-select-trigger {
-            color: var(--black);
-        }
-        [data-variant="v2"] #kontakt .custom-select-menu {
-            background: var(--white);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-        [data-variant="v2"] #kontakt .custom-select-option {
-            color: var(--black);
-        }
-        [data-variant="v2"] #kontakt .custom-select-option:hover {
-            background: rgba(94, 200, 216, 0.15);
-        }
-
-        /* Separatoren & Footer in v-2 */
-        [data-variant="v2"] .fine-separator {
-            background: transparent;
-        }
-        [data-variant="v2"] .site-footer {
-            background: #000000;
-            border-top-color: rgba(255, 255, 255, 0.08);
-        }
-        [data-variant="v2"] .architects-section,
-        [data-variant="v2"] .canvas-corona-section,
-        [data-variant="v2"] .eclipse-section {
-            background: #000000;
-        }
-
-        /* ===== SEKTIONEN VERSCHIEBEN (Entwickler-Modus) ===== */
-        .section-move-controls {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            z-index: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            background: rgba(17, 17, 17, 0.78);
-            border: 1px solid var(--turquoise-line);
-            border-radius: 999px;
-            padding: 0.3rem 0.55rem;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-        .section-move-btn {
-            background: none;
-            border: none;
-            color: var(--turquoise);
-            cursor: pointer;
-            font-size: 0.75rem;
-            line-height: 1;
-            padding: 0.2rem 0.35rem;
-            transition: color 0.2s;
-        }
-        .section-move-btn:hover:not(:disabled) { color: #FFFFFF; }
-        .section-move-btn:disabled { opacity: 0.3; cursor: default; }
-        .section-move-label {
-            font-family: var(--font-sans);
-            font-size: 0.6rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #DDDBD7;
-            font-weight: 400;
-        }
-        #moveToggleBtn.active {
-            border-color: var(--turquoise);
-            color: var(--turquoise);
-        }
-
         /* ===== ZAHNÄRZTE ===== */
         .dentist-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: start;
         }
 
-        /* Drei nebeneinander, seit die Badge-Karte daneben entfallen ist */
         .benefit-list {
             list-style: none;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
         .benefit-item {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             align-items: flex-start;
             transition: var(--transition);
         }
@@ -1560,142 +959,77 @@
         }
 
         /* Badge card */
-
-        /* ===== PROZESS ===== */
-        .process {
+        .badge-card {
+            border: 1px solid var(--gray-pale);
+            padding: 2.5rem 2rem;
             position: relative;
-            margin-top: 20px;
         }
 
-        .process-eyebrow {
-            font-family: var(--font-sans);
-            font-size: 0.68rem;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: var(--gray-mid);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .badge-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+        }
+
+        .badge-card > p {
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: var(--gray-dark);
+            line-height: 1.7;
             margin-bottom: 2rem;
         }
 
-        .process-eyebrow::before {
-            content: "";
-            width: 22px;
-            height: 1px;
-            background: var(--turquoise);
-            display: inline-block;
+        .badge-preview {
+            border: 1px dashed var(--gray-pale);
+            padding: 1.8rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
         }
 
-        .process-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            position: relative;
-        }
-
-        .process-steps::before {
-            content: "";
-            position: absolute;
-            left: 27px;
-            top: 8px;
-            bottom: 8px;
-            width: 1px;
-            background: var(--gray-pale);
-        }
-
-        .process-step {
-            display: flex;
-            gap: 22px;
-            padding: 22px 0;
-            position: relative;
-        }
-
-        /* Ring zeigt den Fortschritt: --deg des Kreises tuerkis, Rest hell.
-           Der Innenkreis stanzt die Mitte wieder frei, damit nur ein Ring bleibt. */
-        .degree-badge {
-            flex: none;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: conic-gradient(
-                var(--turquoise) var(--deg, 0deg),
-                #FFFFFF var(--deg, 0deg)
-            );
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-sans);
-            font-weight: 500;
-            font-size: 0.72rem;
-            letter-spacing: 1px;
-            color: var(--black);
-            position: relative;
-            z-index: 1;
-        }
-
-        .degree-badge::before {
-            content: '';
-            position: absolute;
-            inset: 6px;
-            border-radius: 50%;
-            background: var(--cream);
-        }
-
-        .degree-badge span {
-            position: relative;
-            z-index: 1;
-        }
-
-        .process-step h3 {
-            font-size: 1.1rem;
+        .badge-preview-label {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray-mid);
+            margin-bottom: 0.75rem;
             font-weight: 400;
-            margin-bottom: 6px;
-            font-family: var(--font-serif);
         }
 
-        .process-step p {
-            color: var(--gray-dark);
-            font-size: 0.85rem;
-            max-width: 56ch;
+        .badge-widget {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--near-black);
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.8rem;
             font-weight: 300;
-            line-height: 1.7;
+            border: 1px solid rgba(116,242,253,0.3);
         }
 
-        [data-theme="dark"] .process-steps::before {
-            background: var(--gray-pale);
+        .badge-widget-dot {
+            width: 6px; height: 6px;
+            background: var(--turquoise);
+            border-radius: 50%;
         }
 
-        @media (min-width: 900px) {
-            .process-steps {
-                flex-direction: row;
-                justify-content: space-between;
-                gap: 18px;
-            }
-            .process-steps::before {
-                left: 28px;
-                right: 28px;
-                top: 28px;
-                bottom: auto;
-                width: auto;
-                height: 1px;
-            }
-            .process-step {
-                flex-direction: column;
-                text-align: left;
-                flex: 1;
-                padding: 0;
-            }
-            .degree-badge {
-                margin-bottom: 20px;
-            }
+        .code-snippet {
+            background: var(--near-black);
+            border: 1px solid var(--charcoal);
+            padding: 1rem;
+            font-family: 'SFMono-Regular', Consolas, monospace;
+            font-size: 0.7rem;
+            color: var(--turquoise-soft);
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
         /* ===== ÜBER UNS ===== */
-        /* Übergang Prozess -> Über uns: gleicher Hintergrund, Ornament entfernt -> Abstand verringern */
-        #ueberuns {
-            padding-top: 2rem;
-        }
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1754,7 +1088,8 @@
         .founders-block .names {
             font-family: var(--font-serif);
             font-size: 1.1rem;
-            font-weight: 400;
+            font-weight: 500;
+            font-style: italic;
             color: var(--black);
             letter-spacing: 0.5px;
         }
@@ -1778,21 +1113,6 @@
         .contact-info {
             padding: 2rem 0;
         }
-
-        /* Kontaktdaten inline im Sektions-Header: nur mobil sichtbar, ersetzt dort die Beschreibung */
-        .contact-data-inline { display: none; }
-        .contact-data-inline p {
-            font-size: 0.8rem;
-            font-weight: 300;
-            line-height: 1.9;
-            letter-spacing: 0.3px;
-        }
-        .contact-data-inline a {
-            color: inherit;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        .contact-data-inline a:hover { color: var(--turquoise); }
 
         .contact-info h3 {
             font-family: var(--font-serif);
@@ -1822,6 +1142,17 @@
             display: flex;
             gap: 1.2rem;
             align-items: flex-start;
+        }
+
+        .contact-entry-icon {
+            width: 36px; height: 36px;
+            border: 1px solid var(--overlay-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            color: var(--gray-light);
         }
 
         .contact-entry-label {
@@ -1913,79 +1244,14 @@
             padding-right: 1.5rem;
         }
 
-        /* Feste Werte statt Theme-Variablen: die invertieren im Dark-Theme und
-           haben das Aufklappmenue grau gemacht. */
         select.form-control option {
-            background: #000000;
-            color: #FFFFFF;
+            background: var(--near-black);
+            color: var(--white);
         }
-
-        /* ===== CUSTOM DROPDOWN (statt nativem Mac-Menü) ===== */
-        .custom-select { position: relative; }
-        .custom-select-native { display: none; }
-
-        .custom-select-trigger {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.75rem;
-            width: 100%;
-            cursor: pointer;
-            text-align: left;
-        }
-
-        .custom-select-chevron {
-            width: 10px;
-            height: 6px;
-            flex-shrink: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888' stroke-width='1'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: center;
-            transition: transform 0.3s ease;
-        }
-        .custom-select.open .custom-select-chevron { transform: rotate(180deg); }
-
-        .custom-select-menu {
-            position: absolute;
-            top: calc(100% + 0.5rem);
-            left: 0;
-            right: 0;
-            z-index: 60;
-            list-style: none;
-            margin: 0;
-            padding: 0.4rem 0;
-            background: #FFFFFF;
-            border: 1px solid rgba(0, 0, 0, 0.12);
-            border-radius: 10px;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-            max-height: 260px;
-            overflow-y: auto;
-        }
-        .custom-select-menu[hidden] { display: none; }
-
-        .custom-select-option {
-            padding: 0.65rem 1rem;
-            font-size: 0.85rem;
-            font-weight: 300;
-            color: #111111;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-        }
-        .custom-select-option:hover,
-        .custom-select-option.highlighted {
-            background: var(--turquoise);
-            color: #000000;
-        }
-        .custom-select-option.selected { color: var(--turquoise); }
-        .custom-select-option.selected:hover,
-        .custom-select-option.selected.highlighted { color: #000000; }
 
         textarea.form-control {
             min-height: 100px;
             resize: vertical;
-            overflow-x: hidden;
-            white-space: pre-wrap;
-            word-wrap: break-word;
         }
 
         /* ===== FOOTER ===== */
@@ -2042,12 +1308,12 @@
         }
 
         .footer-links a:hover {
-            color: var(--turquoise);
+            color: var(--black);
         }
 
         .footer-legal {
             font-size: 0.7rem;
-            color: var(--gray-mid);
+            color: var(--gray-light);
             max-width: 650px;
             line-height: 1.8;
             font-weight: 300;
@@ -2190,21 +1456,9 @@
                 grid-template-columns: 1fr;
             }
             .hero-frame { display: none; }
-            /* Kontakt: Formular zuerst (Hauptaktion); Kontaktdaten wandern in den Sektions-Header */
-            .contact-form { order: -1; }
-            #kontakt .section-header .section-desc { display: none; }
-            .contact-data-inline { display: block; }
-            .contact-info { display: none; }
         }
 
-        /* Navigation: Hamburger schon ab 850px, damit die Links nie zweizeilig umbrechen */
-        @media (max-width: 850px) {
-            .nav-top {
-                justify-content: flex-start;
-            }
-            .brand-logo {
-                text-align: left;
-            }
+        @media (max-width: 768px) {
             .nav-bottom {
                 position: fixed;
                 top: 90px; left: 0; right: 0;
@@ -2221,15 +1475,8 @@
             .nav-dot { display: none; }
             .mobile-toggle {
                 display: block;
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                right: 2rem;
             }
             .nav-top-side { display: none; }
-        }
-
-        @media (max-width: 768px) {
             .job-item {
                 flex-direction: column;
                 align-items: flex-start;
@@ -2239,16 +1486,10 @@
                 grid-template-columns: 1fr;
             }
             .hero-stats {
-                gap: clamp(0.75rem, 3vw, 2rem);
+                gap: 2rem;
             }
             .hero-stat-value {
-                font-size: clamp(1.2rem, 4.5vw, 1.6rem);
-                white-space: nowrap;
-            }
-            .hero-stat-label {
-                font-size: clamp(0.52rem, 1.9vw, 0.65rem);
-                letter-spacing: clamp(0.5px, 0.3vw, 1.5px);
-                line-height: 1.3;
+                font-size: 1.6rem;
             }
             .about-image-frame { display: none; }
         }
@@ -2262,7 +1503,7 @@
 
         .fade-in.visible {
             opacity: 1;
-            transform: none;
+            transform: translateY(0);
         }
 
         .fade-in-left {
@@ -2273,7 +1514,7 @@
 
         .fade-in-left.visible {
             opacity: 1;
-            transform: none;
+            transform: translateX(0);
         }
 
         .fade-in-right {
@@ -2284,7 +1525,7 @@
 
         .fade-in-right.visible {
             opacity: 1;
-            transform: none;
+            transform: translateX(0);
         }
         /* ===== ARCHITECTS ECLIPSE PULSE LOGO SHOWCASE ===== */
         .architects-section {
@@ -2345,87 +1586,92 @@
             line-height: 1.6;
         }
 
-        /* Logo-Bühne flexzentriert - auch bei Übergröße symmetrisch, ohne transform
-           (ein transform auf der Bühne oder dem Wrapper beschnitt in Safari/Chromium den Corona-Blur zu einem sichtbaren Kasten) */
-        .hero-logo {
-            display: flex;
-            justify-content: center;
-        }
-        .hero-logo.fade-in {
-            transform: none;
-            transition: opacity 0.8s ease;
-        }
-        .hero-logo.fade-in.visible {
-            transform: none;
-        }
-
         /* Eclipse Stage */
         .architects-stage {
-            /* Alle Stellschrauben des Logos an einem Ort - das Logo-Panel schreibt hier hinein.
-               Responsive Basis: max. 600px, skaliert mit dem Viewport.
-               Alle Teile (Corona, Orb, Blur, Glow) sind proportional zur Bühne. */
-            --pulse-speed: 2.5s;
-            --stage-size: clamp(300px, 88vw, 600px);
-            --corona-size: calc(var(--stage-size) * 1.35);
-            --corona-blur: calc(var(--stage-size) * 0.09);
-            --corona-opacity: 0.85;
-            --orb-size: calc(var(--stage-size) * 0.7875);
-            --logo-scale: 136%;
-            --logo-glow-size: calc(var(--stage-size) * 0.075);
-            --glow-rgb: 94, 200, 216;
-            --glow-alpha: 0.6;
-
             position: relative;
             z-index: 2;
-            width: var(--stage-size);
-            height: var(--stage-size);
-            flex-shrink: 0;
-            margin: 2rem 0 3rem;
+            width: 360px;
+            height: 360px;
+            margin: 2rem auto 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
         }
 
-        /* Das einzige Hintergrundleuchten: weiches Tuerkis hinter der Scheibe,
-           ruhig und gleichmaessig atmend (Bias-Light-Prinzip). */
+        /* Pulsing Glow Corona */
         .architects-corona {
             position: absolute;
-            width: var(--corona-size);
-            height: var(--corona-size);
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
-            background: radial-gradient(circle,
-                rgba(var(--glow-rgb), 0.85) 0%,
-                rgba(var(--glow-rgb), 0.55) 35%,
-                rgba(var(--glow-rgb), 0.22) 65%,
-                rgba(var(--glow-rgb), 0.06) 80%,
-                transparent 95%);
-            filter: blur(var(--corona-blur));
-            animation: architectsCoronaPulse var(--pulse-speed) ease-in-out infinite;
+            background: radial-gradient(circle, var(--eclipse-color, rgba(116, 242, 253, 0.8)) 0%, rgba(255, 255, 255, 0.3) 30%, transparent 70%);
+            filter: blur(40px);
+            opacity: 0.75;
+            animation: architectsCoronaPulse var(--pulse-speed, 3.2s) ease-in-out infinite;
+            transition: background 0.5s ease, filter 0.5s ease;
+        }
+
+        /* Shockwave Ripple Rings */
+        .architects-ring {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            border: 1px solid var(--eclipse-ring-color, rgba(116, 242, 253, 0.5));
+            box-shadow: 0 0 25px var(--eclipse-glow-color, rgba(116, 242, 253, 0.4));
+            animation: architectsRingExpand var(--pulse-speed, 3.2s) cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
             pointer-events: none;
+        }
+
+        .architects-ring-2 {
+            animation-delay: calc(var(--pulse-speed, 3.2s) * 0.4);
+        }
+
+        .architects-ring-3 {
+            animation-delay: calc(var(--pulse-speed, 3.2s) * 0.7);
         }
 
         /* Dark Center Orb / Eclipse Disk */
         .architects-orb {
             position: relative;
             z-index: 5;
-            width: var(--orb-size);
-            height: var(--orb-size);
+            width: 240px;
+            height: 240px;
             border-radius: 50%;
-            background: transparent;
+            background: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                inset 0 0 30px rgba(0, 0, 0, 0.9),
+                inset 0 0 15px var(--eclipse-glow-color, rgba(116, 242, 253, 0.3)),
+                0 0 40px rgba(0, 0, 0, 0.9);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0;
-            box-shadow: 0 0 var(--logo-glow-size) rgba(var(--glow-rgb), var(--glow-alpha));
+            padding: 2.5rem;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
         }
 
-        /* Logo SVG inside Orb - ruhig, damit allein das Hintergrundleuchten pulsiert */
+        .architects-stage:hover .architects-orb {
+            transform: scale(1.04);
+            box-shadow: 
+                inset 0 0 35px rgba(0, 0, 0, 0.8),
+                inset 0 0 25px var(--eclipse-glow-color, rgba(116, 242, 253, 0.6)),
+                0 0 60px var(--eclipse-glow-color, rgba(116, 242, 253, 0.5));
+        }
+
+        .architects-stage:hover .architects-corona {
+            animation-duration: calc(var(--pulse-speed, 3.2s) * 0.6);
+            filter: blur(55px) brightness(1.3);
+        }
+
+        /* Logo SVG inside Orb */
         .architects-logo-img {
-            width: var(--logo-scale);
-            height: var(--logo-scale);
-            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            pointer-events: none;
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.7));
+            animation: architectsLogoGlow var(--pulse-speed, 3.2s) ease-in-out infinite;
         }
 
         /* Interactive Controls */
@@ -2460,138 +1706,43 @@
             box-shadow: 0 0 15px rgba(116, 242, 253, 0.2);
         }
 
-        /* Gleichmaessiges Atmen: nur Groesse und Deckkraft, Weichzeichnung bleibt
-           konstant - das haelt den Puls ruhig statt flackernd. */
+        /* Keyframes */
         @keyframes architectsCoronaPulse {
             0%, 100% {
-                transform: scale(1);
-                opacity: calc(var(--corona-opacity) * 0.73);
+                transform: scale(0.92);
+                opacity: 0.65;
+                filter: blur(35px);
             }
             50% {
-                transform: scale(1.09);
-                opacity: calc(var(--corona-opacity) * 1.13);
+                transform: scale(1.22);
+                opacity: 0.95;
+                filter: blur(50px) brightness(1.3);
             }
         }
 
-        /* ===== LOGO-PANEL (fliegendes Pop-up-Menü über dem Logo-Button) ===== */
-        #logoToggleBtn.active {
-            border-color: var(--turquoise);
-            color: #ffffff;
-            background: rgba(94, 200, 216, 0.15);
-        }
-        #logoPanel {
-            position: fixed;
-            bottom: 3.6rem;
-            right: 1rem;
-            z-index: 3100;
-            width: min(440px, calc(100vw - 2rem));
-            max-height: calc(100vh - 5rem);
-            overflow-y: auto;
-            margin: 0;
-            padding: 1.2rem 1.4rem;
-            border: 1px solid var(--turquoise-line);
-            border-radius: 12px;
-            background: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(94, 200, 216, 0.15);
-            font-family: var(--font-sans);
-            text-align: left;
-        }
-        #logoPanel .lp-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        #logoPanel .lp-title {
-            font-size: 0.72rem;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--turquoise);
-        }
-        #logoPanel .lp-close {
-            background: none;
-            border: none;
-            color: var(--gray-mid);
-            cursor: pointer;
-            font-size: 1rem;
-            line-height: 1;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            transition: color 0.2s;
-        }
-        #logoPanel .lp-close:hover {
-            color: #ffffff;
-        }
-        #logoPanel .lp-group {
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gray-mid);
-            margin: 0.9rem 0 0.4rem;
-        }
-        #logoPanel .lp-group:first-child { margin-top: 0; }
-        #logoPanel label {
-            display: grid;
-            grid-template-columns: 1fr 150px 58px;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 0.7rem;
-            color: var(--gray-light);
-            margin-bottom: 0.35rem;
-        }
-        #logoPanel input[type="range"] { width: 100%; accent-color: rgb(var(--lp-accent, 94, 200, 216)); }
-        #logoPanel .lp-color-row {
-            display: flex;
-            align-items: center;
-            gap: 0.45rem;
-            width: 100%;
-        }
-        #logoPanel input[type="color"] {
-            width: 26px;
-            height: 22px;
-            padding: 0;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 4px;
-            background: none;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        #logoPanel input[type="text"].lp-hex-input {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            padding: 2px 6px;
-            color: #FFFFFF;
-            font-size: 0.72rem;
-            font-family: monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        #logoPanel input[type="text"].lp-hex-input:focus {
-            outline: none;
-            border-color: rgb(var(--lp-accent, 94, 200, 216));
-            background: rgba(255, 255, 255, 0.12);
-        }
-        #logoPanel .lp-val {
-            text-align: right;
-            font-size: 0.65rem;
-            color: var(--gray-mid);
-            font-variant-numeric: tabular-nums;
-        }
-        #logoPanel .lp-out {
-            margin-top: 0.9rem;
-            padding-top: 0.7rem;
-            border-top: 1px solid var(--gray-pale);
-            display: flex;
-            gap: 0.5rem;
+        @keyframes architectsRingExpand {
+            0% {
+                transform: scale(0.85);
+                opacity: 0.9;
+            }
+            60% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: scale(1.65);
+                opacity: 0;
+            }
         }
 
+        @keyframes architectsLogoGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+                opacity: 0.9;
+            }
+            50% {
+                filter: drop-shadow(0 0 20px var(--eclipse-glow-color, rgba(116, 242, 253, 0.9)));
+                opacity: 1;
+            }
         /* ===== CANVAS PERLIN NOISE CORONA SECTION ===== */
         .canvas-corona-section {
             background: #121212;
@@ -2935,24 +2086,12 @@
         }
 
 
-
-
     </style>
 </head>
 <body>
 
-
-    <!-- Kunden-Varianten-Umschalter (Live-Preview ohne Reload) -->
-    <div class="variant-switcher" id="variantSwitcher" title="Design-Variante wählen">
-        <span class="variant-switcher-label">Design:</span>
-        <button type="button" class="variant-btn" data-variant="" title="Standard-Entwurf">Standard</button>
-        <button type="button" class="variant-btn" data-variant="v1" title="Variante 1: Reines Schwarz & Weiß">v-1 (Kontrast)</button>
-        <button type="button" class="variant-btn" data-variant="v2" title="Variante 2: Abwechselnd Zebra-Dark">v-2 (Zebra)</button>
-    </div>
-
-    <button class="dark-toggle" id="sizeToggleBtn" title="Größen-Buttons ein-/ausblenden">📏 Größe</button>
-    <button class="dark-toggle" id="logoToggleBtn" title="Logo-Regler ein-/ausblenden">🎛 Logo</button>
-    <button class="dark-toggle" id="moveToggleBtn" title="Sektionen-Verschieben ein-/ausblenden">↕️ Sektionen</button>
+    <button class="dark-toggle" id="darkToggle" title="Darkmode umschalten" style="position:fixed;top:1rem;right:1rem;z-index:3000;">🌙 Dark</button>
+    <button class="dark-toggle" id="sizeToggleBtn" title="Größen-Buttons ein-/ausblenden" style="position:fixed;top:1rem;right:6.5rem;z-index:3000;">📏 Größe</button>
 
     <!-- ===== NAVIGATION ===== -->
     <header class="header-nav" id="mainHeader">
@@ -2966,7 +2105,7 @@
                     <span class="brand-sub">Meisterlabor Weinheim</span>
                 </a>
                 <div class="nav-top-side">
-                    <a href="mailto:info@zahn360.com">info@zahn360.com</a>
+                    <a href="mailto:info@zahn360.de">info@zahn360.de</a>
                 </div>
             </div>
             <nav class="nav-bottom" id="navMenu">
@@ -2994,64 +2133,65 @@
         </div>
 
         <div class="hero-content">
-            <!-- Logo IV: Architects Eclipse Pulse -->
-            <div class="hero-logo fade-in">
-                <div class="architects-stage">
-                    <div class="architects-corona"></div>
-                    <div class="architects-orb">
-                        <img src="images/25010_ZAHN360_Logosignet_1c_RZ_trueblack_web.png" alt="ZAHN360 Logo" class="architects-logo-img">
+            <p class="hero-overtitle fade-in">Meisterlabor aus Weinheim</p>
+            <!-- Logo-Karussell: 3 Corona-Varianten -->
+            <div class="hero-logo-carousel fade-in">
+                <button class="carousel-arrow carousel-prev" id="carouselPrev" aria-label="Vorherige Variante">‹</button>
+                <div class="carousel-stage">
+                    <!-- Slide 0: Trig-Wellen-Korona -->
+                    <div class="carousel-slide active" data-index="0">
+                        <canvas class="carousel-canvas" id="carouselCanvas1" width="520" height="520"></canvas>
+                        <div class="carousel-core">
+                            <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN 360 Logo">
+                        </div>
+                    </div>
+                    <!-- Slide 1: FBM-Korona -->
+                    <div class="carousel-slide" data-index="1">
+                        <canvas class="carousel-canvas" id="carouselCanvas2" width="520" height="520"></canvas>
+                        <div class="carousel-core">
+                            <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN 360 Logo">
+                        </div>
+                    </div>
+                    <!-- Slide 2: Eclipse-Korona -->
+                    <div class="carousel-slide" data-index="2">
+                        <canvas class="carousel-canvas" id="carouselCanvas3" width="520" height="520"></canvas>
+                        <div class="carousel-core">
+                            <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN 360 Logo">
+                        </div>
+                    </div>
+                    <!-- Slide 3: Architects Eclipse Pulse -->
+                    <div class="carousel-slide" data-index="3" style="display:flex;align-items:center;justify-content:center;">
+                        <div class="architects-stage" style="margin:0;">
+                            <div class="architects-corona"></div>
+                            <div class="architects-ring"></div>
+                            <div class="architects-ring architects-ring-2"></div>
+                            <div class="architects-ring architects-ring-3"></div>
+                            <div class="architects-orb">
+                                <img src="images/25010_ZAHN360_Logosignet_1c_RZ.svg" alt="ZAHN360 Logo" class="architects-logo-img">
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <button class="carousel-arrow carousel-next" id="carouselNext" aria-label="Nächste Variante">›</button>
             </div>
-            <div id="sizeControls" style="text-align:center;margin-top:0.5rem;display:flex;align-items:center;justify-content:center;gap:0.8rem;">
-                <button class="btn btn-outline" id="btnSmaller" title="Logo kleiner">−</button>
-                <span id="sizeLabel" style="font-family:var(--font-sans);font-size:0.7rem;letter-spacing:1px;color:var(--gray-mid);min-width:50px;text-align:center;">800 px</span>
-                <button class="btn btn-outline" id="btnLarger" title="Logo größer">+</button>
+            <div class="carousel-dots" id="carouselDots">
+                <button class="carousel-dot active" data-dot="0"></button>
+                <button class="carousel-dot" data-dot="1"></button>
+                <button class="carousel-dot" data-dot="2"></button>
+                <button class="carousel-dot" data-dot="3"></button>
             </div>
-
-            <!-- Regler-Panel: fliegendes Pop-up über dem Logo-Button -->
-            <div id="logoPanel" style="display:none;">
-                <div class="lp-header">
-                    <span class="lp-title">🎛 Logo-Einstellungen</span>
-                    <button class="lp-close" id="lpCloseBtn" title="Schließen" type="button">✕</button>
-                </div>
-                <p class="lp-group">Bühne · .architects-stage</p>
-                <label>Gesamtgröße<input type="range" data-var="--stage-size" data-unit="px" min="300" max="1600" step="10" value="600"><span class="lp-val"></span></label>
-                <label>Puls-Tempo<input type="range" data-var="--pulse-speed" data-unit="s" min="0.5" max="8" step="0.1" value="2.5"><span class="lp-val"></span></label>
-
-                <p class="lp-group">Leuchten · .architects-corona</p>
-                <label>Größe<input type="range" data-var="--corona-size" data-unit="px" min="100" max="1600" step="10" value="810"><span class="lp-val"></span></label>
-                <label>Weichzeichnung<input type="range" data-var="--corona-blur" data-unit="px" min="0" max="200" step="1" value="55"><span class="lp-val"></span></label>
-                <label>Stärke<input type="range" data-var="--corona-opacity" data-unit="" min="0" max="1.5" step="0.05" value="0.85"><span class="lp-val"></span></label>
-
-                <p class="lp-group">Scheibe · .architects-orb</p>
-                <label>Größe<input type="range" data-var="--orb-size" data-unit="px" min="100" max="1400" step="10" value="630"><span class="lp-val"></span></label>
-
-                <p class="lp-group">Logo · .architects-logo-img</p>
-                <label>Größe<input type="range" data-var="--logo-scale" data-unit="%" min="40" max="200" step="1" value="136"><span class="lp-val"></span></label>
-                <label>Schein-Radius<input type="range" data-var="--logo-glow-size" data-unit="px" min="0" max="200" step="1" value="60"><span class="lp-val"></span></label>
-                <label>Schein-Stärke<input type="range" data-var="--glow-alpha" data-unit="" min="0" max="1" step="0.05" value="0.6"><span class="lp-val"></span></label>
-
-                <p class="lp-group">Farbe</p>
-                <label style="grid-template-columns: 1fr 208px;">
-                    Farbe (Glow)
-                    <div class="lp-color-row">
-                        <input type="color" id="lpColor" value="#5ec8d8" title="Farbe wählen">
-                        <input type="text" id="lpHex" class="lp-hex-input" value="#5EC8D8" placeholder="#5EC8D8" maxlength="7" spellcheck="false" title="Hex-Code einfügen">
-                    </div>
-                </label>
-
-                <div class="lp-out">
-                    <button class="btn btn-outline" id="lpCopy" type="button">CSS kopieren</button>
-                    <button class="btn btn-outline" id="lpReset" type="button">Zurücksetzen</button>
-                </div>
-            </div>
+            <div id="carouselNumeral" style="text-align:center;margin-top:0.3rem;font-family:var(--font-serif);font-size:0.75rem;letter-spacing:1px;color:var(--gray-mid);">I</div>
+            <span id="sizeControls">
+            <button class="btn btn-outline" id="btnSmaller" title="Logo kleiner">−</button>
+            <span id="sizeLabel" style="font-family:var(--font-sans);font-size:0.7rem;letter-spacing:1px;color:var(--gray-mid);min-width:45px;text-align:center;">752</span>
+            <button class="btn btn-outline" id="btnLarger" title="Logo größer">+</button>
+            </span>
             <h1 class="hero-title fade-in">
                 Präzision, die man spürt.
             </h1>
             <p class="hero-subtitle fade-in">Qualität, <em>die bleibt.</em></p>
 
-            <div class="flourish flourish-turquoise fade-in">
+            <div class="flourish fade-in">
                 <div class="flourish-line"></div>
                 <div class="flourish-center"></div>
                 <div class="flourish-line"></div>
@@ -3068,37 +2208,39 @@
 
             <div class="hero-stats fade-in">
                 <div class="hero-stat">
+                    <div class="hero-stat-value">0</div>
+                    <div class="hero-stat-label">Kompromisse bei Qualität</div>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
                     <div class="hero-stat-value">360°</div>
                     <div class="hero-stat-label">Zahntechnik</div>
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value">100&nbsp;%</div>
+                    <div class="hero-stat-value">100 %</div>
                     <div class="hero-stat-label">Weinheim</div>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat">
-                    <div class="hero-stat-value">0</div>
-                    <div class="hero-stat-label">Kompromisse bei&nbsp;Qualität</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Separator -->
+    <div class="fine-separator">
+        <div class="fine-separator-inner">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+        </div>
+    </div>
+
     <!-- ===== PATIENTEN ===== -->
     <section class="section section-light" id="patienten">
-        <div class="fine-separator">
-            <div class="fine-separator-inner">
-                <div class="ornament-line"></div>
-                <div class="ornament-diamond"></div>
-            </div>
-        </div>
         <div class="section-inner">
             <div class="section-header">
                 <p class="section-overtitle fade-in">Höchste Priorität: Ihre Gesundheit</p>
                 <h2 class="section-title fade-in">Woher kommt Ihr Zahnersatz?</h2>
                 <p class="section-desc fade-in">
-                    Wenn Sie mit Zahn 360 zusammenarbeiten, erhalten Sie Zahnersatz,<br> der den höchsten biokompatiblen Standards entspricht.
+                    Wenn Ihr mit Zahn 360 zusammenarbeitet, erhaltet ihr Zahnersatz,<br> der den höchsten biolompatiblen Standards entspricht.
                 </p>
             </div>
 
@@ -3144,15 +2286,15 @@
 
                     <ul class="quality-list">
                         <li>
-                            <span class="quality-check"></span>
+                            <span class="quality-check">◆</span>
                             <span><strong>Verwendungsnachweis:</strong> Jeder Zahnersatz erhält einen lückenlosen Material-Pass.</span>
                         </li>
                         <li>
-                            <span class="quality-check"></span>
+                            <span class="quality-check">◆</span>
                             <span><strong>Ästhetische Perfektion:</strong> Individuelle Farbanpassung abgestimmt auf Ihre natürlichen Zähne.</span>
                         </li>
                         <li>
-                            <span class="quality-check"></span>
+                            <span class="quality-check">◆</span>
                             <span><strong>Nachhaltigkeit & Langlebigkeit:</strong> Entwickelt für jahrzehntelange Belastbarkeit.</span>
                         </li>
                     </ul>
@@ -3163,14 +2305,16 @@
         </div>
     </section>
 
+    <!-- Separator -->
+    <div class="fine-separator" style="background:var(--near-black);">
+        <div class="fine-separator-inner">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+        </div>
+    </div>
+
     <!-- ===== KARRIERE ===== -->
     <section class="section section-dark" id="karriere">
-        <div class="fine-separator">
-            <div class="fine-separator-inner">
-                <div class="ornament-line"></div>
-                <div class="ornament-diamond"></div>
-            </div>
-        </div>
         <div class="section-inner">
             <div class="section-header">
                 <p class="section-overtitle fade-in">Wachse mit uns</p>
@@ -3182,26 +2326,26 @@
 
             <div class="perks-grid fade-in">
                 <div class="perk-item">
-                    <div class="perk-icon"></div>
+                    <div class="perk-icon">◇</div>
                     <h3>Meisterliche Mentorings</h3>
                     <p>Direkte Zusammenarbeit auf Augenhöhe mit den Gründern Julien Hornung & Simon Jansen.</p>
                 </div>
                 <div class="perk-item">
-                    <div class="perk-icon"></div>
+                    <div class="perk-icon">◇</div>
                     <h3>High-Tech Ausstattung</h3>
                     <p>Digitaler Workflow, Intraoralscans, 3D-Drucker und modernste 5-Achs-Fräsmaschinen.</p>
                 </div>
                 <div class="perk-item">
-                    <div class="perk-icon"></div>
+                    <div class="perk-icon">◇</div>
                     <h3>Attraktives Paket</h3>
                     <p>Faire Vergütung, flexible Arbeitszeiten, Fortbildungen und familiäres Betriebsklima.</p>
                 </div>
             </div>
 
-            <div class="flourish flourish-turquoise fade-in" style="margin-bottom:3rem;">
-                <div class="flourish-line"></div>
-                <div class="flourish-center"></div>
-                <div class="flourish-line"></div>
+            <div class="flourish fade-in" style="margin-bottom:3rem;">
+                <div class="flourish-line" style="background:linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);"></div>
+                <div class="flourish-center" style="border-color:var(--overlay-border);"></div>
+                <div class="flourish-line" style="background:linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);"></div>
             </div>
 
             <div class="jobs-list">
@@ -3241,128 +2385,44 @@
                     <button class="btn btn-dark-outline" onclick="openApplyModal('Auszubildender Zahntechniker (m/w/d)')">Bewerben</button>
                 </div>
 
+                <!-- Raum für die Zukunft -->
+                <div class="fade-in" style="margin-top:3rem;padding:2.5rem 0 0;">
+                    <div style="display:flex;align-items:flex-start;gap:2.5rem;flex-wrap:wrap;">
+                        <div style="flex:0 0 340px;max-width:100%;">
+                            <img src="images/FirmengebäudeSW.jpeg" alt="Neues Firmengebäude ZAHN 360" style="width:100%;height:auto;display:block;filter:grayscale(100%);">
+                        </div>
+                        <div style="flex:1;min-width:280px;">
+                            <h2 class="section-title" style="text-align:left;margin-bottom:1rem;">Raum für die Zukunft</h2>
+                            <p class="section-desc" style="margin-top:0;">
+                                Ein wichtiger Schritt auf unserem Weg ist der Bezug unseres neuen Firmengebäudes ab dem kommenden Jahr. Es steht für Wachstum, Innovation und unseren Anspruch, die besten Voraussetzungen für hochwertige Zahntechnik zu schaffen.
+                            </p>
+                            <p class="section-desc">
+                                Moderne Arbeitsplätze, neueste Technologien und eine angenehme Atmosphäre geben unserem Team den Raum, den es braucht – für konzentriertes Arbeiten, kreative Lösungen und gemeinsame Entwicklung.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== FIRMENGEBÄUDE ===== -->
-    <section class="section section-black" id="gebaeude">
-        <div class="fine-separator">
-            <div class="fine-separator-inner">
-                <div class="ornament-line"></div>
-                <div class="ornament-diamond"></div>
-            </div>
+    <!-- Separator -->
+    <div class="fine-separator" style="background:var(--off-white);">
+        <div class="fine-separator-inner">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
         </div>
-        <div class="section-inner">
-            <div class="building-grid fade-in">
-                <div class="building-image">
-                    <img src="images/Firmengeb%C3%A4ude%20Farbe.jpeg" alt="Neues Firmengebäude ZAHN 360">
-                </div>
-                <div class="building-text">
-                    <h2 class="section-title" style="text-align:left;margin-bottom:1rem;">Raum für die Zukunft</h2>
-                    <p class="section-desc" style="margin:0 0 1rem 0;max-width:none;">
-                        Ein wichtiger Schritt auf unserem Weg ist der Bezug unseres neuen Firmengebäudes ab dem kommenden Jahr. Es steht für Wachstum, Innovation und unseren Anspruch, die besten Voraussetzungen für hochwertige Zahntechnik zu schaffen.
-                    </p>
-                    <p class="section-desc" style="margin:0;max-width:none;">
-                        Moderne Arbeitsplätze, neueste Technologien und eine angenehme Atmosphäre geben unserem Team den Raum, den es braucht – für konzentriertes Arbeiten, kreative Lösungen und gemeinsame Entwicklung.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- ===== ZAHNÄRZTE ===== -->
-    <section class="section section-white" id="zahnaerzte">
-        <div class="fine-separator">
-            <div class="fine-separator-inner">
-                <div class="ornament-line"></div>
-                <div class="ornament-diamond"></div>
-            </div>
-        </div>
+    <section class="section section-alt" id="zahnaerzte">
         <div class="section-inner">
             <div class="section-header">
+                <p class="section-overtitle fade-in">Partnerpraxen in der Region</p>
                 <h2 class="section-title fade-in">Für zahnärztliche Praxen</h2>
                 <p class="section-desc fade-in">
-                    Über 60 Zahnärzte vertrauen bereits auf Zahn 360 oHG. Perfekter Service, direkte Erreichbarkeit und höchste Termintreue.
+                    Über XX Zahnärzte vertrauen bereits auf Zahn 360 oHG. Perfekter Service, direkte Erreichbarkeit und höchste Termintreue.
                 </p>
-            </div>
-
-            <!-- Leistungs-Akkordeon -->
-            <div class="leistung-acc fade-in">
-                <details>
-                    <summary>Digitale Zahntechnik</summary>
-                    <ul class="acc-content">
-                        <li>CAD/CAM-gestützte Konstruktion und Fertigung</li>
-                        <li>Digitale Abformung & Datenverarbeitung</li>
-                        <li>3D-Planung von Zahnersatz und Implantatversorgungen</li>
-                    </ul>
-                </details>
-                <details>
-                    <summary>CNC-Fertigung</summary>
-                    <ul class="acc-content">
-                        <li>Hochpräzise Fräsarbeiten (Zirkon, PMMA, Wachs, Metall)</li>
-                        <li>Individuelle Einzelanfertigungen & Serienproduktionen</li>
-                        <li>Schnelle und reproduzierbare Ergebnisse</li>
-                    </ul>
-                </details>
-                <details>
-                    <summary>3D-Druck</summary>
-                    <ul class="acc-content">
-                        <li>Herstellung von Modellen, Schienen und Bohrschablonen</li>
-                        <li>Prototyping und schnelle Umsetzung komplexer Strukturen</li>
-                        <li>Effiziente Produktion bei hoher Detailgenauigkeit</li>
-                    </ul>
-                </details>
-                <details>
-                    <summary>Festsitzender Zahnersatz</summary>
-                    <ul class="acc-content">
-                        <li>Kronen & Brücken (Vollkeramik, Zirkon, Metallkeramik)</li>
-                        <li>Veneers & Inlays/Onlays</li>
-                        <li>Ästhetisch anspruchsvolle Frontzahnversorgungen</li>
-                    </ul>
-                </details>
-                <details>
-                    <summary>Herausnehmbarer Zahnersatz</summary>
-                    <ul class="acc-content">
-                        <li>Teil- und Vollprothesen</li>
-                        <li>Modellgussprothesen</li>
-                        <li>Kombinationsarbeiten (Teleskop-, Geschiebe- und Stegtechnik)</li>
-                    </ul>
-                </details>
-                <details>
-                    <summary>Implantattechnik</summary>
-                    <ul class="acc-content">
-                        <li>Individuelle Implantatprothetik</li>
-                        <li>Suprakonstruktionen (verschraubt & zementiert)</li>
-                        <li>Digitale Implantatplanung & Bohrschablonen</li>
-                    </ul>
-                </details>
-                <details>
-                    <summary>Schienentechnik</summary>
-                    <ul class="acc-content">
-                        <li>Knirscherschienen (CMD)</li>
-                        <li>Bleaching- und Tiefziehschienen</li>
-                        <li>Sportmundschutz</li>
-                        <li>Schnarch-Schienen (Apnoe)</li>
-                    </ul>
-                </details>
-                <details>
-                    <summary>Ästhetik & Individualisierung</summary>
-                    <ul class="acc-content">
-                        <li>Natürliche Zahnfarben & individuelle Charakterisierung</li>
-                        <li>Hochästhetische Verblendtechniken</li>
-                        <li>Digitale Smile-Design-Konzepte</li>
-                    </ul>
-                </details>
-                <details>
-                    <summary>Service & Zusammenarbeit</summary>
-                    <ul class="acc-content">
-                        <li>Persönliche Fachberatung für Zahnärzte</li>
-                        <li>Schnelle Lieferzeiten & flexible Auftragsabwicklung</li>
-                        <li>Reparatur- und Expressservice</li>
-                        <li>Unterstützung bei komplexen Fällen</li>
-                    </ul>
-                </details>
             </div>
 
             <div class="dentist-grid">
@@ -3387,59 +2447,40 @@
                     </li>
                 </ul>
 
-            </div>
-        </div>
-    </section>
+                <div class="badge-card fade-in-right">
+                    <div class="seal-corner seal-corner--tl"></div>
+                    <div class="seal-corner seal-corner--tr"></div>
+                    <div class="seal-corner seal-corner--bl"></div>
+                    <div class="seal-corner seal-corner--br"></div>
+                    <h3>Referenz-Badge für Ihre Website</h3>
+                    <p>Zeigen Sie Ihren Patienten, dass Sie auf deutsche Meisterqualität setzen. Binden Sie dieses Siegel auf Ihrer Praxis-Webseite ein:</p>
 
-    <!-- ===== PROZESS ===== -->
-    <section class="section section-light" id="prozess">
-        <div class="fine-separator">
-            <div class="fine-separator-inner">
-                <div class="ornament-line"></div>
-                <div class="ornament-diamond"></div>
-            </div>
-        </div>
-        <div class="section-inner">
-            <div class="section-header">
-                <p class="section-overtitle fade-in">So entsteht Ihre Arbeit</p>
-                <h2 class="section-title fade-in">Einmal ganz herum.</h2>
-                <p class="section-desc fade-in">Vier Schritte bis zur fertigen Arbeit: von der digitalen Abnahme über Fertigung und Prüfung bis zur Rückgabe an Ihre Praxis.</p>
-            </div>
+                    <div class="badge-preview">
+                        <p class="badge-preview-label">Vorschau</p>
+                        <div class="badge-widget">
+                            <span class="badge-widget-dot"></span>
+                            Zahnersatz gefertigt von <strong>ZAHN 360</strong> — Weinheim
+                        </div>
+                    </div>
 
-            <div class="process fade-in">
-                <div class="process-steps">
-                    <div class="process-step">
-                        <div class="degree-badge" style="--deg: 90deg;"><span>090°</span></div>
-                        <div>
-                            <h3>Digitale Abnahme</h3>
-                            <p>Ihre Praxis übermittelt Scan oder Abdruck direkt an unser Labor.</p>
-                        </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="degree-badge" style="--deg: 180deg;"><span>180°</span></div>
-                        <div>
-                            <h3>Fertigung</h3>
-                            <p>Unsere Zahntechnikermeister planen und fertigen Ihre Arbeit — digital und in Handarbeit.</p>
-                        </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="degree-badge" style="--deg: 270deg;"><span>270°</span></div>
-                        <div>
-                            <h3>Prüfung</h3>
-                            <p>Passung, Funktion und Ästhetik werden geprüft, bevor die Arbeit unser Haus verlässt.</p>
-                        </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="degree-badge" style="--deg: 360deg;"><span>360°</span></div>
-                        <div>
-                            <h3>Rückgabe</h3>
-                            <p>Die fertige Arbeit geht zurück an Ihre Praxis und wird dort eingesetzt.</p>
-                        </div>
-                    </div>
+                    <div class="code-snippet" id="badgeCodeSnippet">&lt;div style="display:inline-flex;align-items:center;gap:8px;background:#14181D;color:#FFF;padding:8px 16px;border-radius:8px;border:1px solid #74F2FD;font-family:sans-serif;font-size:14px;"&gt;
+  &lt;span style="width:8px;height:8px;background:#74F2FD;border-radius:50%;"&gt;&lt;/span&gt;
+  Zahnersatz gefertigt von &lt;strong&gt;ZAHN 360&lt;/strong&gt; – Weinheim
+&lt;/div&gt;</div>
+
+                    <button class="btn btn-primary" style="width:100%;" onclick="copyBadgeCode()">Code kopieren</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Separator -->
+    <div class="fine-separator">
+        <div class="fine-separator-inner">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+        </div>
+    </div>
 
     <!-- ===== ÜBER UNS ===== -->
     <section class="section section-light" id="ueberuns">
@@ -3452,12 +2493,12 @@
 
                 <div class="about-text">
                     <p class="section-overtitle fade-in">Tradition trifft Moderne</p>
-                    <h3 class="fade-in">Zahn 360 in Weinheim</h3>
+                    <h3 class="fade-in">Zahn 360 oHG<br><em style="font-weight:300;font-style:italic;color:var(--gray-mid);">in Weinheim</em></h3>
                     <p class="fade-in">
-                        Als meistergeführtes Labor in Weinheim verbinden wir langjährige Handwerkskunst mit modernster digitaler Technologie. Persönlich, präzise und mit Liebe zum Detail.
+                        Die Zahn 360 oHG ist im Handelsregister beim Amtsgericht Mannheim unter <strong>HRA 706344</strong> eingetragen. Als meistergeführtes Labor mit Sitz in der <strong>Hauptstraße 4c, 69469 Weinheim</strong> vereinen wir langjährige zahntechnische Expertise mit innovativen digitalen Technologien.
                     </p>
                     <p class="fade-in">
-                        Unser Ziel ist es, Zahnärzten ein verlässlicher Partner zu sein und Ihnen ein strahlendes, natürliches Lächeln zu schenken.
+                        Unser Ziel ist es, Zahnärzten ein verlässlicher Partner zu sein und Patienten ein strahlendes, natürliches Lächeln zu schenken.
                     </p>
 
                     <div class="founders-block fade-in">
@@ -3470,24 +2511,23 @@
         </div>
     </section>
 
+    <!-- Separator -->
+    <div class="fine-separator" style="background:var(--near-black);">
+        <div class="fine-separator-inner">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+        </div>
+    </div>
+
     <!-- ===== KONTAKT ===== -->
     <section class="section section-dark" id="kontakt">
-        <div class="fine-separator">
-            <div class="fine-separator-inner">
-                <div class="ornament-line"></div>
-                <div class="ornament-diamond"></div>
-            </div>
-        </div>
         <div class="section-inner">
             <div class="section-header">
                 <p class="section-overtitle fade-in">Wir freuen uns auf Sie</p>
                 <h2 class="section-title fade-in">Kontakt & Anfrage</h2>
                 <p class="section-desc fade-in">
-                    Egal ob Zahnarzt, Patient oder zukünftiger Mitarbeiter: treten Sie unkompliziert mit uns in Kontakt.
+                    Egal ob Zahnarzt, Patient oder zukünftiger Mitarbeiter — treten Sie unkompliziert mit uns in Kontakt.
                 </p>
-                <div class="contact-data-inline fade-in">
-                    <p><a href="tel:+4962018783600">+49 6201 87 83 600</a> · <a href="mailto:info@zahn360.com">info@zahn360.com</a></p>
-                </div>
             </div>
 
             <div class="contact-grid">
@@ -3497,21 +2537,31 @@
 
                     <ul class="contact-list">
                         <li class="contact-entry">
+                            <div class="contact-entry-icon">◇</div>
                             <div>
                                 <p class="contact-entry-label">Adresse</p>
                                 <p class="contact-entry-value">Hauptstraße 4c<br>69469 Weinheim</p>
                             </div>
                         </li>
                         <li class="contact-entry">
+                            <div class="contact-entry-icon">◇</div>
                             <div>
                                 <p class="contact-entry-label">Telefon</p>
                                 <p class="contact-entry-value"><a href="tel:+4962018783600">+49 6201 87 83 600</a></p>
                             </div>
                         </li>
                         <li class="contact-entry">
+                            <div class="contact-entry-icon">◇</div>
                             <div>
                                 <p class="contact-entry-label">E-Mail</p>
-                                <p class="contact-entry-value"><a href="mailto:info@zahn360.com">info@zahn360.com</a></p>
+                                <p class="contact-entry-value"><a href="mailto:info@zahn360.de">info@zahn360.de</a></p>
+                            </div>
+                        </li>
+                        <li class="contact-entry">
+                            <div class="contact-entry-icon">◇</div>
+                            <div>
+                                <p class="contact-entry-label">Handelsregister</p>
+                                <p class="contact-entry-value">Amtsgericht Mannheim, HRA 706344</p>
                             </div>
                         </li>
                     </ul>
@@ -3532,25 +2582,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="c_role_trigger">Ich bin</label>
-                        <div class="custom-select" id="c_role_custom">
-                            <select id="c_role" class="form-control custom-select-native" aria-hidden="true" tabindex="-1">
-                                <option value="patient">Patient / Endverbraucher</option>
-                                <option value="zahnarzt">Zahnarzt / Praxis</option>
-                                <option value="bewerber">Bewerber / Fachkraft</option>
-                                <option value="sonstiges">Sonstiges</option>
-                            </select>
-                            <button type="button" id="c_role_trigger" class="form-control custom-select-trigger" aria-haspopup="listbox" aria-expanded="false">
-                                <span class="custom-select-value">Patient / Endverbraucher</span>
-                                <span class="custom-select-chevron"></span>
-                            </button>
-                            <ul class="custom-select-menu" id="c_role_menu" role="listbox" hidden></ul>
-                        </div>
+                        <label for="c_role">Ich bin</label>
+                        <select id="c_role" class="form-control">
+                            <option value="patient">Patient / Endverbraucher</option>
+                            <option value="zahnarzt">Zahnarzt / Praxis</option>
+                            <option value="bewerber">Bewerber / Fachkraft</option>
+                            <option value="sonstiges">Sonstiges</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label for="c_message">Ihre Nachricht</label>
-                        <textarea id="c_message" class="form-control" required wrap="soft" placeholder="Wie können wir Ihnen helfen?"></textarea>
+                        <textarea id="c_message" class="form-control" required placeholder="Wie können wir Ihnen helfen?"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary" style="width:100%;background:var(--white);color:var(--black);border-color:var(--white);">Anfrage absenden</button>
@@ -3562,29 +2605,28 @@
     <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
         <div class="footer-inner">
-            <div class="flourish flourish-turquoise" style="margin:0;">
+            <div class="flourish" style="margin:0;">
                 <div class="flourish-line"></div>
                 <div class="flourish-center"></div>
                 <div class="flourish-line"></div>
             </div>
 
-            <div class="footer-brand">Zahn <span>360</span></div>
-
-            <p class="footer-address">Hauptstraße 4c · 69469 Weinheim</p>
+            <div class="footer-brand">Zahn <span>360</span> oHG</div>
+            <p class="footer-address">Zahntechnisches Labor · Hauptstraße 4c · 69469 Weinheim</p>
 
             <ul class="footer-links">
                 <li><a href="#" onclick="openModal('impressumModal'); return false;">Impressum</a></li>
                 <li><a href="#" onclick="openModal('datenschutzModal'); return false;">Datenschutz</a></li>
-                <li><a href="#" onclick="openModal('agbModal'); return false;">AGB</a></li>
+                <li><a href="#patienten">Für Patienten</a></li>
+                <li><a href="#karriere">Karriere</a></li>
+                <li><a href="#zahnaerzte">Für Zahnärzte</a></li>
             </ul>
 
             <div class="footer-legal">
-                © 2026 Zahn 360 oHG. Alle Rechte vorbehalten.
+                © 2026 Zahn 360 oHG. Alle Rechte vorbehalten. Handelsregister: Amtsgericht Mannheim HRA 706344. Vertreten durch die persönlich haftenden Gesellschafter Julien Hornung & Simon Jansen (Zahntechnikermeister).
             </div>
         </div>
     </footer>
-
-
 
   
 
@@ -3611,7 +2653,7 @@
                 </div>
                 <div class="form-group">
                     <label for="app_note" style="color:var(--gray-light);">Kurze Nachricht</label>
-                    <textarea id="app_note" class="form-control" wrap="soft" placeholder="Erzählen Sie uns kurz von Ihrer Erfahrung..."></textarea>
+                    <textarea id="app_note" class="form-control" placeholder="Erzählen Sie uns kurz von Ihrer Erfahrung..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width:100%;background:var(--white);color:var(--black);border-color:var(--white);">Bewerbung absenden</button>
             </form>
@@ -3644,7 +2686,7 @@
                 <p><strong>ZAHN 360 oHG</strong><br>Zahntechnisches Labor<br>Hauptstraße 4c<br>69469 Weinheim</p><br>
                 <p><strong>Vertreten durch:</strong><br>Julien Hornung & Simon Jansen (Zahntechnikermeister)</p><br>
                 <p><strong>Handelsregister:</strong><br>Amtsgericht Mannheim, HRA 706344</p><br>
-                <p><strong>Kontakt:</strong><br>Telefon: +49 6201 87 83 600<br>E-Mail: info@zahn360.com</p>
+                <p><strong>Kontakt:</strong><br>Telefon: +49 6201 87 83 600<br>E-Mail: info@zahn360.de</p>
             </div>
         </div>
     </div>
@@ -3661,78 +2703,33 @@
         </div>
     </div>
 
-    <!-- AGB -->
-    <div class="modal-overlay" id="agbModal">
-        <div class="modal-content modal-content-dark">
-            <button class="modal-close" onclick="closeModal('agbModal')">✕</button>
-            <h3 class="modal-title">Allgemeine Geschäftsbedingungen</h3>
-            <div class="modal-body">
-                <h4>§ 1 Geltungsbereich</h4>
-                <p>1. Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge, Lieferungen und Leistungen zwischen der Zahn360 OHG und ihren Auftraggebern (insbesondere Zahnärzten, Zahnkliniken und sonstigen gewerblichen Bestellern).</p>
-                <p>2. Diese AGB gelten ausschließlich gegenüber Unternehmern im Sinne des § 14 BGB.</p>
-                <p>3. Entgegenstehende oder abweichende Bedingungen des Auftraggebers werden nicht anerkannt, es sei denn, die Zahn360 OHG stimmt ihrer Geltung ausdrücklich schriftlich zu.</p>
-
-                <h4>§ 2 Vertragsschluss</h4>
-                <p>1. Angebote der Zahn360 OHG sind freibleibend und unverbindlich.</p>
-                <p>2. Der Vertrag kommt durch Auftragserteilung des Auftraggebers und Annahme durch die Zahn360 OHG zustande.</p>
-                <p>3. Zahntechnische Arbeiten werden individuell nach den Vorgaben des Auftraggebers gefertigt.</p>
-
-                <h4>§ 3 Leistungsumfang</h4>
-                <p>1. Die Zahn360 OHG fertigt zahntechnische Produkte gemäß den vom Auftraggeber übermittelten Arbeitsunterlagen (z. B. Abformungen, Modelle, Datensätze, Konstruktionsvorgaben).</p>
-                <p>2. Der Auftraggeber ist für die Richtigkeit und Vollständigkeit der übermittelten Unterlagen verantwortlich.</p>
-                <p>3. Änderungen nach Produktionsbeginn können zu Mehrkosten und verlängerten Lieferzeiten führen.</p>
-
-                <h4>§ 4 Preise und Zahlungsbedingungen</h4>
-                <p>1. Es gelten die zum Zeitpunkt der Auftragserteilung gültigen Preislisten bzw. individuell vereinbarten Preise der Zahn360 OHG.</p>
-                <p>2. Alle Preise verstehen sich zuzüglich der gesetzlichen Mehrwertsteuer, sofern diese anfällt.</p>
-                <p>3. Rechnungen sind innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug zahlbar, sofern nichts anderes vereinbart wurde.</p>
-                <p>4. Bei Zahlungsverzug ist die Zahn360 OHG berechtigt, Verzugszinsen in gesetzlicher Höhe zu berechnen.</p>
-
-                <h4>§ 5 Lieferung und Versand</h4>
-                <p>1. Liefertermine sind nur verbindlich, wenn sie ausdrücklich schriftlich durch die Zahn360 OHG bestätigt wurden.</p>
-                <p>2. Die Lieferung erfolgt auf Gefahr des Auftraggebers.</p>
-                <p>3. Teillieferungen sind zulässig, soweit sie dem Auftraggeber zumutbar sind.</p>
-
-                <h4>§ 6 Eigentumsvorbehalt</h4>
-                <p>1. Gelieferte Waren bleiben bis zur vollständigen Bezahlung sämtlicher Forderungen Eigentum der Zahn360 OHG.</p>
-                <p>2. Eine Weiterveräußerung im ordnungsgemäßen Geschäftsverkehr ist zulässig; die daraus entstehenden Forderungen gelten als im Voraus an die Zahn360 OHG abgetreten.</p>
-
-                <h4>§ 7 Gewährleistung</h4>
-                <p>1. Es gelten die gesetzlichen Gewährleistungsrechte, soweit nachfolgend nichts anderes geregelt ist.</p>
-                <p>2. Offensichtliche Mängel sind unverzüglich, spätestens jedoch innerhalb von 7 Werktagen nach Erhalt der Arbeit schriftlich gegenüber der Zahn360 OHG anzuzeigen.</p>
-                <p>3. Bei berechtigten Mängeln erfolgt nach Wahl der Zahn360 OHG Nachbesserung oder Neuanfertigung.</p>
-                <p>4. Keine Gewährleistung besteht bei unsachgemäßer Behandlung oder Veränderung der gelieferten Arbeit.</p>
-
-                <h4>§ 8 Haftung</h4>
-                <p>1. Die Zahn360 OHG haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit.</p>
-                <p>2. Bei leichter Fahrlässigkeit haftet die Zahn360 OHG nur bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten) und begrenzt auf den vertragstypischen, vorhersehbaren Schaden.</p>
-                <p>3. Die Haftung nach dem Produkthaftungsgesetz bleibt unberührt.</p>
-
-                <h4>§ 9 Medizinprodukterecht</h4>
-                <p>1. Die zahntechnischen Produkte werden als Sonderanfertigungen gemäß den jeweils geltenden Vorschriften des Medizinprodukterechts hergestellt.</p>
-                <p>2. Der Auftraggeber ist verpflichtet, die erforderliche Dokumentation entsprechend den gesetzlichen Vorschriften aufzubewahren.</p>
-
-                <h4>§ 10 Datenschutz</h4>
-                <p>1. Die Zahn360 OHG verarbeitet personenbezogene Daten ausschließlich im Rahmen der gesetzlichen Datenschutzbestimmungen.</p>
-                <p>2. Sofern Zahnarztpraxen Patientendaten übermitteln, geschieht dies in eigener datenschutzrechtlicher Verantwortung.</p>
-                <p>3. Nähere Informationen ergeben sich aus der gesonderten Datenschutzerklärung der Zahn360 OHG.</p>
-
-                <h4>§ 11 Gerichtsstand und anwendbares Recht</h4>
-                <p>1. Es gilt das Recht der Bundesrepublik Deutschland.</p>
-                <p>2. Gerichtsstand für alle Streitigkeiten aus dem Vertragsverhältnis ist – sofern gesetzlich zulässig – der Sitz der Zahn360 OHG in Weinheim.</p>
-
-                <h4>§ 12 Schlussbestimmungen</h4>
-                <p>Sollte eine Bestimmung dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
-            </div>
-        </div>
-    </div>
-
     <!-- Toast -->
     <div class="toast-notification" id="toast">Aktion erfolgreich.</div>
 
-
-
     <script>
+        // Dark mode toggle
+        (function() {
+            const toggle = document.getElementById('darkToggle');
+            const html = document.documentElement;
+            const stored = localStorage.getItem('zahn360-darkmode');
+            if (stored === 'true') {
+                html.setAttribute('data-theme', 'dark');
+                toggle.textContent = '☀️ Light';
+            }
+            toggle.addEventListener('click', () => {
+                const isDark = html.getAttribute('data-theme') === 'dark';
+                if (isDark) {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = '🌙 Dark';
+                    localStorage.setItem('zahn360-darkmode', 'false');
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = '☀️ Light';
+                    localStorage.setItem('zahn360-darkmode', 'true');
+                }
+            });
+        })();
+
         // Size controls toggle
         (function() {
             const btn = document.getElementById('sizeToggleBtn');
@@ -3788,6 +2785,11 @@
         function openApplyModal(title) {
             document.getElementById('applyTargetTitle').innerText = 'Bewerbung — ' + title;
             openModal('applyModal');
+        }
+
+        function copyBadgeCode() {
+            const code = document.getElementById('badgeCodeSnippet').innerText;
+            navigator.clipboard.writeText(code).then(() => showToast('Code kopiert.')).catch(() => showToast('Code kopiert.'));
         }
 
         function handleContactSubmit(e) {
@@ -4674,370 +3676,33 @@
         (function() {
             const btnSmaller = document.getElementById('btnSmaller');
             const btnLarger = document.getElementById('btnLarger');
-            const stage = document.querySelector('.architects-stage');
+            const stage = document.querySelector('.carousel-stage');
             if (!btnSmaller || !btnLarger || !stage) return;
 
-            const MIN = 300;
-            const MAX = 1600;
-            const STEP = 100;
+            const MIN = 180;
+            const STEP = 40;
+            let currentW = 752;
             const label = document.getElementById('sizeLabel');
 
-            // Real gerenderte Größe (folgt auch der responsiven clamp-Basis)
-            function current() {
-                return Math.round(stage.getBoundingClientRect().width / 10) * 10;
+            function apply() {
+                stage.style.width = currentW + 'px';
+                stage.style.height = currentW + 'px';
+                if (label) label.textContent = currentW + ' px';
             }
 
-            function apply(size) {
-                size = Math.max(MIN, Math.min(MAX, size));
-                // Override auf die CSS-Variable statt fixer Inline-Breite -
-                // "Zurücksetzen" im Logo-Panel entfernt den Override und stellt die Responsivität wieder her.
-                stage.style.setProperty('--stage-size', size + 'px');
-                if (label) label.textContent = size + ' px';
-            }
-
-            function syncLabel() {
-                if (label) label.textContent = current() + ' px';
-            }
-
-            btnLarger.addEventListener('click', () => apply(current() + STEP));
-            btnSmaller.addEventListener('click', () => apply(current() - STEP));
-            window.addEventListener('resize', syncLabel);
-
-            // Label nachziehen, wenn Panel/Reset die Größen-Variablen ändern
-            new MutationObserver(syncLabel).observe(stage, { attributes: true, attributeFilter: ['style'] });
-
-            syncLabel();
-        })();
-
-        // ===== LOGO-PANEL: Regler schreiben in die CSS-Variablen der Stage =====
-        (function initLogoPanel() {
-            const panel = document.getElementById('logoPanel');
-            const toggle = document.getElementById('logoToggleBtn');
-            const stage = document.querySelector('.architects-stage');
-            if (!panel || !toggle || !stage) return;
-
-            const sliders = [...panel.querySelectorAll('input[type="range"]')];
-            const colorInput = document.getElementById('lpColor');
-            const hexInput = document.getElementById('lpHex');
-            const defaults = {};
-            sliders.forEach(s => defaults[s.dataset.var] = s.value);
-            const defaultColor = colorInput.value;
-
-            // Diese Größen laufen standardmäßig proportional zur Bühne (calc) bzw. responsiv (clamp).
-            // Erst wenn man den Regler bewegt, wird daraus ein fester px-Override.
-            const AUTO_VARS = ['--stage-size', '--corona-size', '--corona-blur', '--orb-size', '--logo-glow-size'];
-
-            function paint(slider) {
-                const value = slider.value + slider.dataset.unit;
-                stage.style.setProperty(slider.dataset.var, value);
-                slider.parentElement.querySelector('.lp-val').textContent = value;
-            }
-
-            function resetVar(slider) {
-                stage.style.removeProperty(slider.dataset.var);
-                slider.parentElement.querySelector('.lp-val').textContent = 'auto';
-            }
-
-            function applyColor(hex, updateHex = true, updatePicker = true) {
-                let val = hex.trim();
-                if (!val.startsWith('#')) val = '#' + val;
-                if (val.length === 4) {
-                    val = '#' + val[1] + val[1] + val[2] + val[2] + val[3] + val[3];
-                }
-                if (/^#[0-9a-fA-F]{6}$/.test(val)) {
-                    val = val.toUpperCase();
-                    if (updatePicker) colorInput.value = val;
-                    if (updateHex && hexInput) hexInput.value = val;
-                    const rgb = [1, 3, 5].map(i => parseInt(val.slice(i, i + 2), 16)).join(', ');
-                    stage.style.setProperty('--glow-rgb', rgb);
-                    panel.style.setProperty('--lp-accent', rgb);
-                }
-            }
-
-            sliders.forEach(s => {
-                if (AUTO_VARS.includes(s.dataset.var)) {
-                    resetVar(s);
-                } else {
-                    paint(s);
-                }
-                s.addEventListener('input', () => paint(s));
+            btnLarger.addEventListener('click', () => {
+                currentW += STEP;
+                apply();
             });
 
-            applyColor(colorInput.value, true, false);
-            colorInput.addEventListener('input', () => applyColor(colorInput.value, true, false));
-
-            if (hexInput) {
-                hexInput.addEventListener('input', () => applyColor(hexInput.value, false, true));
-                hexInput.addEventListener('paste', () => setTimeout(() => applyColor(hexInput.value, true, true), 10));
-                hexInput.addEventListener('blur', () => {
-                    if (hexInput.value) applyColor(hexInput.value, true, true);
-                });
-            }
-
-            const closeBtn = document.getElementById('lpCloseBtn');
-
-            function setPanelOpen(open) {
-                panel.style.display = open ? 'block' : 'none';
-                toggle.classList.toggle('active', open);
-            }
-
-            toggle.addEventListener('click', () => {
-                const isOpen = panel.style.display === 'block';
-                setPanelOpen(!isOpen);
-            });
-
-            if (closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    setPanelOpen(false);
-                });
-            }
-
-            // Die +/- Buttons schreiben die --stage-size-Variable — Slider nachziehen
-            const stageSlider = sliders.find(s => s.dataset.var === '--stage-size');
-            new MutationObserver(() => {
-                const v = stage.style.getPropertyValue('--stage-size');
-                const m = v.match(/^(\d+(?:\.\d+)?)px$/);
-                if (m) {
-                    const w = Math.round(parseFloat(m[1]));
-                    if (String(w) !== stageSlider.value) {
-                        stageSlider.value = String(w);
-                        stageSlider.parentElement.querySelector('.lp-val').textContent = w + 'px';
-                    }
-                }
-            }).observe(stage, { attributes: true, attributeFilter: ['style'] });
-
-            document.getElementById('lpReset').addEventListener('click', () => {
-                sliders.forEach(s => {
-                    s.value = defaults[s.dataset.var];
-                    if (AUTO_VARS.includes(s.dataset.var)) {
-                        resetVar(s);
-                    } else {
-                        paint(s);
-                    }
-                });
-                applyColor(defaultColor, true, true);
-            });
-
-            document.getElementById('lpCopy').addEventListener('click', (e) => {
-                const lines = sliders.map(s => '    ' + s.dataset.var + ': ' + s.value + s.dataset.unit + ';');
-                const hex = colorInput.value;
-                const rgb = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16)).join(', ');
-                lines.push('    --glow-rgb: ' + rgb + '; /* ' + hex + ' */');
-                const css = '.architects-stage {\n' + lines.join('\n') + '\n}';
-                navigator.clipboard.writeText(css).then(() => {
-                    const btn = e.target;
-                    const original = btn.textContent;
-                    btn.textContent = 'kopiert ✓';
-                    setTimeout(() => btn.textContent = original, 1400);
-                });
-            });
-        })();
-
-        // ===== CUSTOM DROPDOWN FÜR DAS KONTAKT-SELECT =====
-        (function initCustomSelect() {
-            const native = document.getElementById('c_role');
-            const trigger = document.getElementById('c_role_trigger');
-            const menu = document.getElementById('c_role_menu');
-            const wrap = document.getElementById('c_role_custom');
-            if (!native || !trigger || !menu || !wrap) return;
-
-            const valueEl = trigger.querySelector('.custom-select-value');
-
-            // Menü aus den <option>-Einträgen des versteckten Selects aufbauen
-            Array.from(native.options).forEach(opt => {
-                const li = document.createElement('li');
-                li.className = 'custom-select-option';
-                li.dataset.value = opt.value;
-                li.textContent = opt.textContent;
-                li.setAttribute('role', 'option');
-                li.addEventListener('click', () => selectOption(li));
-                menu.appendChild(li);
-            });
-
-            function options() { return Array.from(menu.querySelectorAll('.custom-select-option')); }
-
-            function highlight(li) {
-                if (!li) return;
-                options().forEach(o => o.classList.toggle('highlighted', o === li));
-            }
-
-            function open() {
-                wrap.classList.add('open');
-                menu.hidden = false;
-                trigger.setAttribute('aria-expanded', 'true');
-                highlight(menu.querySelector('.custom-select-option.selected') || options()[0]);
-            }
-
-            function close() {
-                wrap.classList.remove('open');
-                menu.hidden = true;
-                trigger.setAttribute('aria-expanded', 'false');
-            }
-
-            function selectOption(li) {
-                native.value = li.dataset.value;
-                native.dispatchEvent(new Event('change', { bubbles: true }));
-                valueEl.textContent = li.textContent;
-                options().forEach(o => o.classList.toggle('selected', o === li));
-                close();
-                trigger.focus();
-            }
-
-            function choose() {
-                const hl = menu.querySelector('.custom-select-option.highlighted');
-                if (hl) selectOption(hl);
-            }
-
-            function move(dir) {
-                const opts = options();
-                if (!opts.length) return;
-                let idx = opts.findIndex(o => o.classList.contains('highlighted'));
-                idx = (idx + dir + opts.length) % opts.length;
-                highlight(opts[idx]);
-                opts[idx].scrollIntoView({ block: 'nearest' });
-            }
-
-            trigger.addEventListener('click', () => { menu.hidden ? open() : close(); });
-
-            trigger.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    if (menu.hidden) open(); else move(e.key === 'ArrowDown' ? 1 : -1);
-                } else if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    if (menu.hidden) open(); else choose();
-                } else if (e.key === 'Escape' && !menu.hidden) {
-                    close();
-                } else if (e.key === 'Tab' && !menu.hidden) {
-                    close();
+            btnSmaller.addEventListener('click', () => {
+                if (currentW > MIN) {
+                    currentW -= STEP;
+                    apply();
                 }
             });
 
-            document.addEventListener('click', (e) => {
-                if (!wrap.contains(e.target)) close();
-            });
-
-            // Startwert anzeigen
-            function syncFromNative() {
-                const li = menu.querySelector('.custom-select-option[data-value="' + native.value + '"]');
-                if (li) {
-                    valueEl.textContent = li.textContent;
-                    options().forEach(o => o.classList.toggle('selected', o === li));
-                }
-            }
-            syncFromNative();
-
-            // Nach Formular-Reset (z. B. nach dem Absenden) Anzeige zurücksetzen
-            const form = native.closest('form');
-            if (form) form.addEventListener('reset', () => setTimeout(syncFromNative, 0));
-        })();
-
-        // ===== SEKTIONEN VERSCHIEBEN (Entwickler-Modus) =====
-        (function initMoveSections() {
-            const toggleBtn = document.getElementById('moveToggleBtn');
-            if (!toggleBtn) return;
-
-            const LABELS = {
-                top: 'Hero',
-                patienten: 'Patienten',
-                karriere: 'Karriere',
-                gebaeude: 'Gebäude',
-                zahnaerzte: 'Praxen',
-                prozess: 'Prozess',
-                ueberuns: 'Über uns',
-                kontakt: 'Kontakt'
-            };
-
-            let enabled = false;
-
-            function allSections() {
-                return Array.from(document.querySelectorAll('body > section'));
-            }
-
-            function injectControls() {
-                allSections().forEach(sec => {
-                    if (sec.querySelector('.section-move-controls')) return;
-                    const ctrl = document.createElement('div');
-                    ctrl.className = 'section-move-controls';
-                    const label = LABELS[sec.id] || sec.id;
-                    ctrl.innerHTML =
-                        '<button type="button" class="section-move-btn" data-dir="-1" title="Eine Position nach oben">▲</button>' +
-                        '<span class="section-move-label">' + label + '</span>' +
-                        '<button type="button" class="section-move-btn" data-dir="1" title="Eine Position nach unten">▼</button>';
-                    ctrl.addEventListener('click', (e) => {
-                        const btn = e.target.closest('.section-move-btn');
-                        if (!btn || btn.disabled) return;
-                        moveSection(sec, parseInt(btn.dataset.dir, 10));
-                    });
-                    sec.appendChild(ctrl);
-                });
-                refreshStates();
-            }
-
-            function removeControls() {
-                document.querySelectorAll('.section-move-controls').forEach(el => el.remove());
-            }
-
-            function refreshStates() {
-                const secs = allSections();
-                secs.forEach((sec, i) => {
-                    const ctrl = sec.querySelector('.section-move-controls');
-                    if (!ctrl) return;
-                    ctrl.querySelector('[data-dir="-1"]').disabled = (i === 0);
-                    ctrl.querySelector('[data-dir="1"]').disabled = (i === secs.length - 1);
-                });
-            }
-
-            // Sektion verschieben (Trennlinie/Separator ist fest in der Sektion enthalten und wandert mit)
-            function moveSection(sec, dir) {
-                const secs = allSections();
-                const idx = secs.indexOf(sec);
-                const targetIdx = idx + dir;
-                if (targetIdx < 0 || targetIdx >= secs.length) return;
-                const targetSec = secs[targetIdx];
-                if (dir === -1) {
-                    targetSec.before(sec);
-                } else {
-                    targetSec.after(sec);
-                }
-                refreshStates();
-            }
-
-            toggleBtn.addEventListener('click', () => {
-                enabled = !enabled;
-                toggleBtn.classList.toggle('active', enabled);
-                if (enabled) injectControls(); else removeControls();
-            });
-        })();
-
-        // ===== KUNDEN-VARIANTEN-UMSCHALTER LOGIK =====
-        (function initVariantSwitcher() {
-            const switcher = document.getElementById('variantSwitcher');
-            if (!switcher) return;
-            const buttons = switcher.querySelectorAll('.variant-btn');
-
-            function syncActiveBtn() {
-                const current = document.documentElement.getAttribute('data-variant') || '';
-                buttons.forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.variant === current);
-                });
-            }
-
-            buttons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const target = btn.dataset.variant;
-                    if (target) {
-                        document.documentElement.setAttribute('data-variant', target);
-                        history.replaceState(null, '', '?v=' + target.replace('v', ''));
-                    } else {
-                        document.documentElement.removeAttribute('data-variant');
-                        history.replaceState(null, '', window.location.pathname);
-                    }
-                    syncActiveBtn();
-                });
-            });
-
-            syncActiveBtn();
+            apply();
         })();
     </script>
 </body>
