@@ -179,6 +179,12 @@
             margin: 0; padding: 0; box-sizing: border-box;
         }
 
+        /* Kein horizontales Scrollen auf Mobil – Seite bleibt immer in der Viewport-Breite */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         /* Textmarkierung seitenweit im Markenton */
         ::selection {
             background: var(--turquoise);
@@ -2161,6 +2167,9 @@
             .perks-grid {
                 grid-template-columns: 1fr;
             }
+            .benefit-list {
+                grid-template-columns: 1fr;
+            }
             .hero-frame { display: none; }
             /* Kontakt: Formular zuerst (Hauptaktion); Kontaktdaten wandern in den Sektions-Header */
             .contact-form { order: -1; }
@@ -2226,38 +2235,8 @@
         }
 
         /* ===== ANIMATIONS ===== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: none;
-        }
-
-        .fade-in-left {
-            opacity: 0;
-            transform: translateX(-25px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in-left.visible {
-            opacity: 1;
-            transform: none;
-        }
-
-        .fade-in-right {
-            opacity: 0;
-            transform: translateX(25px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in-right.visible {
-            opacity: 1;
-            transform: none;
-        }
+        /* Scroll-Reveal-Effekte (fade-in/left/right) entfernt – Inhalte sind sofort sichtbar.
+           Nur die Logo-Animationen (Corona-Puls, Glow) bleiben aktiv. */
         /* ===== ARCHITECTS ECLIPSE PULSE LOGO SHOWCASE ===== */
         .architects-section {
             background: #121212;
@@ -3777,23 +3756,7 @@
             setTimeout(() => t.classList.remove('show'), 3000);
         }
 
-        // Scroll animations
-        const fadeEls = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
-        const obs = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    const d = entry.target.dataset.delay || 0;
-                    setTimeout(() => entry.target.classList.add('visible'), d);
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.patient-features .patient-feature').forEach((el, i) => el.dataset.delay = i * 150);
-        document.querySelectorAll('.benefit-list .benefit-item').forEach((el, i) => el.dataset.delay = i * 150);
-        document.querySelectorAll('.jobs-list .job-item').forEach((el, i) => el.dataset.delay = i * 100);
-
-        fadeEls.forEach(el => obs.observe(el));
+        // Scroll animations entfernt (alle Inhalte sofort sichtbar, nur Logo-Effekte aktiv)
 
         // Architects Eclipse Pulse Controls
         function setEclipseTheme(theme, btn) {
