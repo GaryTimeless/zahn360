@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" data-theme="dark">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,44 +25,8 @@
 
     <style>
         :root {
-            --black: #111111;
-            --near-black: #1A1A1A;
-            --charcoal: #2C2C2C;
-            --gray-dark: #555555;
-            --gray-mid: #555555;
-            --gray-light: #BBBBBB;
-            --gray-pale: #DDDBD7;
-            --off-white: #F0EEEB;
-            --cream: #F5F3F0;
-            --white: #FFFFFF;
-
-            --turquoise: #5EC8D8;
-            --turquoise-soft: #8DE0EB;
-            --turquoise-muted: rgba(94, 200, 216, 0.08);
-            --turquoise-line: rgba(94, 200, 216, 0.35);
-
-            --header-bg: rgba(245, 243, 240, 0.92);
-            --overlay-subtler: rgba(255, 255, 255, 0.03);
-            --overlay-subtle: rgba(255, 255, 255, 0.06);
-            --overlay-medium: rgba(255, 255, 255, 0.10);
-            --overlay-strong: rgba(255, 255, 255, 0.12);
-            --overlay-border: rgba(255, 255, 255, 0.20);
-            --overlay-xstrong: rgba(255, 255, 255, 0.25);
-            --overlay-modal: rgba(0, 0, 0, 0.6);
-
-            /* Website-weit eine einzige Schrift: Inter (wie "Meisterlabor Weinheim" im Header).
-               --font-serif zeigt bewusst auf denselben Stack, damit alle Textstellen erfasst sind. */
-            --font-sans: 'Inter', -apple-system, sans-serif;
-            --font-serif: var(--font-sans);
-
-            --max-width: 1100px;
-            --line: 1px solid var(--gray-pale);
-            --line-dark: 1px solid rgba(255,255,255,0.08);
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        /* ===== DARK MODE ===== */
-        [data-theme="dark"] {
+            /* Ein Farbsystem (Dark Only – kein Light Mode gewünscht):
+               Basis #121212, Text #E8E6E3 / #999999, Linien #333333, Akzent Türkis */
             --black: #E8E6E3;
             --near-black: #D0CECB;
             --charcoal: #AAAAAA;
@@ -74,6 +38,8 @@
             --cream: #121212;
             --white: #1A1A1A;
 
+            --turquoise: #5EC8D8;
+            --turquoise-soft: #8DE0EB;
             --turquoise-muted: rgba(94, 200, 216, 0.12);
             --turquoise-line: rgba(94, 200, 216, 0.45);
 
@@ -86,17 +52,25 @@
             --overlay-xstrong: rgba(0, 0, 0, 0.40);
             --overlay-modal: rgba(0, 0, 0, 0.85);
 
+            /* Website-weit eine einzige Schrift: Inter (wie "Meisterlabor Weinheim" im Header).
+               --font-serif zeigt bewusst auf denselben Stack, damit alle Textstellen erfasst sind. */
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-serif: var(--font-sans);
+
+            --max-width: 1100px;
             --line: 1px solid var(--gray-pale);
+            --line-dark: 1px solid rgba(255,255,255,0.08);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Text auf hellen Flächen im Dark Mode: eine Stufe dunkler (#555555) für besseren Kontrast */
-        [data-theme="dark"] .section-dark .section-overtitle,
-        [data-theme="dark"] .section-dark .section-desc,
-        [data-theme="dark"] .perk-item p,
-        [data-theme="dark"] .job-meta,
-        [data-theme="dark"] .contact-entry-label,
-        [data-theme="dark"] .contact-info-sub,
-        [data-theme="dark"] .form-group label {
+        /* Text auf hellen Flächen: eine Stufe dunkler (#555555) für besseren Kontrast */
+        .section-dark .section-overtitle,
+        .section-dark .section-desc,
+        .perk-item p,
+        .job-meta,
+        .contact-entry-label,
+        .contact-info-sub,
+        .form-group label {
             color: #555555;
         }
 
@@ -115,9 +89,6 @@
         }
         .dark-toggle:hover {
             border-color: var(--gray-light);
-            color: var(--white);
-        }
-        [data-theme="dark"] .dark-toggle:hover {
             color: var(--black);
         }
 
@@ -199,6 +170,9 @@
                 padding: 0.35rem 0.65rem;
                 font-size: 0.68rem;
             }
+            /* Dev-/Design-Werkzeuge auf Mobil ausblenden (Besucher brauchen sie nicht) */
+            #sizeToggleBtn, #logoToggleBtn, #moveToggleBtn { display: none; }
+            #sizeControls, #logoPanel { display: none !important; }
         }
 
         *, *::before, *::after {
@@ -563,11 +537,11 @@
         .carousel-prev { left: -10px; }
         .carousel-next { right: -10px; }
 
-        [data-theme="dark"] .carousel-arrow {
+        .carousel-arrow {
             background: rgba(255,255,255,0.08);
             border-color: rgba(255,255,255,0.1);
         }
-        [data-theme="dark"] .carousel-arrow:hover {
+        .carousel-arrow:hover {
             background: rgba(255,255,255,0.15);
             border-color: rgba(255,255,255,0.3);
         }
@@ -594,12 +568,8 @@
 
         .carousel-dot.active {
             opacity: 1;
-            background: var(--black);
-            transform: scale(1.3);
-        }
-
-        [data-theme="dark"] .carousel-dot.active {
             background: var(--white);
+            transform: scale(1.3);
         }
 
         @media (max-width: 768px) {
@@ -1116,11 +1086,6 @@
             color: var(--turquoise);
             font-weight: 700;
         }
-
-        [data-theme="dark"] .leistung-acc summary { color: var(--black); }
-        [data-theme="dark"] .leistung-acc summary:hover { color: var(--turquoise); }
-        [data-theme="dark"] .leistung-acc details[open] summary { color: var(--turquoise); }
-        [data-theme="dark"] .leistung-acc .acc-content li { color: var(--gray-light); }
 
         /* ===== FIRMENGEBÄUDE (eigene Sektion, schwarz) ===== */
         .section-black {
@@ -1662,10 +1627,6 @@
             line-height: 1.7;
         }
 
-        [data-theme="dark"] .process-steps::before {
-            background: var(--gray-pale);
-        }
-
         @media (min-width: 900px) {
             .process-steps {
                 flex-direction: row;
@@ -2132,6 +2093,14 @@
             color: var(--black);
         }
 
+        .modal-body h4 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin: 1.2rem 0 0.4rem;
+            color: var(--black);
+        }
+
         /* Modal dark variant for forms */
         .modal-content-dark {
             background: var(--near-black);
@@ -2144,7 +2113,10 @@
         }
 
         .modal-content-dark .modal-body {
-            color: var(--gray-light);
+            color: #555555;
+        }
+        .modal-content-dark .modal-body h4 {
+            color: var(--white);
         }
 
         .modal-content-dark .modal-close {
@@ -2781,11 +2753,6 @@
             color: rgba(255,255,255,0.35);
             text-transform: uppercase;
             margin-top: 0.3rem;
-        }
-
-        /* Dark mode: eclipse stays dark */
-        [data-theme="dark"] .eclipse-section {
-            background: #121212;
         }
 
         @media (max-width: 768px) {
@@ -3598,19 +3565,19 @@
             <p class="modal-body" style="margin-bottom:1.5rem;">In 60 Sekunden bewerben. Wir melden uns innerhalb von 24 Stunden.</p>
             <form onsubmit="handleApplySubmit(event)">
                 <div class="form-group">
-                    <label for="app_name" style="color:var(--gray-light);">Name</label>
+                    <label for="app_name">Name</label>
                     <input type="text" id="app_name" class="form-control" required placeholder="Vor- und Nachname">
                 </div>
                 <div class="form-group">
-                    <label for="app_phone" style="color:var(--gray-light);">Telefonnummer</label>
+                    <label for="app_phone">Telefonnummer</label>
                     <input type="tel" id="app_phone" class="form-control" required placeholder="0170 1234567">
                 </div>
                 <div class="form-group">
-                    <label for="app_email" style="color:var(--gray-light);">E-Mail</label>
+                    <label for="app_email">E-Mail</label>
                     <input type="email" id="app_email" class="form-control" required placeholder="ihre@email.de">
                 </div>
                 <div class="form-group">
-                    <label for="app_note" style="color:var(--gray-light);">Kurze Nachricht</label>
+                    <label for="app_note">Kurze Nachricht</label>
                     <textarea id="app_note" class="form-control" wrap="soft" placeholder="Erzählen Sie uns kurz von Ihrer Erfahrung..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width:100%;background:var(--white);color:var(--black);border-color:var(--white);">Bewerbung absenden</button>
@@ -3908,6 +3875,15 @@
             };
         })();
 
+        // ===== PERFORMANCE: Canvas-Engines zeichnen nur, wenn sichtbar =====
+        const IS_MOBILE = window.innerWidth < 768;
+        function canvasIsVisible(el) {
+            if (!el || !el.isConnected || document.hidden) return false;
+            const r = el.getBoundingClientRect();
+            return r.bottom > 0 && r.top < (window.innerHeight || document.documentElement.clientHeight)
+                && r.right > 0 && r.left < (window.innerWidth || document.documentElement.clientWidth);
+        }
+
         // ===== CANVAS ORGANIC CORONA ENGINE =====
         (function initOrganicCorona() {
             const canvas = document.getElementById('noiseCoronaCanvas');
@@ -3924,6 +3900,7 @@
             };
 
             function render() {
+                if (!canvasIsVisible(canvas)) { requestAnimationFrame(render); return; }
                 time += 0.008;
                 const width = canvas.width;
                 const height = canvas.height;
@@ -3936,7 +3913,7 @@
                 // Additive blending for photo-realistic glowing rays superposition
                 ctx.globalCompositeOperation = 'lighter';
 
-                const numRays = 450;
+                const numRays = IS_MOBILE ? 160 : 450;
                 for (let i = 0; i < numRays; i++) {
                     const angle = (i / numRays) * Math.PI * 2;
                     const cosA = Math.cos(angle);
@@ -4041,6 +4018,7 @@
 
             function draw() {
                 if (w < 10) { requestAnimationFrame(draw); return; }
+                if (!canvasIsVisible(canvas)) { requestAnimationFrame(draw); return; }
                 t += 0.012;
 
                 // Solid dark background (erases previous frame)
@@ -4050,9 +4028,10 @@
                 // Additive blending for glowing plasma superposition
                 ctx.globalCompositeOperation = 'lighter';
 
-                // ---- Dense corona filaments (2200 rays) ----
-                for (let i = 0; i < 2200; i++) {
-                    const a = (i / 2200) * Math.PI * 2;
+                // ---- Dense corona filaments ----
+                const RAYS = IS_MOBILE ? 500 : 2200;
+                for (let i = 0; i < RAYS; i++) {
+                    const a = (i / RAYS) * Math.PI * 2;
                     const n = noise(a, t);
 
                     // Organic length: base + noise-driven variance
@@ -4125,8 +4104,10 @@
             const resize = () => { const r = stage.getBoundingClientRect(); dpr=Math.min(devicePixelRatio||1,2); w=r.width; h=r.height; canvas.width=w*dpr; canvas.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
             const n = (x,t) => { const a=Math.sin(x*8+t*.7)*43758.5, b=Math.sin(x*23-t*.4+3)*15731.7; return ((a-Math.floor(a))*.58+(b-Math.floor(b))*.42); };
             const draw = ms => {
+                if (!canvasIsVisible(canvas)) { requestAnimationFrame(draw); return; }
+                const R = IS_MOBILE ? 320 : 900;
                 const t=ms*.001, cx=w/2, cy=h/2, core=Math.min(w,h)*.2; ctx.clearRect(0,0,w,h); ctx.globalCompositeOperation='lighter';
-                for(let i=0;i<900;i++){ const a=i/900*Math.PI*2, q=n(i/900*7+Math.sin(a*4)*.1,t), q2=n(i/900*17+4,t*1.3), start=core+q*7, len=12+q*q*Math.min(w,h)*(.2+q2*.34), alpha=.025+q*q*q2*.26; ctx.beginPath(); ctx.moveTo(cx+Math.cos(a)*start,cy+Math.sin(a)*start); ctx.lineTo(cx+Math.cos(a+(q-.5)*.04)*(start+len),cy+Math.sin(a+(q-.5)*.04)*(start+len)); ctx.strokeStyle=`rgba(244,243,235,${alpha})`; ctx.lineWidth=.35+q*1.25; ctx.stroke(); }
+                for(let i=0;i<R;i++){ const a=i/R*Math.PI*2, q=n(i/R*7+Math.sin(a*4)*.1,t), q2=n(i/R*17+4,t*1.3), start=core+q*7, len=12+q*q*Math.min(w,h)*(.2+q2*.34), alpha=.025+q*q*q2*.26; ctx.beginPath(); ctx.moveTo(cx+Math.cos(a)*start,cy+Math.sin(a)*start); ctx.lineTo(cx+Math.cos(a+(q-.5)*.04)*(start+len),cy+Math.sin(a+(q-.5)*.04)*(start+len)); ctx.strokeStyle=`rgba(244,243,235,${alpha})`; ctx.lineWidth=.35+q*1.25; ctx.stroke(); }
                 ctx.globalCompositeOperation='source-over'; requestAnimationFrame(draw);
             };
             resize(); addEventListener('resize',resize,{passive:true}); requestAnimationFrame(draw);
@@ -4215,6 +4196,7 @@
 
             function draw(time) {
                 if (canvas.width < 10) { requestAnimationFrame(draw); return; }
+                if (!canvasIsVisible(canvas)) { requestAnimationFrame(draw); return; }
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                 const size = Math.min(canvas.width, canvas.height);
@@ -4229,8 +4211,9 @@
 
                 const t = time * CONFIG.noiseSpeed;
 
-                for (let i = 0; i < CONFIG.rayCount; i++) {
-                    const angle = (i / CONFIG.rayCount) * Math.PI * 2;
+                const rc = IS_MOBILE ? 300 : CONFIG.rayCount;
+                for (let i = 0; i < rc; i++) {
+                    const angle = (i / rc) * Math.PI * 2;
                     const nx = Math.cos(angle) * CONFIG.noiseScale;
                     const ny = Math.sin(angle) * CONFIG.noiseScale;
 
@@ -4360,14 +4343,16 @@
             function trigDraw() {
                 if (!trigRunning) return;
                 if (w1 < 10) { trigRAF = requestAnimationFrame(trigDraw); return; }
+                if (!canvasIsVisible(canvas1)) { trigRAF = requestAnimationFrame(trigDraw); return; }
                 t1 += 0.012;
                 const ctx = canvas1.getContext('2d');
 
                 ctx.clearRect(0, 0, w1, h1);
                 ctx.globalCompositeOperation = 'lighter';
 
-                for (let i = 0; i < 2200; i++) {
-                    const a = (i / 2200) * Math.PI * 2;
+                const RAYS1 = IS_MOBILE ? 500 : 2200;
+                for (let i = 0; i < RAYS1; i++) {
+                    const a = (i / RAYS1) * Math.PI * 2;
                     const n = trigNoise(a, t1);
                     const len = 35 + 55 * (0.5 + 0.5 * n) + 18 * Math.sin(t1 * 2.3 + a * 5);
                     const rr = innerR1 + Math.sin(a * 9 + t1) * 3;
@@ -4487,6 +4472,7 @@
             function fbmDraw(time) {
                 if (!fbmRunning) return;
                 if (canvas2.width < 10) { fbmRAF = requestAnimationFrame(fbmDraw); return; }
+                if (!canvasIsVisible(canvas2)) { fbmRAF = requestAnimationFrame(fbmDraw); return; }
                 const ctx = canvas2.getContext('2d');
                 ctx.clearRect(0, 0, canvas2.width, canvas2.height);
 
@@ -4498,7 +4484,7 @@
                 ctx.globalCompositeOperation = 'lighter';
                 const t = time * FBM_CONFIG.noiseSpeed;
 
-                const rayCount = Math.floor(w2 * 2.5);
+                const rayCount = Math.floor(w2 * (IS_MOBILE ? 1 : 2.5));
                 for (let i = 0; i < rayCount; i++) {
                     const angle = (i / rayCount) * Math.PI * 2;
                     const nx = Math.cos(angle) * FBM_CONFIG.noiseScale;
@@ -4581,6 +4567,7 @@
             function eclipseDraw() {
                 if (!eclipseRunning) return;
                 if (w3 < 10) { eclipseRAF = requestAnimationFrame(eclipseDraw); return; }
+                if (!canvasIsVisible(canvas3)) { eclipseRAF = requestAnimationFrame(eclipseDraw); return; }
                 t3 += 0.012;
                 const ctx = canvas3.getContext('2d');
 
@@ -4590,8 +4577,9 @@
                 ctx.globalCompositeOperation = 'lighter';
 
                 // Dense corona filaments
-                for (let i = 0; i < 2200; i++) {
-                    const a = (i / 2200) * Math.PI * 2;
+                const RAYS3 = IS_MOBILE ? 500 : 2200;
+                for (let i = 0; i < RAYS3; i++) {
+                    const a = (i / RAYS3) * Math.PI * 2;
                     const n = eclipseNoise(a, t3);
                     const len = 35 + 55 * (0.5 + 0.5 * n) + 18 * Math.sin(t3 * 2.3 + a * 5);
                     const rr = innerR3 + Math.sin(a * 9 + t3) * 3;
