@@ -631,6 +631,30 @@
             white-space: nowrap;
         }
 
+        /* Hover-Swap "0" <-> "KEINE": beide Texte liegen in derselben Grid-Zelle,
+           die Breite reserviert der breitere Text - kein Layout-Sprung beim Hover */
+        .hero-stat-swap {
+            display: inline-grid;
+            cursor: default;
+        }
+        .hero-stat-swap > span {
+            grid-area: 1 / 1;
+            text-align: center;
+            transition: opacity 0.25s ease;
+        }
+        .hero-stat-swap .swap-alt {
+            opacity: 0;
+            letter-spacing: 1px;
+        }
+        .hero-stat-swap:hover .swap-base,
+        .hero-stat-swap:focus-within .swap-base {
+            opacity: 0;
+        }
+        .hero-stat-swap:hover .swap-alt,
+        .hero-stat-swap:focus-within .swap-alt {
+            opacity: 1;
+        }
+
         .hero-stat-label {
             font-size: 0.65rem;
             letter-spacing: 2px;
@@ -2798,7 +2822,10 @@
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value">0</div>
+                    <div class="hero-stat-value hero-stat-swap">
+                        <span class="swap-base">0</span>
+                        <span class="swap-alt">KEINE</span>
+                    </div>
                     <div class="hero-stat-label">Kompromisse bei&nbsp;Qualität</div>
                 </div>
                 <div class="hero-stat-divider"></div>
