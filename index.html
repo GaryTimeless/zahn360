@@ -6,27 +6,20 @@
     <title>ZAHN 360 oHG – Meisterlabor für Zahntechnik in Weinheim</title>
     <meta name="description" content="ZAHN 360 oHG in Weinheim (Hauptstraße 4c). Führung & Unterhaltung eines zahntechnischen Labors. Kronen, Brücken & Implantate in Meisterqualität von Julien Hornung & Simon Jansen.">
 
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 
-    <script>
-        /* Farbvariante per URL-Parameter: index.html (Standard) | index.html?v=1 bzw. ?v-1 (echtes Schwarz) | index.html?v=2 bzw. ?v-2 (Zebra) */
-        (function () {
-            var s = location.search;
-            var v = new URLSearchParams(s).get('v');
-            if (v === '1' || v === 'v1' || v === 'v-1' || /[?&]v[-_]?1\b/i.test(s)) {
-                document.documentElement.setAttribute('data-variant', 'v1');
-            } else if (v === '2' || v === 'v2' || v === 'v-2' || /[?&]v[-_]?2\b/i.test(s)) {
-                document.documentElement.setAttribute('data-variant', 'v2');
-            }
-        })();
-    </script>
-
     <style>
         :root {
-            /* Ein Farbsystem (Dark Only – kein Light Mode gewünscht):
-               Basis #121212, Text #E8E6E3 / #999999, Linien #333333, Akzent Türkis */
+            /* Ein Farbsystem (v-1 Kontrast: Reines Schwarz #000000 & klares Weiß #FFFFFF alternierend):
+               Basis #000000, Text #E8E6E3 / #999999, Linien #333333, Akzent Türkis */
             --black: #E8E6E3;
             --near-black: #D0CECB;
             --charcoal: #AAAAAA;
@@ -43,7 +36,7 @@
             --turquoise-muted: rgba(94, 200, 216, 0.12);
             --turquoise-line: rgba(94, 200, 216, 0.45);
 
-            --header-bg: rgba(18, 18, 18, 0.92);
+            --header-bg: rgba(0, 0, 0, 0.92);
             --overlay-subtler: rgba(0, 0, 0, 0.10);
             --overlay-subtle: rgba(0, 0, 0, 0.20);
             --overlay-medium: rgba(0, 0, 0, 0.25);
@@ -102,74 +95,7 @@
         #logoToggleBtn { right: 6.5rem; }
         #moveToggleBtn { right: 12rem; }
 
-        /* ===== KUNDEN-VARIANTEN-UMSCHALTER (Floating Bar) ===== */
-        .variant-switcher {
-            position: fixed;
-            bottom: 1rem;
-            left: 1rem;
-            z-index: 3000;
-            display: inline-flex;
-            align-items: center;
-            background: rgba(18, 18, 18, 0.88);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            border-radius: 999px;
-            padding: 4px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
-            gap: 2px;
-        }
-
-        .variant-switcher-label {
-            font-size: 0.65rem;
-            color: #888888;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 0 0.6rem 0 0.5rem;
-            font-weight: 500;
-            user-select: none;
-        }
-
-        .variant-btn {
-            background: transparent;
-            color: #AAAAAA;
-            border: none;
-            border-radius: 999px;
-            padding: 0.4rem 0.85rem;
-            font-size: 0.72rem;
-            font-family: var(--font-sans);
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .variant-btn:hover {
-            color: #FFFFFF;
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .variant-btn.active {
-            background: var(--turquoise);
-            color: #000000;
-            font-weight: 500;
-            box-shadow: 0 2px 10px rgba(94, 200, 216, 0.35);
-        }
-
         @media (max-width: 768px) {
-            .variant-switcher {
-                bottom: 4rem;
-                left: 50%;
-                transform: translateX(-50%);
-                padding: 3px;
-            }
-            .variant-switcher-label {
-                display: none;
-            }
-            .variant-btn {
-                padding: 0.35rem 0.65rem;
-                font-size: 0.68rem;
-            }
             /* Dev-/Design-Werkzeuge auf Mobil ausblenden (Besucher brauchen sie nicht) */
             #sizeToggleBtn, #logoToggleBtn, #moveToggleBtn { display: none; }
             #sizeControls, #logoPanel { display: none !important; }
@@ -394,7 +320,7 @@
 
         /* ===== HERO ===== */
         .hero {
-            padding: 12rem 2rem 6rem;
+            padding: 14rem 2rem 6rem;
             text-align: center;
             position: relative;
             background: var(--cream);
@@ -603,11 +529,12 @@
         }
 
         .hero-title {
-            font-family: var(--font-serif);
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-family: var(--font-sans);
+            font-size: clamp(1.4rem, 3vw, 2rem);
             font-weight: 300;
-            line-height: 1.2;
-            letter-spacing: 2px;
+            line-height: 1.4;
+            letter-spacing: 6px;
+            text-transform: uppercase;
             color: var(--black);
             margin-bottom: 0.5rem;
         }
@@ -1108,7 +1035,7 @@
             flex-wrap: wrap;
         }
         .building-image {
-            flex: 0 0 500px;
+            flex: 1 1 55%;
             max-width: 100%;
         }
         .building-image img {
@@ -1118,8 +1045,16 @@
             border-radius: 4px;
         }
         .building-text {
-            flex: 1;
+            flex: 1 1 40%;
             min-width: 280px;
+            padding: 2rem 0;
+        }
+        .building-text .section-title {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+        }
+        .building-text .section-desc {
+            font-size: 1rem;
+            line-height: 1.8;
         }
 
         /* ===== WEISSE PRAXEN-SEKTION ===== */
@@ -1132,318 +1067,164 @@
         .section-white .leistung-acc .acc-content li { color: #555555; }
         .section-white .benefit-text p { color: #555555; }
 
-        /* ===== SEPARATOR-FARBE GEBÄUDE-SEKTION ===== */
-        .fine-separator.gebaeude-sep { background: #121212; }
-
-        /* ===== FARBVARIANTEN v-1 / v-2 (URL-Parameter ?v=1 bzw. ?v=2) ===== */
-        /* v-1: Echtes Schwarz (#000000) & klares Weiß (#FFFFFF) nach Sektionen */
-        [data-variant="v1"] {
-            --header-bg: rgba(0, 0, 0, 0.92);
-        }
-        [data-variant="v1"] .header-nav {
+        /* ===== DESIGN: v-1 KONTRAST (Reines Schwarz #000000 & klares Weiß #FFFFFF alternierend) ===== */
+        .header-nav {
             background: rgba(0, 0, 0, 0.92);
         }
 
         /* 1. Hero: Schwarz */
-        [data-variant="v1"] .hero {
+        .hero {
             background: #000000;
         }
 
         /* 2. Patienten (Woher kommt Ihr Zahnersatz): Schwarz */
-        [data-variant="v1"] #patienten {
+        #patienten {
             background: #000000;
             color: var(--black);
         }
-        [data-variant="v1"] #patienten .section-title { color: var(--black); }
-        [data-variant="v1"] #patienten .section-desc { color: var(--gray-dark); }
-        [data-variant="v1"] #patienten .patient-feature h4 { color: var(--black); }
-        [data-variant="v1"] #patienten .patient-feature p { color: var(--gray-dark); }
-        [data-variant="v1"] #patienten .quality-seal {
+        #patienten .section-title { color: var(--black); }
+        #patienten .section-desc { color: var(--gray-dark); }
+        #patienten .patient-feature h4 { color: var(--black); }
+        #patienten .patient-feature p { color: var(--gray-dark); }
+        #patienten .quality-seal {
             background: rgba(255, 255, 255, 0.04);
             border-color: rgba(255, 255, 255, 0.12);
         }
-        [data-variant="v1"] #patienten .quality-seal-title { color: var(--black); }
-        [data-variant="v1"] #patienten .quality-seal-sub { color: var(--gray-dark); }
-        [data-variant="v1"] #patienten .quality-list li { color: var(--gray-dark); }
+        #patienten .quality-seal-title { color: var(--black); }
+        #patienten .quality-seal-sub { color: var(--gray-dark); }
+        #patienten .quality-list li { color: var(--gray-dark); }
 
         /* 3. Karriere (Deine Karriere bei Zahn 360): Weiß */
-        [data-variant="v1"] #karriere {
+        #karriere {
             background: #FFFFFF;
             color: #111111;
         }
-        [data-variant="v1"] #karriere .section-title { color: #111111; }
-        [data-variant="v1"] #karriere .section-desc { color: #555555; }
-        [data-variant="v1"] #karriere .section-overtitle { color: #555555; }
-        [data-variant="v1"] #karriere .perk-item {
+        #karriere .section-title { color: #111111; }
+        #karriere .section-desc { color: #555555; }
+        #karriere .section-overtitle { color: #555555; }
+        #karriere .perk-item {
             background: #F9F9F8;
             border-color: rgba(0, 0, 0, 0.08);
         }
-        [data-variant="v1"] #karriere .perk-item h3 { color: #111111; }
-        [data-variant="v1"] #karriere .perk-item p { color: #555555; }
-        [data-variant="v1"] #karriere .job-item {
+        #karriere .perk-item h3 { color: #111111; }
+        #karriere .perk-item p { color: #555555; }
+        #karriere .job-item {
             border-bottom-color: rgba(0, 0, 0, 0.08);
         }
-        [data-variant="v1"] #karriere .job-item:first-child {
+        #karriere .job-item:first-child {
             border-top-color: rgba(0, 0, 0, 0.08);
         }
-        [data-variant="v1"] #karriere .job-name { color: #111111; }
-        [data-variant="v1"] #karriere .job-meta { color: #555555; }
-        [data-variant="v1"] #karriere .btn-dark-outline {
+        #karriere .job-name { color: #111111; }
+        #karriere .job-meta { color: #555555; }
+        #karriere .btn-dark-outline {
             color: #111111;
             border-color: rgba(0, 0, 0, 0.25);
         }
-        [data-variant="v1"] #karriere .btn-dark-outline:hover {
+        #karriere .btn-dark-outline:hover {
             background: #111111;
             color: #FFFFFF;
             border-color: #111111;
         }
 
         /* 4. Gebäude (Raum für die Zukunft): Schwarz */
-        [data-variant="v1"] #gebaeude {
+        #gebaeude {
             background: #000000;
         }
 
         /* 5. Zahnärzte (Für zahnärztliche Praxen): Weiß (Standard über .section-white) */
 
         /* 6. Prozess (Einmal ganz herum): Schwarz */
-        [data-variant="v1"] #prozess {
+        #prozess {
             background: #000000;
             color: var(--black);
         }
-        [data-variant="v1"] #prozess .section-title { color: var(--black); }
-        [data-variant="v1"] #prozess .process-step h3 { color: var(--black); }
-        [data-variant="v1"] #prozess .process-step p { color: var(--gray-dark); }
+        #prozess .section-title { color: var(--black); }
+        #prozess .process-step h3 { color: var(--black); }
+        #prozess .process-step p { color: var(--gray-dark); }
         /* Badge: gleicher Ring wie Standard, nur Innenfläche an reines Schwarz angepasst */
-        [data-variant="v1"] #prozess .degree-badge::before {
+        #prozess .degree-badge::before {
             background: #000000;
         }
 
         /* 7. Über uns (Tradition trifft Moderne): Schwarz */
-        [data-variant="v1"] #ueberuns {
+        #ueberuns {
             background: #000000;
             color: var(--black);
         }
-        [data-variant="v1"] #ueberuns h3 { color: var(--black); }
-        [data-variant="v1"] #ueberuns p { color: var(--gray-dark); }
+        #ueberuns h3 { color: var(--black); }
+        #ueberuns p { color: var(--gray-dark); }
 
         /* 8. Kontakt (Kontakt & Anfrage): Weiß */
-        [data-variant="v1"] #kontakt {
+        #kontakt {
             background: #FFFFFF;
             color: #111111;
         }
-        [data-variant="v1"] #kontakt .section-title { color: #111111; }
-        [data-variant="v1"] #kontakt .section-desc { color: #555555; }
-        [data-variant="v1"] #kontakt .section-overtitle { color: #555555; }
-        [data-variant="v1"] #kontakt .contact-info h3 { color: #111111; }
-        [data-variant="v1"] #kontakt .contact-info-sub { color: #555555; }
-        [data-variant="v1"] #kontakt .contact-entry-label { color: #555555; }
-        [data-variant="v1"] #kontakt .contact-entry-value,
-        [data-variant="v1"] #kontakt .contact-entry-value a { color: #111111; }
-        [data-variant="v1"] #kontakt .contact-form {
+        #kontakt .section-title { color: #111111; }
+        #kontakt .section-desc { color: #555555; }
+        #kontakt .section-overtitle { color: #555555; }
+        #kontakt .contact-info h3 { color: #111111; }
+        #kontakt .contact-info-sub { color: #555555; }
+        #kontakt .contact-entry-label { color: #555555; }
+        #kontakt .contact-entry-value,
+        #kontakt .contact-entry-value a { color: #111111; }
+        #kontakt .contact-form {
             background: #F9F9F8;
             border-color: rgba(0, 0, 0, 0.08);
         }
-        [data-variant="v1"] #kontakt .form-heading { color: #111111; }
-        [data-variant="v1"] #kontakt .form-group label { color: #555555; }
-        [data-variant="v1"] #kontakt .form-control {
+        #kontakt .form-heading { color: #111111; }
+        #kontakt .form-group label { color: #555555; }
+        #kontakt .form-control {
             color: #111111;
             border-bottom-color: rgba(0, 0, 0, 0.2);
         }
-        [data-variant="v1"] #kontakt .form-control:focus {
+        #kontakt .form-control:focus {
             border-bottom-color: #111111;
         }
-        [data-variant="v1"] #kontakt .form-control::placeholder {
+        #kontakt .form-control::placeholder {
             color: rgba(0, 0, 0, 0.35);
         }
-        [data-variant="v1"] #kontakt .custom-select-trigger {
+        #kontakt .custom-select-trigger {
             color: #111111;
         }
-        [data-variant="v1"] #kontakt .custom-select-menu {
+        #kontakt .custom-select-menu {
             background: #FFFFFF;
             border-color: rgba(0, 0, 0, 0.12);
         }
-        [data-variant="v1"] #kontakt .custom-select-option {
+        #kontakt .custom-select-option {
             color: #111111;
         }
-        [data-variant="v1"] #kontakt .custom-select-option:hover {
+        #kontakt .custom-select-option:hover {
             background: rgba(94, 200, 216, 0.1);
         }
-        [data-variant="v1"] #kontakt button[type="submit"] {
+        #kontakt button[type="submit"] {
             background: #111111 !important;
             color: #FFFFFF !important;
             border-color: #111111 !important;
         }
 
-        /* Separatoren & Footer in v-1 */
-        [data-variant="v1"] .fine-separator {
+        /* Separatoren & Footer in v-1 Kontrast */
+        .fine-separator {
             background: transparent;
         }
-        [data-variant="v1"] .site-footer {
-            background: #000000;
-            border-top-color: rgba(255, 255, 255, 0.08);
+        .site-footer {
+            background: #FFFFFF;
+            border-top: none;
         }
-        [data-variant="v1"] .architects-section,
-        [data-variant="v1"] .canvas-corona-section,
-        [data-variant="v1"] .eclipse-section {
-            background: #000000;
+        .site-footer .footer-brand,
+        .site-footer .footer-links a,
+        .site-footer .footer-address,
+        .site-footer .footer-legal {
+            color: #555555;
         }
-
-        /* ===== FARBVARIANTE v-2 (Zebra / Dark: exakt wie v-1, aber mit Dunkelgrau #121212 statt Weiß) ===== */
-        [data-variant="v2"] {
-            --header-bg: rgba(0, 0, 0, 0.92);
+        .site-footer .footer-brand {
+            color: #111111;
         }
-        [data-variant="v2"] .header-nav {
-            background: rgba(0, 0, 0, 0.92);
+        .site-footer .footer-links a:hover {
+            color: var(--turquoise);
         }
-
-        /* 1. Hero: Schwarz */
-        [data-variant="v2"] .hero {
-            background: #000000;
-        }
-
-        /* 2. Patienten: Schwarz */
-        [data-variant="v2"] #patienten {
-            background: #000000;
-            color: var(--black);
-        }
-        [data-variant="v2"] #patienten .section-title { color: var(--black); }
-        [data-variant="v2"] #patienten .section-desc { color: var(--gray-dark); }
-        [data-variant="v2"] #patienten .patient-feature h4 { color: var(--black); }
-        [data-variant="v2"] #patienten .patient-feature p { color: var(--gray-dark); }
-        [data-variant="v2"] #patienten .quality-seal {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-        [data-variant="v2"] #patienten .quality-seal-title { color: var(--black); }
-        [data-variant="v2"] #patienten .quality-seal-sub { color: var(--gray-dark); }
-        [data-variant="v2"] #patienten .quality-list li { color: var(--gray-dark); }
-
-        /* 3. Karriere: Dunkelgrau (#121212) */
-        [data-variant="v2"] #karriere {
-            background: #121212;
-            color: var(--black);
-        }
-        [data-variant="v2"] #karriere .section-title { color: var(--black); }
-        [data-variant="v2"] #karriere .section-desc { color: var(--gray-dark); }
-        [data-variant="v2"] #karriere .section-overtitle { color: var(--gray-dark); }
-        [data-variant="v2"] #karriere .perk-item {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.08);
-        }
-        [data-variant="v2"] #karriere .perk-item h3 { color: var(--black); }
-        [data-variant="v2"] #karriere .perk-item p { color: var(--gray-dark); }
-        [data-variant="v2"] #karriere .job-item {
-            border-bottom-color: rgba(255, 255, 255, 0.08);
-        }
-        [data-variant="v2"] #karriere .job-item:first-child {
-            border-top-color: rgba(255, 255, 255, 0.08);
-        }
-        [data-variant="v2"] #karriere .job-name { color: var(--black); }
-        [data-variant="v2"] #karriere .job-meta { color: var(--gray-dark); }
-        [data-variant="v2"] #karriere .btn-dark-outline {
-            color: var(--black);
-            border-color: rgba(255, 255, 255, 0.25);
-        }
-        [data-variant="v2"] #karriere .btn-dark-outline:hover {
-            border-color: var(--black);
-            color: var(--black);
-        }
-
-        /* 4. Gebäude: Schwarz */
-        [data-variant="v2"] #gebaeude {
-            background: #000000;
-        }
-
-        /* 5. Zahnärzte / Praxen: Dunkelgrau (#121212) */
-        [data-variant="v2"] #zahnaerzte {
-            background: #121212;
-            color: var(--black);
-        }
-        [data-variant="v2"] #zahnaerzte .section-title { color: var(--black); }
-        [data-variant="v2"] #zahnaerzte .section-desc { color: var(--gray-dark); }
-        [data-variant="v2"] #zahnaerzte .section-overtitle { color: var(--gray-dark); }
-        [data-variant="v2"] #zahnaerzte .leistung-acc summary { color: var(--black); }
-        [data-variant="v2"] #zahnaerzte .leistung-acc summary:hover { color: var(--turquoise); }
-        [data-variant="v2"] #zahnaerzte .leistung-acc details[open] summary { color: var(--turquoise); }
-        [data-variant="v2"] #zahnaerzte .leistung-acc .acc-content li { color: var(--gray-dark); }
-        [data-variant="v2"] #zahnaerzte .benefit-text h4 { color: var(--black); }
-        [data-variant="v2"] #zahnaerzte .benefit-text p { color: var(--gray-dark); }
-
-        /* 6. Prozess: Schwarz */
-        [data-variant="v2"] #prozess {
-            background: #000000;
-            color: var(--black);
-        }
-        [data-variant="v2"] #prozess .section-title { color: var(--black); }
-        [data-variant="v2"] #prozess .process-step h3 { color: var(--black); }
-        [data-variant="v2"] #prozess .process-step p { color: var(--gray-dark); }
-        /* Badge: gleicher Ring wie Standard, nur Innenfläche an reines Schwarz angepasst */
-        [data-variant="v2"] #prozess .degree-badge::before {
-            background: #000000;
-        }
-
-        /* 7. Über uns: Schwarz */
-        [data-variant="v2"] #ueberuns {
-            background: #000000;
-            color: var(--black);
-        }
-        [data-variant="v2"] #ueberuns h3 { color: var(--black); }
-        [data-variant="v2"] #ueberuns p { color: var(--gray-dark); }
-
-        /* 8. Kontakt: Dunkelgrau (#121212) */
-        [data-variant="v2"] #kontakt {
-            background: #121212;
-            color: var(--black);
-        }
-        [data-variant="v2"] #kontakt .section-title { color: var(--black); }
-        [data-variant="v2"] #kontakt .section-desc { color: var(--gray-dark); }
-        [data-variant="v2"] #kontakt .section-overtitle { color: var(--gray-dark); }
-        [data-variant="v2"] #kontakt .contact-info h3 { color: var(--black); }
-        [data-variant="v2"] #kontakt .contact-info-sub { color: var(--gray-dark); }
-        [data-variant="v2"] #kontakt .contact-entry-label { color: var(--gray-dark); }
-        [data-variant="v2"] #kontakt .contact-entry-value,
-        [data-variant="v2"] #kontakt .contact-entry-value a { color: var(--black); }
-        [data-variant="v2"] #kontakt .contact-form {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(255, 255, 255, 0.08);
-        }
-        [data-variant="v2"] #kontakt .form-heading { color: var(--black); }
-        [data-variant="v2"] #kontakt .form-group label { color: var(--gray-dark); }
-        [data-variant="v2"] #kontakt .form-control {
-            color: var(--black);
-            border-bottom-color: rgba(255, 255, 255, 0.25);
-        }
-        [data-variant="v2"] #kontakt .form-control:focus {
-            border-bottom-color: var(--black);
-        }
-        [data-variant="v2"] #kontakt .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-        [data-variant="v2"] #kontakt .custom-select-trigger {
-            color: var(--black);
-        }
-        [data-variant="v2"] #kontakt .custom-select-menu {
-            background: var(--white);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-        [data-variant="v2"] #kontakt .custom-select-option {
-            color: var(--black);
-        }
-        [data-variant="v2"] #kontakt .custom-select-option:hover {
-            background: rgba(94, 200, 216, 0.15);
-        }
-
-        /* Separatoren & Footer in v-2 */
-        [data-variant="v2"] .fine-separator {
-            background: transparent;
-        }
-        [data-variant="v2"] .site-footer {
-            background: #000000;
-            border-top-color: rgba(255, 255, 255, 0.08);
-        }
-        [data-variant="v2"] .architects-section,
-        [data-variant="v2"] .canvas-corona-section,
-        [data-variant="v2"] .eclipse-section {
+        .architects-section,
+        .canvas-corona-section,
+        .eclipse-section {
             background: #000000;
         }
 
@@ -1957,8 +1738,8 @@
 
         /* ===== FOOTER ===== */
         .site-footer {
-            background: var(--cream);
-            border-top: 1px solid var(--gray-pale);
+            background: #FFFFFF;
+            border-top: none;
             padding: 3rem 2rem;
         }
 
@@ -2232,6 +2013,8 @@
                 line-height: 1.3;
             }
             .about-image-frame { display: none; }
+            /* Mobile: Zahnärzte-Akkordeon ausblenden (zu viel Scroll) */
+            #zahnaerzte .leistung-acc { display: none; }
         }
 
         /* ===== ANIMATIONS ===== */
@@ -2313,18 +2096,22 @@
         /* Eclipse Stage */
         .architects-stage {
             /* Alle Stellschrauben des Logos an einem Ort - das Logo-Panel schreibt hier hinein.
-               Responsive Basis: max. 600px, skaliert mit dem Viewport.
-               Alle Teile (Corona, Orb, Blur, Glow) sind proportional zur Bühne. */
-            --pulse-speed: 2.5s;
-            --stage-size: clamp(300px, 88vw, 600px);
-            --corona-size: calc(var(--stage-size) * 1.35);
-            --corona-blur: calc(var(--stage-size) * 0.09);
-            --corona-opacity: 0.85;
-            --orb-size: calc(var(--stage-size) * 0.7875);
-            --logo-scale: 136%;
-            --logo-glow-size: calc(var(--stage-size) * 0.075);
-            --glow-rgb: 94, 200, 216;
-            --glow-alpha: 0.6;
+               Standardwerte = Juliens finale Einstellung (Logo-Button):
+               Bühne 660px · Puls 3.2s · Corona 680px/22px/1.5 · Orb 580px ·
+               Logo 109% · Schein 200px/1 · Glow #20D9FE.
+               Responsive Basis: max. 660px, skaliert mit dem Viewport.
+               Corona & Orb deckeln über min() exakt auf Juliens Werte ab ~660px
+               Viewportbreite und skalieren darunter proportional mit (kein Mobile-Bruch). */
+            --pulse-speed: 3.2s;
+            --stage-size: clamp(300px, 88vw, 660px);
+            --corona-size: min(680px, 103vw);
+            --corona-blur: 22px;
+            --corona-opacity: 1.5;
+            --orb-size: min(580px, 88vw);
+            --logo-scale: 109%;
+            --logo-glow-size: 200px;
+            --glow-rgb: 32, 217, 254;
+            --glow-alpha: 1;
 
             position: relative;
             z-index: 2;
@@ -2888,14 +2675,6 @@
 <body>
 
 
-    <!-- Kunden-Varianten-Umschalter (Live-Preview ohne Reload) -->
-    <div class="variant-switcher" id="variantSwitcher" title="Design-Variante wählen">
-        <span class="variant-switcher-label">Design:</span>
-        <button type="button" class="variant-btn" data-variant="" title="Standard-Entwurf">Standard</button>
-        <button type="button" class="variant-btn" data-variant="v1" title="Variante 1: Reines Schwarz & Weiß">v-1 (Kontrast)</button>
-        <button type="button" class="variant-btn" data-variant="v2" title="Variante 2: Abwechselnd Zebra-Dark">v-2 (Zebra)</button>
-    </div>
-
     <button class="dark-toggle" id="sizeToggleBtn" title="Größen-Buttons ein-/ausblenden">📏 Größe</button>
     <button class="dark-toggle" id="logoToggleBtn" title="Logo-Regler ein-/ausblenden">🎛 Logo</button>
     <button class="dark-toggle" id="moveToggleBtn" title="Sektionen-Verschieben ein-/ausblenden">↕️ Sektionen</button>
@@ -2962,28 +2741,28 @@
                     <button class="lp-close" id="lpCloseBtn" title="Schließen" type="button">✕</button>
                 </div>
                 <p class="lp-group">Bühne · .architects-stage</p>
-                <label>Gesamtgröße<input type="range" data-var="--stage-size" data-unit="px" min="300" max="1600" step="10" value="600"><span class="lp-val"></span></label>
-                <label>Puls-Tempo<input type="range" data-var="--pulse-speed" data-unit="s" min="0.5" max="8" step="0.1" value="2.5"><span class="lp-val"></span></label>
+                <label>Gesamtgröße<input type="range" data-var="--stage-size" data-unit="px" min="300" max="1600" step="10" value="660"><span class="lp-val"></span></label>
+                <label>Puls-Tempo<input type="range" data-var="--pulse-speed" data-unit="s" min="0.5" max="8" step="0.1" value="3.2"><span class="lp-val"></span></label>
 
                 <p class="lp-group">Leuchten · .architects-corona</p>
-                <label>Größe<input type="range" data-var="--corona-size" data-unit="px" min="100" max="1600" step="10" value="810"><span class="lp-val"></span></label>
-                <label>Weichzeichnung<input type="range" data-var="--corona-blur" data-unit="px" min="0" max="200" step="1" value="55"><span class="lp-val"></span></label>
-                <label>Stärke<input type="range" data-var="--corona-opacity" data-unit="" min="0" max="1.5" step="0.05" value="0.85"><span class="lp-val"></span></label>
+                <label>Größe<input type="range" data-var="--corona-size" data-unit="px" min="100" max="1600" step="10" value="680"><span class="lp-val"></span></label>
+                <label>Weichzeichnung<input type="range" data-var="--corona-blur" data-unit="px" min="0" max="200" step="1" value="22"><span class="lp-val"></span></label>
+                <label>Stärke<input type="range" data-var="--corona-opacity" data-unit="" min="0" max="1.5" step="0.05" value="1.5"><span class="lp-val"></span></label>
 
                 <p class="lp-group">Scheibe · .architects-orb</p>
-                <label>Größe<input type="range" data-var="--orb-size" data-unit="px" min="100" max="1400" step="10" value="630"><span class="lp-val"></span></label>
+                <label>Größe<input type="range" data-var="--orb-size" data-unit="px" min="100" max="1400" step="10" value="580"><span class="lp-val"></span></label>
 
                 <p class="lp-group">Logo · .architects-logo-img</p>
-                <label>Größe<input type="range" data-var="--logo-scale" data-unit="%" min="40" max="200" step="1" value="136"><span class="lp-val"></span></label>
-                <label>Schein-Radius<input type="range" data-var="--logo-glow-size" data-unit="px" min="0" max="200" step="1" value="60"><span class="lp-val"></span></label>
-                <label>Schein-Stärke<input type="range" data-var="--glow-alpha" data-unit="" min="0" max="1" step="0.05" value="0.6"><span class="lp-val"></span></label>
+                <label>Größe<input type="range" data-var="--logo-scale" data-unit="%" min="40" max="200" step="1" value="109"><span class="lp-val"></span></label>
+                <label>Schein-Radius<input type="range" data-var="--logo-glow-size" data-unit="px" min="0" max="200" step="1" value="200"><span class="lp-val"></span></label>
+                <label>Schein-Stärke<input type="range" data-var="--glow-alpha" data-unit="" min="0" max="1" step="0.05" value="1"><span class="lp-val"></span></label>
 
                 <p class="lp-group">Farbe</p>
                 <label style="grid-template-columns: 1fr 208px;">
                     Farbe (Glow)
                     <div class="lp-color-row">
-                        <input type="color" id="lpColor" value="#5ec8d8" title="Farbe wählen">
-                        <input type="text" id="lpHex" class="lp-hex-input" value="#5EC8D8" placeholder="#5EC8D8" maxlength="7" spellcheck="false" title="Hex-Code einfügen">
+                        <input type="color" id="lpColor" value="#20d9fe" title="Farbe wählen">
+                        <input type="text" id="lpHex" class="lp-hex-input" value="#20D9FE" placeholder="#20D9FE" maxlength="7" spellcheck="false" title="Hex-Code einfügen">
                     </div>
                 </label>
 
@@ -3019,13 +2798,13 @@
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value">100&nbsp;%</div>
-                    <div class="hero-stat-label">Weinheim</div>
+                    <div class="hero-stat-value">0</div>
+                    <div class="hero-stat-label">Kompromisse bei&nbsp;Qualität</div>
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value">0</div>
-                    <div class="hero-stat-label">Kompromisse bei&nbsp;Qualität</div>
+                    <div class="hero-stat-value">100&nbsp;%</div>
+                    <div class="hero-stat-label">Made in Weinheim</div>
                 </div>
             </div>
         </div>
@@ -3388,7 +3167,7 @@
     </section>
 
     <!-- ===== ÜBER UNS ===== -->
-    <section class="section section-light" id="ueberuns">
+    <section class="section section-light" id="ueberuns" style="padding-top: 10rem;">
         <div class="section-inner">
             <div class="about-grid">
                 <div class="about-image fade-in-left">
@@ -4961,35 +4740,6 @@
             });
         })();
 
-        // ===== KUNDEN-VARIANTEN-UMSCHALTER LOGIK =====
-        (function initVariantSwitcher() {
-            const switcher = document.getElementById('variantSwitcher');
-            if (!switcher) return;
-            const buttons = switcher.querySelectorAll('.variant-btn');
-
-            function syncActiveBtn() {
-                const current = document.documentElement.getAttribute('data-variant') || '';
-                buttons.forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.variant === current);
-                });
-            }
-
-            buttons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const target = btn.dataset.variant;
-                    if (target) {
-                        document.documentElement.setAttribute('data-variant', target);
-                        history.replaceState(null, '', '?v=' + target.replace('v', ''));
-                    } else {
-                        document.documentElement.removeAttribute('data-variant');
-                        history.replaceState(null, '', window.location.pathname);
-                    }
-                    syncActiveBtn();
-                });
-            });
-
-            syncActiveBtn();
-        })();
-    </script>
+        </script>
 </body>
 </html>

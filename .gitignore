@@ -7,6 +7,8 @@
 !images/**/*.png
 !images/**/*.jpg
 !images/**/*.jpeg
+!favicon*.png
+!apple-touch-icon.png
 
 # macOS
 .DS_Store
