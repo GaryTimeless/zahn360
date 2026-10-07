@@ -1380,7 +1380,11 @@
             color: var(--gray-dark);
         }
 
-        /* Badge: gleicher Ring wie Standard, nur Innenfläche an reines Schwarz angepasst */
+        /* Badge (Variante A): dezenter dunkler Track für 10:1 Kontrast, Innenfläche reines Schwarz */
+        #prozess .degree-badge {
+            --badge-track: rgba(255, 255, 255, 0.16);
+        }
+
         #prozess .degree-badge::before {
             background: #000000;
         }
@@ -1667,7 +1671,7 @@
             height: 56px;
             border-radius: 50%;
             background: conic-gradient(var(--turquoise) var(--deg, 0deg),
-                    #FFFFFF var(--deg, 0deg));
+                    var(--badge-track, #FFFFFF) var(--deg, 0deg));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1678,6 +1682,13 @@
             color: var(--black);
             position: relative;
             z-index: 1;
+            will-change: background;
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .degree-badge:hover {
+            transform: scale(1.06);
         }
 
         .degree-badge::before {
@@ -3642,14 +3653,14 @@
             <div class="process fade-in">
                 <div class="process-steps">
                     <div class="process-step">
-                        <div class="degree-badge" style="--deg: 90deg;"><span>090°</span></div>
+                        <div class="degree-badge" data-deg="90" style="--deg: 0deg;"><span>090°</span></div>
                         <div>
                             <h3>Digitale Abnahme</h3>
                             <p>Ihre Praxis übermittelt Scan oder Abdruck direkt an unser Labor.</p>
                         </div>
                     </div>
                     <div class="process-step">
-                        <div class="degree-badge" style="--deg: 180deg;"><span>180°</span></div>
+                        <div class="degree-badge" data-deg="180" style="--deg: 0deg;"><span>180°</span></div>
                         <div>
                             <h3>Fertigung</h3>
                             <p>Unsere Zahntechnikermeister planen und fertigen Ihre Arbeit — digital und in Handarbeit.
@@ -3657,14 +3668,14 @@
                         </div>
                     </div>
                     <div class="process-step">
-                        <div class="degree-badge" style="--deg: 270deg;"><span>270°</span></div>
+                        <div class="degree-badge" data-deg="270" style="--deg: 0deg;"><span>270°</span></div>
                         <div>
                             <h3>Prüfung</h3>
                             <p>Passung, Funktion und Ästhetik werden geprüft, bevor die Arbeit unser Haus verlässt.</p>
                         </div>
                     </div>
                     <div class="process-step">
-                        <div class="degree-badge" style="--deg: 360deg;"><span>360°</span></div>
+                        <div class="degree-badge" data-deg="360" style="--deg: 0deg;"><span>360°</span></div>
                         <div>
                             <h3>Rückgabe</h3>
                             <p>Die fertige Arbeit geht zurück an Ihre Praxis und wird dort eingesetzt.</p>
@@ -4082,7 +4093,121 @@
             setTimeout(() => t.classList.remove('show'), 3000);
         }
 
-        // Scroll animations entfernt (alle Inhalte sofort sichtbar, nur Logo-Effekte aktiv)
+        // ===== PROZESS-KREISE FÜLL-ANIMATION ("Einmal ganz herum") =====
+        (function initProcessBadgeAnimation() {
+            const badges = document.querySelectorAll('.degree-badge');
+            const processSteps = document.querySelector('.process-steps') || document.querySelector('.process');
+            if (!badges.length || !processSteps) return;
+
+            const items = Array.from(badges).map((badge, idx) => {
+                const targetDeg = parseFloat(badge.dataset.deg) || (90 * (idx + 1));
+                badge.style.setProperty('--deg', '0deg');
+                badge.title = 'Klicken zum erneuten Abspielen der Füll-Animation';
+                return { badge, targetDeg };
+            });
+
+            // Respektiere Benutzereinstellung für reduzierte Bewegung
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) {
+                items.forEach(item => item.badge.style.setProperty('--deg', item.targetDeg + 'deg'));
+                return;
+            }
+
+            let isRunning = false;
+            let hasAnimated = false;
+            let rafId = null;
+
+            // Sanfte Easing-Kurve
+            function easeOutCubic(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
+
+            function animateBadges() {
+                if (isRunning) return;
+                isRunning = true;
+                if (rafId) cancelAnimationFrame(rafId);
+
+                const startTime = performance.now();
+                // Absichtlich sehr langsam (Gesamtlaufzeit ca. 5.5s), damit jede Bewegung im Detail sichtbar ist
+                const stagger = 250; // ms Versatz pro Schritt
+
+                function step(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    let allFinished = true;
+
+                    items.forEach((item, i) => {
+                        const itemStart = i * stagger;
+                        if (elapsed < itemStart) {
+                            allFinished = false;
+                            return;
+                        }
+
+                        // Langsame Dauer: 90° dauert ca. 3.0s, 360° ca. 5.2s
+                        const itemDuration = 2600 + (item.targetDeg / 360) * 2600;
+                        const progress = Math.min((elapsed - itemStart) / itemDuration, 1);
+                        const eased = easeOutCubic(progress);
+                        const current = eased * item.targetDeg;
+
+                        item.badge.style.setProperty('--deg', current.toFixed(1) + 'deg');
+
+                        if (progress < 1) {
+                            allFinished = false;
+                        }
+                    });
+
+                    if (!allFinished) {
+                        rafId = requestAnimationFrame(step);
+                    } else {
+                        isRunning = false;
+                        hasAnimated = true;
+                        items.forEach(item => {
+                            item.badge.style.setProperty('--deg', item.targetDeg + 'deg');
+                        });
+                    }
+                }
+
+                rafId = requestAnimationFrame(step);
+            }
+
+            function resetBadges() {
+                if (rafId) cancelAnimationFrame(rafId);
+                isRunning = false;
+                hasAnimated = false;
+                items.forEach(item => {
+                    item.badge.style.setProperty('--deg', '0deg');
+                });
+            }
+
+            // Klick auf einen Kreis startet die Füllung sofort wieder von vorn
+            badges.forEach(badge => {
+                badge.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    resetBadges();
+                    requestAnimationFrame(() => {
+                        animateBadges();
+                    });
+                });
+            });
+
+            // IntersectionObserver: Beobachtet direkt die Kreise (.process-steps),
+            // damit die Animation erst startet, wenn die Kreise mitten im Sichtfeld sind
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+                            animateBadges();
+                        } else if (!entry.isIntersecting && entry.intersectionRatio === 0) {
+                            // Wenn komplett aus dem Sichtfeld gescrollt, zurücksetzen für erneutes Vorführen
+                            resetBadges();
+                        }
+                    });
+                }, { threshold: [0, 0.3], rootMargin: '0px 0px -40px 0px' });
+
+                observer.observe(processSteps);
+            } else {
+                setTimeout(animateBadges, 800);
+            }
+        })();
 
         // Architects Eclipse Pulse Controls
         function setEclipseTheme(theme, btn) {
