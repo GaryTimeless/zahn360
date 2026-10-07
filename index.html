@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZAHN 360 oHG – Meisterlabor für Zahntechnik in Weinheim</title>
-    <meta name="description" content="ZAHN 360 oHG in Weinheim (Hauptstraße 4c). Führung & Unterhaltung eines zahntechnischen Labors. Kronen, Brücken & Implantate in Meisterqualität von Julien Hornung & Simon Jansen.">
+    <meta name="description"
+        content="ZAHN 360 oHG in Weinheim (Hauptstraße 4c). Führung & Unterhaltung eines zahntechnischen Labors. Kronen, Brücken & Implantate in Meisterqualität von Julien Hornung & Simon Jansen.">
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -14,7 +16,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
@@ -31,10 +35,10 @@
             --cream: #121212;
             --white: #1A1A1A;
 
-            --turquoise: #5EC8D8;
-            --turquoise-soft: #8DE0EB;
-            --turquoise-muted: rgba(94, 200, 216, 0.12);
-            --turquoise-line: rgba(94, 200, 216, 0.45);
+            --turquoise: #75F3FF;
+            --turquoise-soft: #75F3FF;
+            --turquoise-muted: rgba(117, 243, 255, 0.18);
+            --turquoise-line: rgba(117, 243, 255, 0.55);
 
             --header-bg: rgba(0, 0, 0, 0.92);
             --overlay-subtler: rgba(0, 0, 0, 0.10);
@@ -52,7 +56,7 @@
 
             --max-width: 1100px;
             --line: 1px solid var(--gray-pale);
-            --line-dark: 1px solid rgba(255,255,255,0.08);
+            --line-dark: 1px solid rgba(255, 255, 255, 0.08);
             --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
@@ -80,33 +84,59 @@
             font-family: var(--font-sans);
             white-space: nowrap;
         }
+
         .dark-toggle:hover {
             border-color: var(--gray-light);
             color: var(--black);
         }
 
         /* Dev-Buttons: fest unten rechts fliegend auf allen Bildschirmbreiten */
-        #sizeToggleBtn, #logoToggleBtn, #moveToggleBtn {
+        #sizeToggleBtn,
+        #logoToggleBtn,
+        #moveToggleBtn {
             position: fixed;
             bottom: 1rem;
             z-index: 3000;
         }
-        #sizeToggleBtn { right: 1rem; }
-        #logoToggleBtn { right: 6.5rem; }
-        #moveToggleBtn { right: 12rem; }
 
-        @media (max-width: 768px) {
-            /* Dev-/Design-Werkzeuge auf Mobil ausblenden (Besucher brauchen sie nicht) */
-            #sizeToggleBtn, #logoToggleBtn, #moveToggleBtn { display: none; }
-            #sizeControls, #logoPanel { display: none !important; }
+        #sizeToggleBtn {
+            right: 1rem;
         }
 
-        *, *::before, *::after {
-            margin: 0; padding: 0; box-sizing: border-box;
+        #logoToggleBtn {
+            right: 6.5rem;
+        }
+
+        #moveToggleBtn {
+            right: 12rem;
+        }
+
+        @media (max-width: 768px) {
+
+            /* Dev-/Design-Werkzeuge auf Mobil ausblenden (Besucher brauchen sie nicht) */
+            #sizeToggleBtn,
+            #logoToggleBtn,
+            #moveToggleBtn {
+                display: none;
+            }
+
+            #sizeControls,
+            #logoPanel {
+                display: none !important;
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         /* Kein horizontales Scrollen auf Mobil – Seite bleibt immer in der Viewport-Breite */
-        html, body {
+        html,
+        body {
             max-width: 100%;
             overflow-x: hidden;
         }
@@ -116,6 +146,7 @@
             background: var(--turquoise);
             color: #000000;
         }
+
         ::-moz-selection {
             background: var(--turquoise);
             color: #000000;
@@ -159,7 +190,8 @@
         }
 
         .flourish-center {
-            width: 12px; height: 12px;
+            width: 12px;
+            height: 12px;
             border: 1px solid var(--gray-light);
             border-radius: 50%;
         }
@@ -168,6 +200,7 @@
         .flourish-turquoise .flourish-line {
             background: linear-gradient(90deg, transparent, var(--turquoise), transparent);
         }
+
         .flourish-turquoise .flourish-center {
             background: var(--turquoise);
             border-color: var(--turquoise);
@@ -182,7 +215,8 @@
         }
 
         .ornament-diamond {
-            width: 6px; height: 6px;
+            width: 6px;
+            height: 6px;
             background: var(--turquoise);
             border-radius: 50%;
             margin: 0.5rem auto;
@@ -191,7 +225,9 @@
         /* ===== NAVIGATION ===== */
         .header-nav {
             position: fixed;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             background: var(--header-bg);
             backdrop-filter: blur(20px);
@@ -286,7 +322,9 @@
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 50%; right: 50%;
+            bottom: 0;
+            left: 50%;
+            right: 50%;
             height: 1px;
             background: var(--black);
             transition: var(--transition);
@@ -297,11 +335,13 @@
         }
 
         .nav-link:hover::after {
-            left: 0; right: 0;
+            left: 0;
+            right: 0;
         }
 
         .nav-dot {
-            width: 3px; height: 3px;
+            width: 3px;
+            height: 3px;
             background: var(--gray-light);
             border-radius: 50%;
         }
@@ -330,7 +370,10 @@
         /* Subtle fine-line frame */
         .hero-frame {
             position: absolute;
-            top: 9rem; left: 4rem; right: 4rem; bottom: 3rem;
+            top: 9rem;
+            left: 4rem;
+            right: 4rem;
+            bottom: 3rem;
             border: 1px solid var(--gray-pale);
             pointer-events: none;
             z-index: 0;
@@ -338,13 +381,37 @@
 
         .hero-frame-corner {
             position: absolute;
-            width: 20px; height: 20px;
+            width: 20px;
+            height: 20px;
         }
 
-        .hero-frame-corner--tl { top: -1px; left: -1px; border-top: 1px solid var(--gray-light); border-left: 1px solid var(--gray-light); }
-        .hero-frame-corner--tr { top: -1px; right: -1px; border-top: 1px solid var(--gray-light); border-right: 1px solid var(--gray-light); }
-        .hero-frame-corner--bl { bottom: -1px; left: -1px; border-bottom: 1px solid var(--gray-light); border-left: 1px solid var(--gray-light); }
-        .hero-frame-corner--br { bottom: -1px; right: -1px; border-bottom: 1px solid var(--gray-light); border-right: 1px solid var(--gray-light); }
+        .hero-frame-corner--tl {
+            top: -1px;
+            left: -1px;
+            border-top: 1px solid var(--gray-light);
+            border-left: 1px solid var(--gray-light);
+        }
+
+        .hero-frame-corner--tr {
+            top: -1px;
+            right: -1px;
+            border-top: 1px solid var(--gray-light);
+            border-right: 1px solid var(--gray-light);
+        }
+
+        .hero-frame-corner--bl {
+            bottom: -1px;
+            left: -1px;
+            border-bottom: 1px solid var(--gray-light);
+            border-left: 1px solid var(--gray-light);
+        }
+
+        .hero-frame-corner--br {
+            bottom: -1px;
+            right: -1px;
+            border-bottom: 1px solid var(--gray-light);
+            border-right: 1px solid var(--gray-light);
+        }
 
         .hero-content {
             position: relative;
@@ -406,8 +473,17 @@
         }
 
         @keyframes logoPulse {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.08); opacity: 1; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
         }
 
         /* Slide 1 & 2: Canvas coronas */
@@ -420,7 +496,8 @@
 
         .carousel-core {
             position: absolute;
-            top: 50%; left: 50%;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
             width: 46%;
             height: 46%;
@@ -445,9 +522,9 @@
             top: 50%;
             transform: translateY(-50%);
             z-index: 10;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: rgba(255,255,255,0.7);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.7);
             width: 36px;
             height: 36px;
             border-radius: 50%;
@@ -461,21 +538,27 @@
         }
 
         .carousel-arrow:hover {
-            background: rgba(0,0,0,0.8);
-            border-color: rgba(255,255,255,0.4);
+            background: rgba(0, 0, 0, 0.8);
+            border-color: rgba(255, 255, 255, 0.4);
             color: #fff;
         }
 
-        .carousel-prev { left: -10px; }
-        .carousel-next { right: -10px; }
+        .carousel-prev {
+            left: -10px;
+        }
+
+        .carousel-next {
+            right: -10px;
+        }
 
         .carousel-arrow {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.1);
         }
+
         .carousel-arrow:hover {
-            background: rgba(255,255,255,0.15);
-            border-color: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         /* Dots */
@@ -509,13 +592,20 @@
                 width: 264px;
                 height: 264px;
             }
+
             .carousel-arrow {
                 width: 30px;
                 height: 30px;
                 font-size: 0.8rem;
             }
-            .carousel-prev { left: -5px; }
-            .carousel-next { right: -5px; }
+
+            .carousel-prev {
+                left: -5px;
+            }
+
+            .carousel-next {
+                right: -5px;
+            }
         }
 
         .hero-overtitle {
@@ -637,19 +727,23 @@
             display: inline-grid;
             cursor: default;
         }
-        .hero-stat-swap > span {
+
+        .hero-stat-swap>span {
             grid-area: 1 / 1;
             text-align: center;
             transition: opacity 0.25s ease;
         }
+
         .hero-stat-swap .swap-alt {
             opacity: 0;
             letter-spacing: 1px;
         }
+
         .hero-stat-swap:hover .swap-base,
         .hero-stat-swap:focus-within .swap-base {
             opacity: 0;
         }
+
         .hero-stat-swap:hover .swap-alt,
         .hero-stat-swap:focus-within .swap-alt {
             opacity: 1;
@@ -868,12 +962,37 @@
         /* Corner ornaments for quality seal */
         .seal-corner {
             position: absolute;
-            width: 16px; height: 16px;
+            width: 16px;
+            height: 16px;
         }
-        .seal-corner--tl { top: -1px; left: -1px; border-top: 1px solid var(--gray-light); border-left: 1px solid var(--gray-light); }
-        .seal-corner--tr { top: -1px; right: -1px; border-top: 1px solid var(--gray-light); border-right: 1px solid var(--gray-light); }
-        .seal-corner--bl { bottom: -1px; left: -1px; border-bottom: 1px solid var(--gray-light); border-left: 1px solid var(--gray-light); }
-        .seal-corner--br { bottom: -1px; right: -1px; border-bottom: 1px solid var(--gray-light); border-right: 1px solid var(--gray-light); }
+
+        .seal-corner--tl {
+            top: -1px;
+            left: -1px;
+            border-top: 1px solid var(--gray-light);
+            border-left: 1px solid var(--gray-light);
+        }
+
+        .seal-corner--tr {
+            top: -1px;
+            right: -1px;
+            border-top: 1px solid var(--gray-light);
+            border-right: 1px solid var(--gray-light);
+        }
+
+        .seal-corner--bl {
+            bottom: -1px;
+            left: -1px;
+            border-bottom: 1px solid var(--gray-light);
+            border-left: 1px solid var(--gray-light);
+        }
+
+        .seal-corner--br {
+            bottom: -1px;
+            right: -1px;
+            border-bottom: 1px solid var(--gray-light);
+            border-right: 1px solid var(--gray-light);
+        }
 
         .seal-badge {
             display: inline-block;
@@ -988,9 +1107,11 @@
             margin: 2rem 0;
             border-top: 1px solid var(--gray-pale);
         }
+
         .leistung-acc details {
             border-bottom: 1px solid var(--gray-pale);
         }
+
         .leistung-acc summary {
             padding: 1rem 0;
             cursor: pointer;
@@ -1005,7 +1126,11 @@
             justify-content: space-between;
             transition: color 0.2s;
         }
-        .leistung-acc summary::-webkit-details-marker { display: none; }
+
+        .leistung-acc summary::-webkit-details-marker {
+            display: none;
+        }
+
         .leistung-acc summary::after {
             content: '+';
             font-size: 1.1rem;
@@ -1013,20 +1138,27 @@
             color: var(--gray-mid);
             transition: transform 0.2s;
         }
+
         .leistung-acc details[open] summary::after {
             content: '−';
         }
-        .leistung-acc summary:hover { color: var(--turquoise); }
+
+        .leistung-acc summary:hover {
+            color: var(--turquoise);
+        }
+
         .leistung-acc details[open] summary {
             color: var(--turquoise);
             font-weight: 500;
         }
+
         .leistung-acc .acc-content {
             padding: 0 0 1.2rem 0;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 0.3rem 1.5rem;
         }
+
         .leistung-acc .acc-content li {
             font-size: 0.78rem;
             color: var(--gray-dark);
@@ -1036,6 +1168,7 @@
             padding-left: 1rem;
             position: relative;
         }
+
         .leistung-acc .acc-content li::before {
             content: '·';
             position: absolute;
@@ -1049,8 +1182,15 @@
             background: #121212;
             color: var(--black);
         }
-        .section-black .section-title { color: var(--black); }
-        .section-black .section-desc { color: var(--gray-dark); }
+
+        .section-black .section-title {
+            color: var(--black);
+        }
+
+        .section-black .section-desc {
+            color: var(--gray-dark);
+        }
+
         .building-grid {
             display: flex;
             align-items: center;
@@ -1058,24 +1198,29 @@
             gap: 3.5rem;
             flex-wrap: wrap;
         }
+
         .building-image {
             flex: 1 1 55%;
             max-width: 100%;
         }
+
         .building-image img {
             width: 100%;
             height: auto;
             display: block;
             border-radius: 4px;
         }
+
         .building-text {
             flex: 1 1 40%;
             min-width: 280px;
             padding: 2rem 0;
         }
+
         .building-text .section-title {
             font-size: clamp(1.6rem, 3vw, 2.2rem);
         }
+
         .building-text .section-desc {
             font-size: 1rem;
             line-height: 1.8;
@@ -1086,10 +1231,22 @@
             background: #FFFFFF;
             color: #111111;
         }
-        .section-white .section-desc { color: #555555; }
-        .section-white .leistung-acc summary { color: #111111; }
-        .section-white .leistung-acc .acc-content li { color: #555555; }
-        .section-white .benefit-text p { color: #555555; }
+
+        .section-white .section-desc {
+            color: #555555;
+        }
+
+        .section-white .leistung-acc summary {
+            color: #111111;
+        }
+
+        .section-white .leistung-acc .acc-content li {
+            color: #555555;
+        }
+
+        .section-white .benefit-text p {
+            color: #555555;
+        }
 
         /* ===== DESIGN: v-1 KONTRAST (Reines Schwarz #000000 & klares Weiß #FFFFFF alternierend) ===== */
         .header-nav {
@@ -1106,44 +1263,92 @@
             background: #000000;
             color: var(--black);
         }
-        #patienten .section-title { color: var(--black); }
-        #patienten .section-desc { color: var(--gray-dark); }
-        #patienten .patient-feature h4 { color: var(--black); }
-        #patienten .patient-feature p { color: var(--gray-dark); }
+
+        #patienten .section-title {
+            color: var(--black);
+        }
+
+        #patienten .section-desc {
+            color: var(--gray-dark);
+        }
+
+        #patienten .patient-feature h4 {
+            color: var(--black);
+        }
+
+        #patienten .patient-feature p {
+            color: var(--gray-dark);
+        }
+
         #patienten .quality-seal {
             background: rgba(255, 255, 255, 0.04);
             border-color: rgba(255, 255, 255, 0.12);
         }
-        #patienten .quality-seal-title { color: var(--black); }
-        #patienten .quality-seal-sub { color: var(--gray-dark); }
-        #patienten .quality-list li { color: var(--gray-dark); }
+
+        #patienten .quality-seal-title {
+            color: var(--black);
+        }
+
+        #patienten .quality-seal-sub {
+            color: var(--gray-dark);
+        }
+
+        #patienten .quality-list li {
+            color: var(--gray-dark);
+        }
 
         /* 3. Karriere (Deine Karriere bei Zahn 360): Weiß */
         #karriere {
             background: #FFFFFF;
             color: #111111;
         }
-        #karriere .section-title { color: #111111; }
-        #karriere .section-desc { color: #555555; }
-        #karriere .section-overtitle { color: #555555; }
+
+        #karriere .section-title {
+            color: #111111;
+        }
+
+        #karriere .section-desc {
+            color: #555555;
+        }
+
+        #karriere .section-overtitle {
+            color: #555555;
+        }
+
         #karriere .perk-item {
             background: #F9F9F8;
             border-color: rgba(0, 0, 0, 0.08);
         }
-        #karriere .perk-item h3 { color: #111111; }
-        #karriere .perk-item p { color: #555555; }
+
+        #karriere .perk-item h3 {
+            color: #111111;
+        }
+
+        #karriere .perk-item p {
+            color: #555555;
+        }
+
         #karriere .job-item {
             border-bottom-color: rgba(0, 0, 0, 0.08);
         }
+
         #karriere .job-item:first-child {
             border-top-color: rgba(0, 0, 0, 0.08);
         }
-        #karriere .job-name { color: #111111; }
-        #karriere .job-meta { color: #555555; }
+
+        #karriere .job-name {
+            color: #111111;
+        }
+
+        #karriere .job-meta {
+            color: #555555;
+        }
+
         #karriere .btn-dark-outline {
             color: #111111;
             border-color: rgba(0, 0, 0, 0.25);
         }
+
         #karriere .btn-dark-outline:hover {
             background: #111111;
             color: #FFFFFF;
@@ -1162,9 +1367,19 @@
             background: #000000;
             color: var(--black);
         }
-        #prozess .section-title { color: var(--black); }
-        #prozess .process-step h3 { color: var(--black); }
-        #prozess .process-step p { color: var(--gray-dark); }
+
+        #prozess .section-title {
+            color: var(--black);
+        }
+
+        #prozess .process-step h3 {
+            color: var(--black);
+        }
+
+        #prozess .process-step p {
+            color: var(--gray-dark);
+        }
+
         /* Badge: gleicher Ring wie Standard, nur Innenfläche an reines Schwarz angepasst */
         #prozess .degree-badge::before {
             background: #000000;
@@ -1175,51 +1390,93 @@
             background: #000000;
             color: var(--black);
         }
-        #ueberuns h3 { color: var(--black); }
-        #ueberuns p { color: var(--gray-dark); }
+
+        #ueberuns h3 {
+            color: var(--black);
+        }
+
+        #ueberuns p {
+            color: var(--gray-dark);
+        }
 
         /* 8. Kontakt (Kontakt & Anfrage): Weiß */
         #kontakt {
             background: #FFFFFF;
             color: #111111;
         }
-        #kontakt .section-title { color: #111111; }
-        #kontakt .section-desc { color: #555555; }
-        #kontakt .section-overtitle { color: #555555; }
-        #kontakt .contact-info h3 { color: #111111; }
-        #kontakt .contact-info-sub { color: #555555; }
-        #kontakt .contact-entry-label { color: #555555; }
+
+        #kontakt .section-title {
+            color: #111111;
+        }
+
+        #kontakt .section-desc {
+            color: #555555;
+        }
+
+        #kontakt .section-overtitle {
+            color: #555555;
+        }
+
+        #kontakt .contact-info h3 {
+            color: #111111;
+        }
+
+        #kontakt .contact-info-sub {
+            color: #555555;
+        }
+
+        #kontakt .contact-entry-label {
+            color: #555555;
+        }
+
         #kontakt .contact-entry-value,
-        #kontakt .contact-entry-value a { color: #111111; }
+        #kontakt .contact-entry-value a {
+            color: #111111;
+        }
+
         #kontakt .contact-form {
             background: #F9F9F8;
             border-color: rgba(0, 0, 0, 0.08);
         }
-        #kontakt .form-heading { color: #111111; }
-        #kontakt .form-group label { color: #555555; }
+
+        #kontakt .form-heading {
+            color: #111111;
+        }
+
+        #kontakt .form-group label {
+            color: #555555;
+        }
+
         #kontakt .form-control {
             color: #111111;
             border-bottom-color: rgba(0, 0, 0, 0.2);
         }
+
         #kontakt .form-control:focus {
             border-bottom-color: #111111;
         }
+
         #kontakt .form-control::placeholder {
             color: rgba(0, 0, 0, 0.35);
         }
+
         #kontakt .custom-select-trigger {
             color: #111111;
         }
+
         #kontakt .custom-select-menu {
             background: #FFFFFF;
             border-color: rgba(0, 0, 0, 0.12);
         }
+
         #kontakt .custom-select-option {
             color: #111111;
         }
+
         #kontakt .custom-select-option:hover {
-            background: rgba(94, 200, 216, 0.1);
+            background: rgba(117, 243, 255, 0.1);
         }
+
         #kontakt button[type="submit"] {
             background: #111111 !important;
             color: #FFFFFF !important;
@@ -1230,22 +1487,27 @@
         .fine-separator {
             background: transparent;
         }
+
         .site-footer {
             background: #FFFFFF;
             border-top: none;
         }
+
         .site-footer .footer-brand,
         .site-footer .footer-links a,
         .site-footer .footer-address,
         .site-footer .footer-legal {
             color: #555555;
         }
+
         .site-footer .footer-brand {
             color: #111111;
         }
+
         .site-footer .footer-links a:hover {
             color: var(--turquoise);
         }
+
         .architects-section,
         .canvas-corona-section,
         .eclipse-section {
@@ -1268,6 +1530,7 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
         }
+
         .section-move-btn {
             background: none;
             border: none;
@@ -1278,8 +1541,16 @@
             padding: 0.2rem 0.35rem;
             transition: color 0.2s;
         }
-        .section-move-btn:hover:not(:disabled) { color: #FFFFFF; }
-        .section-move-btn:disabled { opacity: 0.3; cursor: default; }
+
+        .section-move-btn:hover:not(:disabled) {
+            color: #FFFFFF;
+        }
+
+        .section-move-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+
         .section-move-label {
             font-family: var(--font-sans);
             font-size: 0.6rem;
@@ -1288,6 +1559,7 @@
             color: #DDDBD7;
             font-weight: 400;
         }
+
         #moveToggleBtn.active {
             border-color: var(--turquoise);
             color: var(--turquoise);
@@ -1394,10 +1666,8 @@
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            background: conic-gradient(
-                var(--turquoise) var(--deg, 0deg),
-                #FFFFFF var(--deg, 0deg)
-            );
+            background: conic-gradient(var(--turquoise) var(--deg, 0deg),
+                    #FFFFFF var(--deg, 0deg));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1444,6 +1714,7 @@
                 justify-content: space-between;
                 gap: 18px;
             }
+
             .process-steps::before {
                 left: 28px;
                 right: 28px;
@@ -1452,12 +1723,14 @@
                 width: auto;
                 height: 1px;
             }
+
             .process-step {
                 flex-direction: column;
                 text-align: left;
                 flex: 1;
                 padding: 0;
             }
+
             .degree-badge {
                 margin-bottom: 20px;
             }
@@ -1468,6 +1741,7 @@
         #ueberuns {
             padding-top: 2rem;
         }
+
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1487,7 +1761,10 @@
 
         .about-image-frame {
             position: absolute;
-            top: 12px; left: 12px; right: -12px; bottom: -12px;
+            top: 12px;
+            left: 12px;
+            right: -12px;
+            bottom: -12px;
             border: 1px solid var(--gray-pale);
             pointer-events: none;
         }
@@ -1552,19 +1829,26 @@
         }
 
         /* Kontaktdaten inline im Sektions-Header: nur mobil sichtbar, ersetzt dort die Beschreibung */
-        .contact-data-inline { display: none; }
+        .contact-data-inline {
+            display: none;
+        }
+
         .contact-data-inline p {
             font-size: 0.8rem;
             font-weight: 300;
             line-height: 1.9;
             letter-spacing: 0.3px;
         }
+
         .contact-data-inline a {
             color: inherit;
             text-decoration: none;
             transition: var(--transition);
         }
-        .contact-data-inline a:hover { color: var(--turquoise); }
+
+        .contact-data-inline a:hover {
+            color: var(--turquoise);
+        }
 
         .contact-info h3 {
             font-family: var(--font-serif);
@@ -1693,8 +1977,13 @@
         }
 
         /* ===== CUSTOM DROPDOWN (statt nativem Mac-Menü) ===== */
-        .custom-select { position: relative; }
-        .custom-select-native { display: none; }
+        .custom-select {
+            position: relative;
+        }
+
+        .custom-select-native {
+            display: none;
+        }
 
         .custom-select-trigger {
             display: flex;
@@ -1715,7 +2004,10 @@
             background-position: center;
             transition: transform 0.3s ease;
         }
-        .custom-select.open .custom-select-chevron { transform: rotate(180deg); }
+
+        .custom-select.open .custom-select-chevron {
+            transform: rotate(180deg);
+        }
 
         .custom-select-menu {
             position: absolute;
@@ -1733,7 +2025,10 @@
             max-height: 260px;
             overflow-y: auto;
         }
-        .custom-select-menu[hidden] { display: none; }
+
+        .custom-select-menu[hidden] {
+            display: none;
+        }
 
         .custom-select-option {
             padding: 0.65rem 1rem;
@@ -1743,14 +2038,21 @@
             cursor: pointer;
             transition: background 0.2s, color 0.2s;
         }
+
         .custom-select-option:hover,
         .custom-select-option.highlighted {
             background: var(--turquoise);
             color: #000000;
         }
-        .custom-select-option.selected { color: var(--turquoise); }
+
+        .custom-select-option.selected {
+            color: var(--turquoise);
+        }
+
         .custom-select-option.selected:hover,
-        .custom-select-option.selected.highlighted { color: #000000; }
+        .custom-select-option.selected.highlighted {
+            color: #000000;
+        }
 
         textarea.form-control {
             min-height: 100px;
@@ -1786,7 +2088,9 @@
             color: var(--black);
         }
 
-        .footer-brand span { font-weight: 500; }
+        .footer-brand span {
+            font-weight: 500;
+        }
 
         .footer-address {
             font-size: 0.75rem;
@@ -1865,11 +2169,13 @@
 
         .modal-close {
             position: absolute;
-            top: 1.2rem; right: 1.2rem;
+            top: 1.2rem;
+            right: 1.2rem;
             background: none;
             border: 1px solid var(--gray-pale);
             color: var(--gray-dark);
-            width: 32px; height: 32px;
+            width: 32px;
+            height: 32px;
             cursor: pointer;
             font-size: 0.9rem;
             display: flex;
@@ -1926,6 +2232,7 @@
         .modal-content-dark .modal-body {
             color: #555555;
         }
+
         .modal-content-dark .modal-body h4 {
             color: var(--white);
         }
@@ -1943,7 +2250,8 @@
         /* ===== TOAST ===== */
         .toast-notification {
             position: fixed;
-            bottom: 2rem; right: 2rem;
+            bottom: 2rem;
+            right: 2rem;
             background: var(--black);
             color: var(--white);
             padding: 0.85rem 1.8rem;
@@ -1965,22 +2273,43 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            .patient-grid, .dentist-grid, .about-grid, .contact-grid {
+
+            .patient-grid,
+            .dentist-grid,
+            .about-grid,
+            .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
+
             .perks-grid {
                 grid-template-columns: 1fr;
             }
+
             .benefit-list {
                 grid-template-columns: 1fr;
             }
-            .hero-frame { display: none; }
+
+            .hero-frame {
+                display: none;
+            }
+
             /* Kontakt: Formular zuerst (Hauptaktion); Kontaktdaten wandern in den Sektions-Header */
-            .contact-form { order: -1; }
-            #kontakt .section-header .section-desc { display: none; }
-            .contact-data-inline { display: block; }
-            .contact-info { display: none; }
+            .contact-form {
+                order: -1;
+            }
+
+            #kontakt .section-header .section-desc {
+                display: none;
+            }
+
+            .contact-data-inline {
+                display: block;
+            }
+
+            .contact-info {
+                display: none;
+            }
         }
 
         /* Navigation: Hamburger schon ab 850px, damit die Links nie zweizeilig umbrechen */
@@ -1988,12 +2317,16 @@
             .nav-top {
                 justify-content: flex-start;
             }
+
             .brand-logo {
                 text-align: left;
             }
+
             .nav-bottom {
                 position: fixed;
-                top: 90px; left: 0; right: 0;
+                top: 90px;
+                left: 0;
+                right: 0;
                 background: var(--cream);
                 flex-direction: column;
                 padding: 2rem;
@@ -2001,10 +2334,15 @@
                 display: none;
                 gap: 1rem;
             }
+
             .nav-bottom.active {
                 display: flex;
             }
-            .nav-dot { display: none; }
+
+            .nav-dot {
+                display: none;
+            }
+
             .mobile-toggle {
                 display: block;
                 position: absolute;
@@ -2012,7 +2350,10 @@
                 transform: translateY(-50%);
                 right: 2rem;
             }
-            .nav-top-side { display: none; }
+
+            .nav-top-side {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
@@ -2021,24 +2362,34 @@
                 align-items: flex-start;
                 gap: 1rem;
             }
+
             .form-row {
                 grid-template-columns: 1fr;
             }
+
             .hero-stats {
                 gap: clamp(0.75rem, 3vw, 2rem);
             }
+
             .hero-stat-value {
                 font-size: clamp(1.2rem, 4.5vw, 1.6rem);
                 white-space: nowrap;
             }
+
             .hero-stat-label {
                 font-size: clamp(0.52rem, 1.9vw, 0.65rem);
                 letter-spacing: clamp(0.5px, 0.3vw, 1.5px);
                 line-height: 1.3;
             }
-            .about-image-frame { display: none; }
+
+            .about-image-frame {
+                display: none;
+            }
+
             /* Mobile: Zahnärzte-Akkordeon ausblenden (zu viel Scroll) */
-            #zahnaerzte .leistung-acc { display: none; }
+            #zahnaerzte .leistung-acc {
+                display: none;
+            }
         }
 
         /* ===== ANIMATIONS ===== */
@@ -2058,8 +2409,11 @@
 
         .architects-bg-dust {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
                 radial-gradient(circle at 50% 50%, rgba(116, 242, 253, 0.06) 0%, transparent 60%),
                 radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
                 radial-gradient(circle at 80% 20%, rgba(116, 242, 253, 0.04) 0%, transparent 40%);
@@ -2109,10 +2463,12 @@
             display: flex;
             justify-content: center;
         }
+
         .hero-logo.fade-in {
             transform: none;
             transition: opacity 0.8s ease;
         }
+
         .hero-logo.fade-in.visible {
             transform: none;
         }
@@ -2156,11 +2512,11 @@
             height: var(--corona-size);
             border-radius: 50%;
             background: radial-gradient(circle,
-                rgba(var(--glow-rgb), 0.85) 0%,
-                rgba(var(--glow-rgb), 0.55) 35%,
-                rgba(var(--glow-rgb), 0.22) 65%,
-                rgba(var(--glow-rgb), 0.06) 80%,
-                transparent 95%);
+                    rgba(var(--glow-rgb), 0.85) 0%,
+                    rgba(var(--glow-rgb), 0.55) 35%,
+                    rgba(var(--glow-rgb), 0.22) 65%,
+                    rgba(var(--glow-rgb), 0.06) 80%,
+                    transparent 95%);
             filter: blur(var(--corona-blur));
             animation: architectsCoronaPulse var(--pulse-speed) ease-in-out infinite;
             pointer-events: none;
@@ -2215,7 +2571,8 @@
             font-family: var(--font-sans);
         }
 
-        .architects-btn:hover, .architects-btn.active {
+        .architects-btn:hover,
+        .architects-btn.active {
             border-color: var(--turquoise);
             color: #ffffff;
             background: rgba(116, 242, 253, 0.08);
@@ -2225,10 +2582,13 @@
         /* Gleichmaessiges Atmen: nur Groesse und Deckkraft, Weichzeichnung bleibt
            konstant - das haelt den Puls ruhig statt flackernd. */
         @keyframes architectsCoronaPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 opacity: calc(var(--corona-opacity) * 0.73);
             }
+
             50% {
                 transform: scale(1.09);
                 opacity: calc(var(--corona-opacity) * 1.13);
@@ -2239,8 +2599,9 @@
         #logoToggleBtn.active {
             border-color: var(--turquoise);
             color: #ffffff;
-            background: rgba(94, 200, 216, 0.15);
+            background: rgba(117, 243, 255, 0.15);
         }
+
         #logoPanel {
             position: fixed;
             bottom: 3.6rem;
@@ -2256,10 +2617,11 @@
             background: rgba(18, 18, 18, 0.95);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(94, 200, 216, 0.15);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(117, 243, 255, 0.15);
             font-family: var(--font-sans);
             text-align: left;
         }
+
         #logoPanel .lp-header {
             display: flex;
             align-items: center;
@@ -2268,6 +2630,7 @@
             padding-bottom: 0.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
+
         #logoPanel .lp-title {
             font-size: 0.72rem;
             font-weight: 500;
@@ -2275,6 +2638,7 @@
             text-transform: uppercase;
             color: var(--turquoise);
         }
+
         #logoPanel .lp-close {
             background: none;
             border: none;
@@ -2286,9 +2650,11 @@
             border-radius: 4px;
             transition: color 0.2s;
         }
+
         #logoPanel .lp-close:hover {
             color: #ffffff;
         }
+
         #logoPanel .lp-group {
             font-size: 0.6rem;
             letter-spacing: 2px;
@@ -2296,7 +2662,11 @@
             color: var(--gray-mid);
             margin: 0.9rem 0 0.4rem;
         }
-        #logoPanel .lp-group:first-child { margin-top: 0; }
+
+        #logoPanel .lp-group:first-child {
+            margin-top: 0;
+        }
+
         #logoPanel label {
             display: grid;
             grid-template-columns: 1fr 150px 58px;
@@ -2306,13 +2676,19 @@
             color: var(--gray-light);
             margin-bottom: 0.35rem;
         }
-        #logoPanel input[type="range"] { width: 100%; accent-color: rgb(var(--lp-accent, 94, 200, 216)); }
+
+        #logoPanel input[type="range"] {
+            width: 100%;
+            accent-color: rgb(var(--lp-accent, 117, 243, 255));
+        }
+
         #logoPanel .lp-color-row {
             display: flex;
             align-items: center;
             gap: 0.45rem;
             width: 100%;
         }
+
         #logoPanel input[type="color"] {
             width: 26px;
             height: 22px;
@@ -2323,6 +2699,7 @@
             cursor: pointer;
             flex-shrink: 0;
         }
+
         #logoPanel input[type="text"].lp-hex-input {
             flex: 1;
             background: rgba(255, 255, 255, 0.08);
@@ -2335,17 +2712,20 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+
         #logoPanel input[type="text"].lp-hex-input:focus {
             outline: none;
-            border-color: rgb(var(--lp-accent, 94, 200, 216));
+            border-color: rgb(var(--lp-accent, 117, 243, 255));
             background: rgba(255, 255, 255, 0.12);
         }
+
         #logoPanel .lp-val {
             text-align: right;
             font-size: 0.65rem;
             color: var(--gray-mid);
             font-variant-numeric: tabular-nums;
         }
+
         #logoPanel .lp-out {
             margin-top: 0.9rem;
             padding-top: 0.7rem;
@@ -2385,8 +2765,10 @@
 
         .corona-canvas {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 1;
         }
@@ -2427,6 +2809,7 @@
             gap: 1.2rem;
             flex-wrap: wrap;
         }
+
         /* ===== FOOTER CORONA — Architects Eclipse ===== */
         .eclipse-section {
             background: #121212;
@@ -2450,7 +2833,7 @@
             font-size: 0.6rem;
             letter-spacing: 6px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
         }
 
         .eclipse-title {
@@ -2480,7 +2863,8 @@
 
         .eclipse-orb {
             position: absolute;
-            top: 50%; left: 50%;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
             width: 46%;
             height: 46%;
@@ -2490,7 +2874,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 0 3px rgba(255,255,255,0.06), 0 0 80px rgba(0,0,0,0.9);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06), 0 0 80px rgba(0, 0, 0, 0.9);
         }
 
         .eclipse-orb-inner {
@@ -2527,20 +2911,21 @@
         .eclipse-flourish-line {
             height: 1px;
             width: 30px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
         }
 
         .eclipse-flourish-dot {
-            width: 4px; height: 4px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .eclipse-orb-slogan {
             font-family: var(--font-sans);
             font-size: 0.55rem;
             letter-spacing: 5px;
-            color: rgba(255,255,255,0.35);
+            color: rgba(255, 255, 255, 0.35);
             text-transform: uppercase;
             margin-top: 0.3rem;
         }
@@ -2551,16 +2936,80 @@
             }
         }
 
-        .fibrous-corona-section { min-height: 820px; padding: 120px 24px 150px; background:#121212; color:#f4f3ee; text-align:center; overflow:hidden; }
-        .fibrous-corona-intro { max-width:560px; margin:0 auto 20px; }
-        .fibrous-corona-intro h2 { font-size:clamp(2.2rem,5vw,4.8rem); font-weight:400; letter-spacing:-.05em; margin:16px 0 12px; }
-        .fibrous-corona-intro p { color:#999993; line-height:1.7; margin:0; }
-        .fibrous-corona-stage { width:min(84vw,680px); aspect-ratio:1; margin:0 auto; position:relative; display:grid; place-items:center; }
-        #fibrousCoronaCanvas { position:absolute; inset:0; width:100%; height:100%; }
-        .fibrous-corona-core { width:40%; aspect-ratio:1; border-radius:50%; background:#121212; display:grid; place-items:center; position:relative; box-shadow:0 0 32px rgba(255,255,255,.08); }
-        .fibrous-corona-core span { color:#fff; font:500 clamp(.7rem,1.5vw,1.05rem)/1 sans-serif; letter-spacing:.14em; }
-        .fibrous-corona-core b { color:#b9b8b1; font-weight:400; }
-        @media (max-width:600px) { .fibrous-corona-section { padding-inline:16px; } .fibrous-corona-stage { width:100vw; } }
+        .fibrous-corona-section {
+            min-height: 820px;
+            padding: 120px 24px 150px;
+            background: #121212;
+            color: #f4f3ee;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .fibrous-corona-intro {
+            max-width: 560px;
+            margin: 0 auto 20px;
+        }
+
+        .fibrous-corona-intro h2 {
+            font-size: clamp(2.2rem, 5vw, 4.8rem);
+            font-weight: 400;
+            letter-spacing: -.05em;
+            margin: 16px 0 12px;
+        }
+
+        .fibrous-corona-intro p {
+            color: #999993;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .fibrous-corona-stage {
+            width: min(84vw, 680px);
+            aspect-ratio: 1;
+            margin: 0 auto;
+            position: relative;
+            display: grid;
+            place-items: center;
+        }
+
+        #fibrousCoronaCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .fibrous-corona-core {
+            width: 40%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: #121212;
+            display: grid;
+            place-items: center;
+            position: relative;
+            box-shadow: 0 0 32px rgba(255, 255, 255, .08);
+        }
+
+        .fibrous-corona-core span {
+            color: #fff;
+            font: 500 clamp(.7rem, 1.5vw, 1.05rem)/1 sans-serif;
+            letter-spacing: .14em;
+        }
+
+        .fibrous-corona-core b {
+            color: #b9b8b1;
+            font-weight: 400;
+        }
+
+        @media (max-width:600px) {
+            .fibrous-corona-section {
+                padding-inline: 16px;
+            }
+
+            .fibrous-corona-stage {
+                width: 100vw;
+            }
+        }
 
         /* ===== FBM CORONA — 3D Value Noise + Fractal Brownian Motion ===== */
         .fbm-section {
@@ -2588,7 +3037,7 @@
             font-size: 0.6rem;
             letter-spacing: 6px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
         }
 
         .fbm-title {
@@ -2629,7 +3078,7 @@
             align-items: center;
             justify-content: center;
             z-index: 2;
-            box-shadow: 0 0 40px 10px rgba(0,0,0,0.9);
+            box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.9);
         }
 
         .fbm-core-inner {
@@ -2657,7 +3106,7 @@
         }
 
         .fbm-core-slogan {
-            color: rgba(255,255,255,0.35);
+            color: rgba(255, 255, 255, 0.35);
             font-family: var(--font-sans);
             font-size: 0.5rem;
             letter-spacing: 5px;
@@ -2676,13 +3125,14 @@
         .fbm-flourish-line {
             height: 1px;
             width: 25px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
         }
 
         .fbm-flourish-dot {
-            width: 3px; height: 3px;
+            width: 3px;
+            height: 3px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.4);
+            background: rgba(255, 255, 255, 0.4);
         }
 
         @media (max-width: 768px) {
@@ -2690,12 +3140,9 @@
                 padding: 4rem 1.5rem;
             }
         }
-
-
-
-
     </style>
 </head>
+
 <body>
 
 
@@ -2748,13 +3195,17 @@
                 <div class="architects-stage">
                     <div class="architects-corona"></div>
                     <div class="architects-orb">
-                        <img src="images/25010_ZAHN360_Logosignet_1c_RZ_trueblack_web.png" alt="ZAHN360 Logo" class="architects-logo-img">
+                        <img src="images/25010_ZAHN360_Logosignet_1c_RZ_trueblack_web.png" alt="ZAHN360 Logo"
+                            class="architects-logo-img">
                     </div>
                 </div>
             </div>
-            <div id="sizeControls" style="text-align:center;margin-top:0.5rem;display:flex;align-items:center;justify-content:center;gap:0.8rem;">
+            <div id="sizeControls"
+                style="text-align:center;margin-top:0.5rem;display:flex;align-items:center;justify-content:center;gap:0.8rem;">
                 <button class="btn btn-outline" id="btnSmaller" title="Logo kleiner">−</button>
-                <span id="sizeLabel" style="font-family:var(--font-sans);font-size:0.7rem;letter-spacing:1px;color:var(--gray-mid);min-width:50px;text-align:center;">800 px</span>
+                <span id="sizeLabel"
+                    style="font-family:var(--font-sans);font-size:0.7rem;letter-spacing:1px;color:var(--gray-mid);min-width:50px;text-align:center;">800
+                    px</span>
                 <button class="btn btn-outline" id="btnLarger" title="Logo größer">+</button>
             </div>
 
@@ -2765,28 +3216,38 @@
                     <button class="lp-close" id="lpCloseBtn" title="Schließen" type="button">✕</button>
                 </div>
                 <p class="lp-group">Bühne · .architects-stage</p>
-                <label>Gesamtgröße<input type="range" data-var="--stage-size" data-unit="px" min="300" max="1600" step="10" value="660"><span class="lp-val"></span></label>
-                <label>Puls-Tempo<input type="range" data-var="--pulse-speed" data-unit="s" min="0.5" max="8" step="0.1" value="3.2"><span class="lp-val"></span></label>
+                <label>Gesamtgröße<input type="range" data-var="--stage-size" data-unit="px" min="300" max="1600"
+                        step="10" value="660"><span class="lp-val"></span></label>
+                <label>Puls-Tempo<input type="range" data-var="--pulse-speed" data-unit="s" min="0.5" max="8" step="0.1"
+                        value="3.2"><span class="lp-val"></span></label>
 
                 <p class="lp-group">Leuchten · .architects-corona</p>
-                <label>Größe<input type="range" data-var="--corona-size" data-unit="px" min="100" max="1600" step="10" value="680"><span class="lp-val"></span></label>
-                <label>Weichzeichnung<input type="range" data-var="--corona-blur" data-unit="px" min="0" max="200" step="1" value="22"><span class="lp-val"></span></label>
-                <label>Stärke<input type="range" data-var="--corona-opacity" data-unit="" min="0" max="1.5" step="0.05" value="1.5"><span class="lp-val"></span></label>
+                <label>Größe<input type="range" data-var="--corona-size" data-unit="px" min="100" max="1600" step="10"
+                        value="680"><span class="lp-val"></span></label>
+                <label>Weichzeichnung<input type="range" data-var="--corona-blur" data-unit="px" min="0" max="200"
+                        step="1" value="22"><span class="lp-val"></span></label>
+                <label>Stärke<input type="range" data-var="--corona-opacity" data-unit="" min="0" max="1.5" step="0.05"
+                        value="1.5"><span class="lp-val"></span></label>
 
                 <p class="lp-group">Scheibe · .architects-orb</p>
-                <label>Größe<input type="range" data-var="--orb-size" data-unit="px" min="100" max="1400" step="10" value="580"><span class="lp-val"></span></label>
+                <label>Größe<input type="range" data-var="--orb-size" data-unit="px" min="100" max="1400" step="10"
+                        value="580"><span class="lp-val"></span></label>
 
                 <p class="lp-group">Logo · .architects-logo-img</p>
-                <label>Größe<input type="range" data-var="--logo-scale" data-unit="%" min="40" max="200" step="1" value="109"><span class="lp-val"></span></label>
-                <label>Schein-Radius<input type="range" data-var="--logo-glow-size" data-unit="px" min="0" max="200" step="1" value="200"><span class="lp-val"></span></label>
-                <label>Schein-Stärke<input type="range" data-var="--glow-alpha" data-unit="" min="0" max="1" step="0.05" value="1"><span class="lp-val"></span></label>
+                <label>Größe<input type="range" data-var="--logo-scale" data-unit="%" min="40" max="200" step="1"
+                        value="109"><span class="lp-val"></span></label>
+                <label>Schein-Radius<input type="range" data-var="--logo-glow-size" data-unit="px" min="0" max="200"
+                        step="1" value="200"><span class="lp-val"></span></label>
+                <label>Schein-Stärke<input type="range" data-var="--glow-alpha" data-unit="" min="0" max="1" step="0.05"
+                        value="1"><span class="lp-val"></span></label>
 
                 <p class="lp-group">Farbe</p>
                 <label style="grid-template-columns: 1fr 208px;">
                     Farbe (Glow)
                     <div class="lp-color-row">
                         <input type="color" id="lpColor" value="#20d9fe" title="Farbe wählen">
-                        <input type="text" id="lpHex" class="lp-hex-input" value="#20D9FE" placeholder="#20D9FE" maxlength="7" spellcheck="false" title="Hex-Code einfügen">
+                        <input type="text" id="lpHex" class="lp-hex-input" value="#20D9FE" placeholder="#20D9FE"
+                            maxlength="7" spellcheck="false" title="Hex-Code einfügen">
                     </div>
                 </label>
 
@@ -2807,7 +3268,8 @@
             </div>
 
             <p class="hero-description fade-in">
-                Bei ZAHN360 verbinden wir meisterliches Handwerk mit modernster Technologie und fertigen individuelle zahntechnische Lösungen für das gesamte Spektrum der Zahnmedizin.
+                Bei ZAHN360 verbinden wir meisterliches Handwerk mit modernster Technologie und fertigen individuelle
+                zahntechnische Lösungen für das gesamte Spektrum der Zahnmedizin.
             </p>
 
             <div class="hero-actions fade-in">
@@ -2850,7 +3312,8 @@
                 <p class="section-overtitle fade-in">Höchste Priorität: Ihre Gesundheit</p>
                 <h2 class="section-title fade-in">Woher kommt Ihr Zahnersatz?</h2>
                 <p class="section-desc fade-in">
-                    Wenn Sie mit Zahn 360 zusammenarbeiten, erhalten Sie Zahnersatz,<br> der den höchsten biokompatiblen Standards entspricht.
+                    Wenn Sie mit Zahn 360 zusammenarbeiten, erhalten Sie Zahnersatz,<br> der den höchsten biokompatiblen
+                    Standards entspricht.
                 </p>
             </div>
 
@@ -2861,7 +3324,8 @@
                         <div class="feature-line"></div>
                         <div class="feature-text">
                             <h4>Biokompatibles Zirkonoxid & Keramik</h4>
-                            <p>Ausschließlich zertifizierte Hochleistungskeramiken ohne Allergierisiko — für ein natürliches Tragegefühl und maximale Haltbarkeit.</p>
+                            <p>Ausschließlich zertifizierte Hochleistungskeramiken ohne Allergierisiko — für ein
+                                natürliches Tragegefühl und maximale Haltbarkeit.</p>
                         </div>
                     </div>
 
@@ -2870,7 +3334,8 @@
                         <div class="feature-line"></div>
                         <div class="feature-text">
                             <h4>Höchste Passgenauigkeit durch 3D-CAD/CAM</h4>
-                            <p>Mikrometergenaue digitale Vermessung — die Krone oder das Implantat schmiegt sich nahtlos an Ihr natürliches Gebiss an.</p>
+                            <p>Mikrometergenaue digitale Vermessung — die Krone oder das Implantat schmiegt sich nahtlos
+                                an Ihr natürliches Gebiss an.</p>
                         </div>
                     </div>
 
@@ -2879,7 +3344,8 @@
                         <div class="feature-line"></div>
                         <div class="feature-text">
                             <h4>100 % Regionale Fertigung</h4>
-                            <p>Keine anonyme Auslandsfertigung. Jedes Werkstück verlässt persönlich unser Labor in der Hauptstraße 4c unter meisterlicher Kontrolle.</p>
+                            <p>Keine anonyme Auslandsfertigung. Jedes Werkstück verlässt persönlich unser Labor in der
+                                Hauptstraße 4c unter meisterlicher Kontrolle.</p>
                         </div>
                     </div>
                 </div>
@@ -2897,19 +3363,23 @@
                     <ul class="quality-list">
                         <li>
                             <span class="quality-check"></span>
-                            <span><strong>Verwendungsnachweis:</strong> Jeder Zahnersatz erhält einen lückenlosen Material-Pass.</span>
+                            <span><strong>Verwendungsnachweis:</strong> Jeder Zahnersatz erhält einen lückenlosen
+                                Material-Pass.</span>
                         </li>
                         <li>
                             <span class="quality-check"></span>
-                            <span><strong>Ästhetische Perfektion:</strong> Individuelle Farbanpassung abgestimmt auf Ihre natürlichen Zähne.</span>
+                            <span><strong>Ästhetische Perfektion:</strong> Individuelle Farbanpassung abgestimmt auf
+                                Ihre natürlichen Zähne.</span>
                         </li>
                         <li>
                             <span class="quality-check"></span>
-                            <span><strong>Nachhaltigkeit & Langlebigkeit:</strong> Entwickelt für jahrzehntelange Belastbarkeit.</span>
+                            <span><strong>Nachhaltigkeit & Langlebigkeit:</strong> Entwickelt für jahrzehntelange
+                                Belastbarkeit.</span>
                         </li>
                     </ul>
 
-                    <button class="btn btn-primary" style="width:100%;" onclick="openModal('patientModal')">Materialien ansehen</button>
+                    <button class="btn btn-primary" style="width:100%;" onclick="openModal('patientModal')">Materialien
+                        ansehen</button>
                 </div>
             </div>
         </div>
@@ -2928,7 +3398,8 @@
                 <p class="section-overtitle fade-in">Wachse mit uns</p>
                 <h2 class="section-title fade-in">Deine Karriere bei Zahn 360</h2>
                 <p class="section-desc fade-in">
-                    Ein modernes Arbeitsumfeld mit echter Meisterschaft, Wertschätzung und neuester CAD/CAM-Technik. Werde Teil unseres Teams in Weinheim.
+                    Ein modernes Arbeitsumfeld mit echter Meisterschaft, Wertschätzung und neuester CAD/CAM-Technik.
+                    Werde Teil unseres Teams in Weinheim.
                 </p>
             </div>
 
@@ -2966,7 +3437,8 @@
                             <span>Ab sofort</span>
                         </div>
                     </div>
-                    <button class="btn btn-dark-outline" onclick="openApplyModal('Zahntechniker (m/w/d) Prothetik')">Bewerben</button>
+                    <button class="btn btn-dark-outline"
+                        onclick="openApplyModal('Zahntechniker (m/w/d) Prothetik')">Bewerben</button>
                 </div>
 
                 <div class="job-item fade-in">
@@ -2978,7 +3450,8 @@
                             <span>Ab sofort</span>
                         </div>
                     </div>
-                    <button class="btn btn-dark-outline" onclick="openApplyModal('CAD/CAM Spezialist (m/w/d)')">Bewerben</button>
+                    <button class="btn btn-dark-outline"
+                        onclick="openApplyModal('CAD/CAM Spezialist (m/w/d)')">Bewerben</button>
                 </div>
 
                 <div class="job-item fade-in">
@@ -2990,7 +3463,8 @@
                             <span>Ausbildungsstart 2026</span>
                         </div>
                     </div>
-                    <button class="btn btn-dark-outline" onclick="openApplyModal('Auszubildender Zahntechniker (m/w/d)')">Bewerben</button>
+                    <button class="btn btn-dark-outline"
+                        onclick="openApplyModal('Auszubildender Zahntechniker (m/w/d)')">Bewerben</button>
                 </div>
 
             </div>
@@ -3013,10 +3487,14 @@
                 <div class="building-text">
                     <h2 class="section-title" style="text-align:left;margin-bottom:1rem;">Raum für die Zukunft</h2>
                     <p class="section-desc" style="margin:0 0 1rem 0;max-width:none;">
-                        Ein wichtiger Schritt auf unserem Weg ist der Bezug unseres neuen Firmengebäudes ab dem kommenden Jahr. Es steht für Wachstum, Innovation und unseren Anspruch, die besten Voraussetzungen für hochwertige Zahntechnik zu schaffen.
+                        Ein wichtiger Schritt auf unserem Weg ist der Bezug unseres neuen Firmengebäudes ab dem
+                        kommenden Jahr. Es steht für Wachstum, Innovation und unseren Anspruch, die besten
+                        Voraussetzungen für hochwertige Zahntechnik zu schaffen.
                     </p>
                     <p class="section-desc" style="margin:0;max-width:none;">
-                        Moderne Arbeitsplätze, neueste Technologien und eine angenehme Atmosphäre geben unserem Team den Raum, den es braucht – für konzentriertes Arbeiten, kreative Lösungen und gemeinsame Entwicklung.
+                        Moderne Arbeitsplätze, neueste Technologien und eine angenehme Atmosphäre geben unserem Team den
+                        Raum, den es braucht – für konzentriertes Arbeiten, kreative Lösungen und gemeinsame
+                        Entwicklung.
                     </p>
                 </div>
             </div>
@@ -3035,7 +3513,8 @@
             <div class="section-header">
                 <h2 class="section-title fade-in">Für zahnärztliche Praxen</h2>
                 <p class="section-desc fade-in">
-                    Über 60 Zahnärzte vertrauen bereits auf Zahn 360 oHG. Perfekter Service, direkte Erreichbarkeit und höchste Termintreue.
+                    Über 60 Zahnärzte vertrauen bereits auf Zahn 360 oHG. Perfekter Service, direkte Erreichbarkeit und
+                    höchste Termintreue.
                 </p>
             </div>
 
@@ -3128,7 +3607,8 @@
                     <li class="benefit-item fade-in-left">
                         <div class="benefit-text">
                             <h4>Offene digitale Schnittstellen</h4>
-                            <p>Kompatibel mit allen gängigen Intraoralscannern (iTero, TRIOS, Primescan, Cerec etc.).</p>
+                            <p>Kompatibel mit allen gängigen Intraoralscannern (iTero, TRIOS, Primescan, Cerec etc.).
+                            </p>
                         </div>
                     </li>
                     <li class="benefit-item fade-in-left">
@@ -3155,7 +3635,8 @@
             <div class="section-header">
                 <p class="section-overtitle fade-in">So entsteht Ihre Arbeit</p>
                 <h2 class="section-title fade-in">Einmal ganz herum.</h2>
-                <p class="section-desc fade-in">Vier Schritte bis zur fertigen Arbeit: von der digitalen Abnahme über Fertigung und Prüfung bis zur Rückgabe an Ihre Praxis.</p>
+                <p class="section-desc fade-in">Vier Schritte bis zur fertigen Arbeit: von der digitalen Abnahme über
+                    Fertigung und Prüfung bis zur Rückgabe an Ihre Praxis.</p>
             </div>
 
             <div class="process fade-in">
@@ -3171,7 +3652,8 @@
                         <div class="degree-badge" style="--deg: 180deg;"><span>180°</span></div>
                         <div>
                             <h3>Fertigung</h3>
-                            <p>Unsere Zahntechnikermeister planen und fertigen Ihre Arbeit — digital und in Handarbeit.</p>
+                            <p>Unsere Zahntechnikermeister planen und fertigen Ihre Arbeit — digital und in Handarbeit.
+                            </p>
                         </div>
                     </div>
                     <div class="process-step">
@@ -3206,10 +3688,12 @@
                     <p class="section-overtitle fade-in">Tradition trifft Moderne</p>
                     <h3 class="fade-in">Zahn 360 in Weinheim</h3>
                     <p class="fade-in">
-                        Als meistergeführtes Labor in Weinheim verbinden wir langjährige Handwerkskunst mit modernster digitaler Technologie. Persönlich, präzise und mit Liebe zum Detail.
+                        Als meistergeführtes Labor in Weinheim verbinden wir langjährige Handwerkskunst mit modernster
+                        digitaler Technologie. Persönlich, präzise und mit Liebe zum Detail.
                     </p>
                     <p class="fade-in">
-                        Unser Ziel ist es, Zahnärzten ein verlässlicher Partner zu sein und Ihnen ein strahlendes, natürliches Lächeln zu schenken.
+                        Unser Ziel ist es, Zahnärzten ein verlässlicher Partner zu sein und Ihnen ein strahlendes,
+                        natürliches Lächeln zu schenken.
                     </p>
 
                     <div class="founders-block fade-in">
@@ -3238,7 +3722,8 @@
                     Egal ob Zahnarzt, Patient oder zukünftiger Mitarbeiter: treten Sie unkompliziert mit uns in Kontakt.
                 </p>
                 <div class="contact-data-inline fade-in">
-                    <p><a href="tel:+4962018783600">+49 6201 87 83 600</a> · <a href="mailto:info@zahn360.com">info@zahn360.com</a></p>
+                    <p><a href="tel:+4962018783600">+49 6201 87 83 600</a> · <a
+                            href="mailto:info@zahn360.com">info@zahn360.com</a></p>
                 </div>
             </div>
 
@@ -3263,7 +3748,8 @@
                         <li class="contact-entry">
                             <div>
                                 <p class="contact-entry-label">E-Mail</p>
-                                <p class="contact-entry-value"><a href="mailto:info@zahn360.com">info@zahn360.com</a></p>
+                                <p class="contact-entry-value"><a href="mailto:info@zahn360.com">info@zahn360.com</a>
+                                </p>
                             </div>
                         </li>
                     </ul>
@@ -3286,13 +3772,15 @@
                     <div class="form-group">
                         <label for="c_role_trigger">Ich bin</label>
                         <div class="custom-select" id="c_role_custom">
-                            <select id="c_role" class="form-control custom-select-native" aria-hidden="true" tabindex="-1">
+                            <select id="c_role" class="form-control custom-select-native" aria-hidden="true"
+                                tabindex="-1">
                                 <option value="patient">Patient / Endverbraucher</option>
                                 <option value="zahnarzt">Zahnarzt / Praxis</option>
                                 <option value="bewerber">Bewerber / Fachkraft</option>
                                 <option value="sonstiges">Sonstiges</option>
                             </select>
-                            <button type="button" id="c_role_trigger" class="form-control custom-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                            <button type="button" id="c_role_trigger" class="form-control custom-select-trigger"
+                                aria-haspopup="listbox" aria-expanded="false">
                                 <span class="custom-select-value">Patient / Endverbraucher</span>
                                 <span class="custom-select-chevron"></span>
                             </button>
@@ -3302,10 +3790,13 @@
 
                     <div class="form-group">
                         <label for="c_message">Ihre Nachricht</label>
-                        <textarea id="c_message" class="form-control" required wrap="soft" placeholder="Wie können wir Ihnen helfen?"></textarea>
+                        <textarea id="c_message" class="form-control" required wrap="soft"
+                            placeholder="Wie können wir Ihnen helfen?"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="width:100%;background:var(--white);color:var(--black);border-color:var(--white);">Anfrage absenden</button>
+                    <button type="submit" class="btn btn-primary"
+                        style="width:100%;background:var(--white);color:var(--black);border-color:var(--white);">Anfrage
+                        absenden</button>
                 </form>
             </div>
         </div>
@@ -3338,7 +3829,7 @@
 
 
 
-  
+
 
     <!-- ===== MODALS ===== -->
 
@@ -3347,7 +3838,8 @@
         <div class="modal-content modal-content-dark">
             <button class="modal-close" onclick="closeModal('applyModal')">✕</button>
             <h3 class="modal-title" id="applyTargetTitle">Schnellbewerbung</h3>
-            <p class="modal-body" style="margin-bottom:1.5rem;">In 60 Sekunden bewerben. Wir melden uns innerhalb von 24 Stunden.</p>
+            <p class="modal-body" style="margin-bottom:1.5rem;">In 60 Sekunden bewerben. Wir melden uns innerhalb von 24
+                Stunden.</p>
             <form onsubmit="handleApplySubmit(event)">
                 <div class="form-group">
                     <label for="app_name">Name</label>
@@ -3363,9 +3855,12 @@
                 </div>
                 <div class="form-group">
                     <label for="app_note">Kurze Nachricht</label>
-                    <textarea id="app_note" class="form-control" wrap="soft" placeholder="Erzählen Sie uns kurz von Ihrer Erfahrung..."></textarea>
+                    <textarea id="app_note" class="form-control" wrap="soft"
+                        placeholder="Erzählen Sie uns kurz von Ihrer Erfahrung..."></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width:100%;background:var(--white);color:var(--black);border-color:var(--white);">Bewerbung absenden</button>
+                <button type="submit" class="btn btn-primary"
+                    style="width:100%;background:var(--white);color:var(--black);border-color:var(--white);">Bewerbung
+                    absenden</button>
             </form>
         </div>
     </div>
@@ -3376,7 +3871,8 @@
             <button class="modal-close" onclick="closeModal('patientModal')">✕</button>
             <h3 class="modal-title">Garantierte Materialqualität</h3>
             <div class="modal-body">
-                <p style="margin-bottom:1.2rem;">Bei Zahn 360 oHG in Weinheim verarbeiten wir ausschließlich Medizinprodukte nach strengstem deutschen Medizinprodukterecht (MDR).</p>
+                <p style="margin-bottom:1.2rem;">Bei Zahn 360 oHG in Weinheim verarbeiten wir ausschließlich
+                    Medizinprodukte nach strengstem deutschen Medizinprodukterecht (MDR).</p>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:0.8rem;margin-bottom:1.5rem;">
                     <li>◆ <strong>Zirkonoxid:</strong> Höchste Festigkeit, natürliche Lichtdurchlässigkeit.</li>
                     <li>◆ <strong>Edelmetall- & Metallfreie Alternativen:</strong> Maximale Biokompatibilität.</li>
@@ -3408,7 +3904,8 @@
             <h3 class="modal-title">Datenschutz</h3>
             <div class="modal-body">
                 <p>Verantwortlicher im Sinne der DSGVO ist die ZAHN 360 oHG, Hauptstraße 4c, 69469 Weinheim.</p><br>
-                <p>Personenbezogene Daten werden ausschließlich zur Bearbeitung Ihrer jeweiligen Anfrage verwendet und nicht an Dritte weitergegeben.</p>
+                <p>Personenbezogene Daten werden ausschließlich zur Bearbeitung Ihrer jeweiligen Anfrage verwendet und
+                    nicht an Dritte weitergegeben.</p>
             </div>
         </div>
     </div>
@@ -3420,61 +3917,84 @@
             <h3 class="modal-title">Allgemeine Geschäftsbedingungen</h3>
             <div class="modal-body">
                 <h4>§ 1 Geltungsbereich</h4>
-                <p>1. Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge, Lieferungen und Leistungen zwischen der Zahn360 OHG und ihren Auftraggebern (insbesondere Zahnärzten, Zahnkliniken und sonstigen gewerblichen Bestellern).</p>
+                <p>1. Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge, Lieferungen und Leistungen
+                    zwischen der Zahn360 OHG und ihren Auftraggebern (insbesondere Zahnärzten, Zahnkliniken und
+                    sonstigen gewerblichen Bestellern).</p>
                 <p>2. Diese AGB gelten ausschließlich gegenüber Unternehmern im Sinne des § 14 BGB.</p>
-                <p>3. Entgegenstehende oder abweichende Bedingungen des Auftraggebers werden nicht anerkannt, es sei denn, die Zahn360 OHG stimmt ihrer Geltung ausdrücklich schriftlich zu.</p>
+                <p>3. Entgegenstehende oder abweichende Bedingungen des Auftraggebers werden nicht anerkannt, es sei
+                    denn, die Zahn360 OHG stimmt ihrer Geltung ausdrücklich schriftlich zu.</p>
 
                 <h4>§ 2 Vertragsschluss</h4>
                 <p>1. Angebote der Zahn360 OHG sind freibleibend und unverbindlich.</p>
-                <p>2. Der Vertrag kommt durch Auftragserteilung des Auftraggebers und Annahme durch die Zahn360 OHG zustande.</p>
+                <p>2. Der Vertrag kommt durch Auftragserteilung des Auftraggebers und Annahme durch die Zahn360 OHG
+                    zustande.</p>
                 <p>3. Zahntechnische Arbeiten werden individuell nach den Vorgaben des Auftraggebers gefertigt.</p>
 
                 <h4>§ 3 Leistungsumfang</h4>
-                <p>1. Die Zahn360 OHG fertigt zahntechnische Produkte gemäß den vom Auftraggeber übermittelten Arbeitsunterlagen (z. B. Abformungen, Modelle, Datensätze, Konstruktionsvorgaben).</p>
-                <p>2. Der Auftraggeber ist für die Richtigkeit und Vollständigkeit der übermittelten Unterlagen verantwortlich.</p>
+                <p>1. Die Zahn360 OHG fertigt zahntechnische Produkte gemäß den vom Auftraggeber übermittelten
+                    Arbeitsunterlagen (z. B. Abformungen, Modelle, Datensätze, Konstruktionsvorgaben).</p>
+                <p>2. Der Auftraggeber ist für die Richtigkeit und Vollständigkeit der übermittelten Unterlagen
+                    verantwortlich.</p>
                 <p>3. Änderungen nach Produktionsbeginn können zu Mehrkosten und verlängerten Lieferzeiten führen.</p>
 
                 <h4>§ 4 Preise und Zahlungsbedingungen</h4>
-                <p>1. Es gelten die zum Zeitpunkt der Auftragserteilung gültigen Preislisten bzw. individuell vereinbarten Preise der Zahn360 OHG.</p>
+                <p>1. Es gelten die zum Zeitpunkt der Auftragserteilung gültigen Preislisten bzw. individuell
+                    vereinbarten Preise der Zahn360 OHG.</p>
                 <p>2. Alle Preise verstehen sich zuzüglich der gesetzlichen Mehrwertsteuer, sofern diese anfällt.</p>
-                <p>3. Rechnungen sind innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug zahlbar, sofern nichts anderes vereinbart wurde.</p>
-                <p>4. Bei Zahlungsverzug ist die Zahn360 OHG berechtigt, Verzugszinsen in gesetzlicher Höhe zu berechnen.</p>
+                <p>3. Rechnungen sind innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug zahlbar, sofern nichts anderes
+                    vereinbart wurde.</p>
+                <p>4. Bei Zahlungsverzug ist die Zahn360 OHG berechtigt, Verzugszinsen in gesetzlicher Höhe zu
+                    berechnen.</p>
 
                 <h4>§ 5 Lieferung und Versand</h4>
-                <p>1. Liefertermine sind nur verbindlich, wenn sie ausdrücklich schriftlich durch die Zahn360 OHG bestätigt wurden.</p>
+                <p>1. Liefertermine sind nur verbindlich, wenn sie ausdrücklich schriftlich durch die Zahn360 OHG
+                    bestätigt wurden.</p>
                 <p>2. Die Lieferung erfolgt auf Gefahr des Auftraggebers.</p>
                 <p>3. Teillieferungen sind zulässig, soweit sie dem Auftraggeber zumutbar sind.</p>
 
                 <h4>§ 6 Eigentumsvorbehalt</h4>
-                <p>1. Gelieferte Waren bleiben bis zur vollständigen Bezahlung sämtlicher Forderungen Eigentum der Zahn360 OHG.</p>
-                <p>2. Eine Weiterveräußerung im ordnungsgemäßen Geschäftsverkehr ist zulässig; die daraus entstehenden Forderungen gelten als im Voraus an die Zahn360 OHG abgetreten.</p>
+                <p>1. Gelieferte Waren bleiben bis zur vollständigen Bezahlung sämtlicher Forderungen Eigentum der
+                    Zahn360 OHG.</p>
+                <p>2. Eine Weiterveräußerung im ordnungsgemäßen Geschäftsverkehr ist zulässig; die daraus entstehenden
+                    Forderungen gelten als im Voraus an die Zahn360 OHG abgetreten.</p>
 
                 <h4>§ 7 Gewährleistung</h4>
-                <p>1. Es gelten die gesetzlichen Gewährleistungsrechte, soweit nachfolgend nichts anderes geregelt ist.</p>
-                <p>2. Offensichtliche Mängel sind unverzüglich, spätestens jedoch innerhalb von 7 Werktagen nach Erhalt der Arbeit schriftlich gegenüber der Zahn360 OHG anzuzeigen.</p>
+                <p>1. Es gelten die gesetzlichen Gewährleistungsrechte, soweit nachfolgend nichts anderes geregelt ist.
+                </p>
+                <p>2. Offensichtliche Mängel sind unverzüglich, spätestens jedoch innerhalb von 7 Werktagen nach Erhalt
+                    der Arbeit schriftlich gegenüber der Zahn360 OHG anzuzeigen.</p>
                 <p>3. Bei berechtigten Mängeln erfolgt nach Wahl der Zahn360 OHG Nachbesserung oder Neuanfertigung.</p>
-                <p>4. Keine Gewährleistung besteht bei unsachgemäßer Behandlung oder Veränderung der gelieferten Arbeit.</p>
+                <p>4. Keine Gewährleistung besteht bei unsachgemäßer Behandlung oder Veränderung der gelieferten Arbeit.
+                </p>
 
                 <h4>§ 8 Haftung</h4>
                 <p>1. Die Zahn360 OHG haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit.</p>
-                <p>2. Bei leichter Fahrlässigkeit haftet die Zahn360 OHG nur bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten) und begrenzt auf den vertragstypischen, vorhersehbaren Schaden.</p>
+                <p>2. Bei leichter Fahrlässigkeit haftet die Zahn360 OHG nur bei Verletzung wesentlicher
+                    Vertragspflichten (Kardinalpflichten) und begrenzt auf den vertragstypischen, vorhersehbaren
+                    Schaden.</p>
                 <p>3. Die Haftung nach dem Produkthaftungsgesetz bleibt unberührt.</p>
 
                 <h4>§ 9 Medizinprodukterecht</h4>
-                <p>1. Die zahntechnischen Produkte werden als Sonderanfertigungen gemäß den jeweils geltenden Vorschriften des Medizinprodukterechts hergestellt.</p>
-                <p>2. Der Auftraggeber ist verpflichtet, die erforderliche Dokumentation entsprechend den gesetzlichen Vorschriften aufzubewahren.</p>
+                <p>1. Die zahntechnischen Produkte werden als Sonderanfertigungen gemäß den jeweils geltenden
+                    Vorschriften des Medizinprodukterechts hergestellt.</p>
+                <p>2. Der Auftraggeber ist verpflichtet, die erforderliche Dokumentation entsprechend den gesetzlichen
+                    Vorschriften aufzubewahren.</p>
 
                 <h4>§ 10 Datenschutz</h4>
-                <p>1. Die Zahn360 OHG verarbeitet personenbezogene Daten ausschließlich im Rahmen der gesetzlichen Datenschutzbestimmungen.</p>
-                <p>2. Sofern Zahnarztpraxen Patientendaten übermitteln, geschieht dies in eigener datenschutzrechtlicher Verantwortung.</p>
+                <p>1. Die Zahn360 OHG verarbeitet personenbezogene Daten ausschließlich im Rahmen der gesetzlichen
+                    Datenschutzbestimmungen.</p>
+                <p>2. Sofern Zahnarztpraxen Patientendaten übermitteln, geschieht dies in eigener datenschutzrechtlicher
+                    Verantwortung.</p>
                 <p>3. Nähere Informationen ergeben sich aus der gesonderten Datenschutzerklärung der Zahn360 OHG.</p>
 
                 <h4>§ 11 Gerichtsstand und anwendbares Recht</h4>
                 <p>1. Es gilt das Recht der Bundesrepublik Deutschland.</p>
-                <p>2. Gerichtsstand für alle Streitigkeiten aus dem Vertragsverhältnis ist – sofern gesetzlich zulässig – der Sitz der Zahn360 OHG in Weinheim.</p>
+                <p>2. Gerichtsstand für alle Streitigkeiten aus dem Vertragsverhältnis ist – sofern gesetzlich zulässig
+                    – der Sitz der Zahn360 OHG in Weinheim.</p>
 
                 <h4>§ 12 Schlussbestimmungen</h4>
-                <p>Sollte eine Bestimmung dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
+                <p>Sollte eine Bestimmung dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen
+                    Bestimmungen unberührt.</p>
             </div>
         </div>
     </div>
@@ -3486,7 +4006,7 @@
 
     <script>
         // Size controls toggle
-        (function() {
+        (function () {
             const btn = document.getElementById('sizeToggleBtn');
             const controls = document.getElementById('sizeControls');
             if (!btn || !controls) return;
@@ -3610,7 +4130,7 @@
         }
 
         // ===== SIMPLEX NOISE ALGORITHM FOR ORGANIC CORONA =====
-        const SimplexNoise = (function() {
+        const SimplexNoise = (function () {
             const F3 = 1.0 / 3.0, G3 = 1.0 / 6.0;
             const p = new Uint8Array(256);
             for (let i = 0; i < 256; i++) p[i] = Math.floor(Math.random() * 256);
@@ -3620,7 +4140,7 @@
                 permMod12[i] = (perm[i] % 12);
             }
             return {
-                noise2D: function(xin, yin) {
+                noise2D: function (xin, yin) {
                     let n0, n1, n2;
                     const s = (xin + yin) * 0.5 * (Math.sqrt(3.0) - 1.0);
                     const i = Math.floor(xin + s), j = Math.floor(yin + s);
@@ -3658,11 +4178,11 @@
             const canvas = document.getElementById('noiseCoronaCanvas');
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
-            
+
             let time = 0;
             let themeMode = 'monochrome'; // 'monochrome', 'cyan', 'solar'
 
-            window.setNoiseColor = function(mode, btn) {
+            window.setNoiseColor = function (mode, btn) {
                 themeMode = mode;
                 document.querySelectorAll('.corona-controls .architects-btn').forEach(b => b.classList.remove('active'));
                 if (btn) btn.classList.add('active');
@@ -3702,7 +4222,7 @@
                     const alpha = Math.min(0.85, Math.max(0.12, (n1 + 1) * 0.35 + (n2 + 1) * 0.2));
 
                     const grad = ctx.createLinearGradient(startX, startY, outerX, outerY);
-                    
+
                     if (themeMode === 'monochrome') {
                         grad.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
                         grad.addColorStop(0.35, `rgba(230, 235, 245, ${alpha * 0.7})`);
@@ -3763,8 +4283,8 @@
             // Simple trigonometric noise — chaotic enough for organic fibers
             function noise(a, s) {
                 return Math.sin(a * 7.13 + s * 1.7)
-                     + 0.5 * Math.sin(a * 13.7 + s * 0.9)
-                     + 0.25 * Math.cos(a * 31.2 - s);
+                    + 0.5 * Math.sin(a * 13.7 + s * 0.9)
+                    + 0.25 * Math.cos(a * 31.2 - s);
             }
 
             function resize() {
@@ -3870,16 +4390,16 @@
             if (!canvas) return;
             const stage = canvas.parentElement, ctx = canvas.getContext('2d');
             let w, h, dpr;
-            const resize = () => { const r = stage.getBoundingClientRect(); dpr=Math.min(devicePixelRatio||1,2); w=r.width; h=r.height; canvas.width=w*dpr; canvas.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
-            const n = (x,t) => { const a=Math.sin(x*8+t*.7)*43758.5, b=Math.sin(x*23-t*.4+3)*15731.7; return ((a-Math.floor(a))*.58+(b-Math.floor(b))*.42); };
+            const resize = () => { const r = stage.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2); w = r.width; h = r.height; canvas.width = w * dpr; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
+            const n = (x, t) => { const a = Math.sin(x * 8 + t * .7) * 43758.5, b = Math.sin(x * 23 - t * .4 + 3) * 15731.7; return ((a - Math.floor(a)) * .58 + (b - Math.floor(b)) * .42); };
             const draw = ms => {
                 if (!canvasIsVisible(canvas)) { requestAnimationFrame(draw); return; }
                 const R = IS_MOBILE ? 320 : 900;
-                const t=ms*.001, cx=w/2, cy=h/2, core=Math.min(w,h)*.2; ctx.clearRect(0,0,w,h); ctx.globalCompositeOperation='lighter';
-                for(let i=0;i<R;i++){ const a=i/R*Math.PI*2, q=n(i/R*7+Math.sin(a*4)*.1,t), q2=n(i/R*17+4,t*1.3), start=core+q*7, len=12+q*q*Math.min(w,h)*(.2+q2*.34), alpha=.025+q*q*q2*.26; ctx.beginPath(); ctx.moveTo(cx+Math.cos(a)*start,cy+Math.sin(a)*start); ctx.lineTo(cx+Math.cos(a+(q-.5)*.04)*(start+len),cy+Math.sin(a+(q-.5)*.04)*(start+len)); ctx.strokeStyle=`rgba(244,243,235,${alpha})`; ctx.lineWidth=.35+q*1.25; ctx.stroke(); }
-                ctx.globalCompositeOperation='source-over'; requestAnimationFrame(draw);
+                const t = ms * .001, cx = w / 2, cy = h / 2, core = Math.min(w, h) * .2; ctx.clearRect(0, 0, w, h); ctx.globalCompositeOperation = 'lighter';
+                for (let i = 0; i < R; i++) { const a = i / R * Math.PI * 2, q = n(i / R * 7 + Math.sin(a * 4) * .1, t), q2 = n(i / R * 17 + 4, t * 1.3), start = core + q * 7, len = 12 + q * q * Math.min(w, h) * (.2 + q2 * .34), alpha = .025 + q * q * q2 * .26; ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * start, cy + Math.sin(a) * start); ctx.lineTo(cx + Math.cos(a + (q - .5) * .04) * (start + len), cy + Math.sin(a + (q - .5) * .04) * (start + len)); ctx.strokeStyle = `rgba(244,243,235,${alpha})`; ctx.lineWidth = .35 + q * 1.25; ctx.stroke(); }
+                ctx.globalCompositeOperation = 'source-over'; requestAnimationFrame(draw);
             };
-            resize(); addEventListener('resize',resize,{passive:true}); requestAnimationFrame(draw);
+            resize(); addEventListener('resize', resize, { passive: true }); requestAnimationFrame(draw);
         })();
         // ===== FBM CORONA — 3D Value Noise + Fractal Brownian Motion =====
         // Inspired by test.html — configurable, warm-white glow, breathing pulse
@@ -4095,8 +4615,8 @@
 
             function trigNoise(a, s) {
                 return Math.sin(a * 7.13 + s * 1.7)
-                     + 0.5 * Math.sin(a * 13.7 + s * 0.9)
-                     + 0.25 * Math.cos(a * 31.2 - s);
+                    + 0.5 * Math.sin(a * 13.7 + s * 0.9)
+                    + 0.25 * Math.cos(a * 31.2 - s);
             }
 
             function trigResize() {
@@ -4185,7 +4705,7 @@
 
             // FBM Noise setup
             const fbmPerm = new Uint8Array(512);
-            (function() {
+            (function () {
                 const p = new Uint8Array(256);
                 for (let i = 0; i < 256; i++) p[i] = i;
                 let seed = 1337;
@@ -4318,8 +4838,8 @@
 
             function eclipseNoise(a, s) {
                 return Math.sin(a * 7.13 + s * 1.7)
-                     + 0.5 * Math.sin(a * 13.7 + s * 0.9)
-                     + 0.25 * Math.cos(a * 31.2 - s);
+                    + 0.5 * Math.sin(a * 13.7 + s * 0.9)
+                    + 0.25 * Math.cos(a * 31.2 - s);
             }
 
             function eclipseResize() {
@@ -4428,7 +4948,7 @@
             startTrigCorona();
         })();
         // ===== LOGO SIZE BUTTONS IN HERO =====
-        (function() {
+        (function () {
             const btnSmaller = document.getElementById('btnSmaller');
             const btnLarger = document.getElementById('btnLarger');
             const stage = document.querySelector('.architects-stage');
@@ -4767,6 +5287,7 @@
             });
         })();
 
-        </script>
+    </script>
 </body>
+
 </html>
